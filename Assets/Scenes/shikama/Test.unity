@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 232620434}
   - component: {fileID: 232620433}
   - component: {fileID: 232620432}
+  - component: {fileID: 232620435}
   m_Layer: 5
   m_Name: Button (Legacy) (4)
   m_TagString: Untagged
@@ -575,7 +576,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 232620433}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 232620435}
+        m_TargetAssemblyTypeName: AnimalButtons, Assembly-CSharp
+        m_MethodName: PressAnimal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &232620433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +627,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232620430}
   m_CullTransparentMesh: 1
+--- !u!114 &232620435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232620430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8f10984975eed41873ed221375e858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalObject: {fileID: 9142105466086907081, guid: ad418ec9728592c479f0bb1e1ec7de37, type: 3}
 --- !u!1 &255336179
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +731,7 @@ GameObject:
   - component: {fileID: 298756425}
   - component: {fileID: 298756424}
   - component: {fileID: 298756423}
+  - component: {fileID: 298756426}
   m_Layer: 5
   m_Name: Button (Legacy) (1)
   m_TagString: Untagged
@@ -775,7 +802,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 298756424}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 298756426}
+        m_TargetAssemblyTypeName: EnvironmentButton, Assembly-CSharp
+        m_MethodName: Earthquake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &298756424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,6 +853,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298756421}
   m_CullTransparentMesh: 1
+--- !u!114 &298756426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298756421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17a7379f64e09e4891ee0c0579d08ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &327862487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,6 +1135,7 @@ GameObject:
   - component: {fileID: 666814080}
   - component: {fileID: 666814079}
   - component: {fileID: 666814078}
+  - component: {fileID: 666814081}
   m_Layer: 5
   m_Name: Button (Legacy) (3)
   m_TagString: Untagged
@@ -1154,7 +1206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 666814079}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 666814081}
+        m_TargetAssemblyTypeName: AnimalButtons, Assembly-CSharp
+        m_MethodName: PressAnimal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &666814079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,6 +1257,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666814076}
   m_CullTransparentMesh: 1
+--- !u!114 &666814081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666814076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8f10984975eed41873ed221375e858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalObject: {fileID: 9142105466086907081, guid: d03ab1308a5953349a712d982a9b4e93, type: 3}
 --- !u!1 &685585014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8f10984975eed41873ed221375e858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalObject: {fileID: 9142105466086907081, guid: 4c88e922e5fd60e46a4318a8258709e6, type: 3}
+  animalObject: {fileID: 9142105466086907081, guid: 691e48a1e49d6034c80e1776ce111109, type: 3}
 --- !u!1 &784385751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,7 +1429,7 @@ GameObject:
   - component: {fileID: 784385756}
   - component: {fileID: 784385755}
   - component: {fileID: 784385754}
-  - component: {fileID: 784385753}
+  - component: {fileID: 784385757}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -1380,19 +1457,6 @@ RectTransform:
   m_AnchoredPosition: {x: -500, y: -439}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &784385753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784385751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a8f10984975eed41873ed221375e858, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animalObject: {fileID: 9142105466086907081, guid: d2900882db110684fa1b29e6929a836b, type: 3}
 --- !u!114 &784385754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,9 +1501,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784385753}
-        m_TargetAssemblyTypeName: AnimalButtons, Assembly-CSharp
-        m_MethodName: PressAnimal
+      - m_Target: {fileID: 784385757}
+        m_TargetAssemblyTypeName: EnvironmentButton, Assembly-CSharp
+        m_MethodName: Meteo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1487,6 +1551,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784385751}
   m_CullTransparentMesh: 1
+--- !u!114 &784385757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784385751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17a7379f64e09e4891ee0c0579d08ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &826783461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,7 +2525,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2460,7 +2536,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: "\u9695\u77F3"
 --- !u!222 &1582227980
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2481,6 +2557,7 @@ GameObject:
   - component: {fileID: 1596125163}
   - component: {fileID: 1596125162}
   - component: {fileID: 1596125161}
+  - component: {fileID: 1596125164}
   m_Layer: 5
   m_Name: Button (Legacy) (2)
   m_TagString: Untagged
@@ -2551,7 +2628,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1596125162}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1596125164}
+        m_TargetAssemblyTypeName: AnimalButtons, Assembly-CSharp
+        m_MethodName: PressAnimal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1596125162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2590,6 +2679,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596125159}
   m_CullTransparentMesh: 1
+--- !u!114 &1596125164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596125159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8f10984975eed41873ed221375e858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalObject: {fileID: 9142105466086907081, guid: 4c88e922e5fd60e46a4318a8258709e6, type: 3}
 --- !u!1 &1704837797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,7 +2830,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2739,7 +2841,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: "\u5730\u9707"
 --- !u!222 &1793029494
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2879,6 +2981,7 @@ GameObject:
   - component: {fileID: 1934857969}
   - component: {fileID: 1934857968}
   - component: {fileID: 1934857967}
+  - component: {fileID: 1934857970}
   m_Layer: 5
   m_Name: Button (Legacy) (1)
   m_TagString: Untagged
@@ -2949,7 +3052,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1934857968}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1934857970}
+        m_TargetAssemblyTypeName: AnimalButtons, Assembly-CSharp
+        m_MethodName: PressAnimal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1934857968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2988,6 +3103,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934857965}
   m_CullTransparentMesh: 1
+--- !u!114 &1934857970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934857965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8f10984975eed41873ed221375e858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalObject: {fileID: 9142105466086907081, guid: d2900882db110684fa1b29e6929a836b, type: 3}
 --- !u!1 &1946612113
 GameObject:
   m_ObjectHideFlags: 0

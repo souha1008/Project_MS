@@ -76,13 +76,11 @@ public class PalletChange : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             dragStartPos = mousePosition;
-            Debug.Log(mousePosition);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             dragEndPos = mousePosition;
-            Debug.Log(Vector2.Distance(new Vector2(0, dragEndPos.y), new Vector2(0, dragStartPos.y)));
             float dist = Vector2.Distance(new Vector2(0, dragEndPos.y), new Vector2(0, dragStartPos.y));
             if (dist > 1.0f)
             {

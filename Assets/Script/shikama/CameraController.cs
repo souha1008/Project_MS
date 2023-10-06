@@ -75,14 +75,11 @@ public class CameraController : MonoBehaviour
 
             if (leftBottom.x < floorLeftBottom.x)
             {
-                Debug.Log("aaa");
                 Camera.main.transform.SetPositionX(floorLeftBottom.x + Mathf.Abs(rightTop.x - leftBottom.x) / 2);
             }
 
             if (rightTop.x > floorRightTop.x)
             {
-
-                Debug.Log("bbb");
                 Camera.main.transform.SetPositionX(floorRightTop.x - Mathf.Abs(rightTop.x - leftBottom.x) / 2);
             }
         }
