@@ -11,26 +11,26 @@ public enum DIRECTION {
 public class Animal : MonoBehaviour
 {
     // ステータス
-    [System.NonSerialized] public int cost = 20;
-    [System.NonSerialized] public int hp = 80;
-    [System.NonSerialized] public int maxHp = 80;
+    public int cost { get; set; } = 20;
+    public int hp { get; set; } = 80;
+    public int maxHp { get; set; } = 80;
     protected int attack = 30;
     protected float speed = 1.5f;
     protected float attackSpeed = 1.5f;
-    [System.NonSerialized] public float attackDist = 1.0f;
+    public float attackDist { get; set; } = 1.0f;
     protected DIRECTION dir = DIRECTION.RIGHT;
 
     protected float attackTime;   // 攻撃時間カウント
     protected Vector2 dirVec;     // 攻撃方向(ベクター型)
 
     private bool attackMode = false;        // 攻撃、移動モード変更用
-    [System.NonSerialized] public GameObject attackObject = null; // 攻撃オブジェクト格納(単体攻撃用)
+    public GameObject attackObject { get; set; } = null; // 攻撃オブジェクト格納(単体攻撃用)
 
     // ターゲットを攻撃しているキャラクター情報格納用(全てのAnimalで情報共有したいのでstaticに設定)
     static protected Dictionary<GameObject, List<Animal>> attackTarget;
 
     // フィールド内の動物を動物ごとに保存
-    [System.NonSerialized] static public List<Animal> animalList;
+    static public List<Animal> animalList { get; set; }
 
     private Rigidbody2D rb;
 

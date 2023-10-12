@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4816254032535583489}
   - component: {fileID: 6226965893119285515}
   - component: {fileID: 1941950579166573119}
-  - component: {fileID: 8601350130985191641}
+  - component: {fileID: 3184171354041468965}
   m_Layer: 0
   m_Name: Lion
   m_TagString: Enemy
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &8601350130985191641
+--- !u!114 &3184171354041468965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,13 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9142105466086907081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35bccf92ad9454d459c2f54291f2df65, type: 3}
+  m_Script: {fileID: 11500000, guid: 48da752fae384eb4cb57ee4602eeda0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 30
-  hp: 80
-  attack: 30
-  speed: 1.5
-  attackSpeed: 1.5
-  attackDist: 1
-  dir: 0
+  status: {fileID: 11400000, guid: 98a528f1a99b546458d51dd2326738f8, type: 2}

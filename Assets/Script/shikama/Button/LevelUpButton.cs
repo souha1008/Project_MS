@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class LevelUpButton : MonoBehaviour
 {
     GameSetting gameSetting;
-    [SerializeField] int cost = 60;
-    [SerializeField] int maxLevel = 7;
+    int cost = 30;
     [SerializeField] Text lvText;
     int level = 1;
 
@@ -18,16 +17,16 @@ public class LevelUpButton : MonoBehaviour
 
     public void LevelUp()
     {
-        if (gameSetting.cost >= cost && level < maxLevel)
+        if (gameSetting.cost >= cost && level < gameSetting.maxLevel)
         {
-            gameSetting.maxCost += 60;
+            gameSetting.maxCost += gameSetting.lvUpCost;
             gameSetting.costSpeed *= 0.9f;
             gameSetting.cost -= cost;
-            cost += 30;
+            cost += gameSetting.lvUpCost;
 
             level++;
             lvText.text = level + " lv";
-            if (level == maxLevel) lvText.text = "Max";
+            if (level == gameSetting.maxLevel) lvText.text = "Max";
         }
     }
 }

@@ -8,7 +8,9 @@ public class GameSetting : MonoBehaviour
     [System.NonSerialized] public float cost;
     [SerializeField] private int firstCost;
     public float costSpeed = 2.0f;
-    public int maxCost = 240;
+    public int maxCost = 120;
+    public int lvUpCost = 30;
+    public int maxLevel = 7;
 
     [SerializeField] private Text textCost;
 
@@ -23,7 +25,7 @@ public class GameSetting : MonoBehaviour
     private void Start()
     {
         cost = firstCost;
-        textCost.text = "cost : " + firstCost;
+        textCost.text = firstCost + " : " + maxCost;
     }
 
     private void Update()
@@ -31,6 +33,6 @@ public class GameSetting : MonoBehaviour
         if (cost < maxCost) cost += Time.deltaTime / costSpeed;
         else cost = maxCost;
 
-        textCost.text = "cost : " + (int)cost;
+        textCost.text = (int)cost + " : " + maxCost;
     }
 }
