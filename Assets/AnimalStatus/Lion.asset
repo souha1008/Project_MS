@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce98b88d7ce7444e9cf7aafc862c5fe, type: 3}
   m_Name: Lion
   m_EditorClassIdentifier: 
-  cost: 20
+  cost: 30
   maxHP: 100
-  attack: 30
+  attack: 20
   speed: 1.5
   attackSpeed: 1.5
   attackDist: 1

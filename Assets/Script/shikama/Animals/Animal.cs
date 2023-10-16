@@ -11,7 +11,9 @@ public enum DIRECTION {
 public class Animal : MonoBehaviour
 {
     // ステータス
-    public int cost { get; set; } = 20;
+    public BaseStatus status;
+
+    public int cost { get; set; } = 30;
     public int hp { get; set; } = 80;
     public int maxHp { get; set; } = 80;
     protected int attack = 30;
@@ -19,6 +21,8 @@ public class Animal : MonoBehaviour
     protected float attackSpeed = 1.5f;
     public float attackDist { get; set; } = 1.0f;
     protected DIRECTION dir = DIRECTION.RIGHT;
+
+    protected int hitRate = 100;
 
     protected float attackTime;   // 攻撃時間カウント
     protected Vector2 dirVec;     // 攻撃方向(ベクター型)
@@ -69,6 +73,7 @@ public class Animal : MonoBehaviour
         {
             Attack();
         }
+        Debug.Log(cost);
     }
 
     public void AttackMode(GameObject attackObj)
@@ -127,7 +132,10 @@ public class Animal : MonoBehaviour
         // 攻撃
         if (attackTime >= attackSpeed)
         {
-            if (attackObject)
+            // 命中判定
+            int r = Random.Range(1, 100);
+
+            if (attackObject && r <= hitRate)
             {
                 if (attackObject.GetComponent<Animal>()) // 攻撃対象が動物の場合
                 {
@@ -172,6 +180,7 @@ public class Animal : MonoBehaviour
                     Debug.Log(house.hp);
                 }
             }
+            else Debug.Log("当たってないよ");
             attackTime = 0;
         }
         else

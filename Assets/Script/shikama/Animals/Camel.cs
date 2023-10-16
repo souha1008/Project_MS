@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camel : Animal
 {
-    [SerializeField] CamelStatus status;
+    CamelStatus status_;
     
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
@@ -19,18 +19,20 @@ public class Camel : Animal
 
     override protected void Start()
     {
-        cost = status.cost;
-        maxHp = hp =status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
+        status_ = (CamelStatus)status;
+
+        cost = status_.cost;
+        maxHp = hp =status_.maxHP;
+        attack = status_.attack;
+        speed = status_.speed;
+        attackSpeed = status_.attackSpeed;
+        attackDist = status_.attackDist;
+        dir = status_.dir;
         
-        attackUpMag = status.attackUpMag;
-        hpHealOne = status.hpHealOne;
-        hpHealRange = status.hpHealRange;
-        speedUp = status.speedUp;
+        attackUpMag = status_.attackUpMag;
+        hpHealOne = status_.hpHealOne;
+        hpHealRange = status_.hpHealRange;
+        speedUp = status_.speedUp;
 
         base.Start();
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Elephant : Animal
 {
-    [SerializeField] ElephantStatus status;
+    ElephantStatus status_;
     
     public bool meteoEvolution { get; set; } = false;
     public bool earthquakeEvolution { get; set; } = false;
@@ -22,21 +22,23 @@ public class Elephant : Animal
 
     override protected void Start() 
     {
-        cost = status.cost;
-        maxHp = hp =status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
+        status_ = (ElephantStatus)status;
 
-        cutMag = status.cutMag;
+        cost = status_.cost;
+        maxHp = hp =status_.maxHP;
+        attack = status_.attack;
+        speed = status_.speed;
+        attackSpeed = status_.attackSpeed;
+        attackDist = status_.attackDist;
+        dir = status_.dir;
 
-        activeTimeMeteo = status.activeTimeMeteo;
-        coolTimeMeteo = status.coolTimeMeteo;
+        cutMag = status_.cutMag;
 
-        activeTimeEarthquake = status.activeTimeEarthquake;
-        coolTimeEarthquake = status.coolTimeEarthquake;
+        activeTimeMeteo = status_.activeTimeMeteo;
+        coolTimeMeteo = status_.coolTimeMeteo;
+
+        activeTimeEarthquake = status_.activeTimeEarthquake;
+        coolTimeEarthquake = status_.coolTimeEarthquake;
 
         base.Start();
     }

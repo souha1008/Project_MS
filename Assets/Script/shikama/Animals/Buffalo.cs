@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Buffalo : Animal
 {
-    [SerializeField] BuffaloStatus status;
+    BuffaloStatus status_;
     [System.NonSerialized] public float allStatusUpMag = 0.8f;
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
@@ -18,23 +18,25 @@ public class Buffalo : Animal
     float activeTimer = 0.0f;
     float coolTimer = 0.0f;
 
-    override protected void Start()
+    protected override void Start()
     {
-        cost = status.cost;
-        maxHp = hp = status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
+        status_ = (BuffaloStatus)status;
 
-        allStatusUpMag = status.allStatusUpMag;
+        cost = status_.cost;
+        maxHp = hp = status_.maxHP;
+        attack = status_.attack;
+        speed = status_.speed;
+        attackSpeed = status_.attackSpeed;
+        attackDist = status_.attackDist;
+        dir = status_.dir;
 
-        activeTimeMeteo = status.activeTimeMeteo;
-        coolTimeMeteo = status.coolTimeMeteo;
+        allStatusUpMag = status_.allStatusUpMag;
 
-        activeTimeEarthquake = status.activeTimeEarthquake;
-        coolTimeEarthquake = status.coolTimeEarthquake;
+        activeTimeMeteo = status_.activeTimeMeteo;
+        coolTimeMeteo = status_.coolTimeMeteo;
+
+        activeTimeEarthquake = status_.activeTimeEarthquake;
+        coolTimeEarthquake = status_.coolTimeEarthquake;
 
         base.Start();
     }
@@ -69,9 +71,9 @@ public class Buffalo : Animal
         if (!meteoEvolution && coolTimer == 0.0f)
         {
             hp = (int)(hp * allStatusUpMag);
-            attack = (int)(status.attack * allStatusUpMag);
-            speed = status.speed * allStatusUpMag;
-            attackSpeed = status.attackSpeed / allStatusUpMag;
+            attack = (int)(status_.attack * allStatusUpMag);
+            speed = status_.speed * allStatusUpMag;
+            attackSpeed = status_.attackSpeed / allStatusUpMag;
 
             coolTimer = coolTimeEarthquake;
             activeTimer = activeTimeEarthquake;
@@ -86,8 +88,8 @@ public class Buffalo : Animal
         Debug.Log("バッファロー進化終了");
 
         hp = (int)(hp / 3.0f); if (hp == 0) hp = 1;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
+        attack = status_.attack;
+        speed = status_.speed;
+        attackSpeed = status_.attackSpeed;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Giraffe : Animal
 {
-    [SerializeField] GiraffeStatus status;
+    GiraffeStatus status_;
 
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
@@ -17,16 +17,18 @@ public class Giraffe : Animal
 
     override protected void Start()
     {
-        cost = status.cost;
-        maxHp = hp = status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
+        status_ = (GiraffeStatus)status;
+
+        cost = status_.cost;
+        maxHp = hp = status_.maxHP;
+        attack = status_.attack;
+        speed = status_.speed;
+        attackSpeed = status_.attackSpeed;
+        attackDist = status_.attackDist;
+        dir = status_.dir;
         
-        attackUpMag = status.attackUpMag;
-        coolTimeEarthquake = status.coolTimeEarthquake;
+        attackUpMag = status_.attackUpMag;
+        coolTimeEarthquake = status_.coolTimeEarthquake;
 
         base.Start();
     }

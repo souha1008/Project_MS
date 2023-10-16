@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Zebra : Animal
 {
-    [SerializeField] ZebraStatus status;
+    ZebraStatus status_;
     
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
@@ -16,16 +16,18 @@ public class Zebra : Animal
 
     override protected void Start()
     {
-        cost = status.cost;
-        maxHp = hp = status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
-        doubleAttackMag = status.doubleAttackMag;
-        attackUpMag = status.attackUpMag;
-        speedDownMag = status.speedDownMag;
+        status_ = (ZebraStatus)status;
+
+        cost = status_.cost;
+        maxHp = hp = status_.maxHP;
+        attack = status_.attack;
+        speed = status_.speed;
+        attackSpeed = status_.attackSpeed;
+        attackDist = status_.attackDist;
+        dir = status_.dir;
+        doubleAttackMag = status_.doubleAttackMag;
+        attackUpMag = status_.attackUpMag;
+        speedDownMag = status_.speedDownMag;
 
         base.Start();
     }

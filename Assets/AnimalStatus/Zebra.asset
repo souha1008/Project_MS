@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca10797922e8e44bb958ba76ba4ad30, type: 3}
   m_Name: Zebra
   m_EditorClassIdentifier: 
-  cost: 20
+  cost: 30
   maxHP: 100
   attack: 30
   speed: 1.5

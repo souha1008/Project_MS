@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimalButtons : MonoBehaviour
 {
@@ -12,13 +13,15 @@ public class AnimalButtons : MonoBehaviour
     {
         gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
         animalScript = animalObject.GetComponent<Animal>();
+        GameObject child = transform.GetChild(0).gameObject;
+        child.GetComponent<Text>().text = animalScript.status.cost.ToString();
     }
 
     public void PressAnimal()
     {
-        if (gameSetting.cost >= animalScript.cost)
+        if (gameSetting.cost >= animalScript.status.cost)
         {
-            gameSetting.cost -= animalScript.cost;
+            gameSetting.cost -= animalScript.status.cost;
             Instantiate(animalObject, gameSetting.createPosition, Quaternion.identity);
         }
     }
