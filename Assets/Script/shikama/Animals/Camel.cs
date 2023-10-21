@@ -12,27 +12,9 @@ public class Camel : Animal
     float hpHealOneDist = 10.0f;
     float hpHealRangeDist = 3.0f;
 
-    float attackUpMag = 3.0f;
-    float hpHealOne = 1.1f;
-    float hpHealRange= 1.1f;
-    float speedUp = 1.05f;
-
     override protected void Start()
     {
         status_ = (CamelStatus)status;
-
-        cost = status_.cost;
-        maxHp = hp =status_.maxHP;
-        attack = status_.attack;
-        speed = status_.speed;
-        attackSpeed = status_.attackSpeed;
-        attackDist = status_.attackDist;
-        dir = status_.dir;
-        
-        attackUpMag = status_.attackUpMag;
-        hpHealOne = status_.hpHealOne;
-        hpHealRange = status_.hpHealRange;
-        speedUp = status_.speedUp;
 
         base.Start();
     }
@@ -67,7 +49,7 @@ public class Camel : Animal
 
     private void AttackUp()
     {
-        attack = (int)(attack * attackUpMag);
+        status_.attack_ = (int)(status_.attack_ * status_.attackUpMag);
         meteoEvolution = true;
     }
 
@@ -79,10 +61,8 @@ public class Camel : Animal
             float dist = Vector2.Distance(transform.position, animal.transform.position);
             if (dist <= hpHealRangeDist)
             {
-                Debug.Log(animal.hp);
-                animal.hp += (int)(animal.maxHp * hpHealRange);
-                if (animal.maxHp < animal.hp) animal.hp = animal.maxHp;
-                Debug.Log(animal.hp);
+                animal.status.hp_ += (int)(animal.status.maxHP * status_.hpHealRange);
+                if (animal.status.maxHP < animal.status.hp_) animal.status.hp_ = animal.status.maxHP;
             }
         }
         meteoEvolution = true;
@@ -108,17 +88,15 @@ public class Camel : Animal
 
         if (healAnimal)
         {
-            Debug.Log(healAnimal.hp);
-            healAnimal.hp += (int)(healAnimal.maxHp * hpHealOne);
-            if (healAnimal.maxHp < healAnimal.hp) healAnimal.hp = healAnimal.maxHp;
-            Debug.Log(healAnimal.hp);
+            healAnimal.status.hp_ += (int)(healAnimal.status.maxHP * status_.hpHealOne);
+            if (healAnimal.status.maxHP < healAnimal.status.hp_) healAnimal.status.hp_ = healAnimal.status.maxHP;
         }
         earthquakeEvolution = true;
     }
 
     private void SpeedUp()
     {
-        speed *= speedUp;
+        status_.speed_ *= status_.speedUp;
         meteoEvolution = true;
     }
 }

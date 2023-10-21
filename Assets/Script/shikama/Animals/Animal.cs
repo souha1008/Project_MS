@@ -7,36 +7,43 @@ public enum DIRECTION {
     LEFT,
 };
 
+public enum EVOLUTION
+{
+    NONE = 0,
+    METEO,
+    EARTHQUAKE,
+    HURRICANE,
+    THUNDERSTORM,
+    TSUNAMI,
+    ERUPTION,
+    PLAGUE,
+    DESERTIFICATION,
+    ICEAGE,
+    BIGFIRE,
+}
 
 public class Animal : MonoBehaviour
 {
-    // ステータス
-    public BaseStatus status;
+    public BaseStatus status;                       // ステータス
 
-    public int cost { get; set; } = 30;
-    public int hp { get; set; } = 80;
-    public int maxHp { get; set; } = 80;
-    protected int attack = 30;
-    protected float speed = 1.5f;
-    protected float attackSpeed = 1.5f;
-    public float attackDist { get; set; } = 1.0f;
-    protected DIRECTION dir = DIRECTION.RIGHT;
+    public EVOLUTION evolution = EVOLUTION.NONE; // 進化状態
+    protected int hitRate = 100;                    // 命中率(ステータスに移す予定)
+    protected float attackTime;                     // 攻撃時間カウント
+    protected Vector2 dirVec;                       // 攻撃方向(ベクター型)
+    private bool attackMode = false;                // 攻撃、移動モード変更用
+    
+    private Rigidbody2D rb;                         // 移動用RigidBody
 
-    protected int hitRate = 100;
-
-    protected float attackTime;   // 攻撃時間カウント
-    protected Vector2 dirVec;     // 攻撃方向(ベクター型)
-
-    private bool attackMode = false;        // 攻撃、移動モード変更用
     public GameObject attackObject { get; set; } = null; // 攻撃オブジェクト格納(単体攻撃用)
 
-    // ターゲットを攻撃しているキャラクター情報格納用(全てのAnimalで情報共有したいのでstaticに設定)
+    // フィールド内の動物を保存
+    static public List<Animal> animalList { get; set; }
+    // ターゲットを攻撃しているキャラクター情報格納用
     static protected Dictionary<GameObject, List<Animal>> attackTarget;
 
-    // フィールド内の動物を動物ごとに保存
-    static public List<Animal> animalList { get; set; }
-
-    private Rigidbody2D rb;
+    public bool elephantSheld = false;                         // 象進化によるシールド付与判定
+    static bool elephantSheldMagSet = false;                   // 象進化シールド軽減率設定完了判定
+    static float elephantSheldMag = 0.4f;                      // 象進化によるシールドの軽減率
 
     private void Awake()
     {
@@ -45,24 +52,32 @@ public class Animal : MonoBehaviour
         // 全てのanimalで同じ変数を使用しているため、はじめの動物が生成されたときのみnewを実行。
         if (attackTarget == null) attackTarget = new Dictionary<GameObject, List<Animal>>();
         if (animalList == null) animalList = new List<Animal>();
+
+        status.Init(this);
     }
 
     virtual protected void Start()
     {
-        attackTime = attackSpeed;
+        attackTime = status.attackSpeed_;
 
         // 攻撃方向設定
-        if (dir == DIRECTION.RIGHT) dirVec = Vector2.right;
-        else if (dir == DIRECTION.LEFT) dirVec = Vector2.left;
+        if (status.dir == DIRECTION.RIGHT) dirVec = Vector2.right;
+        else if (status.dir == DIRECTION.LEFT) dirVec = Vector2.left;
 
         animalList.Add(this);
+
+        if (!elephantSheldMagSet)
+        {
+            elephantSheldMag = ElephantStatus.sheldCutMag_;
+            elephantSheldMagSet = true;
+        }
     }
 
     // Update is called once per frame
     virtual protected void Update()
     {
         // 攻撃範囲表示
-        Debug.DrawRay(transform.position, dirVec * attackDist, Color.red);
+        Debug.DrawRay(transform.position, dirVec * status.attackDist_, Color.red);
 
         // 動くモード
         if (!attackMode)
@@ -73,7 +88,6 @@ public class Animal : MonoBehaviour
         {
             Attack();
         }
-        Debug.Log(cost);
     }
 
     public void AttackMode(GameObject attackObj)
@@ -100,13 +114,13 @@ public class Animal : MonoBehaviour
 
     virtual protected void Move()
     {
-        if (dir == DIRECTION.LEFT)
-            rb.velocity = new Vector2(-speed, 0);
-        if (dir == DIRECTION.RIGHT)
-            rb.velocity = new Vector2(speed, 0);
+        if (status.dir == DIRECTION.LEFT)
+            rb.velocity = new Vector2(-status.speed_, 0);
+        else if (status.dir == DIRECTION.RIGHT)
+            rb.velocity = new Vector2(status.speed_, 0);
 
         // 当たり判定チェック
-        foreach (RaycastHit2D hit in Physics2D.RaycastAll(transform.position, dirVec, attackDist))
+        foreach (RaycastHit2D hit in Physics2D.RaycastAll(transform.position, dirVec, status.attackDist_))
         {
             if (tag == "Player")
             {
@@ -130,7 +144,7 @@ public class Animal : MonoBehaviour
     virtual protected void Attack()
     {
         // 攻撃
-        if (attackTime >= attackSpeed)
+        if (attackTime >= status.attackSpeed_)
         {
             // 命中判定
             int r = Random.Range(1, 100);
@@ -140,25 +154,11 @@ public class Animal : MonoBehaviour
                 if (attackObject.GetComponent<Animal>()) // 攻撃対象が動物の場合
                 {
                     Animal attackEnemy = attackObject.GetComponent<Animal>();
-                    if (attackObject.GetComponent<Elephant>())
-                    {
-                        Elephant elephant = attackObject.GetComponent<Elephant>();
-                        if (elephant.meteoEvolution)
-                        {
-                            attackEnemy.hp -= (int)(this.attack * elephant.cutMag);
-                        }
-                        else
-                        {
-                            attackEnemy.hp -= this.attack;
-                        }
-                    }
-                    else
-                    {
-                        attackEnemy.hp -= this.attack;
-                    }
+                    if (elephantSheld) attackEnemy.status.AddHp(-(int)(status.attack_ * elephantSheldMag));
+                    else attackEnemy.status.AddHp(-status.attack_);
 
                     // 倒したとき
-                    if (attackEnemy.hp <= 0)
+                    if (attackEnemy.status.hp_ <= 0)
                     {
                         // 倒した敵を攻撃していた動物のモードを変更
                         foreach (Animal animal in attackTarget[attackObject])
@@ -176,8 +176,8 @@ public class Animal : MonoBehaviour
                 else if (attackObject.GetComponent<House>()) // 攻撃対象が敵拠点の場合
                 {
                     House house = attackObject.GetComponent<House>();
-                    house.hp -= attack;
-                    Debug.Log(house.hp);
+                    house.hp -= status.attack_;
+                    //Debug.Log(house.hp);
                 }
             }
             else Debug.Log("当たってないよ");
@@ -196,4 +196,12 @@ public class Animal : MonoBehaviour
 
     virtual public void MeteoEvolution() { }
     virtual public void EarthquakeEvolution() { }
+    virtual public void HurricaneEvolution() { }
+    virtual public void ThunderstormEvolution() { }
+    virtual public void TsunamiEvolution() { }
+    virtual public void EruptionEvolution() { }
+    virtual public void PlagueEvolution() { }
+    virtual public void DesertificationEvolution() { }
+    virtual public void IceAgeEvolution() { }
+    virtual public void BigFireEvolution() { }
 }

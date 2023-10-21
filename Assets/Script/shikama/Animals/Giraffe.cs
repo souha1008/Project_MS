@@ -9,26 +9,11 @@ public class Giraffe : Animal
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
 
-    float attackUpMag = 1.6f;
-
-    float coolTimeEarthquake = 20.0f;
-
     float coolTimer = 0.0f;
 
     override protected void Start()
     {
         status_ = (GiraffeStatus)status;
-
-        cost = status_.cost;
-        maxHp = hp = status_.maxHP;
-        attack = status_.attack;
-        speed = status_.speed;
-        attackSpeed = status_.attackSpeed;
-        attackDist = status_.attackDist;
-        dir = status_.dir;
-        
-        attackUpMag = status_.attackUpMag;
-        coolTimeEarthquake = status_.coolTimeEarthquake;
 
         base.Start();
     }
@@ -68,7 +53,7 @@ public class Giraffe : Animal
         if (!earthquakeEvolution && !meteoEvolution)
         {
             meteoEvolution = true;
-            attack = (int)(attack * attackUpMag);
+            status_.attack_ = (int)(status_.attack_ * status_.attackUpMag);
         }
     }
 
@@ -80,7 +65,7 @@ public class Giraffe : Animal
             {
                 if (animal.tag == "Player") continue;
                 float dist = Vector2.Distance(transform.position, animal.transform.position);
-                if (animal.attackDist >= dist - 0.25f)
+                if (animal.status.attackDist_ >= dist - 0.25f)
                 {
                     // ターゲットのリセット
                     attackTarget[animal.attackObject].Remove(animal);
@@ -95,7 +80,7 @@ public class Giraffe : Animal
                 }
             }
 
-            coolTimer = coolTimeEarthquake;
+            coolTimer = status_.coolTimeEarthquake;
             earthquakeEvolution = true;
         }
     }

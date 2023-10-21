@@ -9,34 +9,12 @@ public class Buffalo : Animal
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
 
-    float activeTimeMeteo = 0.0f;
-    float coolTimeMeteo = 0.0f;
-
-    float activeTimeEarthquake = 7.0f;
-    float coolTimeEarthquake = 30.0f;
-
     float activeTimer = 0.0f;
     float coolTimer = 0.0f;
 
     protected override void Start()
     {
         status_ = (BuffaloStatus)status;
-
-        cost = status_.cost;
-        maxHp = hp = status_.maxHP;
-        attack = status_.attack;
-        speed = status_.speed;
-        attackSpeed = status_.attackSpeed;
-        attackDist = status_.attackDist;
-        dir = status_.dir;
-
-        allStatusUpMag = status_.allStatusUpMag;
-
-        activeTimeMeteo = status_.activeTimeMeteo;
-        coolTimeMeteo = status_.coolTimeMeteo;
-
-        activeTimeEarthquake = status_.activeTimeEarthquake;
-        coolTimeEarthquake = status_.coolTimeEarthquake;
 
         base.Start();
     }
@@ -70,13 +48,13 @@ public class Buffalo : Animal
     {
         if (!meteoEvolution && coolTimer == 0.0f)
         {
-            hp = (int)(hp * allStatusUpMag);
-            attack = (int)(status_.attack * allStatusUpMag);
-            speed = status_.speed * allStatusUpMag;
-            attackSpeed = status_.attackSpeed / allStatusUpMag;
+            status_.hp_ = (int)(status_.hp_ * allStatusUpMag);
+            status_.attack_ = (int)(status_.attack_ * allStatusUpMag);
+            status_.speed_ = status_.speed_ * allStatusUpMag;
+            status_.attackSpeed_ = status_.attackSpeed_ / allStatusUpMag;
 
-            coolTimer = coolTimeEarthquake;
-            activeTimer = activeTimeEarthquake;
+            coolTimer = status_.coolTimeEarthquake;
+            activeTimer = status_.activeTimeEarthquake;
             earthquakeEvolution = true;
         }
     }
@@ -87,9 +65,7 @@ public class Buffalo : Animal
         activeTimer = 0;
         Debug.Log("バッファロー進化終了");
 
-        hp = (int)(hp / 3.0f); if (hp == 0) hp = 1;
-        attack = status_.attack;
-        speed = status_.speed;
-        attackSpeed = status_.attackSpeed;
+        status_.hp_ = (int)(status_.hp_ / 3.0f); if (status_.hp_ == 0) status_.hp_ = 1;
+        status_.ResetAll();
     }
 }

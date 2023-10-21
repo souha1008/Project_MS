@@ -5,17 +5,6 @@ using UnityEngine;
 public class Elephant : Animal
 {
     ElephantStatus status_;
-    
-    public bool meteoEvolution { get; set; } = false;
-    public bool earthquakeEvolution { get; set; } = false;
-    public float cutMag { get; private set; } = 0.8f;
-
-
-    float activeTimeMeteo = 5.0f;
-    float coolTimeMeteo = 10.0f;
-
-    float activeTimeEarthquake = 5.0f;
-    float coolTimeEarthquake = 0.0f;
 
     float activeTimer = 0.0f;
     float coolTimer = 0.0f;
@@ -23,22 +12,6 @@ public class Elephant : Animal
     override protected void Start() 
     {
         status_ = (ElephantStatus)status;
-
-        cost = status_.cost;
-        maxHp = hp =status_.maxHP;
-        attack = status_.attack;
-        speed = status_.speed;
-        attackSpeed = status_.attackSpeed;
-        attackDist = status_.attackDist;
-        dir = status_.dir;
-
-        cutMag = status_.cutMag;
-
-        activeTimeMeteo = status_.activeTimeMeteo;
-        coolTimeMeteo = status_.coolTimeMeteo;
-
-        activeTimeEarthquake = status_.activeTimeEarthquake;
-        coolTimeEarthquake = status_.coolTimeEarthquake;
 
         base.Start();
     }
@@ -52,12 +25,12 @@ public class Elephant : Animal
         else
             coolTimer = 0;
 
-        if (meteoEvolution) 
+        if (evolution.Equals(EVOLUTION.METEO)) 
         {
             activeTimer -= Time.deltaTime;
             if (activeTimer < 0)
             {
-                meteoEvolution = false;
+                evolution = EVOLUTION.NONE;
                 activeTimer = 0;
                 Debug.Log("象進化終了");
             }
@@ -72,11 +45,11 @@ public class Elephant : Animal
 
     override public void MeteoEvolution()
     {
-        if (!earthquakeEvolution && coolTimer == 0.0f)
+        if (evolution.Equals(EVOLUTION.NONE) && coolTimer == 0.0f)
         {
-            coolTimer = coolTimeMeteo;
-            activeTimer = activeTimeMeteo;
-            meteoEvolution = true;
+            coolTimer = status_.coolTimeMeteo;
+            activeTimer = status_.activeTimeMeteo;
+            evolution = EVOLUTION.METEO;
 
             Debug.Log("耳シールドーーー");
         }
@@ -84,13 +57,13 @@ public class Elephant : Animal
 
     override public void EarthquakeEvolution()
     {
-        if (!meteoEvolution && coolTimer == 0.0f)
+        if (evolution.Equals(EVOLUTION.NONE) && coolTimer == 0.0f)
         {
             foreach (Animal animal in animalList)
             {
                 if (animal.tag == "Player") continue;
                 float dist = Vector2.Distance(transform.position, animal.transform.position);
-                if (animal.attackDist >= dist - 0.25f)
+                if (animal.status.attackDist_ >= dist - 0.25f)
                 {
                     // ターゲットのリセット
                     attackTarget[animal.attackObject].Remove(animal);
@@ -105,8 +78,13 @@ public class Elephant : Animal
                 }
             }
 
-            coolTimer = coolTimeEarthquake;
-            earthquakeEvolution = true;
+            coolTimer = status_.coolTimeEarthquake;
+            evolution = EVOLUTION.EARTHQUAKE;
         }
+    }
+
+    public override void HurricaneEvolution()
+    {
+        status_.speed_ *= 0.5f;
     }
 }
