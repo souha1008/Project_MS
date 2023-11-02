@@ -1,0 +1,7 @@
+ボタンの作成 https://xr-hub.com/archives/11782
+バックグラウンド押したか https://qiita.com/Atsushi_Matsusaka/items/8a10a05e1495a663df8c
+シーン遷移 https://squareiooi.com/archives/unity/132
+ボタンを押せなくする https://naoya-ono.com/unity/button-interactable/
+メニューアイコン https://icooon-mono.com/tag/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/
+星 https://www.irasutoya.com/
+星の色変える https://sunagitsune.com/unityobjectcolor/
