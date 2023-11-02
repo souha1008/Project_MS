@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class Lion : Animal
 {
-    [SerializeField] LionStatus status;
+    LionStatus status_;
 
     override protected void Start()
     {
-        cost = status.cost;
-        maxHp = hp = status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
-
         base.Start();
+
+        status = new LionStatus(baseStatus as LionBaseStatus, this);
+        status_ = status as LionStatus;
     }
 }

@@ -4,41 +4,19 @@ using UnityEngine;
 
 public class Elephant : Animal
 {
-    [SerializeField] ElephantStatus status;
-    
-    public bool meteoEvolution { get; set; } = false;
-    public bool earthquakeEvolution { get; set; } = false;
-    public float cutMag { get; private set; } = 0.8f;
-
-
-    float activeTimeMeteo = 5.0f;
-    float coolTimeMeteo = 10.0f;
-
-    float activeTimeEarthquake = 5.0f;
-    float coolTimeEarthquake = 0.0f;
+    ElephantStatus status_;
 
     float activeTimer = 0.0f;
     float coolTimer = 0.0f;
 
+    int tsunamiCount = 0;
+
     override protected void Start() 
     {
-        cost = status.cost;
-        maxHp = hp =status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
-
-        cutMag = status.cutMag;
-
-        activeTimeMeteo = status.activeTimeMeteo;
-        coolTimeMeteo = status.coolTimeMeteo;
-
-        activeTimeEarthquake = status.activeTimeEarthquake;
-        coolTimeEarthquake = status.coolTimeEarthquake;
-
         base.Start();
+
+        status = new ElephantStatus(baseStatus as ElephantBaseStatus, this);
+        status_ = status as ElephantStatus;
     }
 
     protected override void Update()
@@ -50,45 +28,48 @@ public class Elephant : Animal
         else
             coolTimer = 0;
 
-        if (meteoEvolution) 
+        if (evolution.Equals(EVOLUTION.METEO)) 
         {
             activeTimer -= Time.deltaTime;
             if (activeTimer < 0)
             {
-                meteoEvolution = false;
+                evolution = EVOLUTION.NONE;
                 activeTimer = 0;
                 Debug.Log("象進化終了");
             }
         }
+
+        if (evolution.Equals(EVOLUTION.TSUNAMI))
+        {
+            attackCount = attackTarget[attackObject].Count;
+        }
     }
 
-    private void OnDestroy()
+    protected override void Attack()
     {
-        animalList.Remove(this);
-        Debug.Log("象　死");
+        if(!evolution.Equals(EVOLUTION.TSUNAMI) || attackCount >= 2) 
+            base.Attack();
     }
 
     override public void MeteoEvolution()
     {
-        if (!earthquakeEvolution && coolTimer == 0.0f)
+        if (evolution.Equals(EVOLUTION.NONE) && coolTimer == 0.0f)
         {
-            coolTimer = coolTimeMeteo;
-            activeTimer = activeTimeMeteo;
-            meteoEvolution = true;
-
-            Debug.Log("耳シールドーーー");
+            coolTimer = status_.coolTimeMeteo;
+            activeTimer = status_.activeTimeMeteo;
+            evolution = EVOLUTION.METEO;
         }
     }
 
     override public void EarthquakeEvolution()
     {
-        if (!meteoEvolution && coolTimer == 0.0f)
+        if (evolution.Equals(EVOLUTION.NONE) && coolTimer == 0.0f)
         {
             foreach (Animal animal in animalList)
             {
                 if (animal.tag == "Player") continue;
                 float dist = Vector2.Distance(transform.position, animal.transform.position);
-                if (animal.attackDist >= dist - 0.25f)
+                if (animal.status.attackDist >= dist - 0.25f)
                 {
                     // ターゲットのリセット
                     attackTarget[animal.attackObject].Remove(animal);
@@ -103,8 +84,39 @@ public class Elephant : Animal
                 }
             }
 
-            coolTimer = coolTimeEarthquake;
-            earthquakeEvolution = true;
+            coolTimer = status_.coolTimeEarthquake;
+            evolution = EVOLUTION.EARTHQUAKE;
         }
+    }
+
+    // 途中(ノックバックの仕様を知らない)
+    public override void HurricaneEvolution()
+    {
+        status.speed *= 0.5f;
+        evolution = EVOLUTION.HURRICANE;
+    }
+
+    public override void ThunderstormEvolution()
+    {
+        foreach(Animal animal in animalList)
+        {
+            if(animal.CompareTag("Player")) animal.elephantSheld = true;
+        }
+        evolution = EVOLUTION.THUNDERSTORM;
+    }
+
+    public override void TsunamiEvolution()
+    {
+        evolution = EVOLUTION.TSUNAMI;
+    }
+
+    public override void EruptionEvolution()
+    {
+        evolution = EVOLUTION.ERUPTION;
+    }
+
+    public override void IceAgeEvolution()
+    {
+        base.IceAgeEvolution();
     }
 }

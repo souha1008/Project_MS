@@ -4,19 +4,74 @@ using UnityEngine;
 
 public class EnvironmentButton : MonoBehaviour
 {
+    GameSetting gameSetting;
+
+    private void Start()
+    {
+        gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
+    }
+
     public void Meteo()
     {
-        foreach (Animal animal in Animal.animalList)
+        if (gameSetting.cost >= 200)
         {
-            animal.MeteoEvolution();
+            gameSetting.cost -= 200;
+
+            if (Animal.animalList != null)
+            {
+                foreach (Animal animal in Animal.animalList)
+                {
+                    animal.MeteoEvolution();
+                }
+            }
         }
     }
 
     public void Earthquake()
     {
-        foreach (Animal animal in Animal.animalList)
+        if (gameSetting.cost >= 200)
         {
-            animal.EarthquakeEvolution();
+            gameSetting.cost -= 200;
+
+            if (Animal.animalList != null)
+            {
+                foreach (Animal animal in Animal.animalList)
+                {
+                    animal.EarthquakeEvolution();
+                }
+            }
+        }
+    }
+
+    public void IceAge()
+    {
+        if (gameSetting.cost >= 200)
+        {
+            gameSetting.cost -= 200;
+
+            if (Animal.animalList != null)
+            {
+                foreach (Animal animal in Animal.animalList)
+                {
+                    animal.IceAgeEvolution();
+                }
+            }
+        }
+    }
+
+    public void Tsunami()
+    {
+        if (gameSetting.cost >= 200)
+        {
+            gameSetting.cost -= 200;
+
+            if (Animal.animalList != null)
+            {
+                foreach (Animal animal in Animal.animalList)
+                {
+                    animal.TsunamiEvolution();
+                }
+            }
         }
     }
 }

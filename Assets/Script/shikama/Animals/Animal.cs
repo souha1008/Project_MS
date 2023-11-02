@@ -7,32 +7,47 @@ public enum DIRECTION {
     LEFT,
 };
 
+public enum EVOLUTION
+{
+    NONE = 0,
+    METEO,
+    EARTHQUAKE,
+    HURRICANE,
+    THUNDERSTORM,
+    TSUNAMI,
+    ERUPTION,
+    PLAGUE,
+    DESERTIFICATION,
+    ICEAGE,
+    BIGFIRE,
+}
 
 public class Animal : MonoBehaviour
 {
-    // ステータス
-    public int cost { get; set; } = 20;
-    public int hp { get; set; } = 80;
-    public int maxHp { get; set; } = 80;
-    protected int attack = 30;
-    protected float speed = 1.5f;
-    protected float attackSpeed = 1.5f;
-    public float attackDist { get; set; } = 1.0f;
-    protected DIRECTION dir = DIRECTION.RIGHT;
+    public BaseStatus baseStatus;                       // ステータス
+    [System.NonSerialized] public AnimalStatus status;
 
-    protected float attackTime;   // 攻撃時間カウント
-    protected Vector2 dirVec;     // 攻撃方向(ベクター型)
+    public EVOLUTION evolution { get; set; } = EVOLUTION.NONE;    // 進化状態
+    protected int hitRate = 100;                    // 命中率(ステータスに移す予定)
+    protected float attackCount;                    // 攻撃時間カウント
+    protected Vector2 dirVec;                       // 攻撃方向(ベクター型)
+    
+    private Rigidbody2D rb;                         // 移動用RigidBody
 
-    private bool attackMode = false;        // 攻撃、移動モード変更用
     public GameObject attackObject { get; set; } = null; // 攻撃オブジェクト格納(単体攻撃用)
 
-    // ターゲットを攻撃しているキャラクター情報格納用(全てのAnimalで情報共有したいのでstaticに設定)
+    /// <summary>フィールド内の動物を保存</summary>
+    static public List<Animal> animalList { get; private set; }
+
+    /// <summary>ターゲットを攻撃しているキャラクター情報格納用</summary>
     static protected Dictionary<GameObject, List<Animal>> attackTarget;
 
-    // フィールド内の動物を動物ごとに保存
-    static public List<Animal> animalList { get; set; }
+    public bool elephantSheld { get; set; } = false;    // 象進化によるシールド付与判定
 
-    private Rigidbody2D rb;
+    private delegate void STATE();           /// <summary> 移動、攻撃処理 </summary>
+    private event STATE State; 
+
+    [SerializeField] ParticleSystem particle = null;
 
     private void Awake()
     {
@@ -43,39 +58,70 @@ public class Animal : MonoBehaviour
         if (animalList == null) animalList = new List<Animal>();
     }
 
+    /// <summary>
+    /// 初期化
+    /// </summary>
     virtual protected void Start()
     {
-        attackTime = attackSpeed;
+        status = new AnimalStatus(baseStatus, this);
+        attackCount = status.attackSpeed;
 
         // 攻撃方向設定
-        if (dir == DIRECTION.RIGHT) dirVec = Vector2.right;
-        else if (dir == DIRECTION.LEFT) dirVec = Vector2.left;
+        if (status.dir == DIRECTION.RIGHT) dirVec = Vector2.right;
+        else if (status.dir == DIRECTION.LEFT) dirVec = Vector2.left;
 
         animalList.Add(this);
+
+        State = Move; // ステート初期化(移動処理)
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// 更新
+    /// </summary>
     virtual protected void Update()
     {
         // 攻撃範囲表示
-        Debug.DrawRay(transform.position, dirVec * attackDist, Color.red);
+        Debug.DrawRay(transform.position, dirVec * status.attackDist, Color.red);
 
-        // 動くモード
-        if (!attackMode)
+        State(); // 攻撃、移動処理
+
+        if(!evolution.Equals(EVOLUTION.NONE) && particle)
         {
-            Move();
+            particle.gameObject.SetActive(true);
         }
-        else // 攻撃モード
+        else
         {
-            Attack();
+            if (particle && particle.gameObject.activeInHierarchy)
+            {
+                particle.Stop();
+                if (particle.particleCount == 0)
+                {
+                    particle.gameObject.SetActive(false);
+                    particle.Play();
+                }
+            }
         }
     }
 
+    /// <summary>
+    /// 倒れた時の処理
+    /// </summary>
+    private void OnDestroy()
+    {
+        animalList.Remove(this);
+    }
+
+
+
+    // ▼▼▼　　ステート処理　　▼▼▼
+
+    /// <summary>
+    /// 攻撃ステート変更時初期化処理
+    /// </summary>
     public void AttackMode(GameObject attackObj)
     {
         if (!attackObject)
         {
-            attackMode = true;
             rb.velocity = new Vector2(0, 0);
             attackObject = attackObj;
             Debug.Log(attackObj);
@@ -85,23 +131,32 @@ public class Animal : MonoBehaviour
             }
             attackTarget[attackObj].Add(this);
         }
+
+        State = Attack;
     }
 
+    /// <summary>
+    /// 移動モード変更時初期化処理
+    /// </summary>
     public void MoveMode()
     {
-        attackMode = false;
         attackObject = null;
+
+        State = Move;
     }
 
+    /// <summary>
+    /// 移動ステート時処理
+    /// </summary>
     virtual protected void Move()
     {
-        if (dir == DIRECTION.LEFT)
-            rb.velocity = new Vector2(-speed, 0);
-        if (dir == DIRECTION.RIGHT)
-            rb.velocity = new Vector2(speed, 0);
+        if (status.dir == DIRECTION.LEFT)
+            rb.velocity = new Vector2(-status.speed, 0);
+        else if (status.dir == DIRECTION.RIGHT)
+            rb.velocity = new Vector2(status.speed, 0);
 
         // 当たり判定チェック
-        foreach (RaycastHit2D hit in Physics2D.RaycastAll(transform.position, dirVec, attackDist))
+        foreach (RaycastHit2D hit in Physics2D.RaycastAll(transform.position, dirVec, status.attackDist))
         {
             if (tag == "Player")
             {
@@ -122,35 +177,31 @@ public class Animal : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 攻撃ステート時処理
+    /// </summary>
     virtual protected void Attack()
     {
+        // 攻撃スピードの値が0の場合は攻撃不可状態とみなす
+        if (status.attackSpeed == 0) return;
+
         // 攻撃
-        if (attackTime >= attackSpeed)
+        if (attackCount >= status.attackSpeed)
         {
-            if (attackObject)
+            // 命中判定
+            int r = Random.Range(1, 100);
+
+            if (attackObject && r <= hitRate)
             {
                 if (attackObject.GetComponent<Animal>()) // 攻撃対象が動物の場合
                 {
                     Animal attackEnemy = attackObject.GetComponent<Animal>();
-                    if (attackObject.GetComponent<Elephant>())
-                    {
-                        Elephant elephant = attackObject.GetComponent<Elephant>();
-                        if (elephant.meteoEvolution)
-                        {
-                            attackEnemy.hp -= (int)(this.attack * elephant.cutMag);
-                        }
-                        else
-                        {
-                            attackEnemy.hp -= this.attack;
-                        }
-                    }
-                    else
-                    {
-                        attackEnemy.hp -= this.attack;
-                    }
+
+                    if (elephantSheld) attackEnemy.status.AddHp(-(int)(status.attack * ElephantStatus.sheldCutMag),this);
+                    else attackEnemy.status.AddHp(-status.attack,this);
 
                     // 倒したとき
-                    if (attackEnemy.hp <= 0)
+                    if (attackEnemy.status.hp <= 0)
                     {
                         // 倒した敵を攻撃していた動物のモードを変更
                         foreach (Animal animal in attackTarget[attackObject])
@@ -168,23 +219,36 @@ public class Animal : MonoBehaviour
                 else if (attackObject.GetComponent<House>()) // 攻撃対象が敵拠点の場合
                 {
                     House house = attackObject.GetComponent<House>();
-                    house.hp -= attack;
-                    Debug.Log(house.hp);
+                    house.hp -= status.attack;
                 }
             }
-            attackTime = 0;
+            else Debug.Log("当たってないよ");
+            attackCount = 0;
         }
         else
         {
-            attackTime += Time.deltaTime;
+            attackCount += Time.deltaTime;
         }
     }
 
-    private void OnDestroy()
+    // ▲▲▲　　ステート処理　　▲▲▲
+
+    void ResetSpeed()
     {
-        animalList.Remove(this);
+        status.ResetSpeed();
     }
 
-    virtual public void MeteoEvolution() { }
-    virtual public void EarthquakeEvolution() { }
+    // ▼▼▼　　進化時処理(継承用)　　▼▼▼
+    virtual public void MeteoEvolution() { evolution = EVOLUTION.METEO; }
+    virtual public void EarthquakeEvolution() { evolution = EVOLUTION.EARTHQUAKE; }
+    virtual public void HurricaneEvolution() { evolution = EVOLUTION.HURRICANE; }
+    virtual public void ThunderstormEvolution() { evolution = EVOLUTION.THUNDERSTORM; }
+    virtual public void TsunamiEvolution() { evolution = EVOLUTION.TSUNAMI; }
+    virtual public void EruptionEvolution() { evolution = EVOLUTION.ERUPTION; }
+    virtual public void PlagueEvolution() { evolution = EVOLUTION.PLAGUE; }
+    virtual public void DesertificationEvolution() { evolution = EVOLUTION.DESERTIFICATION; }
+    virtual public void IceAgeEvolution() { evolution = EVOLUTION.ICEAGE; }
+    virtual public void BigFireEvolution() { evolution = EVOLUTION.BIGFIRE; }
+
+    // ▲▲▲　　進化時処理(継承用)　　▲▲▲
 }

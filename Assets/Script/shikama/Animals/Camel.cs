@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camel : Animal
 {
-    [SerializeField] CamelStatus status;
+    CamelStatus status_;
     
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
@@ -12,27 +12,35 @@ public class Camel : Animal
     float hpHealOneDist = 10.0f;
     float hpHealRangeDist = 3.0f;
 
-    float attackUpMag = 3.0f;
-    float hpHealOne = 1.1f;
-    float hpHealRange= 1.1f;
-    float speedUp = 1.05f;
+    public int barrierCount { get; set; } = 0;
+    float barrierTimer = 0;
 
+    static private bool costDown  = false;
+    
     override protected void Start()
     {
-        cost = status.cost;
-        maxHp = hp =status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
-        
-        attackUpMag = status.attackUpMag;
-        hpHealOne = status.hpHealOne;
-        hpHealRange = status.hpHealRange;
-        speedUp = status.speedUp;
-
         base.Start();
+
+        status = new CamelStatus(baseStatus as CamelBaseStatus, this);
+        status_ = status as CamelStatus;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (evolution.Equals(EVOLUTION.HURRICANE) && barrierCount >= 5)
+        {
+            if(barrierTimer <= status_.barrierTime)
+            {
+                barrierTimer += Time.deltaTime;
+            }
+            else
+            {
+                barrierTimer = 0;
+                barrierCount = 0;
+            }
+        }
     }
 
     override public void MeteoEvolution()
@@ -63,9 +71,32 @@ public class Camel : Animal
         }
     }
 
+    public override void ThunderstormEvolution()
+    {
+        base.ThunderstormEvolution();
+
+        foreach(Animal animal in animalList)
+        {
+            if(animal.tag == "Enemy")
+            {
+                animal.status.speed *= 1.2f;
+                break;
+            }
+        }
+    }
+
+    public override void TsunamiEvolution()
+    {
+        base.TsunamiEvolution();
+
+        if (!costDown) baseStatus.cost = (int)(baseStatus.cost * (1.0f - status_.costDownMag));
+        costDown = true;
+
+    }
+
     private void AttackUp()
     {
-        attack = (int)(attack * attackUpMag);
+        status_.attack = (int)(status_.attack * status_.attackUpMag);
         meteoEvolution = true;
     }
 
@@ -77,10 +108,8 @@ public class Camel : Animal
             float dist = Vector2.Distance(transform.position, animal.transform.position);
             if (dist <= hpHealRangeDist)
             {
-                Debug.Log(animal.hp);
-                animal.hp += (int)(animal.maxHp * hpHealRange);
-                if (animal.maxHp < animal.hp) animal.hp = animal.maxHp;
-                Debug.Log(animal.hp);
+                animal.status.hp += (int)(animal.status.maxHP * status_.hpHealRange);
+                if (animal.status.maxHP < animal.status.hp) animal.status.hp = animal.status.maxHP;
             }
         }
         meteoEvolution = true;
@@ -106,17 +135,15 @@ public class Camel : Animal
 
         if (healAnimal)
         {
-            Debug.Log(healAnimal.hp);
-            healAnimal.hp += (int)(healAnimal.maxHp * hpHealOne);
-            if (healAnimal.maxHp < healAnimal.hp) healAnimal.hp = healAnimal.maxHp;
-            Debug.Log(healAnimal.hp);
+            healAnimal.status.hp += (int)(healAnimal.status.maxHP * status_.hpHealOne);
+            if (healAnimal.status.maxHP < healAnimal.status.hp) healAnimal.status.hp = healAnimal.status.maxHP;
         }
         earthquakeEvolution = true;
     }
 
     private void SpeedUp()
     {
-        speed *= speedUp;
+        status_.speed *= status_.speedUp;
         meteoEvolution = true;
     }
 }

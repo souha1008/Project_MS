@@ -4,31 +4,19 @@ using UnityEngine;
 
 public class Giraffe : Animal
 {
-    [SerializeField] GiraffeStatus status;
+    GiraffeStatus status_;
 
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
-
-    float attackUpMag = 1.6f;
-
-    float coolTimeEarthquake = 20.0f;
 
     float coolTimer = 0.0f;
 
     override protected void Start()
     {
-        cost = status.cost;
-        maxHp = hp = status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
-        
-        attackUpMag = status.attackUpMag;
-        coolTimeEarthquake = status.coolTimeEarthquake;
-
         base.Start();
+
+        status = new GiraffeStatus(baseStatus as GiraffeBaseStatus, this);
+        status_ = status as GiraffeStatus;
     }
 
     protected override void Update()
@@ -55,18 +43,13 @@ public class Giraffe : Animal
      
     }
 
-    private void OnDestroy()
-    {
-        animalList.Remove(this);
-        Debug.Log("キリン　死");
-    }
 
     override public void MeteoEvolution()
     {
         if (!earthquakeEvolution && !meteoEvolution)
         {
             meteoEvolution = true;
-            attack = (int)(attack * attackUpMag);
+            status_.attack = (int)(status_.attack * status_.attackUpMag);
         }
     }
 
@@ -78,7 +61,7 @@ public class Giraffe : Animal
             {
                 if (animal.tag == "Player") continue;
                 float dist = Vector2.Distance(transform.position, animal.transform.position);
-                if (animal.attackDist >= dist - 0.25f)
+                if (animal.status.attackDist >= dist - 0.25f)
                 {
                     // ターゲットのリセット
                     attackTarget[animal.attackObject].Remove(animal);
@@ -93,7 +76,7 @@ public class Giraffe : Animal
                 }
             }
 
-            coolTimer = coolTimeEarthquake;
+            coolTimer = status_.coolTimeEarthquake;
             earthquakeEvolution = true;
         }
     }

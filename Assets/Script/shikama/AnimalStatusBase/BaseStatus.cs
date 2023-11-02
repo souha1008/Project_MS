@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class BuffaloStatus : ScriptableObject
+public class BaseStatus : ScriptableObject
 {
     public int cost = 20;
-    
+    private int cost_;
+
     public int maxHP = 100;
     public int attack = 30;
     public float speed = 1.5f;
@@ -15,11 +15,14 @@ public class BuffaloStatus : ScriptableObject
 
     public DIRECTION dir;
 
-    public float allStatusUpMag = 3.0f;
+    public void OnEnable()
+    {
+        cost_ = cost;
+        Debug.Log("a");
+    }
 
-    public float activeTimeMeteo = 5.0f;
-    public float coolTimeMeteo = 10.0f;
-
-    public float activeTimeEarthquake = 5.0f;
-    public float coolTimeEarthquake = 0.0f;
+    public void OnDisable()
+    {
+        cost = cost_;
+    }
 }

@@ -4,48 +4,32 @@ using UnityEngine;
 
 public class Zebra : Animal
 {
-    [SerializeField] ZebraStatus status;
-    
-    private bool meteoEvolution = false;
-    private bool earthquakeEvolution = false;
-
-    float doubleAttackMag = 0.15f;
-
-    float attackUpMag = 3.0f;
-    float speedDownMag = 0.8f;
+    ZebraStatus status_;
 
     override protected void Start()
     {
-        cost = status.cost;
-        maxHp = hp = status.maxHP;
-        attack = status.attack;
-        speed = status.speed;
-        attackSpeed = status.attackSpeed;
-        attackDist = status.attackDist;
-        dir = status.dir;
-        doubleAttackMag = status.doubleAttackMag;
-        attackUpMag = status.attackUpMag;
-        speedDownMag = status.speedDownMag;
-
         base.Start();
+
+        status = new ZebraStatus(baseStatus as ZebraBaseStatus, this);
+        status_ = status as ZebraStatus;
     }
 
     override public void MeteoEvolution()
     {
-        if (!earthquakeEvolution && !meteoEvolution)
+        if (evolution.Equals(EVOLUTION.NONE))
         {
-            meteoEvolution = true;
-            attack = (int)(attack * doubleAttackMag);
+            evolution = EVOLUTION.METEO;
+            status_.attack = (int)(status_.attack * status_.doubleAttackMag);
         }
     }
 
     override public void EarthquakeEvolution()
     {
-        if (!earthquakeEvolution && !meteoEvolution)
+        if (evolution.Equals(EVOLUTION.NONE))
         {
-            earthquakeEvolution = true;
-            attack = (int)(attack * attackUpMag);
-            speed *= speedDownMag;
+            evolution = EVOLUTION.EARTHQUAKE;
+            status_.attack = (int)(status_.attack * status_.attackUpMag);
+            status_.speed *= status_.speedDownMag;
         }
     }
 }
