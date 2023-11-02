@@ -18,10 +18,9 @@ public class BaseStatus : ScriptableObject
     public void OnEnable()
     {
         cost_ = cost;
-        Debug.Log("a");
     }
 
-    public void OnDisable()
+    public void ResetCost()
     {
         cost = cost_;
     }

@@ -3773,6 +3773,13 @@ MonoBehaviour:
   maxLevel: 7
   textCost: {fileID: 1284800637}
   createPos: {fileID: 204328183}
+  statuses:
+  - {fileID: 11400000, guid: 03665ebcb618eee45a23bb1175944157, type: 2}
+  - {fileID: 11400000, guid: 4d9917aaf437ea64192b87a2caf208c4, type: 2}
+  - {fileID: 11400000, guid: 1bd9a584ec148f7448195e65055e5720, type: 2}
+  - {fileID: 11400000, guid: 1d1ee9ac59d496f43b8752d979b55ab2, type: 2}
+  - {fileID: 11400000, guid: 98a528f1a99b546458d51dd2326738f8, type: 2}
+  - {fileID: 11400000, guid: b32a5af2faa69f543b41a1a66fe46c09, type: 2}
 --- !u!4 &2012291895
 Transform:
   m_ObjectHideFlags: 0
