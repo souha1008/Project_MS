@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class LionStatus : BaseStatus
+public class LionBaseStatus : BaseStatus
 {
     
 }

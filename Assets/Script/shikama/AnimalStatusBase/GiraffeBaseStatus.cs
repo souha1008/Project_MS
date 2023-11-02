@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class GiraffeStatus : BaseStatus
+public class GiraffeBaseStatus : BaseStatus
 {
     public float attackUpMag = 3.0f;
 

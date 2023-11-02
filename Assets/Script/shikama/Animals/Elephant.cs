@@ -9,11 +9,14 @@ public class Elephant : Animal
     float activeTimer = 0.0f;
     float coolTimer = 0.0f;
 
+    int tsunamiCount = 0;
+
     override protected void Start() 
     {
-        status_ = (ElephantStatus)status;
-
         base.Start();
+
+        status = new ElephantStatus(baseStatus as ElephantBaseStatus, this);
+        status_ = status as ElephantStatus;
     }
 
     protected override void Update()
@@ -35,12 +38,17 @@ public class Elephant : Animal
                 Debug.Log("象進化終了");
             }
         }
+
+        if (evolution.Equals(EVOLUTION.TSUNAMI))
+        {
+            attackCount = attackTarget[attackObject].Count;
+        }
     }
 
-    private void OnDestroy()
+    protected override void Attack()
     {
-        animalList.Remove(this);
-        Debug.Log("象　死");
+        if(!evolution.Equals(EVOLUTION.TSUNAMI) || attackCount >= 2) 
+            base.Attack();
     }
 
     override public void MeteoEvolution()
@@ -50,8 +58,6 @@ public class Elephant : Animal
             coolTimer = status_.coolTimeMeteo;
             activeTimer = status_.activeTimeMeteo;
             evolution = EVOLUTION.METEO;
-
-            Debug.Log("耳シールドーーー");
         }
     }
 
@@ -63,7 +69,7 @@ public class Elephant : Animal
             {
                 if (animal.tag == "Player") continue;
                 float dist = Vector2.Distance(transform.position, animal.transform.position);
-                if (animal.status.attackDist_ >= dist - 0.25f)
+                if (animal.status.attackDist >= dist - 0.25f)
                 {
                     // ターゲットのリセット
                     attackTarget[animal.attackObject].Remove(animal);
@@ -83,8 +89,34 @@ public class Elephant : Animal
         }
     }
 
+    // 途中(ノックバックの仕様を知らない)
     public override void HurricaneEvolution()
     {
-        status_.speed_ *= 0.5f;
+        status.speed *= 0.5f;
+        evolution = EVOLUTION.HURRICANE;
+    }
+
+    public override void ThunderstormEvolution()
+    {
+        foreach(Animal animal in animalList)
+        {
+            if(animal.CompareTag("Player")) animal.elephantSheld = true;
+        }
+        evolution = EVOLUTION.THUNDERSTORM;
+    }
+
+    public override void TsunamiEvolution()
+    {
+        evolution = EVOLUTION.TSUNAMI;
+    }
+
+    public override void EruptionEvolution()
+    {
+        evolution = EVOLUTION.ERUPTION;
+    }
+
+    public override void IceAgeEvolution()
+    {
+        base.IceAgeEvolution();
     }
 }

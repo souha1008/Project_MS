@@ -8,9 +8,10 @@ public class Zebra : Animal
 
     override protected void Start()
     {
-        status_ = (ZebraStatus)status;
-
         base.Start();
+
+        status = new ZebraStatus(baseStatus as ZebraBaseStatus, this);
+        status_ = status as ZebraStatus;
     }
 
     override public void MeteoEvolution()
@@ -18,7 +19,7 @@ public class Zebra : Animal
         if (evolution.Equals(EVOLUTION.NONE))
         {
             evolution = EVOLUTION.METEO;
-            status_.attack_ = (int)(status_.attack_ * status_.doubleAttackMag);
+            status_.attack = (int)(status_.attack * status_.doubleAttackMag);
         }
     }
 
@@ -27,8 +28,8 @@ public class Zebra : Animal
         if (evolution.Equals(EVOLUTION.NONE))
         {
             evolution = EVOLUTION.EARTHQUAKE;
-            status_.attack_ = (int)(status_.attack_ * status_.attackUpMag);
-            status_.speed_ *= status_.speedDownMag;
+            status_.attack = (int)(status_.attack * status_.attackUpMag);
+            status_.speed *= status_.speedDownMag;
         }
     }
 }

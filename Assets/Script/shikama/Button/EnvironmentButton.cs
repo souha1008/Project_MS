@@ -42,4 +42,36 @@ public class EnvironmentButton : MonoBehaviour
             }
         }
     }
+
+    public void IceAge()
+    {
+        if (gameSetting.cost >= 200)
+        {
+            gameSetting.cost -= 200;
+
+            if (Animal.animalList != null)
+            {
+                foreach (Animal animal in Animal.animalList)
+                {
+                    animal.IceAgeEvolution();
+                }
+            }
+        }
+    }
+
+    public void Tsunami()
+    {
+        if (gameSetting.cost >= 200)
+        {
+            gameSetting.cost -= 200;
+
+            if (Animal.animalList != null)
+            {
+                foreach (Animal animal in Animal.animalList)
+                {
+                    animal.TsunamiEvolution();
+                }
+            }
+        }
+    }
 }

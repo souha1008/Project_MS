@@ -8,8 +8,9 @@ public class Lion : Animal
 
     override protected void Start()
     {
-        status_ = (LionStatus)status;
-
         base.Start();
+
+        status = new LionStatus(baseStatus as LionBaseStatus, this);
+        status_ = status as LionStatus;
     }
 }

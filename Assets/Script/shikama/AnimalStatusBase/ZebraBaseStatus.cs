@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class ZebraStatus : BaseStatus
+public class ZebraBaseStatus : BaseStatus
 {
     public float doubleAttackMag = 0.15f;
 

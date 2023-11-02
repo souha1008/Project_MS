@@ -5,7 +5,6 @@ using UnityEngine;
 public class Buffalo : Animal
 {
     BuffaloStatus status_;
-    [System.NonSerialized] public float allStatusUpMag = 0.8f;
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
 
@@ -14,9 +13,10 @@ public class Buffalo : Animal
 
     protected override void Start()
     {
-        status_ = (BuffaloStatus)status;
-
         base.Start();
+
+        status = new BuffaloStatus(baseStatus as BuffaloBaseStatus, this);
+        status_ = status as BuffaloStatus;
     }
 
     protected override void Update()
@@ -38,20 +38,15 @@ public class Buffalo : Animal
         }
     }
 
-    private void OnDestroy()
-    {
-        animalList.Remove(this);
-        Debug.Log("バッファロー　死");
-    }
 
     override public void EarthquakeEvolution()
     {
         if (!meteoEvolution && coolTimer == 0.0f)
         {
-            status_.hp_ = (int)(status_.hp_ * allStatusUpMag);
-            status_.attack_ = (int)(status_.attack_ * allStatusUpMag);
-            status_.speed_ = status_.speed_ * allStatusUpMag;
-            status_.attackSpeed_ = status_.attackSpeed_ / allStatusUpMag;
+            status_.hp = (int)(status_.hp * status_.allStatusUpMag);
+            status_.attack = (int)(status_.attack * status_.allStatusUpMag);
+            status_.speed = status_.speed * status_.allStatusUpMag;
+            status_.attackSpeed = status_.attackSpeed / status_.allStatusUpMag;
 
             coolTimer = status_.coolTimeEarthquake;
             activeTimer = status_.activeTimeEarthquake;
@@ -65,7 +60,7 @@ public class Buffalo : Animal
         activeTimer = 0;
         Debug.Log("バッファロー進化終了");
 
-        status_.hp_ = (int)(status_.hp_ / 3.0f); if (status_.hp_ == 0) status_.hp_ = 1;
+        status_.hp = (int)(status_.hp / 3.0f); if (status_.hp == 0) status_.hp = 1;
         status_.ResetAll();
     }
 }

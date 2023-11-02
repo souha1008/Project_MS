@@ -13,9 +13,10 @@ public class Giraffe : Animal
 
     override protected void Start()
     {
-        status_ = (GiraffeStatus)status;
-
         base.Start();
+
+        status = new GiraffeStatus(baseStatus as GiraffeBaseStatus, this);
+        status_ = status as GiraffeStatus;
     }
 
     protected override void Update()
@@ -42,18 +43,13 @@ public class Giraffe : Animal
      
     }
 
-    private void OnDestroy()
-    {
-        animalList.Remove(this);
-        Debug.Log("キリン　死");
-    }
 
     override public void MeteoEvolution()
     {
         if (!earthquakeEvolution && !meteoEvolution)
         {
             meteoEvolution = true;
-            status_.attack_ = (int)(status_.attack_ * status_.attackUpMag);
+            status_.attack = (int)(status_.attack * status_.attackUpMag);
         }
     }
 
@@ -65,7 +61,7 @@ public class Giraffe : Animal
             {
                 if (animal.tag == "Player") continue;
                 float dist = Vector2.Distance(transform.position, animal.transform.position);
-                if (animal.status.attackDist_ >= dist - 0.25f)
+                if (animal.status.attackDist >= dist - 0.25f)
                 {
                     // ターゲットのリセット
                     attackTarget[animal.attackObject].Remove(animal);

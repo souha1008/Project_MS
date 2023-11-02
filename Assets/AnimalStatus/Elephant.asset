@@ -24,3 +24,4 @@ MonoBehaviour:
   coolTimeMeteo: 10
   activeTimeEarthquake: 5
   coolTimeEarthquake: 0
+  sheldCutMag: 0.5
