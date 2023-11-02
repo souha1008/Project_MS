@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum DIRECTION {
     RIGHT = 0,
@@ -45,9 +46,12 @@ public class Animal : MonoBehaviour
     public bool elephantSheld { get; set; } = false;    // 象進化によるシールド付与判定
 
     private delegate void STATE();           /// <summary> 移動、攻撃処理 </summary>
-    private event STATE State; 
+    private event STATE State;
+
+    GameSetting gameSetting;
 
     [SerializeField] ParticleSystem particle = null;
+    [SerializeField] Sprite[] particleSprite;
 
     private void Awake()
     {
@@ -63,6 +67,8 @@ public class Animal : MonoBehaviour
     /// </summary>
     virtual protected void Start()
     {
+        gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
+
         status = new AnimalStatus(baseStatus, this);
         attackCount = status.attackSpeed;
 
@@ -239,15 +245,66 @@ public class Animal : MonoBehaviour
     }
 
     // ▼▼▼　　進化時処理(継承用)　　▼▼▼
-    virtual public void MeteoEvolution() { evolution = EVOLUTION.METEO; }
+    virtual public void MeteoEvolution() { 
+        evolution = EVOLUTION.METEO;
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "Meteo")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
     virtual public void EarthquakeEvolution() { evolution = EVOLUTION.EARTHQUAKE; }
-    virtual public void HurricaneEvolution() { evolution = EVOLUTION.HURRICANE; }
-    virtual public void ThunderstormEvolution() { evolution = EVOLUTION.THUNDERSTORM; }
+    virtual public void HurricaneEvolution() { 
+        evolution = EVOLUTION.HURRICANE;
+
+        if (!particle) return;
+        foreach(Sprite particle in gameSetting.particleSprite)
+        {
+            if(particle.name == "Hurricane")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
+    virtual public void ThunderstormEvolution()
+    { 
+        evolution = EVOLUTION.THUNDERSTORM;
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "Thunderstorm")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
     virtual public void TsunamiEvolution() { evolution = EVOLUTION.TSUNAMI; }
-    virtual public void EruptionEvolution() { evolution = EVOLUTION.ERUPTION; }
+    virtual public void EruptionEvolution()
+    {
+        evolution = EVOLUTION.ERUPTION;
+    }
     virtual public void PlagueEvolution() { evolution = EVOLUTION.PLAGUE; }
     virtual public void DesertificationEvolution() { evolution = EVOLUTION.DESERTIFICATION; }
-    virtual public void IceAgeEvolution() { evolution = EVOLUTION.ICEAGE; }
+    virtual public void IceAgeEvolution() 
+    {
+        evolution = EVOLUTION.ICEAGE;
+
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "IceAge")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
     virtual public void BigFireEvolution() { evolution = EVOLUTION.BIGFIRE; }
 
     // ▲▲▲　　進化時処理(継承用)　　▲▲▲

@@ -18,6 +18,7 @@ public class GameSetting : MonoBehaviour
     [System.NonSerialized] public Vector3 createPosition;
 
     [SerializeField] BaseStatus[] statuses;
+    public Sprite[] particleSprite;
 
     private void Awake()
     {

@@ -45,6 +45,7 @@ public class Camel : Animal
 
     override public void MeteoEvolution()
     {
+        base.MeteoEvolution();
         if (!earthquakeEvolution && !meteoEvolution)
         {
             int mode = Random.Range(0, 3);
