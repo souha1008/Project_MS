@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f517ee1d57fc3914094590504da48d07, type: 3}
   m_Name: Camel
   m_EditorClassIdentifier: 
-  cost: 30
+  cost: 35
   maxHP: 100
   attack: 30
   speed: 1.5
@@ -24,3 +24,6 @@ MonoBehaviour:
   hpHealOne: 0.1
   hpHealRange: 0.3
   speedUp: 1.05
+  barrierMag: 0.3
+  barrierTime: 7
+  costDownMag: 0.1

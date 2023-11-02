@@ -17,6 +17,8 @@ public class GameSetting : MonoBehaviour
     [SerializeField] private GameObject createPos;
     [System.NonSerialized] public Vector3 createPosition;
 
+    [SerializeField] BaseStatus[] statuses;
+
     private void Awake()
     {
         createPosition = createPos.transform.localPosition;
@@ -34,5 +36,11 @@ public class GameSetting : MonoBehaviour
         else cost = maxCost;
 
         textCost.text = (int)cost + " : " + maxCost;
+    }
+
+
+    private void OnApplicationQuit()
+    {
+        foreach (BaseStatus status in statuses) status.ResetCost();
     }
 }
