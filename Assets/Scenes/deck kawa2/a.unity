@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 181593867}
   - component: {fileID: 181593866}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: ThunderStorm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2066,7 +2066,7 @@ GameObject:
   - component: {fileID: 290985860}
   - component: {fileID: 290985859}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Zou_Spec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2288,7 +2288,7 @@ GameObject:
   - component: {fileID: 330656902}
   - component: {fileID: 330656901}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Disastar_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2439,7 +2439,7 @@ GameObject:
   - component: {fileID: 352827497}
   - component: {fileID: 352827496}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Hurricane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3351,7 +3351,7 @@ GameObject:
   - component: {fileID: 445975317}
   - component: {fileID: 445975316}
   m_Layer: 5
-  m_Name: Canvas10
+  m_Name: Canvas_Giraffe_Spec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3701,7 +3701,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4, y: -8}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 119.48, y: 133.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537299686
 MonoBehaviour:
@@ -3753,7 +3753,6 @@ GameObject:
   - component: {fileID: 554821771}
   - component: {fileID: 554821770}
   - component: {fileID: 554821769}
-  - component: {fileID: 554821768}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -3780,19 +3779,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &554821768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554821766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056c839bd8bc46844ba5d35cb74be737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToToggle: {fileID: 0}
 --- !u!114 &554821769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3836,19 +3822,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 554821770}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 554821768}
-        m_TargetAssemblyTypeName: one, Assembly-CSharp
-        m_MethodName: ToggleCanvas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &554821770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3900,7 +3874,7 @@ GameObject:
   - component: {fileID: 559319179}
   - component: {fileID: 559319178}
   m_Layer: 5
-  m_Name: Canvas3
+  m_Name: Disastar_Scroll_Zou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4222,7 +4196,6 @@ GameObject:
   - component: {fileID: 621525836}
   - component: {fileID: 621525835}
   - component: {fileID: 621525834}
-  - component: {fileID: 621525833}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -4249,19 +4222,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &621525833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621525831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056c839bd8bc46844ba5d35cb74be737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToToggle: {fileID: 0}
 --- !u!114 &621525834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4305,19 +4265,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 621525835}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 621525833}
-        m_TargetAssemblyTypeName: one, Assembly-CSharp
-        m_MethodName: ToggleCanvas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &621525835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4368,7 +4316,6 @@ GameObject:
   - component: {fileID: 623396387}
   - component: {fileID: 623396386}
   - component: {fileID: 623396385}
-  - component: {fileID: 623396384}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -4395,19 +4342,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &623396384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 623396382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056c839bd8bc46844ba5d35cb74be737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToToggle: {fileID: 0}
 --- !u!114 &623396385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4451,19 +4385,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 623396386}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 623396384}
-        m_TargetAssemblyTypeName: one, Assembly-CSharp
-        m_MethodName: ToggleCanvas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &623396386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4924,7 +4846,7 @@ GameObject:
   - component: {fileID: 689104032}
   - component: {fileID: 689104031}
   m_Layer: 5
-  m_Name: Canvas6
+  m_Name: Canvas_Camel_Spec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5325,7 +5247,7 @@ GameObject:
   - component: {fileID: 761687884}
   - component: {fileID: 761687883}
   m_Layer: 5
-  m_Name: Canvas4
+  m_Name: Canvas_Buffalo_Spec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5428,7 +5350,7 @@ GameObject:
   - component: {fileID: 771321965}
   - component: {fileID: 771321964}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: Tsunami
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5474,7 +5396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ba7a2fca5d7f68c4f853963cb2e869c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5824,12 +5746,12 @@ GameObject:
   - component: {fileID: 914785611}
   - component: {fileID: 914785610}
   m_Layer: 5
-  m_Name: Canvas2
+  m_Name: Canvas_Zou_Spec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &914785610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7860,7 +7782,7 @@ GameObject:
   - component: {fileID: 1245775761}
   - component: {fileID: 1245775760}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: EarthQuake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8364,7 +8286,7 @@ GameObject:
   - component: {fileID: 1394176253}
   - component: {fileID: 1394176252}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: Eruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8896,7 +8818,6 @@ GameObject:
   - component: {fileID: 1452455441}
   - component: {fileID: 1452455440}
   - component: {fileID: 1452455439}
-  - component: {fileID: 1452455438}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -8923,19 +8844,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1452455438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452455436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056c839bd8bc46844ba5d35cb74be737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToToggle: {fileID: 0}
 --- !u!114 &1452455439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8979,19 +8887,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1452455440}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1452455438}
-        m_TargetAssemblyTypeName: one, Assembly-CSharp
-        m_MethodName: ToggleCanvas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1452455440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9171,15 +9067,15 @@ RectTransform:
   m_GameObject: {fileID: 1509545172}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4620593, y: 3.375741, z: 1.2092595}
+  m_LocalScale: {x: 0.4, y: 2.9223444, z: 1.0468435}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 537299685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.6, y: 1}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -26.1, y: 1}
+  m_SizeDelta: {x: 237.8, y: 42.76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1509545174
 MonoBehaviour:
@@ -9511,7 +9407,7 @@ GameObject:
   - component: {fileID: 1552021537}
   - component: {fileID: 1552021536}
   m_Layer: 5
-  m_Name: Image (10)
+  m_Name: BigFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9970,7 +9866,7 @@ GameObject:
   - component: {fileID: 1596914972}
   - component: {fileID: 1596914971}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Meteor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10790,7 +10686,7 @@ GameObject:
   - component: {fileID: 1724493344}
   - component: {fileID: 1724493343}
   m_Layer: 5
-  m_Name: Image (9)
+  m_Name: IceAge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10902,7 +10798,7 @@ GameObject:
   - component: {fileID: 1760451375}
   - component: {fileID: 1760451374}
   m_Layer: 5
-  m_Name: Image (7)
+  m_Name: Plague
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11221,7 +11117,6 @@ GameObject:
   - component: {fileID: 1868083488}
   - component: {fileID: 1868083487}
   - component: {fileID: 1868083490}
-  - component: {fileID: 1868083486}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -11248,19 +11143,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1868083486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1868083484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056c839bd8bc46844ba5d35cb74be737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToToggle: {fileID: 914785612}
 --- !u!114 &1868083487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11305,9 +11187,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1868083486}
-        m_TargetAssemblyTypeName: one, Assembly-CSharp
-        m_MethodName: ToggleCanvas
+      - m_Target: {fileID: 1868083490}
+        m_TargetAssemblyTypeName: yon, Assembly-CSharp
+        m_MethodName: ToggleImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11337,8 +11219,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: ba7a2fca5d7f68c4f853963cb2e869c3, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -11367,9 +11249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b9536d18ef81f4981cb54dd5b2e8a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageToToggle: {fileID: 1608418278}
+  imageToToggle: {fileID: 330656901}
   activeSprite: {fileID: 21300000, guid: ba7a2fca5d7f68c4f853963cb2e869c3, type: 3}
-  inactiveSprite: {fileID: 0}
+  Disastar_Scroll: {fileID: 559319177}
 --- !u!1 &1881863249
 GameObject:
   m_ObjectHideFlags: 0
@@ -11655,7 +11537,6 @@ GameObject:
   - component: {fileID: 1945938790}
   - component: {fileID: 1945938789}
   - component: {fileID: 1945938788}
-  - component: {fileID: 1945938787}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -11682,19 +11563,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1945938787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1945938785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056c839bd8bc46844ba5d35cb74be737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToToggle: {fileID: 0}
 --- !u!114 &1945938788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11738,19 +11606,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1945938789}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1945938787}
-        m_TargetAssemblyTypeName: one, Assembly-CSharp
-        m_MethodName: ToggleCanvas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1945938789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12002,7 +11858,7 @@ GameObject:
   - component: {fileID: 1983515568}
   - component: {fileID: 1983515567}
   m_Layer: 5
-  m_Name: Image (8)
+  m_Name: Desert
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12581,8 +12437,8 @@ RectTransform:
   m_GameObject: {fileID: 2082174274}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1768, y: 1.1768, z: 1.1768}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.73, y: 1.73, z: 1.73}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 404548923}
   m_Father: {fileID: 914785613}
@@ -12643,7 +12499,7 @@ GameObject:
   - component: {fileID: 2082217216}
   - component: {fileID: 2082217215}
   m_Layer: 5
-  m_Name: Canvas8
+  m_Name: Canvas_Zebra_Spec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
