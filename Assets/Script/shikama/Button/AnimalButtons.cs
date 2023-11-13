@@ -31,7 +31,9 @@ public class AnimalButtons : MonoBehaviour
         if (gameSetting.cost >= animalScript.baseStatus.cost)
         {
             gameSetting.cost -= animalScript.baseStatus.cost;
-            Instantiate(animalObject, gameSetting.createPosition, Quaternion.identity);
+            Vector3 pos = gameSetting.createPosition;
+            pos.y += Random.Range(-0.3f, 0.3f);
+            Instantiate(animalObject, pos, Quaternion.identity);
         }
     }
 

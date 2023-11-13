@@ -34,10 +34,24 @@ public class CamelStatus : AnimalStatus
     public override void AddHp(int _hp, Animal animal_)
     {
         Camel camel = (Camel)animal;
-        if (animal.evolution.Equals(EVOLUTION.HURRICANE) && camel.barrierCount >= 5)
+        if (animal.evolution == EVOLUTION.HURRICANE && camel.barrierCount >= 5)
         {
             _hp = (int)(_hp * (1.0f - barrierMag));
             base.AddHp(_hp, animal_);
+        }
+        else if(animal.evolution == EVOLUTION.ICEAGE)
+        {
+            foreach (Animal _animal in Animal.animalList)
+            {
+                if (_animal.tag == "Enemy") continue;
+
+                float dist = Vector2.Distance(camel.transform.position, _animal.transform.position);
+                if (dist <= 3.0f)
+                {
+                    _animal.status.hp = Mathf.Clamp(Mathf.RoundToInt(_animal.status.hp + _animal.status.maxHP * 0.08f),
+                        0,_animal.status.maxHP);
+                }
+            }
         }
         else
         {

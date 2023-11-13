@@ -66,6 +66,8 @@ public class Camel : Animal
 
     override public void EarthquakeEvolution()
     {
+        if (evolution != EVOLUTION.NONE) return;
+
         if (!earthquakeEvolution && !meteoEvolution)
         {
             HealOne();
@@ -74,6 +76,8 @@ public class Camel : Animal
 
     public override void ThunderstormEvolution()
     {
+        if (evolution != EVOLUTION.NONE) return;
+
         base.ThunderstormEvolution();
 
         foreach(Animal animal in animalList)
@@ -88,12 +92,67 @@ public class Camel : Animal
 
     public override void TsunamiEvolution()
     {
+        if (evolution != EVOLUTION.NONE) return;
+
         base.TsunamiEvolution();
 
         if (!costDown) baseStatus.cost = (int)(baseStatus.cost * (1.0f - status_.costDownMag));
         costDown = true;
-
     }
+
+    public override void EruptionEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+
+        base.EruptionEvolution();
+
+        List<Animal> playerAnimal = new List<Animal>();
+        
+        foreach(Animal animal in animalList)
+        {
+            if (animal.tag == "Enemy") continue;
+            playerAnimal.Add(animal);
+        }
+
+        int r = Random.Range(0, playerAnimal.Count - 1);
+
+        playerAnimal[r].status.speed *= 1.2f;
+    }
+
+    public override void PlagueEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+
+        base.PlagueEvolution();
+        status.attackSpeed = 0;
+    }
+
+    public override void DesertificationEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+        base.DesertificationEvolution();
+
+        status.hp -= (int)(status.maxHP * 0.1f);
+        if (status.hp <= 0) status.hp = 1;
+
+        foreach (Animal animal in animalList)
+        {
+            if (animal.tag == "Enemy") continue;
+            
+            animal.status.AllStatusUp(1.03f);
+            animal.status.Invoke("ResetAll", 4.0f);
+        }
+    }
+
+    public override void IceAgeEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+        base.IceAgeEvolution();
+    }
+
+
+
+
 
     private void AttackUp()
     {

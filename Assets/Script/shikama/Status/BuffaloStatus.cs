@@ -12,6 +12,9 @@ public class BuffaloStatus : AnimalStatus
     public float activeTimeEarthquake = 5.0f;
     public float coolTimeEarthquake = 0.0f;
 
+    int erupCount = 0;
+    int iceCount = 0;
+
     public BuffaloStatus(BuffaloBaseStatus baseStatus, Animal animal) : base(baseStatus, animal)
     {
         allStatusUpMag = baseStatus.allStatusUpMag;
@@ -21,5 +24,29 @@ public class BuffaloStatus : AnimalStatus
 
         activeTimeEarthquake = baseStatus.activeTimeEarthquake;
         coolTimeEarthquake = baseStatus.coolTimeEarthquake;
+    }
+
+    public override void AddHp(int _hp, Animal animal_)
+    {
+        if(animal.evolution == EVOLUTION.ERUPTION)
+        {
+            if(erupCount == 2)
+            {
+                erupCount = 0;
+                return;
+            }
+            erupCount++;
+        }
+        else if(animal.evolution == EVOLUTION.ICEAGE)
+        {
+            if(iceCount == 5)
+            {
+                iceCount = 0;
+                hp += (int)(maxHP * 0.2f);
+            }
+            iceCount++;
+        }
+
+        base.AddHp(_hp, animal_);
     }
 }

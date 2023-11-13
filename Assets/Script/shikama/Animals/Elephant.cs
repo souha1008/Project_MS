@@ -5,6 +5,7 @@ using UnityEngine;
 public class Elephant : Animal
 {
     ElephantStatus status_;
+    [SerializeField] GameObject elephantField;
 
     float activeTimer = 0.0f;
     float coolTimer = 0.0f;
@@ -26,7 +27,7 @@ public class Elephant : Animal
         if (coolTimer > 0)
             coolTimer -= Time.deltaTime;
         else
-            coolTimer = 0;
+            coolTimer = 0.0f;
 
         if (evolution.Equals(EVOLUTION.METEO)) 
         {
@@ -39,26 +40,28 @@ public class Elephant : Animal
             }
         }
 
-        if (evolution.Equals(EVOLUTION.TSUNAMI))
+        if (evolution == EVOLUTION.TSUNAMI)
         {
-            attackCount = attackTarget[attackObject].Count;
+            tsunamiCount = attackTarget[attackObject].Count;
         }
     }
 
     protected override void Attack()
     {
-        if(!evolution.Equals(EVOLUTION.TSUNAMI) || attackCount >= 2) 
-            base.Attack();
+        if (evolution == EVOLUTION.TSUNAMI)
+        {
+            if(tsunamiCount >= 2) base.Attack();
+        }
+        else base.Attack();
     }
 
     override public void MeteoEvolution()
     {
-        if (evolution.Equals(EVOLUTION.NONE) && coolTimer == 0.0f)
-        {
-            coolTimer = status_.coolTimeMeteo;
-            activeTimer = status_.activeTimeMeteo;
-            evolution = EVOLUTION.METEO;
-        }
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.MeteoEvolution();
+
+        coolTimer = status_.coolTimeMeteo;
+        activeTimer = status_.activeTimeMeteo;
     }
 
     override public void EarthquakeEvolution()
@@ -115,8 +118,24 @@ public class Elephant : Animal
         evolution = EVOLUTION.ERUPTION;
     }
 
+    public override void DesertificationEvolution()
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.DesertificationEvolution();
+
+        Vector3 vector3 = new Vector3(transform.position.x - elephantField.transform.localScale.x / 2,
+                                        transform.position.y - transform.localScale.y / 2 + elephantField.transform.localScale.y / 2,
+                                        0.5f);
+        Instantiate(elephantField, vector3, Quaternion.identity);
+    }
+
     public override void IceAgeEvolution()
     {
         base.IceAgeEvolution();
+    }
+
+    public override void BigFireEvolution()
+    {
+
     }
 }

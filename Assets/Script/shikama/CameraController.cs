@@ -25,12 +25,11 @@ public class CameraController : MonoBehaviour
         
         { // カメラサイズ設定
             // 基準（縦方向）サイズと基準アスペクト比から基準横方向サイズを算出
+            maxCameraSizeMag *= floor.transform.localScale.x / 18.0f;
             var baseHorizontalSize = maxCameraSizeMag * 16.0f / 9.0f;
-            // 基準横方向サイズと対象アスペクト比で対象縦方向サイズを算出
-            var verticalSize = baseHorizontalSize / Camera.main.aspect;
-
-            // 初期カメラサイズ、最大サイズ、最小サイズ設定
-            Camera.main.orthographicSize = maxCameraSize = verticalSize;
+           
+            // 最大サイズ、最小サイズ設定    
+            maxCameraSize = baseHorizontalSize / Camera.main.aspect; 
             minCameraSize = minCameraSizeMag * 16.0f / 9.0f / Camera.main.aspect;
         }
 
@@ -47,6 +46,7 @@ public class CameraController : MonoBehaviour
 
             // カメラが地面の下を映さないよう設定
             Camera.main.transform.SetPositionY(floorLeftBottom.y + Mathf.Abs(rightTop.y - leftBottom.y) / 2);
+            Camera.main.transform.SetPositionX(floorRightTop.x - Mathf.Abs(rightTop.x - leftBottom.x) / 2);
         }
     }
 
@@ -100,6 +100,8 @@ public class CameraController : MonoBehaviour
     // マウスドラッグによる横スクロールの関数
     void DragWidthScroll()
     {
+        if (Camera.main.orthographicSize == maxCameraSize) return;
+
         //マウスの座標を取得してスクリーン座標を更新
         Vector3 mousePositionScreen = Input.mousePosition;
         //スクリーン座標→ワールド座標
