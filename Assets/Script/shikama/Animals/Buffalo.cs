@@ -41,7 +41,9 @@ public class Buffalo : Animal
 
     override public void EarthquakeEvolution()
     {
-        if (!meteoEvolution && coolTimer == 0.0f)
+        if (evolution != EVOLUTION.NONE) return;
+
+        if (coolTimer == 0.0f)
         {
             status_.hp = (int)(status_.hp * status_.allStatusUpMag);
             status_.attack = (int)(status_.attack * status_.allStatusUpMag);
@@ -50,17 +52,86 @@ public class Buffalo : Animal
 
             coolTimer = status_.coolTimeEarthquake;
             activeTimer = status_.activeTimeEarthquake;
-            earthquakeEvolution = true;
+            base.EarthquakeEvolution();
         }
     }
 
     private void EarthquakeEnd()
     {
-        earthquakeEvolution = false;
+        evolution = EVOLUTION.NONE;
+
         activeTimer = 0;
         Debug.Log("バッファロー進化終了");
 
         status_.hp = (int)(status_.hp / 3.0f); if (status_.hp == 0) status_.hp = 1;
         status_.ResetAll();
     }
-}
+
+    public override void HurricaneEvolution()
+    {
+        base.HurricaneEvolution();
+    }
+
+    public override void ThunderstormEvolution()
+    {
+        base.ThunderstormEvolution();
+        
+        foreach (Animal animal in animalList)
+        {
+            if (animal.tag == "Enemy") continue;
+            if (buffaloAtkUp) continue;
+
+            float dist = Vector2.Distance(transform.position, animal.transform.position);
+
+            if(dist <= 3.0f)
+            {
+                buffaloAtkUp = true;
+                animal.status.attack += 5;
+            }
+        }
+    }
+
+    public override void TsunamiEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+
+        if(Random.Range(1, 100) <= 30)
+        {
+            base.TsunamiEvolution();
+            status.speed *= 1.7f;
+        }
+    }
+
+    public override void EruptionEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+
+        base.EruptionEvolution();
+    }
+
+    public override void PlagueEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+
+        base.PlagueEvolution();
+        status.attack *= 3;
+    }
+
+    public override void DesertificationEvolution()
+    {
+    }
+
+    public override void IceAgeEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+
+        base.IceAgeEvolution();
+    }
+
+    public override void BigFireEvolution()
+    {
+        if (evolution != EVOLUTION.NONE) return;
+
+        base.BigFireEvolution();
+    }
+}   

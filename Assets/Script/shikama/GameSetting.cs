@@ -23,6 +23,7 @@ public class GameSetting : MonoBehaviour
     private void Awake()
     {
         createPosition = createPos.transform.localPosition;
+        Animal.AnimalListInit();
     }
 
     private void Start()

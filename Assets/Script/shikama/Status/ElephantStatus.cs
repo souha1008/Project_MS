@@ -31,6 +31,7 @@ public class ElephantStatus : AnimalStatus
         if (animal.evolution.Equals(EVOLUTION.METEO))
         {
             AddHp((int)(_hp * cutMag));
+            Debug.Log(hp);
         }
         else if (animal.evolution.Equals(EVOLUTION.PLAGUE))
         {

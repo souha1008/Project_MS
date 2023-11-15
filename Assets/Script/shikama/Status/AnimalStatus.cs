@@ -11,6 +11,7 @@ public class AnimalStatus : MonoBehaviour
     [System.NonSerialized] public float speed = 1.5f;
     [System.NonSerialized] public float attackSpeed = 1.5f;
     [System.NonSerialized] public float attackDist = 1.0f;
+    [System.NonSerialized] public int hitRate = 100;
     [System.NonSerialized] public DIRECTION dir;
     protected Animal animal;
  
@@ -28,6 +29,14 @@ public class AnimalStatus : MonoBehaviour
         attackSpeed = baseStatus.attackSpeed;
         attackDist = baseStatus.attackDist;
         dir = baseStatus.dir;
+    }
+
+    public void AllStatusUp(float statusUpMag)
+    {
+        attack = Mathf.RoundToInt(attack * statusUpMag);
+        speed = Mathf.RoundToInt(speed * statusUpMag);
+        attackSpeed = Mathf.RoundToInt(attackSpeed * statusUpMag);
+        attackDist = Mathf.RoundToInt(attackDist * statusUpMag);
     }
 
     /// <summary>
@@ -70,6 +79,11 @@ public class AnimalStatus : MonoBehaviour
         attackDist = baseStatus.attackDist;
     }
 
+    public void ResetHitRate()
+    {
+        hitRate = baseStatus.hitRate;
+    }
+
     /// <summary>
     /// HPを除く全ステータスを初期値に戻す
     /// </summary>
@@ -94,8 +108,13 @@ public class AnimalStatus : MonoBehaviour
     virtual public void AddHp(int _hp, Animal animal_)
     {
         ElephantAttack(animal_);
+        BuffaloAttack(animal_);
         CamelAttack(animal_);
+        ZebraAttack(ref _hp, animal);
+
         AddHp(_hp);
+
+        BuffaloPlaDeath(animal_);
     }
 
     private void ElephantAttack(Animal animal_)
@@ -106,9 +125,44 @@ public class AnimalStatus : MonoBehaviour
         if (elephant.evolution.Equals(EVOLUTION.ICEAGE))
         {
             animal_.baseStatus.speed = 0;
-            animal_.Invoke("ResetSpeed", 2.0f);
+            animal_.status.Invoke("ResetSpeed", 2.0f);
         }
 
+    }
+
+    private void BuffaloAttack(Animal animal_)
+    {
+        if (animal_ is Buffalo == false) return;
+
+        Buffalo buffalo = (Buffalo)animal_;
+        if (buffalo.evolution == EVOLUTION.HURRICANE)
+        {
+            speed = 0;
+            Invoke("ResetSpeed", 4.0f);
+        }
+        else if(buffalo.evolution == EVOLUTION.BIGFIRE)
+        {
+            List<Animal> enemy = Animal.animalList.FindAll(enemy => enemy.tag == "Enemy");
+
+            if (enemy.Count == 0) return;
+
+            for(int i = 0; i < 2; i++)
+            {
+                int r = Random.Range(0, enemy.Count - 1);
+                enemy[r].status.hp -= (int)(buffalo.status.attack * 0.5f);
+            }
+        }
+    }
+
+    private void BuffaloPlaDeath(Animal animal_)
+    {
+        if (animal_ is Buffalo == false) return;
+
+        Buffalo buffalo = (Buffalo)animal_;
+        if (buffalo.evolution == EVOLUTION.PLAGUE)
+        {
+            Destroy(animal_.gameObject);
+        }
     }
 
     private void CamelAttack(Animal animal_)
@@ -118,5 +172,53 @@ public class AnimalStatus : MonoBehaviour
         Camel camel = (Camel)animal_;
         if (camel.evolution.Equals(EVOLUTION.HURRICANE))
             camel.barrierCount++;
+        else if (animal.evolution == EVOLUTION.ICEAGE)
+        {
+            foreach (Animal _animal in Animal.animalList)
+            {
+                if (_animal.tag == "Enemy") continue;
+
+                float dist = Vector2.Distance(camel.transform.position, _animal.transform.position);
+                if (dist <= 3.0f)
+                {
+                    _animal.status.hp = Mathf.Clamp(Mathf.RoundToInt(_animal.status.hp + _animal.status.maxHP * 0.07f),
+                        0, _animal.status.maxHP);
+                }
+            }
+        }
+    }
+
+    private void ZebraAttack(ref int hp_, Animal animal_)
+    {
+        if (animal_ is Zebra == false) return;
+
+        Zebra zebra = (Zebra)animal_;
+        if (zebra.evolution.Equals(EVOLUTION.HURRICANE))
+        {
+            hp_ = (int)(hp_ * 0.5f);
+            if (Random.Range(1,100) <= 20)
+            {
+                hitRate -= 40;
+                Invoke("ResetHitRate", 4.0f);
+            }
+
+            zebra.evolution = EVOLUTION.NONE;
+        }
+        else if (zebra.evolution.Equals(EVOLUTION.THUNDERSTORM))
+        {
+            if (!animal.zebraSE)
+            {
+                hp_ = (int)(hp_ * 1.02f);
+                animal.zebraSE = true;
+            }
+        }
+        else if(zebra.evolution.Equals(EVOLUTION.ERUPTION))
+        {
+            hp_ = (int)(hp_ * 1.5f);
+            animal_.status.speed = 0;
+            animal_.status.Invoke("ResetSpeed", 6.0f);
+            zebra.evolution = EVOLUTION.NONE;
+        }
+            
     }
 }

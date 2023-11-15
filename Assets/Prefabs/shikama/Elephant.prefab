@@ -164,6 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStatus: {fileID: 11400000, guid: 1bd9a584ec148f7448195e65055e5720, type: 2}
   particle: {fileID: 2775922435472504682}
+  particleSprite: []
+  elephantField: {fileID: 5439840942587747045, guid: ee61549884103224d8b009af98e60f74, type: 3}
 --- !u!1001 &4669233734203384755
 PrefabInstance:
   m_ObjectHideFlags: 0

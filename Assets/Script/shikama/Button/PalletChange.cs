@@ -159,7 +159,6 @@ public class PalletChange : MonoBehaviour
         {
             if (moveCount < moveTime / 2)
             {
-                Debug.Log(firstPos1st.y + moveDist_);
                 pallet1stPos.localPosition = Vector3.Lerp(firstPos1st, new Vector3(firstPos1st.x, firstPos1st.y + moveDist_, firstPos1st.z),
                     moveCount / halfTime);
 
