@@ -42,12 +42,12 @@ EditorBuildSettings:
     path: Assets/Script/sugimoto/deck.unity
     guid: 555cfe16235aef74587577031e017e15
   - enabled: 1
-    path: Assets/Scenes/deck kawa/deck.unity
-    guid: 83019f1d90da2e640971843b6e9522b5
-  - enabled: 1
-    path: Assets/Scenes/deck kawa2/a.unity
+    path: Assets/Scenes/kawamura/spec scene/spec scene.unity
     guid: b69908730a173024ca0548c38533bc1c
   - enabled: 1
-    path: Assets/Scenes/deck kawa3/deck kawa3.unity
-    guid: 90d70c0e3aa04fb4db25d793bba27abe
+    path: Assets/Scenes/kawamura/Disaster scene/disaster.unity
+    guid: a6a6ead9c7be2534988cf37a3c2917b6
+  - enabled: 1
+    path: Assets/Scenes/kawamura/seclet sene/select scene.unity
+    guid: 83019f1d90da2e640971843b6e9522b5
   m_configObjects: {}
