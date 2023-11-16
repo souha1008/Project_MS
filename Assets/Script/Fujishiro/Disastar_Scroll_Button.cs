@@ -25,6 +25,8 @@ public class Disastar_Scroll_Button : MonoBehaviour
     public d dic;
     [SerializeField] GameObject Scroll;
 
+    
+
     public string disaName { get; set; }
     public string dicName { get; set; }
 
