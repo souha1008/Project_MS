@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlinkingImage : MonoBehaviour
+public class r : MonoBehaviour
 {
     public float blinkSpeed = 1.0f; // “_–Å‘¬“x
     private Material imageMaterial;
