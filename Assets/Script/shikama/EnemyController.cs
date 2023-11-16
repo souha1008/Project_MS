@@ -33,28 +33,28 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         if (Enemies.Length == 0) return;
+
         for (int i = 0; i < Enemies.Length; i++) 
         {
-            // “G‚ªÅ‘å”o‚½‚©”»’è
-            if (maxEnemyCount[i] > 
-                Animal.animalList.FindAll(animal => animal.baseStatus.name == animals[i].baseStatus.name).Count)
+            if (enemyCreateSpeed[i] <= enemyCreateTimer[i]) // ŽžŠÔ
             {
-                if (enemyInstanceHouseHP[i] <= enemyHouseMaxHp - enemyHouse.hp) // “G‚Ì‰Æ‚ªˆê’è’lUŒ‚‚³‚ê‚½Žž‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚·‚é
+                // “G‚ªÅ‘å”o‚½‚©”»’è
+                if (maxEnemyCount[i] >
+                  Animal.animalList.FindAll(animal => animal.baseStatus.name == animals[i].baseStatus.name).Count)
                 {
-                    if (enemyCreateSpeed[i] <= enemyCreateTimer[i]) // ŽžŠÔ
+                    if (enemyInstanceHouseHP[i] <= enemyHouseMaxHp - enemyHouse.hp) // “G‚Ì‰Æ‚ªˆê’è’lUŒ‚‚³‚ê‚½Žž‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‚·‚é
                     {
                         Vector3 pos = createPos.transform.localPosition;
                         pos.y += Random.Range(-0.3f, 0.3f);
                         Instantiate(Enemies[i], pos, Quaternion.identity);
                         enemyCreateTimer[i] = 0;
                     }
-                    else
-                    {
-                        enemyCreateTimer[i] += Time.deltaTime;
-                    }
                 }
             }
-               
+            else
+            {
+                enemyCreateTimer[i] += Time.deltaTime;
+            }
         }
     }
 }
