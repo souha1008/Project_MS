@@ -13,9 +13,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void Meteo()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -29,9 +29,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void Earthquake()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -45,9 +45,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void Hurricane()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -61,9 +61,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void Thunderstorm()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -77,9 +77,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void Tsunami()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -92,9 +92,9 @@ public class EnvironmentButton : MonoBehaviour
     }
     public void Eruption()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -108,9 +108,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void Plague()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -124,9 +124,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void Desertification()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -141,9 +141,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void IceAge()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {
@@ -157,9 +157,9 @@ public class EnvironmentButton : MonoBehaviour
 
     public void BigFire()
     {
-        if (gameSetting.cost >= 200)
+        if (gameSetting.cost >= gameSetting.envCost)
         {
-            gameSetting.cost -= 200;
+            gameSetting.cost -= gameSetting.envCost;
 
             if (Animal.animalList != null)
             {

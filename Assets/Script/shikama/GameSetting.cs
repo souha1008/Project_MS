@@ -11,6 +11,7 @@ public class GameSetting : MonoBehaviour
     public float costSpeed = 2.0f;
     public float costSpeedMag = 0.90f;
     public int maxCost = 120;
+    public int envCost = 200;
     [SerializeField] House enemyHouse;
     [SerializeField] House playerHouse;
 
