@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Lion
   cost: 30
-  maxHP: 100
-  attack: 20
-  speed: 1.5
-  attackSpeed: 1.5
+  maxHP: 400
+  attack: 40
+  speed: 1
+  attackSpeed: 1
   attackDist: 1
   hitRate: 100
   dir: 0

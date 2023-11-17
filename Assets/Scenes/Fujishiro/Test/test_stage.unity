@@ -3593,6 +3593,7 @@ MonoBehaviour:
   costSpeed: 0.2
   costSpeedMag: 0.7
   maxCost: 120
+  envCost: 200
   enemyHouse: {fileID: 1967369084}
   playerHouse: {fileID: 2008811107}
   clearText: {fileID: 1362460594}
