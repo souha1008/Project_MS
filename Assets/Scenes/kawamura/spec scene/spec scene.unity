@@ -2117,7 +2117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff54678f686294b4caf9d2272fb48b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 84041cb0bab46334faa3b0a9aa681d94, type: 3}
+  sprite: {fileID: 21300000, guid: 649ca242462bb9041af27f440a868e78, type: 3}
   target: {fileID: 1909493006}
   canvas_spec: {fileID: 64679910}
   contents: {fileID: 1357845381}

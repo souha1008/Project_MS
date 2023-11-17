@@ -13,20 +13,21 @@ public class LevelUpButton : MonoBehaviour
     private void Start()
     {
         gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
+        cost = gameSetting.lvUpCost[0];
     }
 
     public void LevelUp()
     {
-        if (gameSetting.cost >= cost && level < gameSetting.maxLevel)
+        if (gameSetting.cost >= cost && level <= gameSetting.maxLevel)
         {
-            gameSetting.maxCost += gameSetting.lvUpCost;
-            gameSetting.costSpeed *= 0.9f;
+            gameSetting.maxCost += gameSetting.lvUpCost[level - 1];
+            gameSetting.costSpeed *= gameSetting.costSpeedMag;
             gameSetting.cost -= cost;
-            cost += gameSetting.lvUpCost;
+            cost = gameSetting.lvUpCost[level - 1];
 
             level++;
             lvText.text = level + " lv";
-            if (level == gameSetting.maxLevel) lvText.text = "Max";
+            if (level == gameSetting.maxLevel + 1) lvText.text = "Max";
         }
     }
 }
