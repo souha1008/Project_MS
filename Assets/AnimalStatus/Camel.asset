@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f517ee1d57fc3914094590504da48d07, type: 3}
   m_Name: Camel
   m_EditorClassIdentifier: 
-  cost: 35
-  maxHP: 100
-  attack: 30
+  name: 
+  cost: 140
+  maxHP: 150
+  attack: 15
   speed: 1.5
   attackSpeed: 1.5
   attackDist: 1
+  hitRate: 100
   dir: 1
   doubleAttackMag: 0.15
   attackUpMag: 1.15

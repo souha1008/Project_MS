@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3014b8b23e23d5647a766b0cfb0bbe42, type: 3}
   m_Name: Elephant
   m_EditorClassIdentifier: 
-  cost: 30
-  maxHP: 100
-  attack: 30
+  name: 
+  cost: 80
+  maxHP: 400
+  attack: 25
   speed: 1.5
   attackSpeed: 1.5
   attackDist: 1
+  hitRate: 100
   dir: 1
   cutMag: 0.8
   activeTimeMeteo: 5
