@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11320752, g: 0.06655891, b: 0.026059087, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 129027417}
   - component: {fileID: 129027416}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ Canvas:
   m_GameObject: {fileID: 129027415}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1161454074}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -367,6 +367,7 @@ RectTransform:
   - {fileID: 23101033}
   - {fileID: 1124573083}
   - {fileID: 1923282094}
+  - {fileID: 992025750}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -740,14 +741,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4363308, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e5d8e64db5f9f7e4585428670876c206, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -815,7 +816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -887,6 +888,7 @@ GameObject:
   - component: {fileID: 529447084}
   - component: {fileID: 529447086}
   - component: {fileID: 529447085}
+  - component: {fileID: 529447087}
   m_Layer: 5
   m_Name: EarthQuake
   m_TagString: Untagged
@@ -952,6 +954,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529447083}
   m_CullTransparentMesh: 1
+--- !u!114 &529447087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529447083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EarthQuake
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &536602006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,10 +1071,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartPos: {x: 0, y: 0}
-  Canvas: {fileID: 1915511585}
-  copyScale: 0.7
-  copyOBJ: {fileID: 0}
+  Name: Meteor
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &651215250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,14 +1137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.60045624, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d333aed22cb044e4bbf4b669ba2c4708, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1227,16 +1269,16 @@ RectTransform:
   m_GameObject: {fileID: 992025749}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.38, y: 2.38, z: 2.38}
+  m_LocalScale: {x: 0.9916667, y: 0.9916667, z: 0.9916667}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1478374579}
   - {fileID: 1449568092}
-  m_Father: {fileID: 1915511589}
+  m_Father: {fileID: 129027419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -404}
+  m_AnchoredPosition: {x: 0, y: -168.33333}
   m_SizeDelta: {x: 755.94, y: 87.232}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &992025751
@@ -1436,14 +1478,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.6792453, b: 0.0172646, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7318934b6ccd59946a5ae243206d06b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1591,14 +1633,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8301887, g: 0.08928439, b: 0.08928439, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 04cade49419f8f242bd151d9321fb263, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1803,6 +1845,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1240524924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1240524926}
+  - component: {fileID: 1240524925}
+  m_Layer: 0
+  m_Name: DeckManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1240524925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240524924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49679598c9ec8454791c2e56c56d366c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deck:
+    m_list:
+    - m_key: deck1
+      m_value: Meteor
+    - m_key: deck2
+      m_value: EarthQuake
+    - m_key: deck3
+      m_value: Huriccane
+    - m_key: deck4
+      m_value: ThunderStome
+    - m_key: deck5
+      m_value: Tsunami
+  disastar_baner:
+    m_list:
+    - m_key: Meteor
+      m_value: {fileID: 21300000, guid: 04cade49419f8f242bd151d9321fb263, type: 3}
+    - m_key: EarthQuake
+      m_value: {fileID: 21300000, guid: d333aed22cb044e4bbf4b669ba2c4708, type: 3}
+    - m_key: Hurricane
+      m_value: {fileID: 21300000, guid: e5d8e64db5f9f7e4585428670876c206, type: 3}
+    - m_key: ThunderStome
+      m_value: {fileID: 21300000, guid: 0a9a3eef8694208488b382d7c4e2da6d, type: 3}
+    - m_key: Tsunami
+      m_value: {fileID: 21300000, guid: 7318934b6ccd59946a5ae243206d06b3, type: 3}
+    - m_key: Eruption
+      m_value: {fileID: 21300000, guid: 27ec5d778f12b824db40da437bcbb307, type: 3}
+    - m_key: Plague
+      m_value: {fileID: 21300000, guid: 1db86df05373e2c419d244038448e146, type: 3}
+    - m_key: Desert
+      m_value: {fileID: 21300000, guid: fde739f58aec4de4ebf01dd4cc98db88, type: 3}
+    - m_key: IceAge
+      m_value: {fileID: 21300000, guid: edb5b2aa7ffb8414fac0e526b4b398fd, type: 3}
+    - m_key: BigFire
+      m_value: {fileID: 21300000, guid: ba7a2fca5d7f68c4f853963cb2e869c3, type: 3}
+    - m_key: NULL
+      m_value: {fileID: 21300000, guid: ba02b2d093b6d914a870503c57f83ff1, type: 3}
+--- !u!4 &1240524926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240524924}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1432693496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,6 +1936,7 @@ GameObject:
   - component: {fileID: 1432693497}
   - component: {fileID: 1432693499}
   - component: {fileID: 1432693498}
+  - component: {fileID: 1432693500}
   m_Layer: 5
   m_Name: Hurricane
   m_TagString: Untagged
@@ -1879,6 +2002,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432693496}
   m_CullTransparentMesh: 1
+--- !u!114 &1432693500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432693496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Hurricane
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &1449568091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,8 +2112,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1459056229}
   m_HandleRect: {fileID: 1459056228}
   m_Direction: 0
-  m_Value: 0.000000173563
-  m_Size: 0.68250275
+  m_Value: 0
+  m_Size: 0.6825028
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2091,6 +2242,7 @@ GameObject:
   - component: {fileID: 1478283453}
   - component: {fileID: 1478283455}
   - component: {fileID: 1478283454}
+  - component: {fileID: 1478283456}
   m_Layer: 5
   m_Name: Desert
   m_TagString: Untagged
@@ -2156,6 +2308,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478283452}
   m_CullTransparentMesh: 1
+--- !u!114 &1478283456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478283452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Desert
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &1478374578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,6 +2437,7 @@ GameObject:
   - component: {fileID: 1492779786}
   - component: {fileID: 1492779788}
   - component: {fileID: 1492779787}
+  - component: {fileID: 1492779789}
   m_Layer: 5
   m_Name: Tsunami
   m_TagString: Untagged
@@ -2322,6 +2503,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492779785}
   m_CullTransparentMesh: 1
+--- !u!114 &1492779789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492779785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Tsunami
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &1508141562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2783,7 @@ GameObject:
   - component: {fileID: 1593019970}
   - component: {fileID: 1593019972}
   - component: {fileID: 1593019971}
+  - component: {fileID: 1593019973}
   m_Layer: 5
   m_Name: IceAge
   m_TagString: Untagged
@@ -2639,6 +2849,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593019969}
   m_CullTransparentMesh: 1
+--- !u!114 &1593019973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593019969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: IceAge
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &1718906082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,108 +3035,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855676739}
   m_CullTransparentMesh: 1
---- !u!1 &1915511585
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1915511589}
-  - component: {fileID: 1915511588}
-  - component: {fileID: 1915511587}
-  - component: {fileID: 1915511586}
-  m_Layer: 5
-  m_Name: Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1915511586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915511585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1915511587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915511585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1915511588
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915511585}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1915511589
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915511585}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 992025750}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1922172028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3072,6 +3208,7 @@ GameObject:
   - component: {fileID: 1936065419}
   - component: {fileID: 1936065421}
   - component: {fileID: 1936065420}
+  - component: {fileID: 1936065422}
   m_Layer: 5
   m_Name: BigFire
   m_TagString: Untagged
@@ -3137,6 +3274,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936065418}
   m_CullTransparentMesh: 1
+--- !u!114 &1936065422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936065418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: BigFire
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &1981868171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,6 +3313,7 @@ GameObject:
   - component: {fileID: 1981868172}
   - component: {fileID: 1981868174}
   - component: {fileID: 1981868173}
+  - component: {fileID: 1981868175}
   m_Layer: 5
   m_Name: ThunderStome
   m_TagString: Untagged
@@ -3213,6 +3379,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981868171}
   m_CullTransparentMesh: 1
+--- !u!114 &1981868175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981868171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ThunderStome
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &1981951060
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,6 +3418,7 @@ GameObject:
   - component: {fileID: 1981951061}
   - component: {fileID: 1981951063}
   - component: {fileID: 1981951062}
+  - component: {fileID: 1981951064}
   m_Layer: 5
   m_Name: Plague
   m_TagString: Untagged
@@ -3289,6 +3484,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981951060}
   m_CullTransparentMesh: 1
+--- !u!114 &1981951064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981951060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Plague
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1 &1997179808
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,14 +3562,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7755804, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0a9a3eef8694208488b382d7c4e2da6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3375,6 +3598,7 @@ GameObject:
   - component: {fileID: 2093253812}
   - component: {fileID: 2093253814}
   - component: {fileID: 2093253813}
+  - component: {fileID: 2093253815}
   m_Layer: 5
   m_Name: Eruption
   m_TagString: Untagged
@@ -3440,6 +3664,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093253811}
   m_CullTransparentMesh: 1
+--- !u!114 &2093253815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093253811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Eruption
+  Canvas: {fileID: 129027415}
+  copyScale: 0.3
+  alphaMag: 0.5
+  dropArea:
+    m_list:
+    - m_key: deck1
+      m_value: {fileID: 1124064377}
+    - m_key: deck2
+      m_value: {fileID: 651215252}
+    - m_key: deck3
+      m_value: {fileID: 489369100}
+    - m_key: deck4
+      m_value: {fileID: 1997179810}
+    - m_key: deck5
+      m_value: {fileID: 1110342625}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3448,4 +3700,4 @@ SceneRoots:
   - {fileID: 1550768997}
   - {fileID: 129027419}
   - {fileID: 1508141565}
-  - {fileID: 1915511589}
+  - {fileID: 1240524926}

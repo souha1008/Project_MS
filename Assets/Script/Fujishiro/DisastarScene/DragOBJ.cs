@@ -66,7 +66,7 @@ public class DragOBJ : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
 
                     // 既に置いてあるキーの中をNullに変える
                     DeckManager.instance.deck.Table[key] = DeckManager.instance.Disastar_Name[0];
-                    obj.Value.GetComponent<Image>().sprite = DeckManager.instance.disastar_baner["NULL"];
+                    dropArea[key].GetComponent<Image>().sprite = DeckManager.instance.disastar_baner["NULL"];
 
                     Debug.Log("nullにした：" + DeckManager.instance.deck.Table[key]);
                 }
@@ -74,12 +74,9 @@ public class DragOBJ : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
                 // 変数Deckの中身を対応したものに変える
                 Debug.Log(obj.Key);
                 DeckManager.instance.deck.Table[obj.Key] = Name;
-                Debug.Log("中身：" + DeckManager.instance.deck.Table[obj.ToString()]);
-
-
 
                 // スプライトを変える
-                //obj.Value.GetComponent<Image>().sprite = DeckManager.instance.disastar_baner[Name];
+                obj.Value.GetComponent<Image>().sprite = DeckManager.instance.disastar_baner[Name];
             }
         }
         

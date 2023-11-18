@@ -16,9 +16,8 @@ public class DeckManager : MonoBehaviour
     [Serializable]
     public class Deck : SerializableDictionary<string, string, StringStringKeyValuePair> { }
 
- 
-
     public static DeckManager instance;
+
     // ĞŠQ‚Ì–¼‘Oî•ñ
     public string[] Disastar_Name { get; set; } =
     {
