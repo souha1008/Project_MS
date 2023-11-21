@@ -45,7 +45,6 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         instance = this;
-
     }
 
 
