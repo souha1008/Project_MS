@@ -34,6 +34,15 @@ public class DeckManager : MonoBehaviour
         "BigFire"
     };
 
+    string[] deckobj_name =
+    {
+        "deck1",
+        "deck2",
+        "deck3",
+        "deck4",
+        "deck5",
+    };
+
     // 現在のデッキ編成情報を格納する
     public Deck deck;
 
@@ -45,24 +54,14 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         instance = this;
+
+        deck.Table[deckobj_name[1]] = Disastar_Name[3];
+        deck.Table[deckobj_name[2]] = Disastar_Name[7];
+        deck.Table[deckobj_name[3]] = Disastar_Name[1];
+        deck.Table[deckobj_name[4]] = Disastar_Name[4];
+        deck.Table[deckobj_name[5]] = Disastar_Name[9];
+
+        // 初期化の段階で現在のデッキ情報に応じてスプライトを変更するようにしなきゃ
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            deck.Table["deck2"] = "EarthQuake";
-            Debug.Log("deck2をEarthQuakeに変更");
-        }
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Debug.Log(deck.Table["deck1"]);
-            Debug.Log(deck.Table["deck2"]);
-            Debug.Log(deck.Table["deck3"]);
-            Debug.Log(deck.Table["deck4"]);
-            Debug.Log(deck.Table["deck5"]);
-        }
-    }
 }

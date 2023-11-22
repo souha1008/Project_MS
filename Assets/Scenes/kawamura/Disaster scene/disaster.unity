@@ -748,7 +748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e5d8e64db5f9f7e4585428670876c206, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77a4a3160042787488f362bd0c0c0554, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d333aed22cb044e4bbf4b669ba2c4708, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d52285433d3646246a1da59ef9940de5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7318934b6ccd59946a5ae243206d06b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c78b09eed7f09e44f901c037eb1a0612, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 04cade49419f8f242bd151d9321fb263, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 33244a6c54c72fd46908ed760ade4e2b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1670,7 +1670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f5dcb7cf8e5c448881f9abb4ef26db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropObj: {fileID: 0}
 --- !u!1 &1124573082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,25 +1888,25 @@ MonoBehaviour:
   disastar_baner:
     m_list:
     - m_key: Meteor
-      m_value: {fileID: 21300000, guid: 04cade49419f8f242bd151d9321fb263, type: 3}
+      m_value: {fileID: 21300000, guid: 33244a6c54c72fd46908ed760ade4e2b, type: 3}
     - m_key: EarthQuake
-      m_value: {fileID: 21300000, guid: d333aed22cb044e4bbf4b669ba2c4708, type: 3}
+      m_value: {fileID: 21300000, guid: d52285433d3646246a1da59ef9940de5, type: 3}
     - m_key: Hurricane
-      m_value: {fileID: 21300000, guid: e5d8e64db5f9f7e4585428670876c206, type: 3}
+      m_value: {fileID: 21300000, guid: 77a4a3160042787488f362bd0c0c0554, type: 3}
     - m_key: ThunderStome
-      m_value: {fileID: 21300000, guid: 0a9a3eef8694208488b382d7c4e2da6d, type: 3}
+      m_value: {fileID: 21300000, guid: 9a51ddd217a546e4b881651752d1fd0f, type: 3}
     - m_key: Tsunami
-      m_value: {fileID: 21300000, guid: 7318934b6ccd59946a5ae243206d06b3, type: 3}
+      m_value: {fileID: 21300000, guid: c78b09eed7f09e44f901c037eb1a0612, type: 3}
     - m_key: Eruption
-      m_value: {fileID: 21300000, guid: 27ec5d778f12b824db40da437bcbb307, type: 3}
+      m_value: {fileID: 21300000, guid: 08585158dcfe11c42bff601613ed8884, type: 3}
     - m_key: Plague
-      m_value: {fileID: 21300000, guid: 1db86df05373e2c419d244038448e146, type: 3}
+      m_value: {fileID: 21300000, guid: 973273979d16e094b8a2dd75fd8f1c9f, type: 3}
     - m_key: Desert
-      m_value: {fileID: 21300000, guid: fde739f58aec4de4ebf01dd4cc98db88, type: 3}
+      m_value: {fileID: 21300000, guid: 68c2c3e0b127bc849aed6514077c4624, type: 3}
     - m_key: IceAge
-      m_value: {fileID: 21300000, guid: edb5b2aa7ffb8414fac0e526b4b398fd, type: 3}
+      m_value: {fileID: 21300000, guid: dcbb7b1686527cf49a67c50fcb26d02e, type: 3}
     - m_key: BigFire
-      m_value: {fileID: 21300000, guid: ba7a2fca5d7f68c4f853963cb2e869c3, type: 3}
+      m_value: {fileID: 21300000, guid: 6f1f14fbaf1cef04d8359acfe3eef099, type: 3}
     - m_key: NULL
       m_value: {fileID: 21300000, guid: ba02b2d093b6d914a870503c57f83ff1, type: 3}
 --- !u!4 &1240524926
@@ -2112,8 +2111,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1459056229}
   m_HandleRect: {fileID: 1459056228}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.6825028
+  m_Value: -0.000000173563
+  m_Size: 0.68250275
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3569,7 +3568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a9a3eef8694208488b382d7c4e2da6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a51ddd217a546e4b881651752d1fd0f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
