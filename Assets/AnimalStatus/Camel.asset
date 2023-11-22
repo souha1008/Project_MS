@@ -15,10 +15,10 @@ MonoBehaviour:
   name: 
   cost: 140
   maxHP: 150
-  attack: 15
+  attack: 10
   speed: 1.5
   attackSpeed: 1.5
-  attackDist: 1
+  attackDist: 2
   hitRate: 100
   dir: 1
   doubleAttackMag: 0.15

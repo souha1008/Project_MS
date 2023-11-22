@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Wolf
   m_EditorClassIdentifier: 
   name: 
-  cost: 20
+  cost: 50
   maxHP: 180
-  attack: 30
+  attack: 45
   speed: 1.2
   attackSpeed: 1.2
   attackDist: 1
