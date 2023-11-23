@@ -2075,8 +2075,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b91f3c175e5094dbefd0a4370f0582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 30
-  maxLevel: 7
   lvText: {fileID: 1704837799}
 --- !u!1 &1142530042
 GameObject:
@@ -3438,8 +3436,12 @@ MonoBehaviour:
   firstCost: 60
   costSpeed: 0.2
   maxCost: 120
+  lvUpCost: 30
+  maxLevel: 7
   textCost: {fileID: 1284800637}
   createPos: {fileID: 204328183}
+  statuses: []
+  particleSprite: []
 --- !u!4 &2012291895
 Transform:
   m_ObjectHideFlags: 0
@@ -3469,7 +3471,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemies:
   - {fileID: 9142105466086907081, guid: 362f1efaf8c0b474ea6d678eb0eec26b, type: 3}
-  createSpeed: 2
+  maxEnemyCount: 
+  enemyCreateSpeed: []
+  enemyInstanceHouseHP: 
+  enemyHouse: {fileID: 0}
   createPos: {fileID: 327862487}
 --- !u!1 &2066750278
 GameObject:
