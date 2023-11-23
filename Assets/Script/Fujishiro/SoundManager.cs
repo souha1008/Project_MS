@@ -7,13 +7,16 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [Serializable]
-    public class StringAudioSourceKeyValuePair : SerializableKeyValuePair<string, AudioSource> { }
+    public class StringAudioClipKeyValuePair : SerializableKeyValuePair<string, AudioClip> { }
 
     [Serializable]
-    public class Dic_AudioSource : SerializableDictionary<string, AudioSource, StringAudioSourceKeyValuePair> { }
+    public class Dic_AudioSource : SerializableDictionary<string, AudioClip, StringAudioClipKeyValuePair> { }
 
     public Dic_AudioSource AS_BGMdic;
     public Dic_AudioSource AS_SEdic;
+
+    [SerializeField] AudioSource AS_BGM;
+    [SerializeField] AudioSource AS_SE;
 
     public static SoundManager instance;
 
@@ -39,37 +42,35 @@ public class SoundManager : MonoBehaviour
         instance = this;
     }
 
-    public void PlayBGM(string key)
+    public void PlayBGM(string key, bool isloop = true)
     {
         Keynull(key, AS_TYPE.BGM);
 
-        // Šù‚É–Â‚Á‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
-        if (AS_BGMdic[key].isPlaying) { return; }
+        // Šù‚É“¯‚¶‚à‚Ì‚ª“ü‚Á‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+        if(AS_BGM.clip == AS_BGMdic[key]) { return; }
 
-        // ‘¼‚É–Â‚Á‚Ä‚¢‚éBGM‚ª‚ ‚Á‚½‚çŽ~‚ß‚é
-        foreach(var i in  AS_BGMdic) 
-        {
-            if (i.Value.isPlaying)
-            {
-                i.Value.Stop();
-            }
-        }
+        // –Â‚Á‚Ä‚¢‚½‚çŽ~‚ß‚é
+        if(AS_BGM.isPlaying) { AS_BGM.Stop(); }
 
-        AS_BGMdic[key].Play();
+        // ƒNƒŠƒbƒv“o˜^
+        AS_BGM.clip = AS_BGMdic[key];
+        AS_BGM.loop = isloop;
+
+        AS_BGM.Play();
     }
 
     public void StopBGM(string key) 
     {
         Keynull(key, AS_TYPE.BGM);
 
-        AS_BGMdic[key].Stop();
+        AS_BGM.Stop();
     }
 
     public void PlaySE(string key)
     {
         Keynull(key, AS_TYPE.SE);
 
-        AS_SEdic[key].PlayOneShot(AS_SEdic[key].clip);
+        AS_SE.PlayOneShot(AS_SEdic[key]);
     }
 
     void Keynull(string key, AS_TYPE type)
