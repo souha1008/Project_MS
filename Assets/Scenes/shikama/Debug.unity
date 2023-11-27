@@ -881,19 +881,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 298756424}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 298756426}
-        m_TargetAssemblyTypeName: EnvironmentButton, Assembly-CSharp
-        m_MethodName: Earthquake
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &298756424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,19 +1863,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 784385755}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 784385757}
-        m_TargetAssemblyTypeName: EnvironmentButton, Assembly-CSharp
-        m_MethodName: Meteo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &784385755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3215,19 +3191,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1497644687}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1497644689}
-        m_TargetAssemblyTypeName: EnvironmentButton, Assembly-CSharp
-        m_MethodName: Tsunami
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1497644687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4812,19 +4776,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2012275145}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2012275147}
-        m_TargetAssemblyTypeName: EnvironmentButton, Assembly-CSharp
-        m_MethodName: Hurricane
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2012275145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4925,6 +4877,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98a528f1a99b546458d51dd2326738f8, type: 2}
   - {fileID: 11400000, guid: b32a5af2faa69f543b41a1a66fe46c09, type: 2}
   particleSprite: []
+  envPallet: {fileID: 1844725716}
+  deck: {fileID: 11400000, guid: 4a56384b4e257204fb23f36f2cb12dbe, type: 2}
 --- !u!4 &2012291895
 Transform:
   m_ObjectHideFlags: 0
@@ -5199,19 +5153,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2066750281}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2066750283}
-        m_TargetAssemblyTypeName: EnvironmentButton, Assembly-CSharp
-        m_MethodName: Thunderstorm
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2066750281
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,6 +31,9 @@ public class GameSetting : MonoBehaviour
     [SerializeField] BaseStatus[] statuses;
     public Sprite[] particleSprite;
 
+    [SerializeField] GameObject envPallet;
+    [SerializeField] Deck deck;
+
     private void Awake()
     {
         createPosition = createPos.transform.localPosition;
@@ -43,6 +46,8 @@ public class GameSetting : MonoBehaviour
         cost = firstCost;
         textCost.text = firstCost + " : " + maxCost;
         clearText.gameObject.SetActive(false);
+
+        SetEnvPallet();
     }
 
     private void Update()
@@ -80,5 +85,77 @@ public class GameSetting : MonoBehaviour
     private void OnApplicationQuit()
     {
         foreach (BaseStatus status in statuses) status.ResetCost();
+    }
+
+    private void SetEnvPallet()
+    { 
+        Button[] buttons = envPallet.GetComponentsInChildren<Button>();
+
+        SetEnvButtonAction(buttons[0], deck.Disaster1);
+        SetEnvButtonAction(buttons[1], deck.Disaster2);
+        SetEnvButtonAction(buttons[2], deck.Disaster3);
+        SetEnvButtonAction(buttons[3], deck.Disaster4);
+        SetEnvButtonAction(buttons[4], deck.Disaster5);
+    }
+
+    private void SetEnvButtonAction(Button button , string s)
+    {
+        switch (s)
+        {
+            case "Ë¶êŒ" :
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Meteo());
+                button.transform.GetChild(0).GetComponent<Text>().text = "Ë¶êŒ";
+                break;
+
+            case "ínêk":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Earthquake());
+                button.transform.GetChild(0).GetComponent<Text>().text = "ínêk";
+                break;
+
+            case "ÉnÉäÉPÅ[Éì":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Hurricane());
+                button.transform.GetChild(0).GetComponent<Text>().text = "ÉnÉä";
+                break;
+
+            case "óãâJ":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Thunderstorm());
+                button.transform.GetChild(0).GetComponent<Text>().text = "óãâJ";
+                break;
+
+            case "í√îg":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Tsunami());
+                button.transform.GetChild(0).GetComponent<Text>().text = "í√îg";
+                break;
+
+            case "ï¨âŒ":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Eruption());
+                button.transform.GetChild(0).GetComponent<Text>().text = "ï¨âŒ";
+                break;
+
+            case "âuïa":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Plague());
+                button.transform.GetChild(0).GetComponent<Text>().text = "âuïa";
+                break;
+
+            case "çªîôâª":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Desertification());
+                button.transform.GetChild(0).GetComponent<Text>().text = "çªîôâª";
+                break;
+
+            case "ïXâÕä˙":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().IceAge());
+                button.transform.GetChild(0).GetComponent<Text>().text = "ïXâÕ";
+                break;
+
+            case "ëÂâŒç–":
+                button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().BigFire());
+                button.transform.GetChild(0).GetComponent<Text>().text = "âŒç–";
+                break;
+
+            default:
+                button.onClick.RemoveAllListeners();
+                button.transform.GetChild(0).GetComponent<Text>().text = "";
+                break;
+        }
     }
 }

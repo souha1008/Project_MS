@@ -3594,6 +3594,7 @@ MonoBehaviour:
   costSpeedMag: 0.9
   maxCost: 120
   envCost: 200
+  envCostDown: 10
   enemyHouse: {fileID: 1967369084}
   playerHouse: {fileID: 2008811107}
   clearText: {fileID: 1362460594}
@@ -3602,6 +3603,8 @@ MonoBehaviour:
   createPos: {fileID: 204328183}
   statuses: []
   particleSprite: []
+  envPallet: {fileID: 1844725716}
+  deck: {fileID: 11400000, guid: 0de34eaab94c2e440b76c4584ea5aa16, type: 2}
 --- !u!4 &2012291895
 Transform:
   m_ObjectHideFlags: 0

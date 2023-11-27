@@ -98,7 +98,7 @@ public class Elephant : Animal
 
         status.speed *= 0.5f;
     }
-
+    
     public override void ThunderstormEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
@@ -148,6 +148,7 @@ public class Elephant : Animal
 
     public override void IceAgeEvolution()
     {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.IceAgeEvolution();
     }
 

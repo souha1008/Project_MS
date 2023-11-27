@@ -138,7 +138,7 @@ public class AnimalStatus : MonoBehaviour
         if (buffalo.evolution == EVOLUTION.HURRICANE)
         {
             speed = 0;
-            Invoke("ResetSpeed", 4.0f);
+            animal.Invoke("ResetSpeed", 4.0f);
         }
         else if(buffalo.evolution == EVOLUTION.BIGFIRE)
         {

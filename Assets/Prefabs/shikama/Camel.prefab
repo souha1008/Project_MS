@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStatus: {fileID: 11400000, guid: 4d9917aaf437ea64192b87a2caf208c4, type: 2}
   particle: {fileID: 4422119278178901445}
+  particleSprite: []
 --- !u!1001 &6563147518158571804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,6 +176,10 @@ PrefabInstance:
     - target: {fileID: 823745173919338849, guid: b7cb24874c561324685b321394c43bf8, type: 3}
       propertyPath: m_Name
       value: Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 823745173919338849, guid: b7cb24874c561324685b321394c43bf8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7409394152445919588, guid: b7cb24874c561324685b321394c43bf8, type: 3}
       propertyPath: m_LocalPosition.x
