@@ -8,9 +8,13 @@ public class BuffaloStatus : AnimalStatus
 
     public float activeTimeMeteo = 5.0f;
     public float coolTimeMeteo = 10.0f;
+    
+    public float meteoSpeedDownMag = 0.9f;
 
     public float activeTimeEarthquake = 5.0f;
     public float coolTimeEarthquake = 0.0f;
+    
+    public float coolTimeHurricane = 10.0f;
 
     int erupCount = 0;
     int iceCount = 0;
@@ -21,9 +25,13 @@ public class BuffaloStatus : AnimalStatus
 
         activeTimeMeteo = baseStatus.activeTimeMeteo;
         coolTimeMeteo = baseStatus.coolTimeMeteo;
+        
+        meteoSpeedDownMag = baseStatus.meteoSpeedDownMag;
 
         activeTimeEarthquake = baseStatus.activeTimeEarthquake;
         coolTimeEarthquake = baseStatus.coolTimeEarthquake;
+
+        coolTimeHurricane = baseStatus.coolTimeHurricane;
     }
 
     public override void AddHp(int _hp, Animal animal_)

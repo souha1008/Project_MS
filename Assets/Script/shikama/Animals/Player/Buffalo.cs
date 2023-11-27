@@ -28,38 +28,76 @@ public class Buffalo : Animal
         else
             coolTimer = 0;
 
-        if (earthquakeEvolution)
+        if (evolution == EVOLUTION.EARTHQUAKE)
         {
             activeTimer -= Time.deltaTime;
             if (activeTimer < 0)
             {
-                EarthquakeEnd();   
+                EarthquakeEnd();
+                evolution = EVOLUTION.NONE;
             }
         }
+        else if(evolution == EVOLUTION.METEO)
+        {
+            activeTimer -= Time.deltaTime;
+            if(activeTimer < 0)
+            {
+                status_.ResetSpeed();
+                evolution = EVOLUTION.NONE;
+            }
+        }
+
+        Debug.Log(status.attack);
+        Debug.Log(status.speed);
+        Debug.Log(status.hp);
+        Debug.Log(status.attackSpeed);
     }
 
+    public override void MeteoEvolution()
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.MeteoEvolution();
+
+        foreach (Animal animal in animalList)
+        {
+            if (animal.tag == "Player") continue;
+            float dist = Vector2.Distance(transform.position, animal.transform.position);
+            if (animal.status.attackDist >= dist - 0.25f)
+            {
+                // ターゲットのリセット
+                attackTarget[animal.attackObject].Remove(animal);
+
+                // ターゲットの変更
+                animal.attackObject = gameObject;
+                if (!attackTarget.ContainsKey(gameObject))
+                {
+                    attackTarget.Add(gameObject, new List<Animal>());
+                }
+                attackTarget[gameObject].Add(animal);
+            }
+        }
+        status_.speed *= status_.meteoSpeedDownMag;
+
+        activeTimer = status_.activeTimeMeteo;
+        coolTimer = status_.coolTimeMeteo;
+    }
 
     override public void EarthquakeEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.EarthquakeEvolution();
 
-        if (coolTimer == 0.0f)
-        {
-            status_.hp = (int)(status_.hp * status_.allStatusUpMag);
-            status_.attack = (int)(status_.attack * status_.allStatusUpMag);
-            status_.speed = status_.speed * status_.allStatusUpMag;
-            status_.attackSpeed = status_.attackSpeed / status_.allStatusUpMag;
+        status_.hp = (int)(status_.hp * status_.allStatusUpMag);
+        status_.attack = (int)(status_.attack * status_.allStatusUpMag);
+        status_.speed = status_.speed * status_.allStatusUpMag;
+        status_.attackSpeed = status_.attackSpeed / status_.allStatusUpMag;
 
-            coolTimer = status_.coolTimeEarthquake;
-            activeTimer = status_.activeTimeEarthquake;
-            base.EarthquakeEvolution();
-        }
+        coolTimer = status_.coolTimeEarthquake;
+        activeTimer = status_.activeTimeEarthquake;
     }
 
     private void EarthquakeEnd()
     {
-        evolution = EVOLUTION.NONE;
-
         activeTimer = 0;
         Debug.Log("バッファロー進化終了");
 
@@ -69,23 +107,26 @@ public class Buffalo : Animal
 
     public override void HurricaneEvolution()
     {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.HurricaneEvolution();
+
+        coolTimer = status_.coolTimeHurricane;
     }
 
     public override void ThunderstormEvolution()
     {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.ThunderstormEvolution();
-        
+
         foreach (Animal animal in animalList)
         {
-            if (animal.tag == "Enemy") continue;
-            if (buffaloAtkUp) continue;
+            if (animal.tag == "Enemy" || animal.buffaloAtkUp) continue;
 
             float dist = Vector2.Distance(transform.position, animal.transform.position);
 
             if(dist <= 3.0f)
             {
-                buffaloAtkUp = true;
+                animal.buffaloAtkUp = true;
                 animal.status.attack += 5;
             }
         }
