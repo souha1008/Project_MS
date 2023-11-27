@@ -3593,6 +3593,7 @@ MonoBehaviour:
   costSpeed: 0.2
   costSpeedMag: 0.7
   maxCost: 120
+  envCost: 200
   enemyHouse: {fileID: 1967369084}
   playerHouse: {fileID: 2008811107}
   clearText: {fileID: 1362460594}
@@ -3631,10 +3632,10 @@ MonoBehaviour:
   Enemies:
   - {fileID: 9142105466086907081, guid: 362f1efaf8c0b474ea6d678eb0eec26b, type: 3}
   - {fileID: 9142105466086907081, guid: 7937e4bc762fd97489ed9cb6282c082c, type: 3}
-  maxEnemyCount: 0200000064000000
+  maxEnemyCount: 0000000005000000
   enemyCreateSpeed:
-  - 20
-  - 5
+  - 0
+  - 4
   enemyInstanceHouseHP: 0a00000000000000
   enemyHouse: {fileID: 1967369084}
   createPos: {fileID: 327862487}
