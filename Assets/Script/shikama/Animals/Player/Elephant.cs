@@ -29,14 +29,13 @@ public class Elephant : Animal
         else
             coolTimer = 0.0f;
 
-        if (evolution.Equals(EVOLUTION.METEO)) 
+        if (evolution == EVOLUTION.METEO || evolution == EVOLUTION.DESERTIFICATION) 
         {
             activeTimer -= Time.deltaTime;
             if (activeTimer < 0)
             {
                 evolution = EVOLUTION.NONE;
                 activeTimer = 0;
-                Debug.Log("象進化終了");
             }
         }
 
@@ -66,56 +65,71 @@ public class Elephant : Animal
 
     override public void EarthquakeEvolution()
     {
-        if (evolution.Equals(EVOLUTION.NONE) && coolTimer == 0.0f)
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.EarthquakeEvolution();
+
+        foreach (Animal animal in animalList)
         {
-            foreach (Animal animal in animalList)
+            if (animal.tag == "Player") continue;
+            float dist = Vector2.Distance(transform.position, animal.transform.position);
+            if (animal.status.attackDist >= dist - 0.25f)
             {
-                if (animal.tag == "Player") continue;
-                float dist = Vector2.Distance(transform.position, animal.transform.position);
-                if (animal.status.attackDist >= dist - 0.25f)
+                // ターゲットのリセット
+                attackTarget[animal.attackObject].Remove(animal);
+
+                // ターゲットの変更
+                animal.attackObject = gameObject;
+                if (!attackTarget.ContainsKey(gameObject))
                 {
-                    // ターゲットのリセット
-                    attackTarget[animal.attackObject].Remove(animal);
-
-                    // ターゲットの変更
-                    animal.attackObject = gameObject;
-                    if (!attackTarget.ContainsKey(gameObject))
-                    {
-                        attackTarget.Add(gameObject, new List<Animal>());
-                    }
-                    attackTarget[gameObject].Add(animal);
+                    attackTarget.Add(gameObject, new List<Animal>());
                 }
+                attackTarget[gameObject].Add(animal);
             }
-
-            coolTimer = status_.coolTimeEarthquake;
-            evolution = EVOLUTION.EARTHQUAKE;
         }
+
+        coolTimer = status_.coolTimeEarthquake;
     }
 
     // 途中(ノックバックの仕様を知らない)
     public override void HurricaneEvolution()
     {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.HurricaneEvolution();
+
         status.speed *= 0.5f;
-        evolution = EVOLUTION.HURRICANE;
     }
 
     public override void ThunderstormEvolution()
     {
-        foreach(Animal animal in animalList)
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.ThunderstormEvolution();
+
+        foreach (Animal animal in animalList)
         {
             if(animal.CompareTag("Player")) animal.elephantSheld = true;
         }
-        evolution = EVOLUTION.THUNDERSTORM;
+
+        coolTimer = status_.coolTimeThunder;
     }
 
     public override void TsunamiEvolution()
     {
-        evolution = EVOLUTION.TSUNAMI;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.TsunamiEvolution();
     }
 
     public override void EruptionEvolution()
     {
-        evolution = EVOLUTION.ERUPTION;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.EruptionEvolution();
+    }
+
+    public override void PlagueEvolution()
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.PlagueEvolution();
+
+        coolTimer = status_.coolTimePlague;
     }
 
     public override void DesertificationEvolution()
@@ -127,6 +141,9 @@ public class Elephant : Animal
                                         transform.position.y - transform.localScale.y / 2 + elephantField.transform.localScale.y / 2,
                                         0.5f);
         Instantiate(elephantField, vector3, Quaternion.identity);
+
+        activeTimer = status_.activeTimeDesert;
+        coolTimer = status_.coolTimeDesert;
     }
 
     public override void IceAgeEvolution()
@@ -136,6 +153,6 @@ public class Elephant : Animal
 
     public override void BigFireEvolution()
     {
-
+        // 特になし
     }
 }

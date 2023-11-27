@@ -23,6 +23,7 @@ public class LevelUpButton : MonoBehaviour
             gameSetting.maxCost += gameSetting.lvUpCost[level - 1];
             gameSetting.costSpeed *= gameSetting.costSpeedMag;
             gameSetting.cost -= cost;
+            gameSetting.envCost -= gameSetting.envCostDown;
             cost = gameSetting.lvUpCost[level - 1];
 
             level++;
