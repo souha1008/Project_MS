@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager instance;
 
-    enum AS_TYPE
+    public enum AS_TYPE
     {
         BGM = 0,
         SE,
@@ -73,16 +73,52 @@ public class SoundManager : MonoBehaviour
         AS_SE.PlayOneShot(AS_SEdic[key]);
     }
 
+    public void ChangeVolume(float volume, AS_TYPE type)
+    {
+        // BGMâπó ïœçX
+        switch(type)
+        {
+            case AS_TYPE.BGM:
+                AS_BGM.volume = volume;
+                break;
+
+            case AS_TYPE.SE:
+                AS_SE.volume = volume;
+                break;
+        }
+    }
+
+    public void ChangeMute(bool mute, AS_TYPE type)
+    {
+        switch (type)
+        {
+            case AS_TYPE.BGM:
+                AS_BGM.mute = mute;
+                break;
+
+           case AS_TYPE.SE:
+                AS_SE.mute = mute;
+                break;
+        }
+    }
+
     void Keynull(string key, AS_TYPE type)
     {
         if (type == AS_TYPE.BGM)
         {
-            if (AS_BGMdic[key] == null) { return; }
+            if (AS_BGMdic[key] == null) {
+                Debug.Log("BGM Notting");    
+                return; 
+            }
         }
 
         if (type == AS_TYPE.SE)
         {
-            if (AS_SEdic[key] == null) { return; }
+            if (AS_SEdic[key] == null) 
+            {
+                Debug.Log("SE Notting");
+                return; 
+            }
         }
     }
 }

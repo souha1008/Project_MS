@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d078c7410b901d649904628d318772b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elephantBase: {fileID: 11400000, guid: 1bd9a584ec148f7448195e65055e5720, type: 2}

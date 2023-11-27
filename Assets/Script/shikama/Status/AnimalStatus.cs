@@ -110,7 +110,7 @@ public class AnimalStatus : MonoBehaviour
         ElephantAttack(animal_);
         BuffaloAttack(animal_);
         CamelAttack(animal_);
-        ZebraAttack(ref _hp, animal);
+        ZebraAttack(ref _hp, animal_);
 
         AddHp(_hp);
 
@@ -119,13 +119,13 @@ public class AnimalStatus : MonoBehaviour
 
     private void ElephantAttack(Animal animal_)
     {
-        if (animal is Elephant == false) return;
+        if (animal_ is Elephant == false) return;
 
-        Elephant elephant = (Elephant)animal;
+        Elephant elephant = (Elephant)animal_;
         if (elephant.evolution.Equals(EVOLUTION.ICEAGE))
         {
-            animal_.baseStatus.speed = 0;
-            animal_.status.Invoke("ResetSpeed", 2.0f);
+            speed = 0;
+            animal.Invoke("ResetSpeed", 2.0f);
         }
 
     }
@@ -161,7 +161,7 @@ public class AnimalStatus : MonoBehaviour
         Buffalo buffalo = (Buffalo)animal_;
         if (buffalo.evolution == EVOLUTION.PLAGUE)
         {
-            Destroy(animal_.gameObject);
+            Destroy(buffalo.gameObject);
         }
     }
 

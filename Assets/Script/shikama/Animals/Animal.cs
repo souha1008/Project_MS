@@ -125,7 +125,10 @@ public class Animal : MonoBehaviour
         animalList.Remove(this);
     }
 
-
+    public void ResetSpeed()
+    {
+        status.speed = baseStatus.speed;
+    }
 
     // ▼▼▼　　ステート処理　　▼▼▼
 
@@ -138,7 +141,7 @@ public class Animal : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
             attackObject = attackObj;
-            Debug.Log(attackObj);
+
             if (!attackTarget.ContainsKey(attackObj))
             {
                 attackTarget.Add(attackObj, new List<Animal>());
@@ -222,8 +225,18 @@ public class Animal : MonoBehaviour
             {
                 Animal attackEnemy = attackObject.GetComponent<Animal>();
 
-                if (elephantSheld) attackEnemy.status.AddHp(-(int)(status.attack * ElephantStatus.sheldCutMag), this);
-                else attackEnemy.status.AddHp(-status.attack, this);
+                if(this is Lion)
+                    Debug.Log(attackEnemy);
+
+                if (attackEnemy.elephantSheld)
+                {
+                    attackEnemy.status.AddHp(-(int)(status.attack * ElephantStatus.sheldCutMag), this);
+                    attackEnemy.elephantSheld = false;
+                }
+                else
+                {
+                    attackEnemy.status.AddHp(-status.attack, this);
+                }
 
                 // 倒したとき
                 if (attackEnemy.status.hp <= 0)

@@ -5,9 +5,13 @@ using UnityEngine;
 public class ElephantField : MonoBehaviour
 {
     Dictionary<Collider2D, float> fieldObjectsCounter;
+
+    [SerializeField] ElephantBaseStatus elephantBase;
+
     private void Start()
     {
         fieldObjectsCounter = new Dictionary<Collider2D, float>();
+        Destroy(this.gameObject, elephantBase.activeTimeDesert);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

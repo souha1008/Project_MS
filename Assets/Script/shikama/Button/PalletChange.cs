@@ -118,8 +118,6 @@ public class PalletChange : MonoBehaviour
         float moveDist_ = moveDist;
         if (dir == DIR.DOWN) moveDist_ *= -1;
 
-        Debug.Log(dir);
-
         if (palletNow == PALLET.FIRST)
         {
             if (moveCount < moveTime / 2)
