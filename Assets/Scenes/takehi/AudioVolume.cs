@@ -28,7 +28,7 @@ public class AudioVolume : MonoBehaviour
         //スライダーを動かした時の処理を登録
         bgmSlider.onValueChanged.AddListener(SetAudioMixerBGM);
         seSlider.onValueChanged.AddListener(SetAudioMixerSE);
-
+        
     }
 
     //BGM
