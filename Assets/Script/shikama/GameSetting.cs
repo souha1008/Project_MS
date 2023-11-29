@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameSetting : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class GameSetting : MonoBehaviour
 
     [System.NonSerialized] public int maxLevel;
 
-    [SerializeField] private Text textCost;
+    [SerializeField] private TextMeshProUGUI textMeshCost;
 
     [SerializeField] private GameObject createPos;
     [System.NonSerialized] public Vector3 createPosition;
@@ -33,6 +34,7 @@ public class GameSetting : MonoBehaviour
 
     [SerializeField] GameObject envPallet;
     [SerializeField] Deck deck;
+    [SerializeField] Sprite[] envImages;
 
     private void Awake()
     {
@@ -44,7 +46,7 @@ public class GameSetting : MonoBehaviour
     private void Start()
     {
         cost = firstCost;
-        textCost.text = firstCost + " : " + maxCost;
+        textMeshCost.text = firstCost + " : " + maxCost;
         clearText.gameObject.SetActive(false);
 
         SetEnvPallet();
@@ -55,7 +57,7 @@ public class GameSetting : MonoBehaviour
         if (cost < maxCost) cost += Time.deltaTime / costSpeed;
         else cost = maxCost;
 
-        textCost.text = (int)cost + " : " + maxCost;
+        textMeshCost.text = (int)cost + " : " + maxCost;
 
         if (!houseDead)
         {
@@ -100,62 +102,74 @@ public class GameSetting : MonoBehaviour
 
     private void SetEnvButtonAction(Button button , string s)
     {
+        button.transform.GetChild(0).GetComponent<Text>().text = "";
         switch (s)
         {
             case "Ë¶êŒ" :
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Meteo());
-                button.transform.GetChild(0).GetComponent<Text>().text = "Ë¶êŒ";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "ínêk":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Earthquake());
-                button.transform.GetChild(0).GetComponent<Text>().text = "ínêk";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "ÉnÉäÉPÅ[Éì":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Hurricane());
-                button.transform.GetChild(0).GetComponent<Text>().text = "ÉnÉä";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "óãâJ":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Thunderstorm());
-                button.transform.GetChild(0).GetComponent<Text>().text = "óãâJ";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "í√îg":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Tsunami());
-                button.transform.GetChild(0).GetComponent<Text>().text = "í√îg";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "ï¨âŒ":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Eruption());
-                button.transform.GetChild(0).GetComponent<Text>().text = "ï¨âŒ";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "âuïa":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Plague());
-                button.transform.GetChild(0).GetComponent<Text>().text = "âuïa";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "çªîôâª":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Desertification());
-                button.transform.GetChild(0).GetComponent<Text>().text = "çªîôâª";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "ïXâÕä˙":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().IceAge());
-                button.transform.GetChild(0).GetComponent<Text>().text = "ïXâÕ";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             case "ëÂâŒç–":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().BigFire());
-                button.transform.GetChild(0).GetComponent<Text>().text = "âŒç–";
+                button.image.sprite = GetEnvSprite(s);
                 break;
 
             default:
                 button.onClick.RemoveAllListeners();
-                button.transform.GetChild(0).GetComponent<Text>().text = "";
                 break;
         }
+    }
+
+    Sprite GetEnvSprite(string s)
+    {
+        foreach (Sprite sprite in envImages)
+        {
+            if (sprite.name == s)
+            {
+                return sprite;
+            }
+        }
+        return null;
     }
 }

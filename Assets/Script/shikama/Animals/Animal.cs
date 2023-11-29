@@ -272,7 +272,7 @@ public class Animal : MonoBehaviour
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
-            if (particle.name == "Meteo")
+            if (particle.name == "Ë¶êŒ")
             {
                 this.particle.textureSheetAnimation.SetSprite(0, particle);
                 break;
@@ -282,7 +282,19 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// ínêk
     /// </summary>
-    virtual public void EarthquakeEvolution() { evolution = EVOLUTION.EARTHQUAKE; }
+    virtual public void EarthquakeEvolution() 
+    {
+        evolution = EVOLUTION.EARTHQUAKE;
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "ínêk")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
     /// <summary>
     /// ÉnÉäÉPÅ[Éì
     /// </summary>
@@ -292,7 +304,7 @@ public class Animal : MonoBehaviour
         if (!particle) return;
         foreach(Sprite particle in gameSetting.particleSprite)
         {
-            if(particle.name == "Hurricane")
+            if(particle.name == "ÉnÉäÉPÅ[Éì")
             {
                 this.particle.textureSheetAnimation.SetSprite(0, particle);
                 break;
@@ -308,7 +320,7 @@ public class Animal : MonoBehaviour
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
-            if (particle.name == "Thunderstorm")
+            if (particle.name == "óãâJ")
             {
                 this.particle.textureSheetAnimation.SetSprite(0, particle);
                 break;
@@ -318,22 +330,67 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// í√îg
     /// </summary>
-    virtual public void TsunamiEvolution() { evolution = EVOLUTION.TSUNAMI; }
+    virtual public void TsunamiEvolution() 
+    {
+        evolution = EVOLUTION.TSUNAMI;
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "í√îg")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
     /// <summary>
     /// ï¨âŒ
     /// </summary>
     virtual public void EruptionEvolution()
     {
         evolution = EVOLUTION.ERUPTION;
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "ï¨âŒ")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
     }
     /// <summary>
     /// âuïa
     /// </summary>
-    virtual public void PlagueEvolution() { evolution = EVOLUTION.PLAGUE; }
+    virtual public void PlagueEvolution() 
+    { 
+        evolution = EVOLUTION.PLAGUE;
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "âuïa")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
     /// <summary>
     /// çªîôâª
     /// </summary>
-    virtual public void DesertificationEvolution() { evolution = EVOLUTION.DESERTIFICATION; }
+    virtual public void DesertificationEvolution() 
+    { 
+        evolution = EVOLUTION.DESERTIFICATION;
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "çªîôâª")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
     /// <summary>
     /// ïXâÕä˙
     /// </summary>
@@ -344,7 +401,7 @@ public class Animal : MonoBehaviour
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
-            if (particle.name == "IceAge")
+            if (particle.name == "ïXâÕä˙")
             {
                 this.particle.textureSheetAnimation.SetSprite(0, particle);
                 break;
@@ -354,7 +411,19 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// ëÂâŒç–
     /// </summary>
-    virtual public void BigFireEvolution() { evolution = EVOLUTION.BIGFIRE; }
+    virtual public void BigFireEvolution() 
+    { 
+        evolution = EVOLUTION.BIGFIRE;
+        if (!particle) return;
+        foreach (Sprite particle in gameSetting.particleSprite)
+        {
+            if (particle.name == "ëÂâŒç–")
+            {
+                this.particle.textureSheetAnimation.SetSprite(0, particle);
+                break;
+            }
+        }
+    }
 
     // Å£Å£Å£Å@Å@êiâªéûèàóù(åpè≥óp)Å@Å@Å£Å£Å£
 }
