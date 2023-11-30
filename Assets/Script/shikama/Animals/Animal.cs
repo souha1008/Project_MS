@@ -228,6 +228,24 @@ public class Animal : MonoBehaviour
         }
     }
 
+    virtual protected void DeathMode()
+    {
+        if (animator) { 
+            animator.SetTrigger("Death");
+            GetComponent<BoxCollider2D>().enabled = false;
+            hpSlider.fillRect.sizeDelta = new Vector2(0, 0);
+        }
+        else
+        {
+            Death();
+        }
+    }
+
+    virtual protected void Death()
+    {
+        Destroy(gameObject);
+    }
+
     // ▲▲▲　　ステート処理　　▲▲▲
 
     void HitRateAttack()
@@ -267,7 +285,7 @@ public class Animal : MonoBehaviour
                     }
 
                     attackTarget.Remove(attackObject);
-                    Destroy(attackObject);
+                    attackEnemy.DeathMode();
 
                     MoveMode();
                 }
