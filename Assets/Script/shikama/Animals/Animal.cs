@@ -56,6 +56,9 @@ public class Animal : MonoBehaviour
     [SerializeField] ParticleSystem particle = null;
     [SerializeField] Sprite[] particleSprite;
 
+    [SerializeField] Slider hpSlider;
+    [SerializeField] Animator animator;
+
     public static void AnimalListInit()
     {
         if (animalList == null) animalList = new List<Animal>();
@@ -85,7 +88,13 @@ public class Animal : MonoBehaviour
 
         animalList.Add(this);
 
+        if (animator) animator.SetTrigger("Walk");
         State = Move; // ステート初期化(移動処理)
+        if (hpSlider)
+        {
+            hpSlider.maxValue = status.maxHP;
+            
+        }
     }
 
     /// <summary>
@@ -98,6 +107,11 @@ public class Animal : MonoBehaviour
 
         attackCount += Time.deltaTime;
         State(); // 攻撃、移動処理
+
+        if (hpSlider)
+        {
+            hpSlider.value = status.hp;
+        }
 
         if (!evolution.Equals(EVOLUTION.NONE) && particle)
         {
@@ -150,6 +164,7 @@ public class Animal : MonoBehaviour
         }
 
         State = Attack;
+        if (animator) animator.SetTrigger("Idle");
     }
 
     /// <summary>
@@ -159,7 +174,8 @@ public class Animal : MonoBehaviour
     {
         attackObject = null;
 
-        State = Move; 
+        State = Move;
+        if (animator) animator.SetTrigger("Walk");
     }
 
     /// <summary>
@@ -221,6 +237,8 @@ public class Animal : MonoBehaviour
 
         if (attackObject && r <= status.hitRate)
         {
+            if(animator) animator.SetTrigger("Attack");
+
             if (attackObject.GetComponent<Animal>()) // 攻撃対象が動物の場合
             {
                 Animal attackEnemy = attackObject.GetComponent<Animal>();
