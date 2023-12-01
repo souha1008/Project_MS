@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class ElephantStatus : AnimalStatus
 {
-    public float cutMag = 0.8f;
+    public int meteoCutMag = 80;
 
     public float activeTimeMeteo = 5.0f;
     public float coolTimeMeteo = 10.0f;
 
     public float coolTimeEarthquake = 30.0f;
 
+    public int hurricaneSpeedDown = 50;
+
     public float coolTimeThunder = 15.0f;
+
+    public int eruptionAddDamage = 10;
 
     public float coolTimePlague = 6.0f;
 
@@ -20,11 +24,15 @@ public class ElephantStatus : AnimalStatus
 
     public float coolTimeIceAge = 4.0f;
 
-    static public float sheldCutMag = 0.4f;
+    static public float thunderCutMag = 0.4f;
+
+    public float iceAgeStopTime = 2.0f;
+    public float desertDamagePos = 1.0f;
 
     public ElephantStatus(ElephantBaseStatus baseStatus, Animal animal) : base(baseStatus, animal)
     {
-        cutMag = baseStatus.cutMag;
+        meteoCutMag = baseStatus.meteoCutMag;
+        hurricaneSpeedDown = baseStatus.hurricaneSpeedDown;
 
         activeTimeMeteo = baseStatus.activeTimeMeteo;
         activeTimeDesert = baseStatus.activeTimeDesert;
@@ -36,7 +44,10 @@ public class ElephantStatus : AnimalStatus
         coolTimeDesert = baseStatus.coolTimeDesert;
         coolTimeIceAge = baseStatus.coolTimeIceAge;
 
-        sheldCutMag = baseStatus.sheldCutMag;
+        thunderCutMag = baseStatus.thunderCutMag;
+        eruptionAddDamage = baseStatus.eruptionAddDamage;
+        iceAgeStopTime = baseStatus.iceAgeStopTime;
+        desertDamagePos = baseStatus.desertDamagePos; ;
     }
 
 
@@ -44,7 +55,7 @@ public class ElephantStatus : AnimalStatus
     {
         if (animal.evolution.Equals(EVOLUTION.METEO))
         {
-            AddHp((int)(_hp * cutMag));
+            AddHp((int)(_hp * (100 - meteoCutMag) * 0.01f));
         }
         else if (animal.evolution.Equals(EVOLUTION.PLAGUE))
         {
@@ -53,7 +64,7 @@ public class ElephantStatus : AnimalStatus
         else if (animal.evolution.Equals(EVOLUTION.ERUPTION))
         {
             AddHp(_hp);
-            animal_.status.AddHp(-10, null);
+            animal_.status.AddHp(-eruptionAddDamage, null);
         }
         else
         {

@@ -163,8 +163,8 @@ public class Animal : MonoBehaviour
             attackTarget[attackObj].Add(this);
         }
 
+        if (animator) animator.SetTrigger("Walk");
         State = Attack;
-        if (animator) animator.SetTrigger("Idle");
     }
 
     /// <summary>
@@ -253,20 +253,17 @@ public class Animal : MonoBehaviour
         // –½’†”»’è
         int r = Random.Range(1, 100);
 
+       if(animator) animator.SetTrigger("Attack");
+    
         if (attackObject && r <= status.hitRate)
         {
-            if(animator) animator.SetTrigger("Attack");
-
             if (attackObject.GetComponent<Animal>()) // UŒ‚‘ÎÛ‚ª“®•¨‚Ìê‡
             {
                 Animal attackEnemy = attackObject.GetComponent<Animal>();
 
-                if(this is Lion)
-                    Debug.Log(attackEnemy);
-
                 if (attackEnemy.elephantSheld)
                 {
-                    attackEnemy.status.AddHp(-(int)(status.attack * ElephantStatus.sheldCutMag), this);
+                    attackEnemy.status.AddHp(-(int)(status.attack * (100 - ElephantStatus.thunderCutMag) * 0.01f), this);
                     attackEnemy.elephantSheld = false;
                 }
                 else

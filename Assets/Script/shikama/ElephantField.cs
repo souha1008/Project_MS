@@ -20,16 +20,16 @@ public class ElephantField : MonoBehaviour
         {
             if (!fieldObjectsCounter.ContainsKey(collision))
             {
-                fieldObjectsCounter.Add(collision, 3.0f);
+                fieldObjectsCounter.Add(collision, elephantBase.desertDamageSecond);
                 collision.GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
             }
 
             fieldObjectsCounter[collision] += Time.deltaTime;
 
-            if (fieldObjectsCounter[collision] >= 3.0f)
+            if (fieldObjectsCounter[collision] >= elephantBase.desertDamageSecond)
             {
                 AnimalStatus status = collision.GetComponent<Animal>().status;
-                status.hp -= Mathf.RoundToInt(status.maxHP * 0.01f);
+                status.hp -= Mathf.RoundToInt(status.maxHP * (elephantBase.desertDamageMag) * 0.01f);
                 fieldObjectsCounter[collision] = 0.0f;
             }
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseStatus : ScriptableObject
 {
+    [Header("▼基礎ステータス")]
     public new string name = "";
 
     public int cost = 20;

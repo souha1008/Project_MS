@@ -125,7 +125,8 @@ public class AnimalStatus : MonoBehaviour
         if (elephant.evolution.Equals(EVOLUTION.ICEAGE))
         {
             speed = 0;
-            animal.Invoke("ResetSpeed", 2.0f);
+            animal.CancelInvoke("ResetSpeed");
+            animal.Invoke("ResetSpeed", ((ElephantStatus)elephant.status).iceAgeStopTime);
         }
 
     }

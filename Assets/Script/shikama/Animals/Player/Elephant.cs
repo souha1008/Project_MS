@@ -39,16 +39,13 @@ public class Elephant : Animal
             }
         }
 
-        if (evolution == EVOLUTION.TSUNAMI)
-        {
-            tsunamiCount = attackTarget[attackObject].Count;
-        }
     }
 
     protected override void Attack()
     {
         if (evolution == EVOLUTION.TSUNAMI)
         {
+            tsunamiCount = attackTarget[attackObject].Count;
             if(tsunamiCount >= 2) base.Attack();
         }
         else base.Attack();
@@ -96,7 +93,7 @@ public class Elephant : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.HurricaneEvolution();
 
-        status.speed *= 0.5f;
+        status.speed *= (100 - status_.hurricaneSpeedDown) * 0.01f;
     }
     
     public override void ThunderstormEvolution()
@@ -137,8 +134,8 @@ public class Elephant : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.DesertificationEvolution();
 
-        Vector3 vector3 = new Vector3(transform.position.x - elephantField.transform.localScale.x / 2,
-                                        transform.position.y - transform.localScale.y / 2 + elephantField.transform.localScale.y / 2,
+        Vector3 vector3 = new Vector3(transform.position.x - elephantField.transform.localScale.x / 2 - status_.desertDamagePos,
+                                        transform.position.y,
                                         0.5f);
         Instantiate(elephantField, vector3, Quaternion.identity);
 
