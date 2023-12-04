@@ -5,17 +5,23 @@ using UnityEngine;
 
 public class GeneralSEManager : MonoBehaviour
 {
+    public static GeneralSEManager instance;
     [SerializeField] CriAtomSource generarlSource;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        if (instance == null)
+        {
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+
+            Destroy(gameObject);
+        }
+        instance = this;
     }
 
     public void PlaySE01()

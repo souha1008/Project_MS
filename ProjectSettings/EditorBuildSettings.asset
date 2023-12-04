@@ -50,4 +50,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/kawamura/seclet sene/select scene.unity
     guid: 83019f1d90da2e640971843b6e9522b5
+  - enabled: 1
+    path: Assets/Scenes/kawamura/title scene.unity
+    guid: 3a481cafdd8288c40b3f7523466bccb1
+  - enabled: 1
+    path: Assets/Scenes/Fujishiro/Test/test_stage.unity
+    guid: 18ed6a221fc03484fac6d10f6119bede
   m_configObjects: {}

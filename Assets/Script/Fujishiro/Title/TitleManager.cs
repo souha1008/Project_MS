@@ -12,18 +12,6 @@ public class TitleManager : MonoBehaviour
     [SerializeField] float fadespeed = 1.0f;
     [SerializeField] float waitTime = 3.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ChangeStageSelect(string scenename)
     {
         SE_Source.Play();
