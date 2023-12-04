@@ -444,7 +444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415f30734c8e3224f9a5087817891576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
 --- !u!1 &761681513
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,8 +683,6 @@ GameObject:
   - component: {fileID: 1055001054}
   - component: {fileID: 1055001053}
   - component: {fileID: 1055001052}
-  - component: {fileID: 1055001055}
-  - component: {fileID: 1055001051}
   m_Layer: 5
   m_Name: tapArea
   m_TagString: Untagged
@@ -713,19 +710,6 @@ RectTransform:
   m_AnchoredPosition: {x: 6, y: -102}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1055001051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055001049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7497a4bfbc533cf4abae35a1c31b8eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageSelectSceneName: 
 --- !u!114 &1055001052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,9 +754,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1055001055}
-        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
-        m_MethodName: SwitchScene
+      - m_Target: {fileID: 1591548267}
+        m_TargetAssemblyTypeName: GeneralSEManager, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -820,19 +804,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055001049}
   m_CullTransparentMesh: 1
---- !u!114 &1055001055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055001049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 415f30734c8e3224f9a5087817891576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: StageSelect
 --- !u!1 &1504062611
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f529aa944b914449d62b8c40f188fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acfFile: 
+  acfFile: I:/UnityProjects/Project_MS/Assets/Audio/StreamingAssets/Project_MS/Project_MS.acf
   cueSheets:
   - name: GeneralSE
     acbFile: I:/UnityProjects/Project_MS/Assets/Audio/StreamingAssets/GeneralSE/GeneralSE.acb
@@ -871,6 +842,10 @@ MonoBehaviour:
   - name: BGM
     acbFile: I:/UnityProjects/Project_MS/Assets/Audio/StreamingAssets/BGM/BGM.acb
     awbFile: I:\UnityProjects\Project_MS\Assets\Audio\StreamingAssets\BGM\BGM.awb
+    loaderStatus: 0
+  - name: Title
+    acbFile: I:/UnityProjects/Project_MS/Assets/Audio/StreamingAssets/Tiitle/Title.acb
+    awbFile: 
     loaderStatus: 0
   dspBusSetting: 
   dontDestroyOnLoad: 0
@@ -888,6 +863,134 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1591548264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1591548266}
+  - component: {fileID: 1591548265}
+  - component: {fileID: 1591548267}
+  m_Layer: 0
+  m_Name: TitleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1591548265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591548264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnStart: 0
+  _regionOnStart: {fileID: 0}
+  _listenerOnStart: {fileID: 0}
+  _use3dPositioning: 1
+  _freezeOrientation: 0
+  _loop: 0
+  _volume: 1
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+  _use3dRandomization: 0
+  _randomPositionListMaxLength: 0
+  randomize3dConfig:
+    followsOriginalSource: 0
+    calculationType: 0
+    calculationParameters:
+    - 0
+    - 0
+    - 0
+  _cueName: SE_23
+  _cueSheet: Title
+--- !u!4 &1591548266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591548264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1591548267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591548264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb3f0beef5b5274e8b3fe0cd207eaba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE_Source: {fileID: 0}
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  fadespeed: 1
+  waitTime: 3
+--- !u!1 &1766409706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1766409708}
+  - component: {fileID: 1766409707}
+  m_Layer: 0
+  m_Name: GeneralSE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1766409707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766409706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0191a3a0ee892ef499ec6ea7e08d499f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generarlSource: {fileID: 2002476031}
+--- !u!4 &1766409708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766409706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2002476032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799200499
@@ -919,13 +1022,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playOnStart: 0
+  _playOnStart: 1
   _regionOnStart: {fileID: 0}
   _listenerOnStart: {fileID: 0}
   _use3dPositioning: 1
   _freezeOrientation: 0
   _loop: 0
-  _volume: 1
+  _volume: 0.707
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
   need_to_player_update_all: 1
@@ -1058,7 +1161,7 @@ GameObject:
   - component: {fileID: 2002476032}
   - component: {fileID: 2002476031}
   m_Layer: 0
-  m_Name: CRI_SESource
+  m_Name: CRI_GeneralSESource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1105,12 +1208,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002476030}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -43.432007, y: -87.052, z: 1.4974759}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1766409708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2106687635
 GameObject:
@@ -1390,6 +1493,7 @@ SceneRoots:
   - {fileID: 761681515}
   - {fileID: 75388154}
   - {fileID: 62101629}
-  - {fileID: 2002476032}
   - {fileID: 1504062613}
   - {fileID: 1799200501}
+  - {fileID: 1766409708}
+  - {fileID: 1591548266}
