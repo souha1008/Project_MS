@@ -5,17 +5,21 @@ using UnityEngine;
 public class Camel : Animal
 {
     CamelStatus status_;
-    
+
+    float activeTimer = 0.0f;
+    float coolTimer = 0.0f;
+
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
 
     float hpHealOneDist = 10.0f;
-    float hpHealRangeDist = 3.0f;
 
     public int barrierCount { get; set; } = 0;
     float barrierTimer = 0;
 
     static private bool costDown  = false;
+
+    private bool particleStop = false;
     
     override protected void Start()
     {
@@ -29,6 +33,8 @@ public class Camel : Animal
     {
         base.Update();
 
+        Debug.Log(status.speed);
+
         if (evolution.Equals(EVOLUTION.HURRICANE) && barrierCount >= 5)
         {
             if(barrierTimer <= status_.barrierTime)
@@ -41,32 +47,72 @@ public class Camel : Animal
                 barrierCount = 0;
             }
         }
-    }
 
-    override public void MeteoEvolution()
-    {
-        base.MeteoEvolution();
-        if (!earthquakeEvolution && !meteoEvolution)
+        if (activeTimer != 0.0f)
         {
-            int mode = Random.Range(0, 3);
-            switch (mode)
+            activeTimer -= Time.deltaTime;
+            if (activeTimer <= 0.0f)
             {
-                case 0: // 攻撃力アップ
-                    AttackUp();
-                    break;
-                case 1: // 範囲回復
-                    HealRange();
-                    break;
-                case 2: // スピードアップ
-                    SpeedUp();
-                    break;
+                evolution = EVOLUTION.NONE;
+                activeTimer = 0.0f;
+            }
+        }
+
+        if (coolTimer > 0)
+        {
+            coolTimer -= Time.deltaTime;
+        }
+        else
+        {
+            coolTimer = 0.0f;
+        }
+
+        if (particleStop)
+        {
+            particle.Stop();
+            if (particle.particleCount == 0)
+            {
+                particle.gameObject.SetActive(false);
+                particle.Play();
+                evolution = EVOLUTION.NONE;
+                particleStop = false;
             }
         }
     }
 
+    override public void MeteoEvolution()
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
+        base.MeteoEvolution();
+     
+        int mode = Random.Range(0, 3);
+        switch (mode)
+        {
+            case 0: // 攻撃力アップ
+                AttackUp();
+                break;
+            case 1: // 範囲回復
+                HealRange();
+                break;
+            case 2: // スピードアップ
+                SpeedUp();
+                break;
+        }
+
+        particle.gameObject.SetActive(true);
+
+        Invoke("ParticleStop",1.0f);
+        coolTimer = status_.coolTimeMeteo;
+    }
+
+    private void ParticleStop()
+    {
+        particleStop = true;
+    }
+
     override public void EarthquakeEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
 
         if (!earthquakeEvolution && !meteoEvolution)
         {
@@ -76,7 +122,7 @@ public class Camel : Animal
 
     public override void ThunderstormEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
 
         base.ThunderstormEvolution();
 
@@ -84,15 +130,18 @@ public class Camel : Animal
         {
             if(animal.tag == "Enemy")
             {
-                animal.status.speed *= 1.2f;
+                animal.status.speed *= 1.0f + status_.thunderSpeedUP * 0.01f;
                 break;
             }
         }
+
+        activeTimer = status_.activeTimeThunder;
+        coolTimer = status_.coolTimeThunder;
     }
 
     public override void TsunamiEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
 
         base.TsunamiEvolution();
 
@@ -102,7 +151,7 @@ public class Camel : Animal
 
     public override void EruptionEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
 
         base.EruptionEvolution();
 
@@ -121,7 +170,7 @@ public class Camel : Animal
 
     public override void PlagueEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
 
         base.PlagueEvolution();
         status.attackSpeed = 0;
@@ -129,7 +178,7 @@ public class Camel : Animal
 
     public override void DesertificationEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
         base.DesertificationEvolution();
 
         status.hp -= (int)(status.maxHP * 0.1f);
@@ -146,7 +195,7 @@ public class Camel : Animal
 
     public override void IceAgeEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
         base.IceAgeEvolution();
     }
 
@@ -156,8 +205,7 @@ public class Camel : Animal
 
     private void AttackUp()
     {
-        status_.attack = (int)(status_.attack * status_.attackUpMag);
-        meteoEvolution = true;
+        status_.attack = (int)(status_.attack * (1.0f + status_.meteoAttackUp * 0.01f));
     }
 
     private void HealRange()
@@ -165,14 +213,14 @@ public class Camel : Animal
         foreach (Animal animal in animalList)
         {
             if (animal.tag == "Enemy") continue;
+
             float dist = Vector2.Distance(transform.position, animal.transform.position);
-            if (dist <= hpHealRangeDist)
+            if (dist <= status_.meteoHealDist)
             {
-                animal.status.hp += (int)(animal.status.maxHP * status_.hpHealRange);
+                animal.status.hp += Mathf.RoundToInt(animal.status.maxHP * status_.meteoHPHeal * 0.01f);
                 if (animal.status.maxHP < animal.status.hp) animal.status.hp = animal.status.maxHP;
             }
         }
-        meteoEvolution = true;
     }
 
     private void HealOne()
@@ -203,7 +251,6 @@ public class Camel : Animal
 
     private void SpeedUp()
     {
-        status_.speed *= status_.speedUp;
-        meteoEvolution = true;
+        status_.speed *= 1.0f + status_.meteoSpeedUp * 0.01f;
     }
 }

@@ -141,6 +141,19 @@ public class AnimalStatus : MonoBehaviour
             speed = 0;
             animal.Invoke("ResetSpeed", 4.0f);
         }
+        else if (buffalo.evolution == EVOLUTION.ICEAGE)
+        {
+            Debug.Log(buffalo.iceCount.ToString() + " " + buffalo.status.hp.ToString());
+            if (buffalo.iceCount == ((BuffaloStatus)buffalo.status).IceAgeCount)
+            {
+                buffalo.iceCount = 0;
+                buffalo.status.hp += (int)(buffalo.status.maxHP * ((BuffaloStatus)buffalo.status).IceAgeHealMag * 0.01f);
+                if (buffalo.status.hp > buffalo.status.maxHP) buffalo.status.hp = buffalo.status.maxHP;
+
+                return;
+            }
+            buffalo.iceCount++;
+        }
         else if(buffalo.evolution == EVOLUTION.BIGFIRE)
         {
             List<Animal> enemy = Animal.animalList.FindAll(enemy => enemy.tag == "Enemy");

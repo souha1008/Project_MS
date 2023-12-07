@@ -11,6 +11,9 @@ public class Buffalo : Animal
     float activeTimer = 0.0f;
     float coolTimer = 0.0f;
 
+
+    public int iceCount { get; set; } = 0;
+
     protected override void Start()
     {
         base.Start();
@@ -46,11 +49,22 @@ public class Buffalo : Animal
                 evolution = EVOLUTION.NONE;
             }
         }
+        else if (evolution == EVOLUTION.THUNDERSTORM)
+        {
+            foreach (Animal animal in animalList)
+            {
+                if (animal.tag == "Enemy" || animal.buffaloAtkUp || animal == this) continue;
 
-        Debug.Log(status.attack);
-        Debug.Log(status.speed);
-        Debug.Log(status.hp);
-        Debug.Log(status.attackSpeed);
+                float dist = Vector2.Distance(transform.position, animal.transform.position);
+
+                if (dist <= status_.thunderDist)
+                {
+                    animal.buffaloAtkUp = true;
+                    animal.status.attack += status_.thunderAtkUp;
+                    Debug.Log("UŒ‚—Í:" + status_.thunderAtkUp.ToString() + "Up");
+                }
+            }
+        }
     }
 
     public override void MeteoEvolution()
@@ -76,7 +90,7 @@ public class Buffalo : Animal
                 attackTarget[gameObject].Add(animal);
             }
         }
-        status_.speed *= status_.meteoSpeedDownMag;
+        status_.speed *= (100 - status_.meteoSpeedDownMag) * 0.01f;
 
         activeTimer = status_.activeTimeMeteo;
         coolTimer = status_.coolTimeMeteo;
@@ -117,26 +131,13 @@ public class Buffalo : Animal
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.ThunderstormEvolution();
-
-        foreach (Animal animal in animalList)
-        {
-            if (animal.tag == "Enemy" || animal.buffaloAtkUp) continue;
-
-            float dist = Vector2.Distance(transform.position, animal.transform.position);
-
-            if(dist <= 3.0f)
-            {
-                animal.buffaloAtkUp = true;
-                animal.status.attack += 5;
-            }
-        }
     }
 
     public override void TsunamiEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
 
-        if(Random.Range(1, 100) <= 30)
+        if (Random.Range(1, 100) <= 30)
         {
             base.TsunamiEvolution();
             status.speed *= 1.7f;
@@ -145,14 +146,14 @@ public class Buffalo : Animal
 
     public override void EruptionEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
 
         base.EruptionEvolution();
     }
 
     public override void PlagueEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
 
         base.PlagueEvolution();
         status.attack *= 3;
@@ -164,14 +165,13 @@ public class Buffalo : Animal
 
     public override void IceAgeEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
-
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.IceAgeEvolution();
     }
 
     public override void BigFireEvolution()
     {
-        if (evolution != EVOLUTION.NONE) return;
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
 
         base.BigFireEvolution();
     }

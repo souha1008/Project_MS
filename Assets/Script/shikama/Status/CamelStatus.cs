@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class CamelStatus : AnimalStatus
 {
-    public float doubleAttackMag = 0.15f;
+    public float coolTimeMeteo = 10.0f;
+    public int meteoAttackUp = 15;
+    public int meteoHPHeal = 30;
+    public int meteoSpeedUp = 5;
+    public float meteoHealDist = 3.0f;
 
-    public float attackUpMag = 1.15f;
+    public int thunderSpeedUP = 20;
+    public float activeTimeThunder = 6.0f;
+    public float coolTimeThunder = 15.0f;
+    
     public float hpHealOne = 0.1f;
-    public float hpHealRange = 0.3f;
-    public float speedUp = 1.05f;
 
     public float barrierMag = 0.3f;
     public float barrierTime = 7.0f;
@@ -18,12 +23,17 @@ public class CamelStatus : AnimalStatus
 
     public CamelStatus(CamelBaseStatus baseStatus,Animal animal) : base(baseStatus, animal)
     {
-        doubleAttackMag = baseStatus.doubleAttackMag;
+        coolTimeMeteo = baseStatus.coolTimeMeteo;
+        meteoAttackUp = baseStatus.meteoAttackUp;
+        meteoHPHeal = baseStatus.meteoHPHeal;
+        meteoHealDist = baseStatus.meteoHealDist;
+        meteoSpeedUp = baseStatus.meteoSpeedUp;
 
-        attackUpMag = baseStatus.attackUpMag;
+        activeTimeThunder = baseStatus.activeTimeThunder;
+        coolTimeThunder = baseStatus.coolTimeThunder;
+        thunderSpeedUP = baseStatus.thunderSpeedUP;
+
         hpHealOne = baseStatus.hpHealOne;
-        hpHealRange = baseStatus.hpHealRange;
-        speedUp = baseStatus.speedUp;
 
         barrierMag = baseStatus.barrierMag;
         barrierTime = baseStatus.barrierTime;

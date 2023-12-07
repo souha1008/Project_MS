@@ -29,13 +29,13 @@ public class Elephant : Animal
         else
             coolTimer = 0.0f;
 
-        if (evolution == EVOLUTION.METEO || evolution == EVOLUTION.DESERTIFICATION) 
+        if (activeTimer != 0.0f) 
         {
             activeTimer -= Time.deltaTime;
-            if (activeTimer < 0)
+            if (activeTimer <= 0.0f)
             {
                 evolution = EVOLUTION.NONE;
-                activeTimer = 0;
+                activeTimer = 0.0f;
             }
         }
 

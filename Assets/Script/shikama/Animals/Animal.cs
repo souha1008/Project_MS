@@ -53,7 +53,7 @@ public class Animal : MonoBehaviour
 
     GameSetting gameSetting;
 
-    [SerializeField] ParticleSystem particle = null;
+    [SerializeField] protected ParticleSystem particle = null;
     [SerializeField] Sprite[] particleSprite;
 
     [SerializeField] Slider hpSlider;

@@ -7,12 +7,12 @@ public class MyDebug : MonoBehaviour
     GameSetting gameSetting;
     [SerializeField] GameObject enemyPopPos;
     [SerializeField] Animal enemy;
-    [SerializeField] Animator animator;
+    [SerializeField] Animator[] animators;
 
     private void Start()
     {
         gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
-        if (animator) InvokeRepeating("settrigger", 5, 5);
+        if(animators.Length > 0) InvokeRepeating("settrigger", 5, 5);
     }
 
     public void CostMax()
@@ -27,6 +27,7 @@ public class MyDebug : MonoBehaviour
 
     public void settrigger()
     {
-        animator.SetTrigger("Walk");
+        foreach(Animator animator in animators)
+            animator.SetTrigger("Walk");
     }
 }

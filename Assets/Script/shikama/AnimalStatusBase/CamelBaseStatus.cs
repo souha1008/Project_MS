@@ -5,12 +5,22 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CamelBaseStatus : BaseStatus
 {
-    public float doubleAttackMag = 0.15f;
+    [Header("è¦Î")]
+    public float coolTimeMeteo = 10.0f;
+    public int meteoAttackUp = 15;
+    public int meteoHPHeal = 30;
+    public int meteoSpeedUp = 5;
+    public float meteoHealDist = 3.0f;
 
-    public float attackUpMag = 1.15f;
+    [Header("—‹‰J")]
+    public float activeTimeThunder = 6.0f;
+    public float coolTimeThunder = 15.0f;
+    public int thunderSpeedUP = 100;
+
+
+    
     public float hpHealOne = 0.1f;
-    public float hpHealRange = 0.3f;
-    public float speedUp = 1.05f;
+
 
     public float barrierMag = 0.3f;
     public float barrierTime = 7.0f;
