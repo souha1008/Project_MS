@@ -44,7 +44,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/kawamura/spec scene/spec scene.unity
     guid: b69908730a173024ca0548c38533bc1c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/kawamura/Disaster scene/disaster.unity
     guid: a6a6ead9c7be2534988cf37a3c2917b6
   - enabled: 0
@@ -59,7 +59,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FIX_Scene/Stage/savannah/1-1.unity
     guid: 4fffcb59ab8f07d4f830e62db0846483
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Fujishiro/Test/effect_test.unity
     guid: e8b8d06f6da33a742a4289893c4744e2
   m_configObjects: {}

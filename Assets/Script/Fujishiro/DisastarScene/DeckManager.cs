@@ -55,11 +55,11 @@ public class DeckManager : MonoBehaviour
     {
         instance = this;
 
-        deck.Table[deckobj_name[1]] = Disastar_Name[3];
-        deck.Table[deckobj_name[2]] = Disastar_Name[7];
-        deck.Table[deckobj_name[3]] = Disastar_Name[1];
-        deck.Table[deckobj_name[4]] = Disastar_Name[4];
-        deck.Table[deckobj_name[5]] = Disastar_Name[9];
+        deck.Table[deckobj_name[0]] = Disastar_Name[3];
+        deck.Table[deckobj_name[1]] = Disastar_Name[7];
+        deck.Table[deckobj_name[2]] = Disastar_Name[1];
+        deck.Table[deckobj_name[3]] = Disastar_Name[4];
+        deck.Table[deckobj_name[4]] = Disastar_Name[9];
 
         // 初期化の段階で現在のデッキ情報に応じてスプライトを変更するようにしなきゃ
     }
