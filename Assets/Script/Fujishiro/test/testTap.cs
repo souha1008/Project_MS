@@ -7,11 +7,13 @@ using UnityEngine.Android;
 
 public class testTap : MonoBehaviour
 {
-    //[SerializeField] CriAtomSource SEsource;
+    [SerializeField] VideoPlayer player;
+    [SerializeField] CriAtomSource SEsource;
     [SerializeField] CriAtomSource BGMsource;
     // Start is called before the first frame update
     void Start()
     {
+        BGMsource.Play();
     }
 
     // Update is called once per frame
@@ -19,12 +21,13 @@ public class testTap : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            BGMsource.Play();
+            //BGMsource.Play();
         }
     }
 
     public void tappp()
     {
-        BGMsource.Play();
+        SEsource.Play();
+        player.Play();
     }
 }
