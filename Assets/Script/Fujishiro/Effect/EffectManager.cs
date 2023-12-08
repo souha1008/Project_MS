@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class EffectManager : MonoBehaviour
@@ -20,15 +21,33 @@ public class EffectManager : MonoBehaviour
 
     [SerializeField] Dic_EffectVideoClip dic_evc;
 
+    [SerializeField] bool DEBUG = false;
+    [SerializeField] Button[] buttons;
+
     public enum DISASTAR_TYPE
     {
-        IceAge = 0,
+        Meteor,
+        EarthQuake,
+        Hurricane,
+        ThunderStome,
+        Tsunami,
+        Eruption,
+        Plague,
+        Desert,
+        IceAge,
+        BigFire
     }
 
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
+
+        if (DEBUG)
+        {
+            buttons[0].onClick.AddListener(Effect_IceAge);
+            buttons[1].onClick.AddListener(Effect_ThunderStome);
+        }
     }
 
     // Update is called once per frame
@@ -48,6 +67,10 @@ public class EffectManager : MonoBehaviour
             case DISASTAR_TYPE.IceAge:
                 Effect_IceAge();
                 break;
+
+            case DISASTAR_TYPE.ThunderStome:
+                Effect_ThunderStome();
+                break;
         }
     }
 
@@ -64,7 +87,7 @@ public class EffectManager : MonoBehaviour
 
     void Effect_ThunderStome()
     {
-        string effect_name = "IceAge";
+        string effect_name = "ThunderStome";
 
         Far_Player.clip = dic_evc.Table[effect_name][0];
 

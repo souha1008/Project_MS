@@ -9,39 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/sugimoto/StageSelect.unity
     guid: 161d37bbf765aad4281c1b28a96ab1d8
   - enabled: 0
-    path: Assets/Script/sugimoto/Savanna01.unity
-    guid: ac1fb4e8b1bda5a4e906ef176f90f88c
-  - enabled: 0
-    path: Assets/Script/sugimoto/Savanna02.unity
-    guid: 50df5948515d8964796d022dc8c6bba6
-  - enabled: 0
-    path: Assets/Script/sugimoto/Savanna03.unity
-    guid: 971e2d45097e51d48a6d34924a4e42db
-  - enabled: 0
-    path: Assets/Script/sugimoto/desert01.unity
-    guid: d44ffdae4827ef64d855795941391abe
-  - enabled: 0
-    path: Assets/Script/sugimoto/desert02.unity
-    guid: 01baaf22b4021234b9cfdfdd32d6b638
-  - enabled: 0
-    path: Assets/Script/sugimoto/desert03.unity
-    guid: d5e296488a8ef60458644df6483d5a10
-  - enabled: 0
-    path: Assets/Script/sugimoto/jungle01.unity
-    guid: 09939af966d748e4db34640d096bf704
-  - enabled: 0
-    path: Assets/Script/sugimoto/jungle02.unity
-    guid: 975a193e89ef3d243bb40525131e3c63
-  - enabled: 0
-    path: Assets/Script/sugimoto/jungle03.unity
-    guid: ff7d1ce8d9365624cb0ecd80226bd3bc
-  - enabled: 0
-    path: Assets/Script/sugimoto/property.unity
-    guid: 24d94d4da05a9644d80b1613917f4584
-  - enabled: 0
-    path: Assets/Script/sugimoto/deck.unity
-    guid: 555cfe16235aef74587577031e017e15
-  - enabled: 0
     path: Assets/Scenes/kawamura/spec scene/spec scene.unity
     guid: b69908730a173024ca0548c38533bc1c
   - enabled: 1
