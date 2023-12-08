@@ -144,6 +144,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.IceAge);
 
             if (Animal.animalList != null)
             {

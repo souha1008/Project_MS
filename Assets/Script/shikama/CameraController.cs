@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     Vector2 floorLeftBottom;
     Vector2 floorRightTop;
 
-    [SerializeField] float maxCameraSizeMag = 5.0f;
+    float maxCameraSizeMag = 5.0f;
     [SerializeField] float minCameraSizeMag = 2.0f;
 
     [SerializeField] float dragSpeedMag = 0.5f;

@@ -102,57 +102,66 @@ public class GameSetting : MonoBehaviour
 
     private void SetEnvButtonAction(Button button , string s)
     {
-        button.transform.GetChild(0).GetComponent<Text>().text = "";
         switch (s)
         {
             case "è¦Î" :
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Meteo());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "’nk":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Earthquake());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "ƒnƒŠƒP[ƒ“":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Hurricane());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "—‹‰J":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Thunderstorm());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "’Ã”g":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Tsunami());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "•¬‰Î":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Eruption());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "‰u•a":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Plague());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "»”™‰»":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().Desertification());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "•X‰ÍŠú":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().IceAge());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             case "‘å‰ÎÐ":
                 button.onClick.AddListener(() => button.GetComponent<EnvironmentButton>().BigFire());
                 button.image.sprite = GetEnvSprite(s);
+                button.gameObject.name = s;
                 break;
 
             default:
