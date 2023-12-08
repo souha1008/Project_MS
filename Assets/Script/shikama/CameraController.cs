@@ -31,6 +31,9 @@ public class CameraController : MonoBehaviour
             // 最大サイズ、最小サイズ設定    
             maxCameraSize = baseHorizontalSize / Camera.main.aspect; 
             minCameraSize = minCameraSizeMag * 16.0f / 9.0f / Camera.main.aspect;
+            
+            // カメラを最大サイズに設定
+            Camera.main.orthographicSize = maxCameraSize;
         }
 
         { // カメラ位置設定
@@ -47,6 +50,17 @@ public class CameraController : MonoBehaviour
             // カメラが地面の下を映さないよう設定
             Camera.main.transform.SetPositionY(floorLeftBottom.y + Mathf.Abs(rightTop.y - leftBottom.y) / 2);
             Camera.main.transform.SetPositionX(floorRightTop.x - Mathf.Abs(rightTop.x - leftBottom.x) / 2);
+            
+
+            if (leftBottom.x < floorLeftBottom.x)
+            {
+                Camera.main.transform.SetPositionX(floorLeftBottom.x + Mathf.Abs(rightTop.x - leftBottom.x) / 2);
+            }
+
+            if (rightTop.x > floorRightTop.x)
+            {
+                Camera.main.transform.SetPositionX(floorRightTop.x - Mathf.Abs(rightTop.x - leftBottom.x) / 2);
+            }
         }
     }
 
