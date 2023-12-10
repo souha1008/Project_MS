@@ -2,24 +2,43 @@ using Kogane;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class EffectManager : MonoBehaviour
 {
+    //[Serializable]
+    //public class StringVideoClipKeyValuePair : SerializableKeyValuePair<string, VideoClip[]> { }
+
+    //[Serializable]
+    //public class Dic_EffectVideoClip : SerializableDictionary<string, VideoClip[], StringVideoClipKeyValuePair> { }
+
+    // 新しいの
     [Serializable]
-    public class StringVideoClipKeyValuePair : SerializableKeyValuePair<string, VideoClip[]> { }
+    public class StringEffectStateKeyValuePair : SerializableKeyValuePair<string, BaseEffectState> { }
 
     [Serializable]
-    public class Dic_EffectVideoClip : SerializableDictionary<string, VideoClip[], StringVideoClipKeyValuePair> { }
+    public class Dic_EffectBase : SerializableDictionary<string, BaseEffectState, StringEffectStateKeyValuePair> { }
+
+    [SerializeField] Dic_EffectBase dic_base;
+
+    [SerializeField] Camera mainCamera;
+
+    [SerializeField] VideoPlayer[] Videoplayers;
+
+    [SerializeField] RawImage effect_rawImage;
+    Color alphazero = new Color(255, 255, 255, 0);
+
+    // 新しいの終わり
 
     public static EffectManager Instance { get; private set; }
 
-    [SerializeField] VideoPlayer Far_Player;
-    [SerializeField] VideoPlayer Near_Player;
+    //[SerializeField] VideoPlayer Far_Player;
+    //[SerializeField] VideoPlayer Near_Player;
 
-    [SerializeField] Dic_EffectVideoClip dic_evc;
+    //[SerializeField] Dic_EffectVideoClip dic_evc;
 
     [SerializeField] bool DEBUG = false;
     [SerializeField] Button[] buttons;
@@ -42,6 +61,8 @@ public class EffectManager : MonoBehaviour
     void Start()
     {
         Instance = this;
+        effect_rawImage.texture = null;
+        SetrawImageColor(alphazero);
 
         if (DEBUG)
         {
@@ -54,6 +75,11 @@ public class EffectManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void SetrawImageColor(Color color)
+    {
+        effect_rawImage.color = color;
     }
 
     public void EffectPlay(DISASTAR_TYPE type)
@@ -76,28 +102,95 @@ public class EffectManager : MonoBehaviour
 
     void Effect_IceAge()
     {
-        string effect_name = "IceAge";
-        Near_Player.clip = dic_evc.Table[effect_name][0];
-        Far_Player.clip = dic_evc.Table[effect_name][1];
+        // 古いの
+        {
 
-        // エフェクト再生
-        Far_Player.Play();
-        Near_Player.Play();
+            //string effect_name = "IceAge";
+            //Near_Player.clip = dic_evc.Table[effect_name][0];
+            //Far_Player.clip = dic_evc.Table[effect_name][1];
+
+            //// エフェクト再生
+            //Far_Player.Play();
+            //Near_Player.Play();
+
+        }
+        // 古いの終わり
+
+
+        // 新しいの
+        var state = dic_base.Table["IceAge"];
+
+        // RawImage_Canvasを使う
+        effect_rawImage.texture = state.renderTextures[0];
+        SetrawImageColor(new Color(255, 255, 255, 255));
+
+        // ビデオプレーヤー０番目をニアーにして
+        // 画面エフェクト付ける
+        Videoplayers[0].renderMode = VideoRenderMode.CameraNearPlane;
+        Videoplayers[0].targetCamera = mainCamera;
+        Videoplayers[0].clip = state.clip[0];
+
+        // ビデオプレーヤー１番目はレンダーテクスチャ
+        Videoplayers[1].renderMode = VideoRenderMode.RenderTexture;
+        Videoplayers[1].clip = state.clip[1];
+        Videoplayers[1].targetTexture = state.renderTextures[0];
+        Videoplayers[1].aspectRatio = VideoAspectRatio.Stretch;
+
+        if(DEBUG)
+        {
+            Videoplayers[0].playbackSpeed = 3;
+            Videoplayers[1].playbackSpeed = 3;
+        }
+
+        StartCoroutine(CheckEnd(Videoplayers[1]));
+        VideoPlay();
+    }
+
+    IEnumerator CheckEnd(VideoPlayer player)
+    {
+        yield return new WaitForSeconds(2);
+
+        while (true)
+        {
+            if (!player.isPlaying)
+            {
+                Debug.Log(player + "：再生終了");
+                effect_rawImage.texture = null;
+                SetrawImageColor(alphazero);
+                yield break;
+            }
+            yield return null;
+        }
     }
 
     void Effect_ThunderStome()
     {
-        string effect_name = "ThunderStome";
+        // 古いの
+        {
+            //string effect_name = "ThunderStome";
 
-        Far_Player.clip = dic_evc.Table[effect_name][0];
+            //Far_Player.clip = dic_evc.Table[effect_name][0];
 
-        // エフェクト再生
-        Far_Player.Play();
+            //// エフェクト再生
+            //Far_Player.Play();
+        }
+        // 古いのおわり
+
+        // 新しいの
     }
 
     void Effect_EarthQuake()
     {
         
+    }
+
+
+    void VideoPlay()
+    {
+        foreach (var v in Videoplayers)
+        {
+            v.Play();
+        }
     }
     
     

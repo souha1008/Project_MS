@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bad18cd676e601438dc3c37179e2970, type: 3}
+  m_Name: EffectState_IceAge
+  m_EditorClassIdentifier: 
+  name: IceAge
+  clip:
+  - {fileID: 32900000, guid: 1f81f4e1d74d663498be687f776cac1f, type: 3}
+  - {fileID: 32900000, guid: 91514c0e2602d6a4e900867b7d74508c, type: 3}
+  renderTextures:
+  - {fileID: 8400000, guid: 8ac95ac93012d26428153093a982b89f, type: 2}
