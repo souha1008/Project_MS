@@ -14,9 +14,14 @@ public class BaseEffectState : ScriptableObject
     [Header("使うレンダーテクスチャ")]
     public RenderTexture[] renderTextures;
 
+    //[Header("使うプレハブ")]
+    //public GameObject prefab;
 
-    public virtual void PlayEffect()
+    public void ReleaseRenderTexture ()
     {
-        
+        foreach(var rt in renderTextures)
+        {
+            rt.Release();
+        }
     }
 }

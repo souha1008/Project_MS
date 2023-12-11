@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49848cae9b10c1e42af2aa2071d90114, type: 3}
+  m_Name: EffectState_ThunderStorm
+  m_EditorClassIdentifier: 
+  name: 
+  clip:
+  - {fileID: 32900000, guid: b628c1a849c703548bd738782d98ac8b, type: 3}
+  renderTextures:
+  - {fileID: 8400000, guid: 19f2ae52e895b0c46a716221b9a0e45d, type: 2}

@@ -40,6 +40,7 @@ public class EffectManager : MonoBehaviour
 
     //[SerializeField] Dic_EffectVideoClip dic_evc;
 
+    [Header("以下デバッグ用")]
     [SerializeField] bool DEBUG = false;
     [SerializeField] Button[] buttons;
 
@@ -61,8 +62,7 @@ public class EffectManager : MonoBehaviour
     void Start()
     {
         Instance = this;
-        effect_rawImage.texture = null;
-        SetrawImageColor(alphazero);
+        Reset_rawImage(dic_base.Table["IceAge"]);
 
         if (DEBUG)
         {
@@ -74,7 +74,7 @@ public class EffectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void SetrawImageColor(Color color)
@@ -84,11 +84,11 @@ public class EffectManager : MonoBehaviour
 
     public void EffectPlay(DISASTAR_TYPE type)
     {
-        // 発動するエフェクトのstring情報を取得
+        StopAllCoroutines();
 
 
         // それぞれの関数を実行
-        switch(type)
+        switch (type)
         {
             case DISASTAR_TYPE.IceAge:
                 Effect_IceAge();
@@ -120,9 +120,13 @@ public class EffectManager : MonoBehaviour
         // 新しいの
         var state = dic_base.Table["IceAge"];
 
-        // RawImage_Canvasを使う
-        effect_rawImage.texture = state.renderTextures[0];
-        SetrawImageColor(new Color(255, 255, 255, 255));
+        // コルーチンを全て止める
+        StopAllCoroutines();
+        // RenderTextureをリリース
+        Reset_rawImage(state);
+
+        // RenderTextureをリリース
+        state.renderTextures[0].Release();
 
         // ビデオプレーヤー０番目をニアーにして
         // 画面エフェクト付ける
@@ -136,31 +140,12 @@ public class EffectManager : MonoBehaviour
         Videoplayers[1].targetTexture = state.renderTextures[0];
         Videoplayers[1].aspectRatio = VideoAspectRatio.Stretch;
 
-        if(DEBUG)
-        {
-            Videoplayers[0].playbackSpeed = 3;
-            Videoplayers[1].playbackSpeed = 3;
-        }
+        // RawImage_Canvasを使う
+        SetrawImageColor(new Color(255, 255, 255, 255));
+        effect_rawImage.texture = state.renderTextures[0];
 
-        StartCoroutine(CheckEnd(Videoplayers[1]));
         VideoPlay();
-    }
-
-    IEnumerator CheckEnd(VideoPlayer player)
-    {
-        yield return new WaitForSeconds(2);
-
-        while (true)
-        {
-            if (!player.isPlaying)
-            {
-                Debug.Log(player + "：再生終了");
-                effect_rawImage.texture = null;
-                SetrawImageColor(alphazero);
-                yield break;
-            }
-            yield return null;
-        }
+        StartCoroutine(CheckEnd(Videoplayers[1], state));
     }
 
     void Effect_ThunderStome()
@@ -177,11 +162,35 @@ public class EffectManager : MonoBehaviour
         // 古いのおわり
 
         // 新しいの
+        var state = dic_base.Table["ThunderStorm"];
+
+        // コルーチンを止める
+        StopAllCoroutines();
+        // RenderTextureをリリース
+        Reset_rawImage(state);
+
+        // effect_rawImageの位置調整
+
+        Videoplayers[0].renderMode = VideoRenderMode.RenderTexture;
+        Videoplayers[0].clip = state.clip[0];
+        Videoplayers[0].targetTexture = state.renderTextures[0];
+        Videoplayers[0].aspectRatio = VideoAspectRatio.Stretch;
+
+        Videoplayers[1].clip = null;
+        Videoplayers[1].targetTexture = null;
+
+        VideoPlay();
+
+        // effect_rawImageを使う
+        SetrawImageColor(new Color(255, 255, 255, 255));
+        effect_rawImage.texture = state.renderTextures[0];
+
+        StartCoroutine(CheckEnd(Videoplayers[0], state));
     }
 
     void Effect_EarthQuake()
     {
-        
+
     }
 
 
@@ -192,6 +201,29 @@ public class EffectManager : MonoBehaviour
             v.Play();
         }
     }
-    
-    
+
+    void Reset_rawImage(BaseEffectState bes)
+    {
+        effect_rawImage.texture = null;
+        SetrawImageColor(alphazero);
+        bes.ReleaseRenderTexture();
+    }
+
+    IEnumerator CheckEnd(VideoPlayer player, BaseEffectState bes)
+    {
+        yield return new WaitForSeconds(2);
+
+        while (true)
+        {
+            if (!player.isPlaying)
+            {
+                Debug.Log(player + "：再生終了");
+                Reset_rawImage(bes);
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+
 }
