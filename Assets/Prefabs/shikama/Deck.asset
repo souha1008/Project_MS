@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a82b1bfaa45f943be7d530b16e48c2, type: 3}
   m_Name: Deck
   m_EditorClassIdentifier: 
-  Disaster1: "\u9695\u77F3"
-  Disaster2: "\u5730\u9707"
+  Disaster1: "\u6C37\u6CB3\u671F"
+  Disaster2: "\u96F7\u96E8"
   Disaster3: "\u30CF\u30EA\u30B1\u30FC\u30F3"
-  Disaster4: "\u96F7\u96E8"
+  Disaster4: "\u5730\u9707"
   Disaster5: "\u6D25\u6CE2"
