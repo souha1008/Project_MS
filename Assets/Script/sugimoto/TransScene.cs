@@ -9,7 +9,8 @@ public class TransScene : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(NextScene);
+        //SceneManager.LoadScene(NextScene);
+        Initiate.Fade(NextScene, Color.white, 3.0f);
     }
 
 }
