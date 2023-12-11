@@ -16,6 +16,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.Meteor);
 
             if (Animal.animalList != null)
             {
@@ -32,6 +33,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.EarthQuake);
 
             if (Animal.animalList != null)
             {
@@ -48,6 +50,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.Hurricane);
 
             if (Animal.animalList != null)
             {
@@ -64,6 +67,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.ThunderStome);
 
             if (Animal.animalList != null)
             {
@@ -80,6 +84,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.Tsunami);
 
             if (Animal.animalList != null)
             {
@@ -95,6 +100,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.Eruption);
 
             if (Animal.animalList != null)
             {
@@ -111,6 +117,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.Plague);
 
             if (Animal.animalList != null)
             {
@@ -127,6 +134,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.Desert);
 
             if (Animal.animalList != null)
             {
@@ -161,6 +169,7 @@ public class EnvironmentButton : MonoBehaviour
         if (gameSetting.cost >= gameSetting.envCost)
         {
             gameSetting.cost -= gameSetting.envCost;
+            EffectManager.Instance.EffectPlay(EffectManager.DISASTAR_TYPE.BigFire);
 
             if (Animal.animalList != null)
             {

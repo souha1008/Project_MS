@@ -363,7 +363,7 @@ PrefabInstance:
     - target: {fileID: 5544600648767078352, guid: b9f662b986e43a9459240bc4ff4e7345, type: 3}
       propertyPath: m_TargetCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1142530044}
     - target: {fileID: 5544600648767078352, guid: b9f662b986e43a9459240bc4ff4e7345, type: 3}
       propertyPath: m_ControlledAudioTrackCount
       value: 0
@@ -4547,7 +4547,7 @@ PrefabInstance:
     - target: {fileID: 5544600648767078352, guid: b9f662b986e43a9459240bc4ff4e7345, type: 3}
       propertyPath: m_TargetCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1142530044}
     - target: {fileID: 7709078911390294637, guid: b9f662b986e43a9459240bc4ff4e7345, type: 3}
       propertyPath: m_Name
       value: Effect_Near
