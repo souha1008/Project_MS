@@ -97,6 +97,10 @@ public class EffectManager : MonoBehaviour
             case DISASTAR_TYPE.ThunderStome:
                 Effect_ThunderStome();
                 break;
+
+            case DISASTAR_TYPE.Eruption:
+                Effect_Eruption();
+                break;
         }
     }
 
@@ -124,9 +128,6 @@ public class EffectManager : MonoBehaviour
         StopAllCoroutines();
         // RenderTextureをリリース
         Reset_rawImage(state);
-
-        // RenderTextureをリリース
-        state.renderTextures[0].Release();
 
         // ビデオプレーヤー０番目をニアーにして
         // 画面エフェクト付ける
@@ -193,12 +194,24 @@ public class EffectManager : MonoBehaviour
 
     }
 
+    void Effect_Eruption()
+    {
+
+    }
 
     void VideoPlay()
     {
         foreach (var v in Videoplayers)
         {
             v.Play();
+        }
+    }
+
+    void Prepare()
+    {
+        foreach(var dic in dic_base.Table) 
+        {
+            
         }
     }
 
