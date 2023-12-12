@@ -25,11 +25,11 @@ public class UIController : MonoBehaviour
     //SubPanelをアクティブにする
     public void SelectStage()
     {
-        StagePanel.SetActive(false);
+        StagePanel.GetComponent<Button>().interactable = false;
         SubPanel.SetActive(true);
-        Buttan01.GetComponent<Button>().interactable = false;
-        Buttan02.GetComponent<Button>().interactable = false;
-        Buttan03.GetComponent<Button>().interactable = false;
+        Buttan01.SetActive(false);
+        Buttan02.SetActive(false);
+        Buttan03.SetActive(false);
     }
 
 
@@ -37,10 +37,10 @@ public class UIController : MonoBehaviour
     //StagePanelをアクティブにする
     public void BackToMenu()
     {
-        StagePanel.SetActive(true);
+        StagePanel.GetComponent<Button>().interactable = true;
         SubPanel.SetActive(false);
-        Buttan01.GetComponent<Button>().interactable = true;
-        Buttan02.GetComponent<Button>().interactable = true;
-        Buttan03.GetComponent<Button>().interactable = true;
+        Buttan01.SetActive(true);
+        Buttan02.SetActive(true);
+        Buttan03.SetActive(true);
     }
 }
