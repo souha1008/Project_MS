@@ -2107,6 +2107,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
+      propertyPath: NextScene
+      value: 1-1
+      objectReference: {fileID: 0}
     - target: {fileID: 8811972932018584838, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
