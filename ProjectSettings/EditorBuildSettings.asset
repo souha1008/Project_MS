@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/kawamura/title scene.unity
     guid: 3a481cafdd8288c40b3f7523466bccb1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/sugimoto/StageSelect.unity
     guid: 161d37bbf765aad4281c1b28a96ab1d8
   - enabled: 0

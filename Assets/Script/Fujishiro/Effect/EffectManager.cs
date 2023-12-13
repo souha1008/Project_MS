@@ -1,20 +1,12 @@
 using Kogane;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-//using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class EffectManager : MonoBehaviour
 {
-    //[Serializable]
-    //public class StringVideoClipKeyValuePair : SerializableKeyValuePair<string, VideoClip[]> { }
-
-    //[Serializable]
-    //public class Dic_EffectVideoClip : SerializableDictionary<string, VideoClip[], StringVideoClipKeyValuePair> { }
-
     // 新しいの
     [Serializable]
     public class StringEffectStateKeyValuePair : SerializableKeyValuePair<string, BaseEffectState> { }
@@ -34,11 +26,6 @@ public class EffectManager : MonoBehaviour
     // 新しいの終わり
 
     public static EffectManager Instance { get; private set; }
-
-    //[SerializeField] VideoPlayer Far_Player;
-    //[SerializeField] VideoPlayer Near_Player;
-
-    //[SerializeField] Dic_EffectVideoClip dic_evc;
 
     [Header("以下デバッグ用")]
     [SerializeField] bool DEBUG = false;
@@ -63,6 +50,7 @@ public class EffectManager : MonoBehaviour
     {
         Instance = this;
         Reset_rawImage(dic_base.Table["IceAge"]);
+        effect_rawImage.enabled = false;
 
         if (DEBUG)
         {
@@ -106,34 +94,22 @@ public class EffectManager : MonoBehaviour
 
     void Effect_IceAge()
     {
-        // 古いの
-        {
-
-            //string effect_name = "IceAge";
-            //Near_Player.clip = dic_evc.Table[effect_name][0];
-            //Far_Player.clip = dic_evc.Table[effect_name][1];
-
-            //// エフェクト再生
-            //Far_Player.Play();
-            //Near_Player.Play();
-
-        }
-        // 古いの終わり
-
-
         // 新しいの
         var state = dic_base.Table["IceAge"];
 
-        // コルーチンを全て止める
-        StopAllCoroutines();
         // RenderTextureをリリース
         Reset_rawImage(state);
+
+        // イベントハンドラセット
+        // 引数は使うvideoplayersの要素番号
+        VideoplayerStenby(1);
 
         // ビデオプレーヤー０番目をニアーにして
         // 画面エフェクト付ける
         Videoplayers[0].renderMode = VideoRenderMode.CameraNearPlane;
         Videoplayers[0].targetCamera = mainCamera;
         Videoplayers[0].clip = state.clip[0];
+        Videoplayers[0].Prepare();
 
         // ビデオプレーヤー１番目はレンダーテクスチャ
         Videoplayers[1].renderMode = VideoRenderMode.RenderTexture;
@@ -141,50 +117,34 @@ public class EffectManager : MonoBehaviour
         Videoplayers[1].targetTexture = state.renderTextures[0];
         Videoplayers[1].aspectRatio = VideoAspectRatio.Stretch;
 
-        // RawImage_Canvasを使う
-        SetrawImageColor(new Color(255, 255, 255, 255));
-        effect_rawImage.texture = state.renderTextures[0];
+        // 読み込み
+        Videoplayers[1].Prepare();
 
-        VideoPlay();
         StartCoroutine(CheckEnd(Videoplayers[1], state));
     }
 
     void Effect_ThunderStome()
     {
-        // 古いの
-        {
-            //string effect_name = "ThunderStome";
-
-            //Far_Player.clip = dic_evc.Table[effect_name][0];
-
-            //// エフェクト再生
-            //Far_Player.Play();
-        }
-        // 古いのおわり
-
         // 新しいの
         var state = dic_base.Table["ThunderStorm"];
 
-        // コルーチンを止める
-        StopAllCoroutines();
         // RenderTextureをリリース
         Reset_rawImage(state);
 
-        // effect_rawImageの位置調整
+        // イベントハンドラセット
+        // 引数は使うvideoplayersの要素番号
+        VideoplayerStenby(0);
 
-        Videoplayers[0].renderMode = VideoRenderMode.RenderTexture;
+        Videoplayers[0].renderMode = VideoRenderMode.APIOnly;
         Videoplayers[0].clip = state.clip[0];
-        Videoplayers[0].targetTexture = state.renderTextures[0];
+        //Videoplayers[0].targetTexture = state.renderTextures[0];
         Videoplayers[0].aspectRatio = VideoAspectRatio.Stretch;
+
+        // 読み込み
+        Videoplayers[0].Prepare();
 
         Videoplayers[1].clip = null;
         Videoplayers[1].targetTexture = null;
-
-        VideoPlay();
-
-        // effect_rawImageを使う
-        SetrawImageColor(new Color(255, 255, 255, 255));
-        effect_rawImage.texture = state.renderTextures[0];
 
         StartCoroutine(CheckEnd(Videoplayers[0], state));
     }
@@ -207,18 +167,30 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-    void Prepare()
+    void VideoplayerStenby(int index)
     {
-        foreach(var dic in dic_base.Table) 
-        {
-            
-        }
+        // イベントハンドラセット
+        Videoplayers[index].prepareCompleted += LoadPrepared; // 読み込み完了で呼ばれる
+        Videoplayers[index].started += MovieStarted;          // Playで呼ばれる
+    }
+
+    void LoadPrepared(VideoPlayer vp)
+    {
+        // RawImage_Canvasを使う
+        SetrawImageColor(new Color(255, 255, 255, 255));
+        effect_rawImage.texture = vp.texture;
+
+
+        VideoPlay();
+    }
+
+    void MovieStarted(VideoPlayer vp)
+    {
+        effect_rawImage.enabled = true;
     }
 
     void Reset_rawImage(BaseEffectState bes)
     {
-        effect_rawImage.texture = null;
-        SetrawImageColor(alphazero);
         bes.ReleaseRenderTexture();
     }
 
