@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class CameraController : MonoBehaviour
 {
@@ -69,6 +71,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         MouseScrollZoom();
+        TouchPinchZoom();
         DragWidthScroll();
     }
 
@@ -111,13 +114,69 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    void TouchPinchZoom()
+    {
+        if (!Touchscreen.current.touches[0].ReadValue().isTap || !Touchscreen.current.touches[1].ReadValue().isTap) return;
+
+        // タッチ位置（スクリーン座標）
+        var pos0 = Touchscreen.current.touches[0].ReadValue().position;
+        var pos1 = Touchscreen.current.touches[1].ReadValue().position;
+
+        // 移動量（スクリーン座標）
+        var delta0 = Touchscreen.current.touches[0].ReadValue().delta;
+        var delta1 = Touchscreen.current.touches[1].ReadValue().delta;
+
+        // 移動前の位置（スクリーン座標）
+        var prevPos0 = pos0 - delta0;
+        var prevPos1 = pos1 - delta1;
+
+        // 距離の変化量を求める
+        var pinchDelta = Vector3.Distance(pos0, pos1) - Vector3.Distance(prevPos0, prevPos1);
+        Debug.Log(pinchDelta);
+
+        if (pinchDelta < 0)
+        {
+            // カメラサイズを指定範囲内で設定
+            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize += 0.1f, minCameraSize, maxCameraSize);
+
+            // カメラ四隅ワールド座標
+            Vector3 rightTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+            Vector3 leftBottom = Camera.main.ScreenToWorldPoint(Vector3.zero);
+
+            // カメラが地面の下を移さないよう設定
+            Camera.main.transform.SetPositionY(floorLeftBottom.y + Mathf.Abs(rightTop.y - leftBottom.y) / 2);
+
+            if (leftBottom.x < floorLeftBottom.x)
+            {
+                Camera.main.transform.SetPositionX(floorLeftBottom.x + Mathf.Abs(rightTop.x - leftBottom.x) / 2);
+            }
+
+            if (rightTop.x > floorRightTop.x)
+            {
+                Camera.main.transform.SetPositionX(floorRightTop.x - Mathf.Abs(rightTop.x - leftBottom.x) / 2);
+            }
+        }
+        else if (pinchDelta > 0)
+        {
+            // カメラサイズを指定範囲内で設定
+            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize -= 0.1f, minCameraSize, maxCameraSize);
+
+            // カメラ四隅ワールド座標
+            Vector3 rightTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+            Vector3 leftBottom = Camera.main.ScreenToWorldPoint(Vector3.zero);
+
+            // カメラが地面の下を移さないよう設定
+            Camera.main.transform.SetPositionY(floorLeftBottom.y + Mathf.Abs(rightTop.y - leftBottom.y) / 2);
+        }
+    }
+
     // マウスドラッグによる横スクロールの関数
     void DragWidthScroll()
     {
         if (Camera.main.orthographicSize == maxCameraSize) return;
 
         //マウスの座標を取得してスクリーン座標を更新
-        Vector3 mousePositionScreen = Input.mousePosition;
+            Vector3 mousePositionScreen = Input.mousePosition;
         //スクリーン座標→ワールド座標
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(mousePositionScreen);
 

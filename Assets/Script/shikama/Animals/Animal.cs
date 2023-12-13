@@ -302,6 +302,13 @@ public class Animal : MonoBehaviour
     /// </summary>
     virtual public void MeteoEvolution() { 
         evolution = EVOLUTION.METEO;
+
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) return;
+            m.material.color = new Color(0.5f,0,0);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -312,12 +319,14 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// ínêk
     /// </summary>
     virtual public void EarthquakeEvolution() 
     {
         evolution = EVOLUTION.EARTHQUAKE;
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -328,11 +337,18 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// ÉnÉäÉPÅ[Éì
     /// </summary>
     virtual public void HurricaneEvolution() { 
         evolution = EVOLUTION.HURRICANE;
+
+        foreach(MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) return;
+            m.material.color = Color.gray;
+        }
 
         if (!particle) return;
         foreach(Sprite particle in gameSetting.particleSprite)
@@ -344,6 +360,7 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// óãâJ
     /// </summary>
@@ -360,6 +377,7 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// í√îg
     /// </summary>
@@ -376,6 +394,7 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// ï¨âŒ
     /// </summary>
@@ -392,6 +411,7 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// âuïa
     /// </summary>
@@ -408,6 +428,7 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// çªîôâª
     /// </summary>
@@ -424,6 +445,7 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// ïXâÕä˙
     /// </summary>
@@ -441,6 +463,7 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// ëÂâŒç–
     /// </summary>
