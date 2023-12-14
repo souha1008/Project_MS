@@ -98,7 +98,6 @@ public class Animal : MonoBehaviour
             hpSlider.maxValue = status.maxHP;
             
         }
-        PlayAttackSE();
     }
 
     /// <summary>
