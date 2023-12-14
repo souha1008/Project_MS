@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FIX_Scene/Stage/savannah/1-1.unity
     guid: 4fffcb59ab8f07d4f830e62db0846483
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/kawamura/seclet sene/select scene.unity
     guid: 83019f1d90da2e640971843b6e9522b5
   - enabled: 0

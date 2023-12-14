@@ -22,7 +22,7 @@ public class MyDebug : MonoBehaviour
 
     public void EnemyInst()
     {
-        Instantiate(enemy, enemyPopPos.transform.position, Quaternion.identity);
+        Instantiate(enemy, enemyPopPos.transform.position, enemy.transform.localRotation);
     }
 
     public void settrigger()

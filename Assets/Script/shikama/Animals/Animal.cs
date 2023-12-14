@@ -60,8 +60,6 @@ public class Animal : MonoBehaviour
     [SerializeField] Slider hpSlider;
     [SerializeField] Animator animator;
 
-    [SerializeField] CriAtomSource seSource;
-
     public static void AnimalListInit()
     {
         if (animalList == null) animalList = new List<Animal>();
@@ -236,7 +234,7 @@ public class Animal : MonoBehaviour
         if (animator) { 
             animator.SetTrigger("Death");
             GetComponent<BoxCollider2D>().enabled = false;
-            hpSlider.fillRect.sizeDelta = new Vector2(0, 0);
+            if(hpSlider) hpSlider.fillRect.sizeDelta = new Vector2(0, 0);
         }
         else
         {
@@ -256,8 +254,14 @@ public class Animal : MonoBehaviour
         // ñΩíÜîªíË
         int r = Random.Range(1, 100);
 
-       if(animator) animator.SetTrigger("Attack");
-    
+        if(animator) animator.SetTrigger("Attack");
+
+        if (!attackObject)
+        {
+            MoveMode();
+            return;
+        }
+
         if (attackObject && r <= status.hitRate)
         {
             if (attackObject.GetComponent<Animal>()) // çUåÇëŒè€Ç™ìÆï®ÇÃèÍçá
@@ -277,6 +281,11 @@ public class Animal : MonoBehaviour
                 // ì|ÇµÇΩÇ∆Ç´
                 if (attackEnemy.status.hp <= 0)
                 {
+                    if (!attackTarget.ContainsKey(attackObject))
+                    {
+                        MoveMode();
+                        return;
+                    }
                     // ì|ÇµÇΩìGÇçUåÇÇµÇƒÇ¢ÇΩìÆï®ÇÃÉÇÅ[ÉhÇïœçX
                     foreach (Animal animal in attackTarget[attackObject])
                     {
@@ -301,7 +310,10 @@ public class Animal : MonoBehaviour
 
     public void PlayAttackSE()
     {
-        InGameSEManager.instance.PlaySE04();
+        if(tag=="Enemy")
+            InGameSEManager.instance.PlaySE04();
+        else if(tag=="Player")
+            InGameSEManager.instance.PlaySE05();
     }
 
     // Å•Å•Å•Å@Å@êiâªéûèàóù(åpè≥óp)Å@Å@Å•Å•Å•
