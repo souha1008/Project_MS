@@ -15,7 +15,7 @@ MonoBehaviour:
   name: 
   cost: 200
   maxHP: 250
-  attack: 200
+  attack: 2000
   speed: 1.5
   attackSpeed: 1.5
   attackDist: 2

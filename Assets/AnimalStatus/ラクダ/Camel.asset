@@ -14,18 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   cost: 140
-  maxHP: 150
-  attack: 10
+  maxHP: 1500
+  attack: 100
   speed: 1.5
   attackSpeed: 1.5
   attackDist: 2
   hitRate: 100
   dir: 1
-  doubleAttackMag: 0.15
-  attackUpMag: 1.15
+  coolTimeMeteo: 10
+  meteoAttackUp: 15
+  meteoHPHeal: 30
+  meteoSpeedUp: 5
+  meteoHealDist: 3
+  activeTimeThunder: 6
+  coolTimeThunder: 15
+  thunderSpeedUP: 100
   hpHealOne: 0.1
-  hpHealRange: 0.3
-  speedUp: 1.05
   barrierMag: 0.3
   barrierTime: 7
   costDownMag: 0.1

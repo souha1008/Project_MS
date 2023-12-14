@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   cost: 50
-  maxHP: 180
-  attack: 45
-  speed: 1.2
-  attackSpeed: 1.2
+  maxHP: 1800
+  attack: 400
+  speed: 1.4
+  attackSpeed: 1.4
   attackDist: 1
   hitRate: 100
   dir: 0

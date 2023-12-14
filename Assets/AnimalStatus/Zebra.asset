@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   cost: 50
-  maxHP: 200
-  attack: 30
-  speed: 1.5
+  maxHP: 2000
+  attack: 360
+  speed: 1.4
   attackSpeed: 1.5
   attackDist: 1
   hitRate: 100

@@ -14,16 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   cost: 80
-  maxHP: 600
-  attack: 10
+  maxHP: 8000
+  attack: 150
   speed: 1.5
   attackSpeed: 1.5
   attackDist: 0.5
   hitRate: 100
   dir: 1
-  cutMag: 0.8
   activeTimeMeteo: 5
   coolTimeMeteo: 10
-  activeTimeEarthquake: 5
+  meteoCutMag: 80
   coolTimeEarthquake: 0
-  sheldCutMag: 0.5
+  hurricaneSpeedDown: 50
+  coolTimeThunder: 15
+  thunderCutMag: 40
+  eruptionAddDamage: 10
+  coolTimePlague: 6
+  activeTimeDesert: 8
+  coolTimeDesert: 15
+  desertDamagePos: 1
+  desertDamageSecond: 3
+  desertDamageMag: 1
+  coolTimeIceAge: 4
+  iceAgeStopTime: 2
