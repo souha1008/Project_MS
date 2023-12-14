@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d461cf26f88de134ab290a85198abf1d, type: 3}
-  m_Name: Effect State_Meteor
+  m_Script: {fileID: 11500000, guid: 3a6bccec8f4d23e4486a307898feda11, type: 3}
+  m_Name: Effect State_Eruption
   m_EditorClassIdentifier: 
-  name: Meteor
-  clip: []
+  name: 
+  clip:
+  - {fileID: 32900000, guid: f6d2bf3603c65a5449776b2b0f64ccb1, type: 3}
   renderTextures: []
-  prefab: {fileID: 2063480404405789971, guid: 923c71cf6ea59544ba0a0022b33746b4, type: 3}
-  randomAreaSize: {x: 18.3, y: 11}
-  randomCenterPostion: {x: 23.18, y: 19.6}
-  isPlay: 0
+  prefab: {fileID: 0}

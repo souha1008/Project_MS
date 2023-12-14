@@ -7,4 +7,6 @@ public class EffectState_Meteor : BaseEffectState
 {
     public Vector2 randomAreaSize;
     public Vector2 randomCenterPostion;
+
+    public bool isPlay;
 }

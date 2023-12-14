@@ -56,7 +56,7 @@ public class EffectManager : MonoBehaviour
         {
             buttons[0].onClick.AddListener(Effect_IceAge);
             buttons[1].onClick.AddListener(Effect_ThunderStome);
-            buttons[2].onClick.AddListener(Effect_Meteor);
+            buttons[2].onClick.AddListener(Effect_Eruption);
         }
     }
 
@@ -117,9 +117,9 @@ public class EffectManager : MonoBehaviour
         Videoplayers[0].Prepare();
 
         // ビデオプレーヤー１番目はレンダーテクスチャ
-        Videoplayers[1].renderMode = VideoRenderMode.RenderTexture;
+        Videoplayers[1].renderMode = VideoRenderMode.APIOnly;
         Videoplayers[1].clip = state.clip[1];
-        Videoplayers[1].targetTexture = state.renderTextures[0];
+        //Videoplayers[1].targetTexture = state.renderTextures[0];
         Videoplayers[1].aspectRatio = VideoAspectRatio.Stretch;
 
         // 読み込み
@@ -156,9 +156,9 @@ public class EffectManager : MonoBehaviour
 
     void Effect_Meteor()
     {
-        // メテオプレハブを生成する
         var state = (EffectState_Meteor)dic_base.Table["Meteor"];
 
+        if(!state.isPlay)
         StartCoroutine(InstanceMeteor(state));
         
     }
@@ -166,6 +166,7 @@ public class EffectManager : MonoBehaviour
     IEnumerator InstanceMeteor(EffectState_Meteor state)
     {
         int lc = 0;
+        state.isPlay = true;
         while(lc < 10)
         {
             // ポジションレンジの決定
@@ -193,12 +194,32 @@ public class EffectManager : MonoBehaviour
             var random_time = UnityEngine.Random.Range(0.3f, 1.0f);
             yield return new WaitForSeconds(random_time);
         }
+
+        state.isPlay = false;
         yield return null;
     }
 
     void Effect_Eruption()
     {
+        var state = (EffectState_Eruption)dic_base.Table["Eruption"];
 
+        Reset_rawImage(state);
+        VideoplayerStenby(0);
+
+        Videoplayers[0].renderMode = VideoRenderMode.APIOnly;
+        Videoplayers[0].clip = state.clip[0];
+        Videoplayers[0].aspectRatio = VideoAspectRatio.Stretch;
+
+        Videoplayers[0].Prepare();
+
+        Videoplayers[1].clip = null;
+        Videoplayers[1].targetTexture = null;
+
+        GameObject.Find("mounts").GetComponent<Animator>().SetTrigger("Action");
+        effect_rawImage.gameObject.transform.position = new Vector3(8.22f, -0.53f, 6.0f);
+        effect_rawImage.GetComponent<Animator>().SetTrigger("Eruption_Action");
+        
+        StartCoroutine(CheckEnd(Videoplayers[0], state));
     }
 
     void VideoPlay()

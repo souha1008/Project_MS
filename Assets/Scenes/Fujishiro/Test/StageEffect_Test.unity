@@ -440,18 +440,6 @@ PrefabInstance:
       propertyPath: buttons.Array.data[2]
       value: 
       objectReference: {fileID: 897200669}
-    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
-      propertyPath: dic_base.m_list.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
-      propertyPath: dic_base.m_list.Array.data[2].m_key
-      value: Meteor
-      objectReference: {fileID: 0}
-    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
-      propertyPath: dic_base.m_list.Array.data[2].m_value
-      value: 
-      objectReference: {fileID: 11400000, guid: b9ef68675f6f47c4282c8d4edb65dc6e, type: 2}
     - target: {fileID: 9158394288493756532, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: m_Name
       value: NewDisastarEffectSetting

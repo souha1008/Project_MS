@@ -19,9 +19,13 @@ public class BaseEffectState : ScriptableObject
 
     public void ReleaseRenderTexture ()
     {
-        foreach(var rt in renderTextures)
+        if (renderTextures != null)
         {
-            rt.Release();
+
+            foreach (var rt in renderTextures)
+            {
+                rt.Release();
+            }
         }
     }
 }
