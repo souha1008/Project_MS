@@ -14,8 +14,8 @@ public class BaseEffectState : ScriptableObject
     [Header("使うレンダーテクスチャ")]
     public RenderTexture[] renderTextures;
 
-    //[Header("使うプレハブ")]
-    //public GameObject prefab;
+    [Header("使うプレハブ")]
+    public GameObject prefab;
 
     public void ReleaseRenderTexture ()
     {

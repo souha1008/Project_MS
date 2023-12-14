@@ -56,6 +56,7 @@ public class EffectManager : MonoBehaviour
         {
             buttons[0].onClick.AddListener(Effect_IceAge);
             buttons[1].onClick.AddListener(Effect_ThunderStome);
+            buttons[2].onClick.AddListener(Effect_Meteor);
         }
     }
 
@@ -88,6 +89,10 @@ public class EffectManager : MonoBehaviour
 
             case DISASTAR_TYPE.Eruption:
                 Effect_Eruption();
+                break;
+
+            case DISASTAR_TYPE.Meteor:
+                Effect_Meteor();
                 break;
         }
     }
@@ -149,9 +154,46 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(CheckEnd(Videoplayers[0], state));
     }
 
-    void Effect_EarthQuake()
+    void Effect_Meteor()
     {
+        // メテオプレハブを生成する
+        var state = (EffectState_Meteor)dic_base.Table["Meteor"];
 
+        StartCoroutine(InstanceMeteor(state));
+        
+    }
+
+    IEnumerator InstanceMeteor(EffectState_Meteor state)
+    {
+        int lc = 0;
+        while(lc < 10)
+        {
+            // ポジションレンジの決定
+            var MAX_range = new Vector2(state.randomCenterPostion.x + state.randomAreaSize.x / 2,
+                                        state.randomCenterPostion.y + state.randomAreaSize.y / 2);
+            var MIN_range = new Vector2(state.randomCenterPostion.x - state.randomAreaSize.x / 2,
+                                        state.randomCenterPostion.y - state.randomAreaSize.y / 2);
+            
+            // 生成する位置をランダムに決定
+            var random_x = UnityEngine.Random.Range(MIN_range.x, MAX_range.x);
+            var random_y = UnityEngine.Random.Range(MIN_range.y, MAX_range.y);
+
+            // 生成
+            var meteor = Instantiate(state.prefab);
+            meteor.transform.position = new Vector3(random_x, random_y, 14.0f);
+
+            var size = 1.0f * meteor.gameObject.transform.localScale.x * UnityEngine.Random.Range(0.3f, 1.0f);
+            var meteorchild = meteor.gameObject.transform.GetChild(0);
+            meteorchild.gameObject.transform.SetLocalScale(size, size, size);
+            
+            // カウント進める
+            lc++;
+
+            // クールタイム決定
+            var random_time = UnityEngine.Random.Range(0.3f, 1.0f);
+            yield return new WaitForSeconds(random_time);
+        }
+        yield return null;
     }
 
     void Effect_Eruption()
