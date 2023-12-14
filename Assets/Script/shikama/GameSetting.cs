@@ -36,6 +36,9 @@ public class GameSetting : MonoBehaviour
     [SerializeField] Deck deck;
     [SerializeField] Sprite[] envImages;
 
+    [SerializeField] Color fadeColor = Color.black;
+    [SerializeField] float fadespeed = 1.0f;
+
     private void Awake()
     {
         createPosition = createPos.transform.localPosition;
@@ -65,7 +68,7 @@ public class GameSetting : MonoBehaviour
             {
                 clearText.gameObject.SetActive(true);
                 clearText.text = "Game Over";
-                Invoke("ChangeSelectScene", 3.0f);
+                Invoke("ChangeSelectScene", 2.0f);
                 houseDead = true;
             }
 
@@ -73,7 +76,7 @@ public class GameSetting : MonoBehaviour
             {
                 clearText.gameObject.SetActive(true);
                 clearText.text = "Clear!";
-                Invoke("ChangeSelectScene", 3.0f);
+                Invoke("ChangeSelectScene", 2.0f);
                 houseDead = true;
             }
         }
@@ -81,7 +84,7 @@ public class GameSetting : MonoBehaviour
 
     private void ChangeSelectScene()
     {
-        SceneManager.LoadScene("StageSelect");
+        Initiate.Fade("StageSelect", fadeColor, fadespeed);
     }
 
     private void OnApplicationQuit()

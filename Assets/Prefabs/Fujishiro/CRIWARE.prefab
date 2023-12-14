@@ -58,6 +58,10 @@ MonoBehaviour:
     acbFile: Project_MS/Title.acb
     awbFile: 
     loaderStatus: 0
+  - name: InGameSE
+    acbFile: Project_MS/InGameSE.acb
+    awbFile: 
+    loaderStatus: 0
   dspBusSetting: 
   dontDestroyOnLoad: 1
   dontRemoveExistsCueSheet: 0
