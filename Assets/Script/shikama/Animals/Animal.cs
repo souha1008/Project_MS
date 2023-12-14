@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CriWare;
 
 public enum DIRECTION {
     RIGHT = 0,
@@ -58,6 +59,8 @@ public class Animal : MonoBehaviour
 
     [SerializeField] Slider hpSlider;
     [SerializeField] Animator animator;
+
+    [SerializeField] CriAtomSource seSource;
 
     public static void AnimalListInit()
     {
@@ -294,6 +297,11 @@ public class Animal : MonoBehaviour
             }
         }
         else Debug.Log("当たってないよ");
+    }
+
+    public void PlayAttackSE()
+    {
+        InGameSEManager.instance.PlaySE04();
     }
 
     // ▼▼▼　　進化時処理(継承用)　　▼▼▼
