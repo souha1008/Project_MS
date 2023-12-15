@@ -1,6 +1,7 @@
 using Kogane;
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -14,6 +15,12 @@ public class EffectManager : MonoBehaviour
     [Serializable]
     public class Dic_EffectBase : SerializableDictionary<string, BaseEffectState, StringEffectStateKeyValuePair> { }
 
+    [Serializable]
+    public class StringColorKeyValuePair : SerializableKeyValuePair<string, Color> { }
+
+    [Serializable]
+    public class Dic_OverlayColor : SerializableDictionary<string, Color, StringColorKeyValuePair> { }
+
     [SerializeField] Dic_EffectBase dic_base;
 
     [SerializeField] Camera mainCamera;
@@ -22,6 +29,13 @@ public class EffectManager : MonoBehaviour
 
     [SerializeField] RawImage effect_rawImage;
     Color alphazero = new Color(255, 255, 255, 0);
+
+    [SerializeField] Image Overlay_Image;
+    [SerializeField] Dic_OverlayColor Overlay_Color;
+
+    private Animator Overlay_Image_animator;
+    private string Anim_In = "In";
+    private string Anim_Out = "Out";
 
     // 新しいの終わり
 
@@ -51,6 +65,9 @@ public class EffectManager : MonoBehaviour
         Instance = this;
         Reset_rawImage(dic_base.Table["IceAge"]);
         effect_rawImage.enabled = false;
+
+        // オーバーレイイメージアニメーター取得
+        Overlay_Image_animator = Overlay_Image.GetComponent<Animator>();
 
         if (DEBUG)
         {
@@ -104,6 +121,7 @@ public class EffectManager : MonoBehaviour
 
         // RenderTextureをリリース
         Reset_rawImage(state);
+        effect_rawImage.transform.position = new Vector3(0, 0, 6.0f);
 
         // イベントハンドラセット
         // 引数は使うvideoplayersの要素番号
@@ -126,6 +144,10 @@ public class EffectManager : MonoBehaviour
         Videoplayers[1].Prepare();
 
         StartCoroutine(CheckEnd(Videoplayers[1], state));
+
+        // オーバーレイ設定
+        Overlay_Image.color = Overlay_Color.Table["IceAge"];
+        Overlay_Image_animator.SetTrigger(Anim_In);
     }
 
     void Effect_ThunderStome()
@@ -135,6 +157,7 @@ public class EffectManager : MonoBehaviour
 
         // RenderTextureをリリース
         Reset_rawImage(state);
+        effect_rawImage.transform.position = new Vector3(0, 0, 6.0f);
 
         // イベントハンドラセット
         // 引数は使うvideoplayersの要素番号
@@ -152,11 +175,17 @@ public class EffectManager : MonoBehaviour
         Videoplayers[1].targetTexture = null;
 
         StartCoroutine(CheckEnd(Videoplayers[0], state));
+
+        // オーバーレイ設定
+        Overlay_Image.color = Overlay_Color.Table["ThunderStorm"];
+        Overlay_Image_animator.SetTrigger(Anim_In);
     }
 
     void Effect_Meteor()
     {
         var state = (EffectState_Meteor)dic_base.Table["Meteor"];
+
+        effect_rawImage.transform.position = new Vector3(8.22f, 2.04f, 6.0f);
 
         if(!state.isPlay)
         StartCoroutine(InstanceMeteor(state));
@@ -267,6 +296,7 @@ public class EffectManager : MonoBehaviour
             {
                 Debug.Log(player + "：再生終了");
                 Reset_rawImage(bes);
+                Overlay_Image_animator.SetTrigger(Anim_Out);
                 yield break;
             }
             yield return null;
