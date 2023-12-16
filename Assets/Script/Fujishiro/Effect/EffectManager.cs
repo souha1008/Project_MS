@@ -2,6 +2,7 @@ using Kogane;
 using System;
 using System.Collections;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -29,6 +30,7 @@ public class EffectManager : MonoBehaviour
 
     [SerializeField] RawImage effect_rawImage;
     Color alphazero = new Color(255, 255, 255, 0);
+    Animator rawImage_animator;
 
     [SerializeField] Image Overlay_Image;
     [SerializeField] Dic_OverlayColor Overlay_Color;
@@ -67,6 +69,7 @@ public class EffectManager : MonoBehaviour
         effect_rawImage.enabled = false;
 
         // オーバーレイイメージアニメーター取得
+        rawImage_animator = effect_rawImage.GetComponent<Animator>();
         Overlay_Image_animator = Overlay_Image.GetComponent<Animator>();
 
         if (DEBUG)
@@ -115,9 +118,21 @@ public class EffectManager : MonoBehaviour
     }
 
     void Effect_IceAge()
-    {
+    { 
         // 新しいの
         var state = dic_base.Table["IceAge"];
+
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // アニメーターをアウトさせる
+        rawImage_animator.SetTrigger("Eruption_Out");
 
         // RenderTextureをリリース
         Reset_rawImage(state);
@@ -152,8 +167,20 @@ public class EffectManager : MonoBehaviour
 
     void Effect_ThunderStome()
     {
-        // 新しいの
+        // ステート取得
         var state = dic_base.Table["ThunderStorm"];
+
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // アニメーターをアウトさせる
+        rawImage_animator.SetTrigger("Eruption_Out");
 
         // RenderTextureをリリース
         Reset_rawImage(state);
@@ -185,9 +212,21 @@ public class EffectManager : MonoBehaviour
     {
         var state = (EffectState_Meteor)dic_base.Table["Meteor"];
 
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // アニメーターをアウトさせる
+        rawImage_animator.SetTrigger("Eruption_Out");
+
         effect_rawImage.transform.position = new Vector3(8.22f, 2.04f, 6.0f);
 
-        if(!state.isPlay)
+        if(!state.MeteorisPlay)
         StartCoroutine(InstanceMeteor(state));
         
     }
@@ -195,7 +234,7 @@ public class EffectManager : MonoBehaviour
     IEnumerator InstanceMeteor(EffectState_Meteor state)
     {
         int lc = 0;
-        state.isPlay = true;
+        state.MeteorisPlay = true;
         while(lc < 10)
         {
             // ポジションレンジの決定
@@ -224,13 +263,22 @@ public class EffectManager : MonoBehaviour
             yield return new WaitForSeconds(random_time);
         }
 
-        state.isPlay = false;
+        state.MeteorisPlay = false;
         yield return null;
     }
 
     void Effect_Eruption()
     {
         var state = (EffectState_Eruption)dic_base.Table["Eruption"];
+
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
 
         Reset_rawImage(state);
         VideoplayerStenby(0);
@@ -286,6 +334,18 @@ public class EffectManager : MonoBehaviour
         bes.ReleaseRenderTexture();
     }
 
+    void ResetisPlayFlag()
+    {
+        foreach (var i in dic_base.Table)
+        {
+            if (i.Value.isPlay)
+            {
+                i.Value.isPlay = false;
+                return;
+            }
+        }
+    }
+
     IEnumerator CheckEnd(VideoPlayer player, BaseEffectState bes)
     {
         yield return new WaitForSeconds(2);
@@ -295,6 +355,7 @@ public class EffectManager : MonoBehaviour
             if (!player.isPlaying)
             {
                 Debug.Log(player + "：再生終了");
+                bes.SetisPlay(false);
                 Reset_rawImage(bes);
                 Overlay_Image_animator.SetTrigger(Anim_Out);
                 yield break;

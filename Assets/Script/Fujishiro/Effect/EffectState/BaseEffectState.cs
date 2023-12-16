@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -17,6 +18,9 @@ public class BaseEffectState : ScriptableObject
     [Header("使うプレハブ")]
     public GameObject prefab;
 
+    [Header("実行中かどうか")]
+    public bool isPlay;
+
     public void ReleaseRenderTexture ()
     {
         if (renderTextures != null)
@@ -27,5 +31,10 @@ public class BaseEffectState : ScriptableObject
                 rt.Release();
             }
         }
+    }
+
+    public void SetisPlay(bool set)
+    {
+        isPlay = set;
     }
 }
