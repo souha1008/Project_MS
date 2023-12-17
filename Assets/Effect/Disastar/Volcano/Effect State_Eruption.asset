@@ -17,3 +17,5 @@ MonoBehaviour:
   - {fileID: 32900000, guid: f6d2bf3603c65a5449776b2b0f64ccb1, type: 3}
   renderTextures: []
   prefab: {fileID: 0}
+  Anim_Trigger_Name: Volcano
+  isPlay: 0

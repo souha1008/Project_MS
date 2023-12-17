@@ -236,15 +236,16 @@ public class EffectManager : MonoBehaviour
 
         effect_rawImage.transform.position = new Vector3(8.22f, 2.04f, 6.0f);
 
-        if(!state.MeteorisPlay)
         StartCoroutine(InstanceMeteor(state));
-        
+
+        // オーバーレイ設定
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+
     }
 
     IEnumerator InstanceMeteor(EffectState_Meteor state)
     {
         int lc = 0;
-        state.MeteorisPlay = true;
         while(lc < 10)
         {
             // ポジションレンジの決定
@@ -273,7 +274,8 @@ public class EffectManager : MonoBehaviour
             yield return new WaitForSeconds(random_time);
         }
 
-        state.MeteorisPlay = false;
+        state.isPlay = false;
+        Overlay_Image_animator.SetTrigger(Anim_Out);
         yield break;
     }
 
@@ -309,6 +311,9 @@ public class EffectManager : MonoBehaviour
         effect_rawImage.GetComponent<Animator>().SetTrigger("Eruption_Action");
         
         StartCoroutine(CheckEnd(Videoplayers[0], state));
+
+        // オーバーレイ設定
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
     }
 
     void VideoPlay()
@@ -374,23 +379,5 @@ public class EffectManager : MonoBehaviour
             }
             yield return null;
         }
-    }
-
-    IEnumerator OverlayColorChange(Color color)
-    {
-        var flame = 0.0f;
-        while (true)
-        {
-            Debug.Log("色変更中");
-            Overlay_Image.color = Color.Lerp(Overlay_Image.color, color, flame);
-            flame += 0.04f;
-            if (Overlay_Image.color == color)
-            {
-                Debug.Log("色変更完了");
-                yield break; 
-            }
-            yield return null;
-        }
-
     }
 }

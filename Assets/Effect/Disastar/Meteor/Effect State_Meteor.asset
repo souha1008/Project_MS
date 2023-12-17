@@ -16,6 +16,8 @@ MonoBehaviour:
   clip: []
   renderTextures: []
   prefab: {fileID: 2063480404405789971, guid: 923c71cf6ea59544ba0a0022b33746b4, type: 3}
+  Anim_Trigger_Name: Meteor
+  isPlay: 0
   randomAreaSize: {x: 18.3, y: 11}
   randomCenterPostion: {x: 23.18, y: 19.6}
-  isPlay: 0
+  MeteorisPlay: 0
