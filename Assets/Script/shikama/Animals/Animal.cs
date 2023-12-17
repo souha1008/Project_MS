@@ -325,8 +325,8 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
-            if (!m) return;
-            m.material.color = new Color(0.5f,0,0);
+            if (!m) continue;
+            m.material.color = new Color(196.0f / 255.0f, 64.0f / 255.0f, 31.0f / 255.0f);
         }
 
         if (!particle) return;
@@ -347,6 +347,12 @@ public class Animal : MonoBehaviour
     {
         evolution = EVOLUTION.EARTHQUAKE;
 
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) continue;
+            m.material.color = new Color(196.0f / 255.0f, 160.0f / 255.0f, 116.0f / 255.0f);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -366,8 +372,8 @@ public class Animal : MonoBehaviour
 
         foreach(MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
-            if (!m) return;
-            m.material.color = Color.gray;
+            if (!m) continue;
+            m.material.color = new Color(186.0f / 255.0f, 186.0f / 255.0f, 186.0f / 255.0f);
         }
 
         if (!particle) return;
@@ -387,6 +393,13 @@ public class Animal : MonoBehaviour
     virtual public void ThunderstormEvolution()
     { 
         evolution = EVOLUTION.THUNDERSTORM;
+
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) continue;
+            m.material.color = new Color(230.0f / 255.0f, 225.0f / 255.0f, 96.0f / 255.0f);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -404,6 +417,13 @@ public class Animal : MonoBehaviour
     virtual public void TsunamiEvolution() 
     {
         evolution = EVOLUTION.TSUNAMI;
+
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) continue;
+            m.material.color = new Color(127.0f / 255.0f, 176.0f / 255.0f, 212.0f / 255.0f);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -421,6 +441,13 @@ public class Animal : MonoBehaviour
     virtual public void EruptionEvolution()
     {
         evolution = EVOLUTION.ERUPTION;
+
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) continue;
+            m.material.color = new Color(143.0f / 255.0f, 11.0f / 255.0f, 11.0f / 255.0f);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -438,6 +465,13 @@ public class Animal : MonoBehaviour
     virtual public void PlagueEvolution() 
     { 
         evolution = EVOLUTION.PLAGUE;
+
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) continue;
+            m.material.color = new Color(94.0f / 255.0f, 9.0f / 255.0f, 8.0f / 255.0f);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -455,6 +489,13 @@ public class Animal : MonoBehaviour
     virtual public void DesertificationEvolution() 
     { 
         evolution = EVOLUTION.DESERTIFICATION;
+
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) continue;
+            m.material.color = new Color(240.0f / 255.0f, 239.0f / 255.0f, 211.0f / 255.0f);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -473,6 +514,12 @@ public class Animal : MonoBehaviour
     {
         evolution = EVOLUTION.ICEAGE;
 
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) continue;
+            m.material.color = new Color(212.0f / 255.0f, 255.0f / 255.0f, 254.0f / 255.0f);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {
@@ -490,6 +537,13 @@ public class Animal : MonoBehaviour
     virtual public void BigFireEvolution() 
     { 
         evolution = EVOLUTION.BIGFIRE;
+
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (!m) continue;
+            m.material.color = new Color(255.0f / 255.0f, 0.0f / 255.0f, 17.0f / 255.0f);
+        }
+
         if (!particle) return;
         foreach (Sprite particle in gameSetting.particleSprite)
         {

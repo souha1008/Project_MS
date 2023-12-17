@@ -3536,11 +3536,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1044487166989088354, guid: c95ee204f4e074c429f2439ce260458e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -243.1
+      value: -243.09998
       objectReference: {fileID: 0}
     - target: {fileID: 1044487166989088354, guid: c95ee204f4e074c429f2439ce260458e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -123.6
+      value: -123.6001
       objectReference: {fileID: 0}
     - target: {fileID: 1044487166989088354, guid: c95ee204f4e074c429f2439ce260458e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4218,7 +4218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPopPos: {fileID: 327862487}
-  enemy: {fileID: 3184171354041468965, guid: 362f1efaf8c0b474ea6d678eb0eec26b, type: 3}
+  enemy: {fileID: -3006516117393986772, guid: ee9c015676cac814cb33f48f4576f274, type: 3}
   animators:
   - {fileID: 911205831}
   - {fileID: 1176346776}
