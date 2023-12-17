@@ -18,6 +18,9 @@ public class BaseEffectState : ScriptableObject
     [Header("使うプレハブ")]
     public GameObject prefab;
 
+    [Header("Trigger名")]
+    public string Anim_Trigger_Name;
+
     [Header("実行中かどうか")]
     public bool isPlay;
 

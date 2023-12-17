@@ -18,3 +18,6 @@ MonoBehaviour:
   - {fileID: 32900000, guid: 91514c0e2602d6a4e900867b7d74508c, type: 3}
   renderTextures:
   - {fileID: 8400000, guid: 8ac95ac93012d26428153093a982b89f, type: 2}
+  prefab: {fileID: 0}
+  Anim_Trigger_Name: IceAge
+  isPlay: 0

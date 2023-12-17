@@ -17,3 +17,6 @@ MonoBehaviour:
   - {fileID: 32900000, guid: b628c1a849c703548bd738782d98ac8b, type: 3}
   renderTextures:
   - {fileID: 8400000, guid: 19f2ae52e895b0c46a716221b9a0e45d, type: 2}
+  prefab: {fileID: 0}
+  Anim_Trigger_Name: ThunderStorm
+  isPlay: 0

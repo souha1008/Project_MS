@@ -40,6 +40,9 @@ public class EffectManager : MonoBehaviour
     private string Anim_In = "In";
     private string Anim_Out = "Out";
 
+    // １つ前に発動した災害のステータス
+    private BaseEffectState pre_state;
+
     // 新しいの終わり
 
     public static EffectManager Instance { get; private set; }
@@ -95,7 +98,7 @@ public class EffectManager : MonoBehaviour
     public void EffectPlay(DISASTAR_TYPE type)
     {
         StopAllCoroutines();
-
+        //StopCoroutine(CheckEnd(Videoplayers[0], pre_state));
 
         // それぞれの関数を実行
         switch (type)
@@ -123,6 +126,8 @@ public class EffectManager : MonoBehaviour
         Debug.Log("氷河期発動");
         // 新しいの
         var state = dic_base.Table["IceAge"];
+        // 一個前の情報に入れる
+        pre_state = state;
 
         // プレイ中であれば実行しない
         if (state.isPlay) return;
@@ -133,7 +138,7 @@ public class EffectManager : MonoBehaviour
         // プレイ中にする
         state.SetisPlay(true);
 
-        // アニメーターをアウトさせる
+        // 噴火アニメーターをアウトさせる
         rawImage_animator.SetTrigger("Eruption_Out");
 
         // RenderTextureをリリース
@@ -163,9 +168,9 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(CheckEnd(Videoplayers[1], state));
 
         // オーバーレイ設定
-        StartCoroutine(OverlayColorChange(Overlay_Color.Table["IceAge"]));
-        //Overlay_Image.color = Overlay_Color.Table["IceAge"];
-        //Overlay_Image_animator.SetTrigger(Anim_In);
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+
+        Debug.Log("IceAgeメソッド終わり");
     }
 
     void Effect_ThunderStome()
@@ -209,8 +214,7 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(CheckEnd(Videoplayers[0], state));
 
         // オーバーレイ設定
-        Overlay_Image.color = Overlay_Color.Table["ThunderStorm"];
-        Overlay_Image_animator.SetTrigger(Anim_In);
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
     }
 
     void Effect_Meteor()
@@ -357,7 +361,7 @@ public class EffectManager : MonoBehaviour
     IEnumerator CheckEnd(VideoPlayer player, BaseEffectState bes)
     {
         yield return new WaitForSeconds(2);
-
+        Debug.Log("エンド監視");
         while (true)
         {
             if (!player.isPlaying)
@@ -383,9 +387,10 @@ public class EffectManager : MonoBehaviour
             if (Overlay_Image.color == color)
             {
                 Debug.Log("色変更完了");
-                break;
+                yield break; 
             }
+            yield return null;
         }
-        yield break;
+
     }
 }

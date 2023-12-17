@@ -489,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 8400000, guid: 8aa3243459fc1d7439ab9cfdee29ef34, type: 2}
     - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: DEBUG
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: mainCamera
@@ -602,6 +602,10 @@ PrefabInstance:
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: enemyCreateSpeed.Array.data[1]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682567496707210320, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: _cueName
+      value: BGM_INGame01
       objectReference: {fileID: 0}
     - target: {fileID: 2715929072783165296, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: envCost
