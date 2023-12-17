@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -118,7 +119,8 @@ public class EffectManager : MonoBehaviour
     }
 
     void Effect_IceAge()
-    { 
+    {
+        Debug.Log("氷河期発動");
         // 新しいの
         var state = dic_base.Table["IceAge"];
 
@@ -161,12 +163,15 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(CheckEnd(Videoplayers[1], state));
 
         // オーバーレイ設定
-        Overlay_Image.color = Overlay_Color.Table["IceAge"];
-        Overlay_Image_animator.SetTrigger(Anim_In);
+        StartCoroutine(OverlayColorChange(Overlay_Color.Table["IceAge"]));
+        //Overlay_Image.color = Overlay_Color.Table["IceAge"];
+        //Overlay_Image_animator.SetTrigger(Anim_In);
     }
 
     void Effect_ThunderStome()
     {
+        Debug.Log("雷雨発動");
+
         // ステート取得
         var state = dic_base.Table["ThunderStorm"];
 
@@ -210,6 +215,7 @@ public class EffectManager : MonoBehaviour
 
     void Effect_Meteor()
     {
+        Debug.Log("隕石発動");
         var state = (EffectState_Meteor)dic_base.Table["Meteor"];
 
         // プレイ中であれば実行しない
@@ -264,11 +270,13 @@ public class EffectManager : MonoBehaviour
         }
 
         state.MeteorisPlay = false;
-        yield return null;
+        yield break;
     }
 
     void Effect_Eruption()
     {
+        Debug.Log("噴火発動");
+
         var state = (EffectState_Eruption)dic_base.Table["Eruption"];
 
         // プレイ中であれば実行しない
@@ -364,5 +372,20 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-
+    IEnumerator OverlayColorChange(Color color)
+    {
+        var flame = 0.0f;
+        while (true)
+        {
+            Debug.Log("色変更中");
+            Overlay_Image.color = Color.Lerp(Overlay_Image.color, color, flame);
+            flame += 0.04f;
+            if (Overlay_Image.color == color)
+            {
+                Debug.Log("色変更完了");
+                break;
+            }
+        }
+        yield break;
+    }
 }
