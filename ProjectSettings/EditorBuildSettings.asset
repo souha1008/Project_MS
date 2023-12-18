@@ -29,4 +29,5 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Fujishiro/Test/effect_test.unity
     guid: e8b8d06f6da33a742a4289893c4744e2
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 46ca60da172d04d4fa8de8c26624fbe9, type: 2}

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.LowLevel;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] GameObject floor;
+    [SerializeField] GameObject underFloor;
     Vector2 floorLeftBottom;
     Vector2 floorRightTop;
 
@@ -27,7 +28,7 @@ public class CameraController : MonoBehaviour
         
         { // カメラサイズ設定
             // 基準（縦方向）サイズと基準アスペクト比から基準横方向サイズを算出
-            maxCameraSizeMag *= floor.transform.localScale.x / 18.0f;
+            maxCameraSizeMag *= floor.transform.localScale.x * floor.GetComponent<SpriteRenderer>().size.x / 18.0f;
             var baseHorizontalSize = maxCameraSizeMag * 16.0f / 9.0f;
            
             // 最大サイズ、最小サイズ設定    
@@ -44,10 +45,12 @@ public class CameraController : MonoBehaviour
             Vector3 leftBottom = Camera.main.ScreenToWorldPoint(Vector3.zero);
         
             // ステージ床の四隅位置取得
-            floorLeftBottom.Set(floor.transform.position.x - floor.transform.localScale.x / 2,
-                floor.transform.position.y - floor.transform.localScale.y / 2);
-            floorRightTop.Set(floor.transform.position.x + floor.transform.localScale.x / 2,
-                floor.transform.position.y + floor.transform.localScale.y / 2);
+            floorLeftBottom.Set(floor.transform.position.x - floor.transform.localScale.x / 2 * floor.GetComponent<SpriteRenderer>().size.x,
+                floor.transform.position.y - floor.transform.localScale.y / 2 * floor.GetComponent<SpriteRenderer>().size.y 
+                - underFloor.transform.localScale.y * underFloor.GetComponent<SpriteRenderer>().size.y);
+            floorRightTop.Set(floor.transform.position.x + floor.transform.localScale.x / 2 * floor.GetComponent<SpriteRenderer>().size.x,
+                floor.transform.position.y + floor.transform.localScale.y / 2 * floor.GetComponent<SpriteRenderer>().size.y
+                + underFloor.transform.localScale.y * underFloor.GetComponent<SpriteRenderer>().size.y);
 
             // カメラが地面の下を映さないよう設定
             Camera.main.transform.SetPositionY(floorLeftBottom.y + Mathf.Abs(rightTop.y - leftBottom.y) / 2);
@@ -72,6 +75,14 @@ public class CameraController : MonoBehaviour
     {
         MouseScrollZoom();
         //TouchPinchZoom();
+        if (Mouse.current != null)
+            Debug.Log("b");
+        if (Keyboard.current != null)
+        {
+
+            Debug.Log("a");
+            //if (!Touchscreen.current.touches[0].ReadValue().isTap || !Touchscreen.current.touches[1].ReadValue().isTap) return;
+        }
         DragWidthScroll();
     }
 
@@ -116,7 +127,12 @@ public class CameraController : MonoBehaviour
 
     void TouchPinchZoom()
     {
-        if (!Touchscreen.current.touches[0].ReadValue().isTap || !Touchscreen.current.touches[1].ReadValue().isTap) return;
+        if(Keyboard.current != null)
+        {
+
+            Debug.Log("a");
+            //if (!Touchscreen.current.touches[0].ReadValue().isTap || !Touchscreen.current.touches[1].ReadValue().isTap) return;
+        }
 
         // タッチ位置（スクリーン座標）
         var pos0 = Touchscreen.current.touches[0].ReadValue().position;

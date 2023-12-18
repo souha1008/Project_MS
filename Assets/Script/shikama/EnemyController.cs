@@ -45,8 +45,9 @@ public class EnemyController : MonoBehaviour
                     if (enemyInstanceHouseHP[i] <= enemyHouseMaxHp - enemyHouse.hp) // 敵の家が一定値攻撃された時にインスタンスする
                     {
                         Vector3 pos = createPos.transform.localPosition;
-                        pos.y += Random.Range(-0.3f, 0.3f);
-                        Instantiate(Enemies[i], pos, Quaternion.identity);
+                        //pos.y += Random.Range(-0.3f, 0.3f);
+                        pos.z += Random.Range(-2.0f, -20.0f);
+                        Instantiate(Enemies[i], pos, Enemies[i].transform.localRotation);
                         enemyCreateTimer[i] = 0;
                     }
                 }

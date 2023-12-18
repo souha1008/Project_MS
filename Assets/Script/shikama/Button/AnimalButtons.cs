@@ -32,7 +32,9 @@ public class AnimalButtons : MonoBehaviour
         {
             gameSetting.cost -= animalScript.baseStatus.cost;
             Vector3 pos = gameSetting.createPosition;
-            pos.y += Random.Range(-0.3f, 0.3f);
+            //pos.y += Random.Range(-0.3f, 0.3f);
+            pos.z += Random.Range(-2.0f, -20.0f);
+            if (animalScript is Giraffe) pos.y += 0.8f;
             Instantiate(animalObject, pos, animalObject.transform.rotation);
         }
     }
