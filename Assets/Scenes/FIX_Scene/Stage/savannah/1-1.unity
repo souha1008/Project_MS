@@ -25,8 +25,8 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 50bf15468c19e0e40b5bf26662770a34, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.64134645, g: 0.8658572, b: 0.880789, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -636,12 +636,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: Enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 2136149355292853000, guid: ee9c015676cac814cb33f48f4576f274, type: 3}
+    - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: Enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 3078016404262481519, guid: 5d4fb5438235c5942a82db08cb3fedca, type: 3}
+    - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: maxEnemyCount.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: maxEnemyCount.Array.data[1]
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: enemyCreateSpeed.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: enemyCreateSpeed.Array.data[1]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: enemyInstanceHouseHP.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: enemyInstanceHouseHP.Array.data[1]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2682567496707210320, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: _cueName
