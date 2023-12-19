@@ -811,7 +811,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3882570793699588790, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1742887278}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4183530854352658117, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1493494144}
   m_SourcePrefab: {fileID: 100100000, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
 --- !u!224 &1431527461 stripped
 RectTransform:
@@ -893,6 +896,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473125964}
   m_CullTransparentMesh: 1
+--- !u!1 &1493494142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4183530854352658117, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+  m_PrefabInstance: {fileID: 1431527460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1493494144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493494142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!114 &1608170285 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1873918884483184498, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
@@ -1466,7 +1497,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 50db3adbf298bc84bad2edc67efaa4cc, type: 2}
+  - {fileID: 2100000, guid: 644cb4655d1dbc4429046ac5da8d5e01, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1550,13 +1581,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6453879892288442160}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.11, y: -0.83, z: 57.86}
   m_LocalScale: {x: 0.049999997, y: 0.049999997, z: 0.049999997}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 447542828}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6070954929518981895
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -1664,7 +1695,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6453879892288442160}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4744863890ffd974881c698d4ff82642, type: 2}
   m_CullingMode: 0
