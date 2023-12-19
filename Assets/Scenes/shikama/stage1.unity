@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &339800160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6495459715427561887, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+  m_PrefabInstance: {fileID: 7873573398536895098}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1620405267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 586009934288595795, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+  m_PrefabInstance: {fileID: 7873573398536895098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7873573398536895098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,6 +188,10 @@ PrefabInstance:
     - target: {fileID: 1582584322681155097, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837792374981130306, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2194307571422199653, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -270,11 +284,11 @@ PrefabInstance:
     - target: {fileID: 7601986378936099536, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: floor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 339800160}
     - target: {fileID: 7601986378936099536, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: underFloor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1620405267}
     - target: {fileID: 8220393679839925408, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_Name
       value: StagePrefab

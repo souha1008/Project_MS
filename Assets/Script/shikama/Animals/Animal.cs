@@ -176,7 +176,11 @@ public class Animal : MonoBehaviour
         attackObject = null;
 
         State = Move;
-        if (animator) animator.SetTrigger("Walk");
+        if (animator)
+        {
+            animator.ResetTrigger("Attack");
+            animator.SetTrigger("Walk");
+        }
     }
 
     /// <summary>
@@ -218,6 +222,7 @@ public class Animal : MonoBehaviour
     {
         // 攻撃スピードの値が0の場合は攻撃不可状態とみなす
         if (status.attackSpeed == 0) return;
+        if (status.hp <= 0) return;
 
         // 攻撃
         if (attackCount >= status.attackSpeed)
@@ -325,6 +330,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(196.0f / 255.0f, 64.0f / 255.0f, 31.0f / 255.0f);
         }
@@ -349,6 +355,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(196.0f / 255.0f, 160.0f / 255.0f, 116.0f / 255.0f);
         }
@@ -372,6 +379,7 @@ public class Animal : MonoBehaviour
 
         foreach(MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(186.0f / 255.0f, 186.0f / 255.0f, 186.0f / 255.0f);
         }
@@ -396,6 +404,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(230.0f / 255.0f, 225.0f / 255.0f, 96.0f / 255.0f);
         }
@@ -420,6 +429,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(127.0f / 255.0f, 176.0f / 255.0f, 212.0f / 255.0f);
         }
@@ -444,6 +454,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(143.0f / 255.0f, 11.0f / 255.0f, 11.0f / 255.0f);
         }
@@ -468,6 +479,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(94.0f / 255.0f, 9.0f / 255.0f, 8.0f / 255.0f);
         }
@@ -492,6 +504,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(240.0f / 255.0f, 239.0f / 255.0f, 211.0f / 255.0f);
         }
@@ -516,6 +529,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(212.0f / 255.0f, 255.0f / 255.0f, 254.0f / 255.0f);
         }
@@ -540,6 +554,7 @@ public class Animal : MonoBehaviour
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
+            if (tag == "Enemy") break;
             if (!m) continue;
             m.material.color = new Color(255.0f / 255.0f, 0.0f / 255.0f, 17.0f / 255.0f);
         }

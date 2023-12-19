@@ -74,15 +74,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         MouseScrollZoom();
-        //TouchPinchZoom();
-        if (Mouse.current != null)
-            Debug.Log("b");
-        if (Keyboard.current != null)
-        {
-
-            Debug.Log("a");
-            //if (!Touchscreen.current.touches[0].ReadValue().isTap || !Touchscreen.current.touches[1].ReadValue().isTap) return;
-        }
+        TouchPinchZoom();
         DragWidthScroll();
     }
 
@@ -127,12 +119,8 @@ public class CameraController : MonoBehaviour
 
     void TouchPinchZoom()
     {
-        if(Keyboard.current != null)
-        {
-
-            Debug.Log("a");
-            //if (!Touchscreen.current.touches[0].ReadValue().isTap || !Touchscreen.current.touches[1].ReadValue().isTap) return;
-        }
+        if(Touchscreen.current == null) return;
+        if (Touchscreen.current.touches[0] == null || Touchscreen.current.touches[1] == null) return;
 
         // タッチ位置（スクリーン座標）
         var pos0 = Touchscreen.current.touches[0].ReadValue().position;
