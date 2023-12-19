@@ -1605,6 +1605,7 @@ GameObject:
   - component: {fileID: 1837792374981130306}
   - component: {fileID: 6624625422017318237}
   - component: {fileID: 7601986378936099536}
+  - component: {fileID: 5407381645725201646}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1621,7 +1622,7 @@ Transform:
   m_GameObject: {fileID: 4548055252823011312}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.73, y: 1.84, z: -30}
+  m_LocalPosition: {x: 4.505826, y: 4.0760374, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1662,7 +1663,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.399238
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1703,6 +1704,15 @@ MonoBehaviour:
   minCameraSizeMag: 2
   dragSpeedMag: 0.5
   dragDeadZone: 0.1
+--- !u!45 &5407381645725201646
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548055252823011312}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: d04fa9ef91692c6429efccdf42970c46, type: 2}
 --- !u!1 &4898338473337000004
 GameObject:
   m_ObjectHideFlags: 0
