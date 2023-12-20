@@ -246,21 +246,24 @@ public class EffectManager : MonoBehaviour
     IEnumerator InstanceMeteor(EffectState_Meteor state)
     {
         int lc = 0;
-        while(lc < 10)
+        while(lc < state.num)
         {
             // ポジションレンジの決定
-            var MAX_range = new Vector2(state.randomCenterPostion.x + state.randomAreaSize.x / 2,
-                                        state.randomCenterPostion.y + state.randomAreaSize.y / 2);
-            var MIN_range = new Vector2(state.randomCenterPostion.x - state.randomAreaSize.x / 2,
-                                        state.randomCenterPostion.y - state.randomAreaSize.y / 2);
+            var MAX_range = new Vector3(state.randomCenterPostion.x + state.randomAreaSize.x / 2,
+                                        state.randomCenterPostion.y + state.randomAreaSize.y / 2,
+                                        state.randomCenterPostion.z + state.randomAreaSize.z / 2);
+            var MIN_range = new Vector3(state.randomCenterPostion.x - state.randomAreaSize.x / 2,
+                                        state.randomCenterPostion.y - state.randomAreaSize.y / 2,
+                                        state.randomCenterPostion.z - state.randomAreaSize.z / 2);
             
             // 生成する位置をランダムに決定
             var random_x = UnityEngine.Random.Range(MIN_range.x, MAX_range.x);
             var random_y = UnityEngine.Random.Range(MIN_range.y, MAX_range.y);
+            var random_z = UnityEngine.Random.Range(MIN_range.z, MAX_range.z);
 
             // 生成
             var meteor = Instantiate(state.prefab);
-            meteor.transform.position = new Vector3(random_x, random_y, 14.0f);
+            meteor.transform.position = new Vector3(random_x, random_y, random_z);
 
             var size = 1.0f * meteor.gameObject.transform.localScale.x * UnityEngine.Random.Range(0.3f, 1.0f);
             var meteorchild = meteor.gameObject.transform.GetChild(0);
@@ -270,7 +273,7 @@ public class EffectManager : MonoBehaviour
             lc++;
 
             // クールタイム決定
-            var random_time = UnityEngine.Random.Range(0.3f, 1.0f);
+            var random_time = UnityEngine.Random.Range(state.cooltime.x, state.cooltime.y);
             yield return new WaitForSeconds(random_time);
         }
 
