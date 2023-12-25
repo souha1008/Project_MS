@@ -11,11 +11,21 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Color fadeColor = Color.black;
     [SerializeField] float fadespeed = 1.0f;
     [SerializeField] float waitTime = 3.0f;
+    private bool nowchange;
+
+    private void Start()
+    {
+        nowchange = false;
+    }
 
     public void ChangeStageSelect(string scenename)
     {
-        SE_Source.Play();
-        StartCoroutine(fadestart(scenename, waitTime));
+        if (!nowchange)
+        {
+            nowchange = true;
+            SE_Source.Play();
+            StartCoroutine(fadestart(scenename, waitTime));
+        }
     }
 
     IEnumerator fadestart(string scenename, float wait)

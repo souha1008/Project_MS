@@ -6,28 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/kawamura/title scene.unity
-    guid: 3a481cafdd8288c40b3f7523466bccb1
+    path: Assets/Scenes/FIX_Scene/Title/Scene_Title.unity
+    guid: a4a01c1fa8fea364296e61180f638a91
   - enabled: 1
-    path: Assets/Scenes/sugimoto/StageSelect.unity
-    guid: 161d37bbf765aad4281c1b28a96ab1d8
-  - enabled: 0
-    path: Assets/Scenes/kawamura/spec scene/spec scene.unity
-    guid: b69908730a173024ca0548c38533bc1c
-  - enabled: 0
-    path: Assets/Scenes/kawamura/Disaster scene/disaster.unity
-    guid: a6a6ead9c7be2534988cf37a3c2917b6
+    path: Assets/Scenes/FIX_Scene/StageSelect/Scene_StageSelect.unity
+    guid: d43d59ca2bd8b5c4f894ab746d684ab9
   - enabled: 1
-    path: Assets/Scenes/FIX_Scene/Stage/savannah/1-1.unity
+    path: Assets/Scenes/FIX_Scene/Stage/savannah/Scene_1-1.unity
     guid: 4fffcb59ab8f07d4f830e62db0846483
-  - enabled: 0
-    path: Assets/Scenes/kawamura/seclet sene/select scene.unity
-    guid: 83019f1d90da2e640971843b6e9522b5
-  - enabled: 0
-    path: Assets/Scenes/Fujishiro/Test/test_stage.unity
-    guid: 18ed6a221fc03484fac6d10f6119bede
-  - enabled: 0
-    path: Assets/Scenes/Fujishiro/Test/effect_test.unity
-    guid: e8b8d06f6da33a742a4289893c4744e2
+  - enabled: 1
+    path: Assets/Scenes/FIX_Scene/Spec&Deck/Scene_Deck.unity
+    guid: 6300229c9243a9249994873cdae50aa5
+  - enabled: 1
+    path: Assets/Scenes/FIX_Scene/Spec&Deck/Scene_CharaSpec.unity
+    guid: 10bf91335ad0a4a4d99c93a0210bb5a6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 46ca60da172d04d4fa8de8c26624fbe9, type: 2}
