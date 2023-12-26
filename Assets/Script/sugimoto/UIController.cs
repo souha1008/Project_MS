@@ -29,7 +29,10 @@ public class UIController : MonoBehaviour
         SubPanel.SetActive(true);
         Buttan01.SetActive(false);
         Buttan02.SetActive(false);
-        Buttan03.SetActive(false);
+        if (Buttan03 != null)
+        {
+            Buttan03.SetActive(false);
+        }
     }
 
 
@@ -41,6 +44,9 @@ public class UIController : MonoBehaviour
         SubPanel.SetActive(false);
         Buttan01.SetActive(true);
         Buttan02.SetActive(true);
-        Buttan03.SetActive(true);
+        if (Buttan03 != null)
+        {
+            Buttan03.SetActive(true);
+        }
     }
 }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEditor;
+
 public static class Initiate
 {
     static bool areWeFading = false;
@@ -26,10 +28,34 @@ public static class Initiate
         scr.fadeDamp = multiplier;
         scr.fadeScene = scene;
         scr.fadeColor = col;
+        scr.fadeMode = Fader.FADEMODE.NORMAL;
         scr.start = true;
         areWeFading = true;
         scr.InitiateFader();
         
+    }
+
+    public static void NoizeFade(string scene, Material noize, float multiplier)
+    {
+        if (areWeFading)
+        {
+            Debug.Log("Already Fading");
+            return;
+        }
+        int _progressId = Shader.PropertyToID("_Progress");
+        GameObject init = new GameObject();
+        init.name = "NoizeFader";
+        init.AddComponent<Fader>();
+        
+        Fader scr = init.GetComponent<Fader>();
+        scr.fadeDamp = multiplier;
+        scr.fadeScene = scene;
+        scr.postEffectMaterial = noize;
+        scr._progressId = _progressId;
+        scr.fadeMode = Fader.FADEMODE.NOIZE;
+        scr.start = true;
+        areWeFading = true;
+        scr.InitiateNoizeFader();
     }
 
     public static void DoneFading() {

@@ -4747,6 +4747,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 570982802880887721, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1815956022311980565, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4809,15 +4813,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: enemyInstanceHouseHP.Array.data[0]
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: enemyInstanceHouseHP.Array.data[1]
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: enemyInstanceHouseHP.Array.data[2]
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2682567496707210320, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: _cueName
@@ -4886,6 +4890,10 @@ PrefabInstance:
     - target: {fileID: 6475742098413655563, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497756357601948282, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7989710916100401744, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_IsActive

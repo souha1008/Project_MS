@@ -17,10 +17,26 @@ public class Fader : MonoBehaviour
     public Color fadeColor;
     [HideInInspector]
     public bool isFadeIn = false;
+
+    // é©çÏ
+    public enum FADEMODE
+    {
+        NORMAL = 0,
+        NOIZE,
+    };
+
+    [HideInInspector]
+    public Material postEffectMaterial;
+    [HideInInspector]
+    public int _progressId;
+    [HideInInspector]
+    public FADEMODE fadeMode;
+
     CanvasGroup myCanvas;
     Image bg;
     float lastTime = 0;
     bool startedLoading = false;
+
     //Set callback
     void OnEnable()
     {
@@ -54,6 +70,14 @@ public class Fader : MonoBehaviour
         }
         else
             Debug.LogWarning("Something is missing please reimport the package.");
+    }
+
+    // é©çÏ
+    public void InitiateNoizeFader()
+    {
+        DontDestroyOnLoad(gameObject);
+
+        StartCoroutine(NoizeFadeIt());
     }
 
     IEnumerator FadeIt()
@@ -107,6 +131,55 @@ public class Fader : MonoBehaviour
         yield return null;
     }
 
+    // é©çÏ
+    IEnumerator NoizeFadeIt()
+    {
+        float t = 0f;
+        bool hasFadeIn = false;
+
+        while (!hasFadeIn)
+        {
+            if (!isFadeIn)
+            {
+                // FadeIn
+                float progress = 1.0f - t / fadeDamp;
+
+                postEffectMaterial.SetFloat(_progressId, progress);
+
+                if (postEffectMaterial.GetFloat(_progressId) <= 0f && !startedLoading)
+                {
+                    t = 0;
+                    Debug.Log("Start LoadScene");
+                    startedLoading = true;
+                    SceneManager.LoadScene(fadeScene);
+                }
+            }
+            else
+            {
+                // FadeOut
+                float progress = t / fadeDamp;
+
+                postEffectMaterial.SetFloat(_progressId, progress);
+
+                if(postEffectMaterial.GetFloat(_progressId) >= 1f)
+                {
+                    postEffectMaterial.SetFloat(_progressId, 1f);
+                    hasFadeIn = true;
+                }
+            }
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        Initiate.DoneFading();
+
+        Debug.Log("Your scene has been loaded , and fading in has just ended");
+
+        Destroy(gameObject);
+
+        yield return null;
+    }
 
     float newAlpha(float delta, int to, float currAlpha)
     {
@@ -132,7 +205,16 @@ public class Fader : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine(FadeIt());
+        switch (fadeMode)
+        {
+            case FADEMODE.NORMAL:
+                StartCoroutine(FadeIt());
+                break;
+
+            case FADEMODE.NOIZE:
+                StartCoroutine(NoizeFadeIt());
+                break;
+        }
         //We can now fade in
         isFadeIn = true;
     }
