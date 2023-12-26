@@ -45,8 +45,13 @@ public static class Initiate
         int _progressId = Shader.PropertyToID("_Progress");
         GameObject init = new GameObject();
         init.name = "NoizeFader";
+        Canvas myCanvas = init.AddComponent<Canvas>();
+        myCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         init.AddComponent<Fader>();
-        
+        //init.AddComponent<CanvasGroup>();
+        //init.AddComponent<Image>();
+        //init.GetComponent<Image>().material = noize;
+
         Fader scr = init.GetComponent<Fader>();
         scr.fadeDamp = multiplier;
         scr.fadeScene = scene;

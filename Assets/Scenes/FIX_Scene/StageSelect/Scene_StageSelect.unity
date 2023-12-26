@@ -2866,6 +2866,10 @@ PrefabInstance:
       propertyPath: UiController
       value: 
       objectReference: {fileID: 153794317}
+    - target: {fileID: 5185995687121058046, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.099998
+      objectReference: {fileID: 0}
     - target: {fileID: 5586750547162373245, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_Transition
       value: 0

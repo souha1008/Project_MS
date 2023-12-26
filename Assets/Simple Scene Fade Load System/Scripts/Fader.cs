@@ -137,6 +137,8 @@ public class Fader : MonoBehaviour
         float t = 0f;
         bool hasFadeIn = false;
 
+        
+
         while (!hasFadeIn)
         {
             if (!isFadeIn)

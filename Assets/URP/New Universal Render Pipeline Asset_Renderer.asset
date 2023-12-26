@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8ecf7c79255f849a243c958e5bf7c8, type: 3}
   m_Name: MyPostEffect
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: ce02c74443d11e740a1ccea6af19b9f4, type: 2}
     renderPassEvent: 550

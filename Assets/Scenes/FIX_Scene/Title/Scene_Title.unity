@@ -164,12 +164,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62101627}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -896.095, y: -565.9404, z: 21.064646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 236357291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &75388152
 GameObject:
@@ -277,12 +277,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75388152}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -896.095, y: -565.9404, z: 21.064646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 236357291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &236357290
 GameObject:
@@ -316,6 +316,9 @@ Transform:
   - {fileID: 659883298304450488}
   - {fileID: 1799200501}
   - {fileID: 9107153538696874820}
+  - {fileID: 1633843735}
+  - {fileID: 75388154}
+  - {fileID: 62101629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609983884
@@ -1236,12 +1239,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633843733}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 896.095, y: 565.9404, z: -21.064646}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 236357291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1766409707 stripped
 MonoBehaviour:
@@ -1790,6 +1793,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CRIWARE
       objectReference: {fileID: 0}
+    - target: {fileID: 7126433415617545316, guid: 2f119240d4bb51840a5514600c05d81c, type: 3}
+      propertyPath: cueSheets.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7126433415617545316, guid: 2f119240d4bb51840a5514600c05d81c, type: 3}
+      propertyPath: cueSheets.Array.data[4].name
+      value: DisastarSE
+      objectReference: {fileID: 0}
+    - target: {fileID: 7126433415617545316, guid: 2f119240d4bb51840a5514600c05d81c, type: 3}
+      propertyPath: cueSheets.Array.data[4].acbFile
+      value: Project_MS/DisastarSE.acb
+      objectReference: {fileID: 0}
     - target: {fileID: 7681823727031873785, guid: 2f119240d4bb51840a5514600c05d81c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -896.095
@@ -1910,10 +1925,7 @@ SceneRoots:
   - {fileID: 2113279537}
   - {fileID: 861691845}
   - {fileID: 761681515}
-  - {fileID: 75388154}
-  - {fileID: 62101629}
   - {fileID: 1591548266}
   - {fileID: 609983885}
   - {fileID: 2124423706}
   - {fileID: 236357291}
-  - {fileID: 1633843735}
