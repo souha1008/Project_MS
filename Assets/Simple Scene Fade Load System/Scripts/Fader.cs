@@ -137,7 +137,7 @@ public class Fader : MonoBehaviour
         float t = 0f;
         bool hasFadeIn = false;
 
-        
+        //postEffectMaterial.SetFloat(_progressId, 0f);
 
         while (!hasFadeIn)
         {

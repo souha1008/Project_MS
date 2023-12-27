@@ -2,10 +2,15 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEditor;
+using Unity.Properties;
+using Unity.Burst.CompilerServices;
 
 public static class Initiate
 {
     static bool areWeFading = false;
+
+    static private Vector3 scale = new Vector3(351.9f, 197.6966f, 1f);
+    static private Vector3 position = new Vector3(0f, 1f, 1f);
 
     //Create Fader object and assing the fade scripts and assign all the variables
     public static void Fade(string scene, Color col, float multiplier)
@@ -43,14 +48,12 @@ public static class Initiate
             return;
         }
         int _progressId = Shader.PropertyToID("_Progress");
-        GameObject init = new GameObject();
+        GameObject init = GameObject.CreatePrimitive(PrimitiveType.Quad);
         init.name = "NoizeFader";
-        Canvas myCanvas = init.AddComponent<Canvas>();
-        myCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        init.transform.SetPosition(position.x, position.y, position.z);
+        init.transform.SetLocalScale(scale.x, scale.y, scale.z);
+        init.GetComponent<MeshRenderer>().material = noize;
         init.AddComponent<Fader>();
-        //init.AddComponent<CanvasGroup>();
-        //init.AddComponent<Image>();
-        //init.GetComponent<Image>().material = noize;
 
         Fader scr = init.GetComponent<Fader>();
         scr.fadeDamp = multiplier;
@@ -65,5 +68,30 @@ public static class Initiate
 
     public static void DoneFading() {
         areWeFading = false;
+    }
+
+    private static Mesh CreateMesh()
+    {
+        Mesh mesh = new Mesh();
+        Vector3[] myVertices = new Vector3[4];
+        int[] myTriangles = new int[6];
+
+        myVertices[0] = new Vector3(0, 0, 0);
+        myVertices[1] = new Vector3(1, 0, 0);
+        myVertices[2] = new Vector3(0, 1, 0);
+        myVertices[3] = new Vector3(1, 1, 0);
+
+        mesh.SetVertices(myVertices);
+
+        myTriangles[0] = 0;
+        myTriangles[1] = 2;
+        myTriangles[2] = 1;
+        myTriangles[3] = 2;
+        myTriangles[4] = 3;
+        myTriangles[5] = 1;
+
+        mesh.SetTriangles(myTriangles, 0);
+
+        return mesh;
     }
 }

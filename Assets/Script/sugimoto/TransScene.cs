@@ -20,8 +20,8 @@ public class TransScene : MonoBehaviour
     public void LoadScene()
     {
         //SceneManager.LoadScene(NextScene);
-        //Initiate.Fade(NextScene, Color.white, 3.0f);
-        Initiate.NoizeFade(NextScene, postEffectMaterial, 0.7f);
+        //Initiate.Fade(NextScene, Color.white, 0.3f);
+        Initiate.NoizeFade(NextScene, postEffectMaterial, 1.7f);
     }
 
 }
