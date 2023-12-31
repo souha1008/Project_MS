@@ -101,10 +101,9 @@ public class Buffalo : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.EarthquakeEvolution();
 
-        status_.hp = (int)(status_.hp * status_.allStatusUpMag);
-        status_.attack = (int)(status_.attack * status_.allStatusUpMag);
-        status_.speed = status_.speed * status_.allStatusUpMag;
-        status_.attackSpeed = status_.attackSpeed / status_.allStatusUpMag;
+        status_.hp = (int)(status_.hp * status_.allStatusUpMag * 0.01f) + status_.hp;
+        status_.attack = (int)(status_.attack * status_.allStatusUpMag * 0.01f) + status_.attack;
+        status_.speed = status_.speed * status_.allStatusUpMag * 0.01f + status_.speed;
 
         coolTimer = status_.coolTimeEarthquake;
         activeTimer = status_.activeTimeEarthquake;

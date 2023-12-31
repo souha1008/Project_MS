@@ -5,8 +5,14 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ZebraBaseStatus : BaseStatus
 {
-    public float doubleAttackMag = 0.15f;
+    [Header("¥’nk")]
+    public int earthquakeSpeedDown = 50;
+    public int earthquakeAttackUp = 20;
 
-    public float attackUpMag = 3.0f;
-    public float speedDownMag = 0.8f;
+    [Header("¥»”™‰»")]
+    public int desertHPHeal = 15;
+    public int desertHealCount = 1;
+    public int desertHPHealTiming = 10;
+
+    public float doubleAttackMag = 0.15f;
 }

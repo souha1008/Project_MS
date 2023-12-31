@@ -8,7 +8,7 @@ public class BuffaloStatus : AnimalStatus
     public float coolTimeMeteo = 10.0f;
     public int MeteoSpeedDownMag = 10;
 
-    public float allStatusUpMag = 3.0f;
+    public int allStatusUpMag = 100;
 
     public float meteoSpeedDownMag = 0.9f;
 

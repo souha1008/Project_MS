@@ -13,7 +13,7 @@ public class BuffaloBaseStatus : BaseStatus
     [Header("▼地震")]
     public float activeTimeEarthquake = 5.0f;
     public float coolTimeEarthquake = 0.0f;
-    public float allStatusUpMag = 3.0f;
+    public int allStatusUpMag = 100;
 
     [Header("▼ハリケーン")]
     public float coolTimeHurricane = 10.0f;

@@ -10,16 +10,27 @@ public class CamelStatus : AnimalStatus
     public int meteoSpeedUp = 5;
     public float meteoHealDist = 3.0f;
 
+    public float activeTimeEarthquake = 6.0f;
+    public float coolTimeEarthquake = 15.0f;
+    public int earthquakeHPHeal = 100;
+
     public int thunderSpeedUP = 20;
     public float activeTimeThunder = 6.0f;
     public float coolTimeThunder = 15.0f;
-    
+
+    public float activeTimeDesert = 6.0f;
+    public float coolTimeDesert = 15.0f;
+    public int DesertHPDecMag = 10;
+    public float DesertStatusUpDist = 4.0f;
+    public int DesertStatusUpMag = 3;
+
     public float hpHealOne = 0.1f;
 
     public float barrierMag = 0.3f;
     public float barrierTime = 7.0f;
 
     public float costDownMag = 0.1f;
+
 
     public CamelStatus(CamelBaseStatus baseStatus,Animal animal) : base(baseStatus, animal)
     {
@@ -29,9 +40,20 @@ public class CamelStatus : AnimalStatus
         meteoHealDist = baseStatus.meteoHealDist;
         meteoSpeedUp = baseStatus.meteoSpeedUp;
 
+
+        activeTimeEarthquake = baseStatus.activeTimeEarthquake;
+        coolTimeEarthquake = baseStatus.coolTimeEarthquake;
+        earthquakeHPHeal = baseStatus.earthquakeHPHeal;
+
         activeTimeThunder = baseStatus.activeTimeThunder;
         coolTimeThunder = baseStatus.coolTimeThunder;
         thunderSpeedUP = baseStatus.thunderSpeedUP;
+
+        activeTimeDesert = baseStatus.activeTimeDesert;
+        coolTimeDesert = baseStatus.coolTimeDesert;
+        DesertHPDecMag = baseStatus.DesertHPDecMag;
+        DesertStatusUpDist = baseStatus.DesertStatusUpDist;
+        DesertStatusUpMag = baseStatus.DesertStatusUpMag;
 
         hpHealOne = baseStatus.hpHealOne;
 
