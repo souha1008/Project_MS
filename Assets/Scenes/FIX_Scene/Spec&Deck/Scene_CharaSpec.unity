@@ -219,6 +219,7 @@ RectTransform:
   m_Children:
   - {fileID: 687888286}
   - {fileID: 1909493005}
+  - {fileID: 86442041}
   - {fileID: 1990807042}
   - {fileID: 2003441024}
   m_Father: {fileID: 0}
@@ -228,6 +229,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &86442038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86442041}
+  - component: {fileID: 86442040}
+  - component: {fileID: 86442039}
+  m_Layer: 5
+  m_Name: Levo_BG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &86442039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86442038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 171a9556ef0c92e48b67471b5b01b75e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &86442040
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86442038}
+  m_CullTransparentMesh: 1
+--- !u!224 &86442041
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86442038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 64679914}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &95126679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,7 +1366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff54678f686294b4caf9d2272fb48b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 205d867b664f0814e87223a745cddb88, type: 3}
+  sprite: {fileID: 21300000, guid: 3ce41ade66ae9d84f9cc6d2cc4b20f1d, type: 3}
   target: {fileID: 1909493006}
   canvas_spec: {fileID: 64679910}
   contents: {fileID: 1357845381}
@@ -1645,7 +1721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff54678f686294b4caf9d2272fb48b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 9fcf7779764d1ee45b6f3f1d442fe5a9, type: 3}
+  sprite: {fileID: 21300000, guid: 832445d0050a9fa4a87363e5e07312d6, type: 3}
   target: {fileID: 1909493006}
   canvas_spec: {fileID: 64679910}
   contents: {fileID: 1357845381}
@@ -2908,7 +2984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff54678f686294b4caf9d2272fb48b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 884041a63b7d6bb47b1a49b3c101f22c, type: 3}
+  sprite: {fileID: 21300000, guid: 49e2d43da1cf7cd46adf81c75f3f4a0c, type: 3}
   target: {fileID: 1909493006}
   canvas_spec: {fileID: 64679910}
   contents: {fileID: 1357845381}
@@ -3138,7 +3214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff54678f686294b4caf9d2272fb48b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 649ca242462bb9041af27f440a868e78, type: 3}
+  sprite: {fileID: 21300000, guid: d4e61f86df9ce484a9c6a428ea464877, type: 3}
   target: {fileID: 1909493006}
   canvas_spec: {fileID: 64679910}
   contents: {fileID: 1357845381}
@@ -3465,6 +3541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target_icon: {fileID: 2003441027}
   target_spec: {fileID: 1990807040}
+  target_BG: {fileID: 86442039}
   disastar_icon:
     m_list:
     - m_key: Meteor
@@ -3493,117 +3570,139 @@ MonoBehaviour:
       m_value:
         m_list:
         - m_key: Meteor
-          m_value: {fileID: 21300000, guid: 8784d93e8d10ada40832c416e3a4d23a, type: 3}
+          m_value: {fileID: 21300000, guid: 8ce615eb538b7f54ebb825bd646a595a, type: 3}
         - m_key: EarthQuake
-          m_value: {fileID: 21300000, guid: d3113e8f48f1de841aa246ee9376330c, type: 3}
+          m_value: {fileID: 21300000, guid: 52bb83d7fe51fd142bca84dd32e237c3, type: 3}
         - m_key: Hurricane
-          m_value: {fileID: 21300000, guid: d3113e8f48f1de841aa246ee9376330c, type: 3}
+          m_value: {fileID: 21300000, guid: 79db39ae9676c8d44abb307ec55468a3, type: 3}
         - m_key: ThunderStorm
-          m_value: {fileID: 21300000, guid: 9a60566860804cd49b60da7d9932a609, type: 3}
+          m_value: {fileID: 21300000, guid: c3073972aac0c62419cac0ba5213deb4, type: 3}
         - m_key: Tsunami
-          m_value: {fileID: 21300000, guid: 5a8a25245121ac44bb0cfe7f9bc952d7, type: 3}
+          m_value: {fileID: 21300000, guid: cd91765979580c04ba08912cd97f8866, type: 3}
         - m_key: Eruption
-          m_value: {fileID: 21300000, guid: 0cd6bb0a3649bfd47a8eaaf400d891d9, type: 3}
+          m_value: {fileID: 21300000, guid: d0cdee9924df5fc4a9fca06cc5dd8bc6, type: 3}
         - m_key: Plague
-          m_value: {fileID: 21300000, guid: 4fdc36861d70ec54b9baac37d73a56f9, type: 3}
+          m_value: {fileID: 21300000, guid: 3bfe4cd1802dda94ab2b9dbcbf6f8003, type: 3}
         - m_key: Desert
-          m_value: {fileID: 21300000, guid: b386ffba31c08a440abee29a3e94ec95, type: 3}
+          m_value: {fileID: 21300000, guid: 861091e224f1e19409f5cb5fb8c6774f, type: 3}
         - m_key: IceAge
-          m_value: {fileID: 21300000, guid: 7d5f81e2e05072e4e82b95eac1f456a2, type: 3}
+          m_value: {fileID: 21300000, guid: 2543c821b44e824439d0ce9b00cfc6cd, type: 3}
         - m_key: BigFire
-          m_value: {fileID: 21300000, guid: c91a019efa2d84f468f17ac6b9ac37b6, type: 3}
+          m_value: {fileID: 21300000, guid: bed3f6feeedff9a45ae312b15158b7a0, type: 3}
     - m_key: Buffalo
       m_value:
         m_list:
         - m_key: Meteor
-          m_value: {fileID: 21300000, guid: 27bf275db00e629498d8c81e86098236, type: 3}
+          m_value: {fileID: 21300000, guid: d95f310b99ed88b4aa336b33a5d75d7e, type: 3}
         - m_key: EarthQuake
-          m_value: {fileID: 21300000, guid: cbe919e839929504c9b0757c31c479ac, type: 3}
+          m_value: {fileID: 21300000, guid: ec229757b6be1db4f9fe0840a804d481, type: 3}
         - m_key: Hurricane
-          m_value: {fileID: 21300000, guid: ffc7b7283454cf14d8bbf2d92ca7bccd, type: 3}
+          m_value: {fileID: 21300000, guid: 11879a2738e7a944b89d0e13159d96ca, type: 3}
         - m_key: ThunderStorm
-          m_value: {fileID: 21300000, guid: 8dc6524599dceae44a0303f9600a57c8, type: 3}
+          m_value: {fileID: 21300000, guid: f64adfeda3c6dd940b5215cf5e717ecb, type: 3}
         - m_key: Tsunami
-          m_value: {fileID: 21300000, guid: 2f16ceb14757f2042a816b13de1f3a97, type: 3}
+          m_value: {fileID: 21300000, guid: 0bfc58ab60a38384fa0fdb4a7a8fbcb2, type: 3}
         - m_key: Eruption
-          m_value: {fileID: 21300000, guid: ecd0af8605e146141b5804547da87fa2, type: 3}
+          m_value: {fileID: 21300000, guid: 7ae547a98ce3c5c43843624d525d8c54, type: 3}
         - m_key: Plague
-          m_value: {fileID: 21300000, guid: a390bddbaf96f2c4294fba6ba0331a16, type: 3}
+          m_value: {fileID: 21300000, guid: 48171d858a3d6e14d8dd2f9306088e84, type: 3}
         - m_key: Desert
-          m_value: {fileID: 21300000, guid: beab80776c1372b4eb9f5771f6709484, type: 3}
+          m_value: {fileID: 21300000, guid: 66c4d5fcce3466744aa296686cc6467f, type: 3}
         - m_key: IceAge
-          m_value: {fileID: 21300000, guid: 992e2960547b9b3479152f5e14501e68, type: 3}
+          m_value: {fileID: 21300000, guid: 86ba6e4560114df458107b23874361e6, type: 3}
         - m_key: BigFire
-          m_value: {fileID: 21300000, guid: e7058f9bde45a9b4ebae6b4fb799be5d, type: 3}
+          m_value: {fileID: 21300000, guid: ce79cbddc41208547be8205f9badded7, type: 3}
     - m_key: Camel
       m_value:
         m_list:
         - m_key: Meteor
-          m_value: {fileID: 21300000, guid: 1977f38a74f4c7448ab5150559a2412d, type: 3}
+          m_value: {fileID: 21300000, guid: 309f0f38607cd984185973c2573c9c3a, type: 3}
         - m_key: EarthQuake
-          m_value: {fileID: 21300000, guid: 11db0dd0c9be88b4eaf9845086a50147, type: 3}
+          m_value: {fileID: 21300000, guid: e6b50ff05106234429cf5ac907b97002, type: 3}
         - m_key: Hurricane
-          m_value: {fileID: 21300000, guid: 5d43025c7ff2a1549b9d1aaa016f1d98, type: 3}
+          m_value: {fileID: 21300000, guid: 5d8bd091c4b7627479e333f53d96d517, type: 3}
         - m_key: ThunderStorm
-          m_value: {fileID: 21300000, guid: 9ed05d01d18408c4c9382b77e0763f48, type: 3}
+          m_value: {fileID: 21300000, guid: d5b3515c7a57cdd4288209cb4b5e19b4, type: 3}
         - m_key: Tsunami
-          m_value: {fileID: 21300000, guid: 6abc3237df6b54644a008b8e308a1dad, type: 3}
+          m_value: {fileID: 21300000, guid: fc1736cd7a10e284b809decd57b62592, type: 3}
         - m_key: Eruption
-          m_value: {fileID: 21300000, guid: 3fb7fa2bb17381f4fb9a8fc52cf92057, type: 3}
+          m_value: {fileID: 21300000, guid: ebb67df248f5c7d479eca795b2728f62, type: 3}
         - m_key: Plague
-          m_value: {fileID: 21300000, guid: ef1d70f50a0c23144a97fad436bb25b3, type: 3}
+          m_value: {fileID: 21300000, guid: 1e5fef67c408d6543b4fb29a1bd701a0, type: 3}
         - m_key: Desert
-          m_value: {fileID: 21300000, guid: 6340cdaf102c1974094b0341443e3f03, type: 3}
+          m_value: {fileID: 21300000, guid: 2f6694c0ab81c444590e406681f5ab6a, type: 3}
         - m_key: IceAge
-          m_value: {fileID: 21300000, guid: 74f21a424ed264e46bbdaf22c4c6e26f, type: 3}
+          m_value: {fileID: 21300000, guid: d3cf2355769f06c419d10477e2965d64, type: 3}
         - m_key: BigFire
-          m_value: {fileID: 21300000, guid: 219bd774724db2344b1316be2be221ee, type: 3}
+          m_value: {fileID: 21300000, guid: 626e86df0bc46da468f61e0cfd5d9ba4, type: 3}
     - m_key: Zebra
       m_value:
         m_list:
         - m_key: Meteor
-          m_value: {fileID: 21300000, guid: 909d90ebd670dbe47aaa55f9e2ac7d84, type: 3}
+          m_value: {fileID: 21300000, guid: dd278b449ddb5764789013bdddf778ba, type: 3}
         - m_key: EarthQuake
-          m_value: {fileID: 21300000, guid: 20c7774729cfa9942a7d9fd172934103, type: 3}
+          m_value: {fileID: 21300000, guid: bb3ecba92237b0b49b3213a4306f9381, type: 3}
         - m_key: Hurricane
-          m_value: {fileID: 21300000, guid: 562def8d4b05d834296861fe8f585740, type: 3}
+          m_value: {fileID: 21300000, guid: f92e8f22d014c26409ac4e4dfb8b98b8, type: 3}
         - m_key: ThunderStorm
-          m_value: {fileID: 21300000, guid: b5ce3307d7a0f3241a70096e897d8051, type: 3}
+          m_value: {fileID: 21300000, guid: 2db65dc897d4832498a0a6366d15a633, type: 3}
         - m_key: Tsunami
-          m_value: {fileID: 21300000, guid: 2a1b23a1362f8174aa87472e120d6096, type: 3}
+          m_value: {fileID: 21300000, guid: 27826e20f86e3ee42a78f8b11b865941, type: 3}
         - m_key: Eruption
-          m_value: {fileID: 21300000, guid: 441998d47f7369a44bf99b530dd498c4, type: 3}
+          m_value: {fileID: 21300000, guid: f4a02dcb615d5c64eb89049cdd53d24d, type: 3}
         - m_key: Plague
-          m_value: {fileID: 21300000, guid: c10381e7e35fa4540ab971d796f07b58, type: 3}
+          m_value: {fileID: 21300000, guid: fa491b9629003df47b3bd7d2a7a61c1b, type: 3}
         - m_key: Desert
-          m_value: {fileID: 21300000, guid: 1ad290c1c790e094381104c997e03295, type: 3}
+          m_value: {fileID: 21300000, guid: 35d13c6aef0d4d143af0c65cb6a81489, type: 3}
         - m_key: IceAge
-          m_value: {fileID: 21300000, guid: 6227ca334a8fc4044955c0efe556ffa9, type: 3}
+          m_value: {fileID: 21300000, guid: 70c6cd39e76229441903f3eaa1a65909, type: 3}
         - m_key: BigFire
-          m_value: {fileID: 21300000, guid: 87ce703d4e3bd934587efe60ec465010, type: 3}
+          m_value: {fileID: 21300000, guid: bf9889b4a56d9114c8d67d379ee33706, type: 3}
     - m_key: Giraffe
       m_value:
         m_list:
         - m_key: Meteor
-          m_value: {fileID: 21300000, guid: a8258876abdc8b94dbf325b4ad2db8d3, type: 3}
+          m_value: {fileID: 21300000, guid: bf7d87c801a0e7440b5aa93aa1061571, type: 3}
         - m_key: EarthQuake
-          m_value: {fileID: 21300000, guid: 64a27272c9cdea2468ddfea91d80182e, type: 3}
+          m_value: {fileID: 21300000, guid: 28ae9d3c0badaf54f99ca4ac069c4a53, type: 3}
         - m_key: Hurricane
-          m_value: {fileID: 21300000, guid: b8755306c552b4f40919e34bd256a17d, type: 3}
+          m_value: {fileID: 21300000, guid: 607a6e62621becf408324a89a72cef13, type: 3}
         - m_key: ThunderStorm
-          m_value: {fileID: 21300000, guid: 86c8fb45467b1224485a3383e1534198, type: 3}
+          m_value: {fileID: 21300000, guid: d332b62c787ae4147ae545665c018111, type: 3}
         - m_key: Tsunami
-          m_value: {fileID: 21300000, guid: 739b70a19495ed54b91339e886f9c820, type: 3}
+          m_value: {fileID: 21300000, guid: 9e1a74807c258c8498cb06816c6ab9ee, type: 3}
         - m_key: Eruption
-          m_value: {fileID: 21300000, guid: 4d11d59505a20534787fd90a0a27fdda, type: 3}
+          m_value: {fileID: 21300000, guid: 07bf045db4b0b8043b0ad9e306880b1e, type: 3}
         - m_key: Plague
-          m_value: {fileID: 21300000, guid: 9a3835350a56e2e4480e7c2c1feb5f59, type: 3}
+          m_value: {fileID: 21300000, guid: 99b443b2e6ee8b646ad85baf9502d812, type: 3}
         - m_key: Desert
-          m_value: {fileID: 21300000, guid: 468f0f2998896c741803903097249f0c, type: 3}
+          m_value: {fileID: 21300000, guid: ead7e6c014549d44e89054dd0be0860c, type: 3}
         - m_key: IceAge
-          m_value: {fileID: 21300000, guid: a67a850065d2bdd4a87e32942ba5adaa, type: 3}
+          m_value: {fileID: 21300000, guid: 5c944a49991f2894b97663e83b107faf, type: 3}
         - m_key: BigFire
-          m_value: {fileID: 21300000, guid: b08b471f6e274284e89256a5dd8b9788, type: 3}
+          m_value: {fileID: 21300000, guid: f203f1522be5e544eb7571eca9dfc255, type: 3}
+  disBG_dic:
+    m_list:
+    - m_key: Meteor
+      m_value: {fileID: 21300000, guid: 171a9556ef0c92e48b67471b5b01b75e, type: 3}
+    - m_key: EarthQuake
+      m_value: {fileID: 21300000, guid: a9b6d2d2b4ddafc42946b105ef4658f2, type: 3}
+    - m_key: Hurricane
+      m_value: {fileID: 21300000, guid: 1125f05ee80785141968a5a305c7577a, type: 3}
+    - m_key: ThunderStorm
+      m_value: {fileID: 21300000, guid: d07878b9799f8b94fb661b648f4f1ade, type: 3}
+    - m_key: Tsunami
+      m_value: {fileID: 21300000, guid: be80af1cac7ab3e418c678926017b3d7, type: 3}
+    - m_key: Eruption
+      m_value: {fileID: 21300000, guid: 9c078bade5bc1d149bb7a77579054f21, type: 3}
+    - m_key: Plague
+      m_value: {fileID: 21300000, guid: 08b57a0f3c4581b4985a7b41f2c6a636, type: 3}
+    - m_key: Desert
+      m_value: {fileID: 21300000, guid: 6c4c426d873393543be6f51906cd62ad, type: 3}
+    - m_key: IceAge
+      m_value: {fileID: 21300000, guid: 6491544d560ea9e4b9a6a2ab58da9dea, type: 3}
+    - m_key: BigFire
+      m_value: {fileID: 21300000, guid: 7664f5df09e459f4caafe2d95d6e2452, type: 3}
   Scroll: {fileID: 95126679}
 --- !u!114 &1357845384
 MonoBehaviour:
@@ -3879,7 +3978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff54678f686294b4caf9d2272fb48b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 7d59952d34da85a40b604edde24438ca, type: 3}
+  sprite: {fileID: 21300000, guid: d2b12398c024fdc479599431ec389c9d, type: 3}
   target: {fileID: 1909493006}
   canvas_spec: {fileID: 64679910}
   contents: {fileID: 1357845381}
@@ -5101,14 +5200,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9433962, g: 0.8579566, b: 0.8579566, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 84041cb0bab46334faa3b0a9aa681d94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4e61f86df9ce484a9c6a428ea464877, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5308,7 +5407,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8784d93e8d10ada40832c416e3a4d23a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ce615eb538b7f54ebb825bd646a595a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5335,15 +5434,15 @@ RectTransform:
   m_GameObject: {fileID: 1990807039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 64679914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 144.83441, y: -129.64073}
-  m_SizeDelta: {x: 269, y: 64}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1991258367
 GameObject:
@@ -5410,14 +5509,14 @@ RectTransform:
   m_GameObject: {fileID: 2003441023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.51, y: 0.51, z: 0.51}
+  m_LocalScale: {x: 0.61, y: 0.61, z: 0.61}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 64679914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.4, y: -92.2}
+  m_AnchoredPosition: {x: -0.4, y: -68.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2003441025
