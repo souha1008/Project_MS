@@ -380,15 +380,15 @@ RectTransform:
   m_GameObject: {fileID: 634898602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.38, y: 0.38, z: 0.38}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2113279537}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -861, y: 439}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: -882, y: 462}
+  m_SizeDelta: {x: 276, y: 276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634898605
 MonoBehaviour:
@@ -434,7 +434,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1766409707}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GeneralSEManager, Assembly-CSharp
         m_MethodName: PlaySE01
         m_Mode: 1
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 727ce662e0e8531498f714739f2f6f9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f2289782cb471a47ac51244ac544233, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1246,17 +1246,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 236357291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1766409707 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6844174832796279063, guid: 925f7db0172adf946a0c65bfa208ded6, type: 3}
-  m_PrefabInstance: {fileID: 9107153538696874819}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0191a3a0ee892ef499ec6ea7e08d499f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1799200499
 GameObject:
   m_ObjectHideFlags: 0
