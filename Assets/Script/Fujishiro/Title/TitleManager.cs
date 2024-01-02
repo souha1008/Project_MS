@@ -18,6 +18,9 @@ public class TitleManager : MonoBehaviour
         nowchange = false;
     }
 
+    /// <summary>
+    /// Ÿ‚ÌƒV[ƒ“‚És‚­
+    /// </summary>
     public void ChangeStageSelect(string scenename)
     {
         if (!nowchange)
