@@ -14,9 +14,11 @@ public class DeckManager : MonoBehaviour
     public class StringStringKeyValuePair : SerializableKeyValuePair<string, string> { }
 
     [Serializable]
-    public class Deck : SerializableDictionary<string, string, StringStringKeyValuePair> { }
+    public class Deck_Dic : SerializableDictionary<string, string, StringStringKeyValuePair> { }
 
     public static DeckManager instance;
+
+    [SerializeField] Deck _deck;
 
     // 災害の名前情報
     public string[] Disastar_Name { get; set; } =
@@ -44,7 +46,7 @@ public class DeckManager : MonoBehaviour
     };
 
     // 現在のデッキ編成情報を格納する
-    public Deck deck;
+    public Deck_Dic deck;
 
     // 災害のバナーを格納
     public Disastar_Baner disastar_baner;
@@ -55,11 +57,12 @@ public class DeckManager : MonoBehaviour
     {
         instance = this;
 
-        deck.Table[deckobj_name[0]] = Disastar_Name[3];
-        deck.Table[deckobj_name[1]] = Disastar_Name[7];
-        deck.Table[deckobj_name[2]] = Disastar_Name[1];
-        deck.Table[deckobj_name[3]] = Disastar_Name[4];
-        deck.Table[deckobj_name[4]] = Disastar_Name[9];
+        deck.Table[deckobj_name[0]] = _deck.Disaster1;
+        deck.Table[deckobj_name[1]] = _deck.Disaster2;
+        deck.Table[deckobj_name[2]] = _deck.Disaster3;
+        deck.Table[deckobj_name[3]] = _deck.Disaster4;
+        deck.Table[deckobj_name[4]] = _deck.Disaster5;
+
 
         // 初期化の段階で現在のデッキ情報に応じてスプライトを変更するようにしなきゃ
     }
