@@ -9,6 +9,9 @@ public class Zebra : Animal
     bool eruptionSpeedUp = false;
     bool desertHpHeal = false;
 
+    float coolTimer = 0.0f;
+    int desertHealCount = 0;
+
     override protected void Start()
     {
         base.Start();
@@ -39,9 +42,12 @@ public class Zebra : Animal
         }
         else if (evolution.Equals(EVOLUTION.DESERTIFICATION))
         {
-            if(status.hp <= status.maxHP * 0.1f)
+            if(status.hp <= status.maxHP * status_.desertHPHealTiming * 0.01f 
+                && desertHealCount < status_.desertHealCount)
             {
-                status.hp += (int)(status.maxHP * 0.15f);
+                status.hp += Mathf.RoundToInt(status.maxHP * status_.desertHPHeal * 0.01f);
+                desertHealCount++;
+                Debug.Log(status.hp);
             }
         }
     }
@@ -57,12 +63,11 @@ public class Zebra : Animal
 
     override public void EarthquakeEvolution()
     {
-        if (evolution.Equals(EVOLUTION.NONE))
-        {
-            base.EarthquakeEvolution();
-            status_.attack = (int)(status_.attack * status_.attackUpMag);
-            status_.speed *= status_.speedDownMag;
-        }
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.EarthquakeEvolution();
+
+        status_.attack = (int)(status_.attack * status_.earthquakeAttackUp * 0.01f) + status.attack;
+        status_.speed = status.speed - status.speed * status_.earthquakeSpeedDown * 0.01f;
     }
 
     public override void TsunamiEvolution()
@@ -75,5 +80,11 @@ public class Zebra : Animal
     public override void EruptionEvolution()
     {
         base.EruptionEvolution();
+    }
+
+    public override void DesertificationEvolution()
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.DesertificationEvolution();
     }
 }

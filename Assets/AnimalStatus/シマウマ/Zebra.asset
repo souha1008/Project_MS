@@ -21,6 +21,9 @@ MonoBehaviour:
   attackDist: 1
   hitRate: 100
   dir: 1
+  DesertHPHeal: 15
+  DesertHealCount: 1
+  DesertHPHealTiming: 25
   doubleAttackMag: 0.15
   attackUpMag: 3
   speedDownMag: 0.8

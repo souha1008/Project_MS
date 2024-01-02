@@ -113,11 +113,8 @@ public class Camel : Animal
     override public void EarthquakeEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
-
-        if (!earthquakeEvolution && !meteoEvolution)
-        {
-            HealOne();
-        }
+        
+        HealOne();
     }
 
     public override void ThunderstormEvolution()
@@ -181,16 +178,23 @@ public class Camel : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
         base.DesertificationEvolution();
 
-        status.hp -= (int)(status.maxHP * 0.1f);
+        status.hp -= Mathf.RoundToInt(status.maxHP * status_.DesertHPDecMag * 0.01f);
         if (status.hp <= 0) status.hp = 1;
 
         foreach (Animal animal in animalList)
         {
             if (animal.tag == "Enemy") continue;
-            
-            animal.status.AllStatusUp(1.03f);
-            animal.status.Invoke("ResetAll", 4.0f);
+
+            float dist = Vector2.Distance(transform.position, animal.transform.position);
+            if (status_.DesertStatusUpDist >= dist - 0.25f)
+            {
+                animal.status.AllStatusUp(1.0f + status_.DesertStatusUpMag * 0.01f);
+                animal.status.Invoke("ResetAll", status_.activeTimeDesert);
+            }
         }
+
+        activeTimer = status_.activeTimeDesert;
+        coolTimer = status_.coolTimeDesert;
     }
 
     public override void IceAgeEvolution()
@@ -243,7 +247,7 @@ public class Camel : Animal
 
         if (healAnimal)
         {
-            healAnimal.status.hp += (int)(healAnimal.status.maxHP * status_.hpHealOne);
+            healAnimal.status.hp += status_.earthquakeHPHeal;
             if (healAnimal.status.maxHP < healAnimal.status.hp) healAnimal.status.hp = healAnimal.status.maxHP;
         }
         earthquakeEvolution = true;
