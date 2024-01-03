@@ -7,13 +7,15 @@ public class LevelUpButton : MonoBehaviour
 {
     GameSetting gameSetting;
     int cost = 30;
-    [SerializeField] Text lvText;
+    [SerializeField] Sprite[] images;
     int level = 1;
+    private Image myImage;
 
     private void Start()
     {
         gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
         cost = gameSetting.lvUpCost[0];
+        myImage = GetComponent<Image>();
     }
 
     public void LevelUp()
@@ -27,8 +29,8 @@ public class LevelUpButton : MonoBehaviour
             cost = gameSetting.lvUpCost[level - 1];
 
             level++;
-            lvText.text = level + " lv";
-            if (level == gameSetting.maxLevel + 1) lvText.text = "Max";
+            myImage.sprite = images[level];
+            if (level == gameSetting.maxLevel + 1) myImage.sprite = images[4];
         }
     }
 }
