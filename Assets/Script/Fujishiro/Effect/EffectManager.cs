@@ -118,6 +118,14 @@ public class EffectManager : MonoBehaviour
             case DISASTAR_TYPE.Meteor:
                 Effect_Meteor();
                 break;
+
+            case DISASTAR_TYPE.Desert:
+                Effect_Desert();
+                break;
+
+            case DISASTAR_TYPE.BigFire:
+                Effect_BigFire();
+                break;
         }
     }
 
@@ -313,6 +321,94 @@ public class EffectManager : MonoBehaviour
         effect_rawImage.gameObject.transform.position = new Vector3(8.22f, -0.53f, 6.0f);
         effect_rawImage.GetComponent<Animator>().SetTrigger("Eruption_Action");
         
+        StartCoroutine(CheckEnd(Videoplayers[0], state));
+
+        // オーバーレイ設定
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+    }
+
+    void Effect_Desert()
+    {
+        Debug.Log("砂漠化発動");
+
+        // ステート取得
+        var state = dic_base.Table["Desert"];
+
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // アニメーターをアウトさせる
+        rawImage_animator.SetTrigger("Eruption_Out");
+
+        // RenderTextureをリリース
+        Reset_rawImage(state);
+        effect_rawImage.transform.position = new Vector3(0, 0, 6.0f);
+
+        // イベントハンドラセット
+        // 引数は使うvideoplayersの要素番号
+        VideoplayerStenby(0);
+
+        Videoplayers[0].renderMode = VideoRenderMode.APIOnly;
+        Videoplayers[0].clip = state.clip[0];
+        //Videoplayers[0].targetTexture = state.renderTextures[0];
+        Videoplayers[0].aspectRatio = VideoAspectRatio.Stretch;
+
+        // 読み込み
+        Videoplayers[0].Prepare();
+
+        Videoplayers[1].clip = null;
+        Videoplayers[1].targetTexture = null;
+
+        StartCoroutine(CheckEnd(Videoplayers[0], state));
+
+        // オーバーレイ設定
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+    }
+
+    void Effect_BigFire()
+    {
+        Debug.Log("大火災発動");
+
+        // ステート取得
+        var state = dic_base.Table["BigFire"];
+
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // アニメーターをアウトさせる
+        rawImage_animator.SetTrigger("Eruption_Out");
+
+        // RenderTextureをリリース
+        Reset_rawImage(state);
+        effect_rawImage.transform.position = new Vector3(0, 4, 6.0f);
+
+        // イベントハンドラセット
+        // 引数は使うvideoplayersの要素番号
+        VideoplayerStenby(0);
+
+        Videoplayers[0].renderMode = VideoRenderMode.APIOnly;
+        Videoplayers[0].clip = state.clip[0];
+        //Videoplayers[0].targetTexture = state.renderTextures[0];
+        Videoplayers[0].aspectRatio = VideoAspectRatio.Stretch;
+
+        // 読み込み
+        Videoplayers[0].Prepare();
+
+        Videoplayers[1].clip = null;
+        Videoplayers[1].targetTexture = null;
+
         StartCoroutine(CheckEnd(Videoplayers[0], state));
 
         // オーバーレイ設定

@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a82b1bfaa45f943be7d530b16e48c2, type: 3}
-  m_Name: Deck
+  m_Script: {fileID: 11500000, guid: b9002afe6c88f654ca59618f78900969, type: 3}
+  m_Name: Effect State_Desert
   m_EditorClassIdentifier: 
-  Disaster1: "\u6C37\u6CB3\u671F"
-  Disaster2: "\u96F7\u96E8"
-  Disaster3: "\u5674\u706B"
-  Disaster4: "\u5927\u706B\u707D"
-  Disaster5: "\u7802\u6F20\u5316"
+  name: Desert
+  clip:
+  - {fileID: 32900000, guid: 76f79d5e9dfac6d4ba4d6396b74b2e29, type: 3}
+  renderTextures: []
+  prefab: {fileID: 0}
+  Anim_Trigger_Name: Desert
+  isPlay: 0
