@@ -4855,6 +4855,10 @@ PrefabInstance:
       propertyPath: costSpeed
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 3318473321381313063, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 957c2966fa495fc48a845fe735858a31, type: 3}
     - target: {fileID: 3378221858353475239, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4926,6 +4930,10 @@ PrefabInstance:
     - target: {fileID: 8250074223624383900, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8524623008784818491, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9142404024658784732, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: hp
