@@ -857,6 +857,7 @@ PrefabInstance:
       propertyPath: costSpeed
       value: 0.01
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 3318473321381313063, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -881,13 +882,11 @@ PrefabInstance:
       propertyPath: m_text
       value: '123: 123'
       objectReference: {fileID: 0}
+=======
+>>>>>>> origin/alpha
     - target: {fileID: 5260329497723235243, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 4.805069
-      objectReference: {fileID: 0}
-    - target: {fileID: 6177679012792636036, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6475742098413655563, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -929,10 +928,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6597912158205032645, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7570243521763938168, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: hp
       value: 50000
@@ -949,6 +944,7 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 8524623008784818491, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_Value
       value: 1
@@ -961,6 +957,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -173
       objectReference: {fileID: 0}
+=======
+>>>>>>> origin/alpha
     - target: {fileID: 9142404024658784732, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: hp
       value: 50000
