@@ -33,7 +33,12 @@ public class AnimalButtons : MonoBehaviour
             gameSetting.cost -= animalScript.baseStatus.cost;
             Vector3 pos = gameSetting.createPosition;
             //pos.y += Random.Range(-0.3f, 0.3f);
-            pos.z += Random.Range(-2.0f, -20.0f);
+            if(animalScript is Zebra) pos.z = Random.Range(-18.0f, -22.0f);
+            if(animalScript is Buffalo) pos.z = Random.Range(-14.0f, -18.0f);
+            if(animalScript is Camel) pos.z = Random.Range(-10.0f, -14.0f);
+            if(animalScript is Elephant) pos.z = Random.Range(-6.0f, -10.0f);
+            if(animalScript is Giraffe) pos.z = Random.Range(-2.0f, -6.0f);
+
             if (animalScript is Giraffe) pos.y += 0.8f;
             Instantiate(animalObject, pos, animalObject.transform.rotation);
         }
