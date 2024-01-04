@@ -98,6 +98,7 @@ public class AnimalStatus : MonoBehaviour
     protected void AddHp(int _hp)
     {
         hp += _hp;
+        if (hp > maxHP) hp = maxHP;
     }
 
     /// <summary>
@@ -128,7 +129,6 @@ public class AnimalStatus : MonoBehaviour
             animal.CancelInvoke("ResetSpeed");
             animal.Invoke("ResetSpeed", ((ElephantStatus)elephant.status).iceAgeStopTime);
         }
-
     }
 
     private void BuffaloAttack(Animal animal_)
@@ -136,6 +136,7 @@ public class AnimalStatus : MonoBehaviour
         if (animal_ is Buffalo == false) return;
 
         Buffalo buffalo = (Buffalo)animal_;
+
         if (buffalo.evolution == EVOLUTION.HURRICANE)
         {
             speed = 0;
@@ -233,6 +234,6 @@ public class AnimalStatus : MonoBehaviour
             animal_.status.Invoke("ResetSpeed", 6.0f);
             zebra.evolution = EVOLUTION.NONE;
         }
-            
+
     }
 }

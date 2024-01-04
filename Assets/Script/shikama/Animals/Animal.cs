@@ -39,6 +39,7 @@ public class Animal : MonoBehaviour
 
     /// <summary>フィールド内の動物を保存</summary>
     static public List<Animal> animalList { get; private set; } 
+    static public List<Giraffe> giraffesDesertList { get; set; }
 
     /// <summary>ターゲットを攻撃しているキャラクター情報格納用</summary>
     static protected Dictionary<GameObject, List<Animal>> attackTarget;
@@ -63,6 +64,7 @@ public class Animal : MonoBehaviour
     public static void AnimalListInit()
     {
         if (animalList == null) animalList = new List<Animal>();
+        if (giraffesDesertList == null) giraffesDesertList = new List<Giraffe>();
     }
 
     private void Awake()

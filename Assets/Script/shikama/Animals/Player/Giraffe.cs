@@ -6,8 +6,6 @@ public class Giraffe : Animal
 {
     GiraffeStatus status_;
 
-    private bool meteoEvolution = false;
-    private bool earthquakeEvolution = false;
 
     float coolTimer = 0.0f;
 
@@ -27,57 +25,75 @@ public class Giraffe : Animal
             coolTimer -= Time.deltaTime;
         else
             coolTimer = 0;
-
-        if (earthquakeEvolution)
-        {
-            if (coolTimer > 0)
-            {
-                coolTimer -= Time.deltaTime;
-            }
-            else
-            {
-                coolTimer = 0;
-                earthquakeEvolution = false;
-            }
-        }
-     
     }
 
+    protected override void Attack()
+    {
+        if (giraffesDesertList.Count != 0)
+        {
+            foreach (Giraffe giraffe in giraffesDesertList)
+            {
+                float dist = Vector2.Distance(giraffe.transform.position, transform.position);
+                if (((GiraffeStatus)giraffe.status).desertDist >= dist - 0.25f)
+                {
+                    status.AddHp(Mathf.RoundToInt(status.maxHP *
+                        ((GiraffeStatus)giraffe.status).desertHealMag * 0.01f), null);
+                }
+            }
+        }
+
+        base.Attack();
+    }
 
     override public void MeteoEvolution()
     {
-        if (!earthquakeEvolution && !meteoEvolution)
-        {
-            meteoEvolution = true;
-            status_.attack = (int)(status_.attack * status_.attackUpMag);
-        }
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.MeteoEvolution();
+    
+        status_.attack = (int)(status_.attack * status_.attackUpMag);
+        
     }
 
     override public void EarthquakeEvolution()
     {
-        if (!earthquakeEvolution && !meteoEvolution)
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.EarthquakeEvolution();
+
+        foreach (Animal animal in animalList)
         {
-            foreach(Animal animal in animalList)
+            if (animal.tag == "Player") continue;
+            float dist = Vector2.Distance(transform.position, animal.transform.position);
+            if (animal.status.attackDist >= dist - 0.25f)
             {
-                if (animal.tag == "Player") continue;
-                float dist = Vector2.Distance(transform.position, animal.transform.position);
-                if (animal.status.attackDist >= dist - 0.25f)
+                // ターゲットのリセット
+                attackTarget[animal.attackObject].Remove(animal);
+
+                // ターゲットの変更
+                animal.attackObject = gameObject;
+                if (!attackTarget.ContainsKey(gameObject))
                 {
-                    // ターゲットのリセット
-                    attackTarget[animal.attackObject].Remove(animal);
-
-                    // ターゲットの変更
-                    animal.attackObject = gameObject;
-                    if (!attackTarget.ContainsKey(gameObject))
-                    {
-                        attackTarget.Add(gameObject, new List<Animal>());
-                    }
-                    attackTarget[gameObject].Add(animal);
+                    attackTarget.Add(gameObject, new List<Animal>());
                 }
+                attackTarget[gameObject].Add(animal);
             }
-
-            coolTimer = status_.coolTimeEarthquake;
-            earthquakeEvolution = true;
         }
+
+        coolTimer = status_.coolTimeEarthquake;
+    }
+
+    public override void DesertificationEvolution()
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.DesertificationEvolution();
+
+        giraffesDesertList.Add(this);
+    }
+
+    protected override void Death()
+    {
+        if(giraffesDesertList.Contains(this))
+            giraffesDesertList.Remove(this);
+        
+        base.Death();
     }
 }

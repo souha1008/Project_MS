@@ -43,6 +43,19 @@ public class Elephant : Animal
 
     protected override void Attack()
     {
+        if (giraffesDesertList.Count != 0)
+        {
+            foreach (Giraffe giraffe in giraffesDesertList)
+            {
+                float dist = Vector2.Distance(giraffe.transform.position, transform.position);
+                if (((GiraffeStatus)giraffe.status).desertDist >= dist - 0.25f)
+                {
+                    status.AddHp(Mathf.RoundToInt(status.maxHP *
+                        ((GiraffeStatus)giraffe.status).desertHealMag * 0.01f), null);
+                }
+            }
+        }
+
         if (evolution == EVOLUTION.TSUNAMI)
         {
             tsunamiCount = attackTarget[attackObject].Count;

@@ -25,8 +25,8 @@ MonoBehaviour:
   coolTimeMeteo: 10
   meteoSpeedDownMag: 10
   activeTimeEarthquake: 5
-  coolTimeEarthquake: 0
-  allStatusUpMag: 3
+  coolTimeEarthquake: 30
+  allStatusUpMag: 100
   coolTimeHurricane: 10
   thunderAtkUp: 5
   thunderDist: 3
