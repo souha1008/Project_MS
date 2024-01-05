@@ -849,22 +849,6 @@ PrefabInstance:
       propertyPath: _cueName
       value: BGM_INGame01
       objectReference: {fileID: 0}
-    - target: {fileID: 2715929072783165296, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
-      propertyPath: envCost
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2715929072783165296, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
-      propertyPath: maxCost
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 2715929072783165296, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
-      propertyPath: costSpeed
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2715929072783165296, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
-      propertyPath: costSpeedMag
-      value: 0.65
-      objectReference: {fileID: 0}
     - target: {fileID: 3318473321381313063, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_Sprite
       value: 

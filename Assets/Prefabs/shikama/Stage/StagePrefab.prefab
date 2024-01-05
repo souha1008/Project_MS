@@ -3922,11 +3922,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstCost: 60
-  costSpeed: 0.2
-  costSpeedMag: 0.9
-  maxCost: 120
-  envCost: 200
-  envCostDown: 10
+  costSpeed: 0.1
+  costSpeedMag: 0.7
+  maxCost: 200
+  envCost: 100
+  envCostDown: 20
   enemyHouse: {fileID: 9142404024658784732}
   playerHouse: {fileID: 7570243521763938168}
   clearText: {fileID: 5597014517053930465}
