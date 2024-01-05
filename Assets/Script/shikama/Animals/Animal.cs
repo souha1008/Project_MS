@@ -55,8 +55,9 @@ public class Animal : MonoBehaviour
 
     GameSetting gameSetting;
 
-    [SerializeField] protected ParticleSystem particle = null;
-    [SerializeField] Sprite[] particleSprite;
+    [SerializeField] protected GameObject particle;
+    protected ParticleSystem[] particles;
+    EvolutionEffect_ColorChange particleColorChanger;
 
     [SerializeField] Slider hpSlider;
     [SerializeField] Animator animator;
@@ -95,8 +96,13 @@ public class Animal : MonoBehaviour
         State = Move; // ステート初期化(移動処理)
         if (hpSlider)
         {
-            hpSlider.maxValue = status.maxHP;
-            
+            hpSlider.maxValue = status.maxHP;       
+        }
+
+        if(particle)
+        {
+            particles = particle.GetComponentsInChildren<ParticleSystem>();
+            particleColorChanger = particle.GetComponent<EvolutionEffect_ColorChange>();
         }
     }
 
@@ -118,17 +124,26 @@ public class Animal : MonoBehaviour
 
         if (!evolution.Equals(EVOLUTION.NONE) && particle)
         {
-            particle.gameObject.SetActive(true);
+            particle.SetActive(true);
         }
         else
         {
             if (particle && particle.gameObject.activeInHierarchy)
             {
-                particle.Stop();
-                if (particle.particleCount == 0)
+                int particleCount = 0;
+                foreach(ParticleSystem s in particles)
                 {
-                    particle.gameObject.SetActive(false);
-                    particle.Play();
+                    s.Stop();
+                    if (s.particleCount != 0) particleCount = s.particleCount;
+                }
+
+                if (particleCount == 0)
+                {
+                    particle.SetActive(false);
+                    foreach (ParticleSystem s in particles)
+                    {
+                        s.Play();
+                    }
                 }
             }
         }
@@ -338,14 +353,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "隕石")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.Meteor();
     }
 
     /// <summary>
@@ -363,14 +371,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "地震")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.Earthquake();
     }
 
     /// <summary>
@@ -387,14 +388,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach(Sprite particle in gameSetting.particleSprite)
-        {
-            if(particle.name == "ハリケーン")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.Hurricane();
     }
 
     /// <summary>
@@ -412,14 +406,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "雷雨")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.ThunderStorm();
     }
 
     /// <summary>
@@ -437,14 +424,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "津波")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.Tsunami();
     }
 
     /// <summary>
@@ -462,14 +442,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "噴火")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.Volcano();
     }
 
     /// <summary>
@@ -487,14 +460,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "疫病")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.Plague();
     }
 
     /// <summary>
@@ -512,14 +478,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "砂漠化")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.Desert();
     }
 
     /// <summary>
@@ -537,14 +496,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "氷河期")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.IceAge();
     }
 
     /// <summary>
@@ -562,14 +514,7 @@ public class Animal : MonoBehaviour
         }
 
         if (!particle) return;
-        foreach (Sprite particle in gameSetting.particleSprite)
-        {
-            if (particle.name == "大火災")
-            {
-                this.particle.textureSheetAnimation.SetSprite(0, particle);
-                break;
-            }
-        }
+        particleColorChanger.BigFire();
     }
 
     // ▲▲▲　　進化時処理(継承用)　　▲▲▲

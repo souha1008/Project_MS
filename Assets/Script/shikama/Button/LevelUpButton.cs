@@ -29,8 +29,7 @@ public class LevelUpButton : MonoBehaviour
             cost = gameSetting.lvUpCost[level - 1];
 
             level++;
-            myImage.sprite = images[level];
-            if (level == gameSetting.maxLevel + 1) myImage.sprite = images[4];
+            myImage.sprite = images[level - 1];
         }
     }
 }

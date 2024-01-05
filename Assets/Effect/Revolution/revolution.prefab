@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591814128647570417}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3591014789801070629}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!198 &6836266475204783874
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4880,30 +4880,46 @@ MonoBehaviour:
   _PS2: {fileID: 9012292055585238194}
   dic_eec:
     m_list:
-    - m_key: IceAge
+    - m_key: Hurricane
       m_value:
-      - {r: 0, g: 1, b: 0.9209702, a: 1}
-      - {r: 0, g: 0.01649186, b: 0.7830189, a: 1}
-    - m_key: Meteor
-      m_value:
-      - {r: 1, g: 0.2439985, b: 0, a: 1}
-      - {r: 0.9137255, g: 0.023529412, b: 0.2, a: 1}
-    - m_key: BigFire
-      m_value:
-      - {r: 1, g: 0, b: 0, a: 1}
-      - {r: 0.9137255, g: 0.4862745, b: 0.023529412, a: 1}
-    - m_key: ThunderStorm
-      m_value:
-      - {r: 0.15686275, g: 0.17254902, b: 0.23921569, a: 1}
-      - {r: 0.3647059, g: 0.50980395, b: 0.09803922, a: 1}
+      - {r: 0.25882354, g: 0.4509804, b: 0, a: 1}
+      - {r: 0, g: 0.6313726, b: 0.3882353, a: 1}
     - m_key: Volcano
       m_value:
       - {r: 0.972549, g: 0.07058824, b: 0, a: 1}
       - {r: 1, g: 0, b: 0.101960786, a: 1}
+    - m_key: Earthquake
+      m_value:
+      - {r: 0.54901963, g: 0.27058825, b: 0, a: 1}
+      - {r: 0.019607844, g: 1, b: 0, a: 1}
+    - m_key: BigFire
+      m_value:
+      - {r: 1, g: 0, b: 0, a: 1}
+      - {r: 0.9137255, g: 0.4862745, b: 0.023529412, a: 1}
+    - m_key: IceAge
+      m_value:
+      - {r: 0, g: 1, b: 0.9209702, a: 1}
+      - {r: 0, g: 0.01649186, b: 0.7830189, a: 1}
+    - m_key: Tsunami
+      m_value:
+      - {r: 0, g: 0.20392157, b: 0.7254902, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+    - m_key: Plague
+      m_value:
+      - {r: 1, g: 0, b: 0.47058824, a: 1}
+      - {r: 0.654902, g: 0.023529412, b: 0.9137255, a: 1}
     - m_key: Desert
       m_value:
       - {r: 0.972549, g: 0.38431373, b: 0, a: 1}
       - {r: 1, g: 0.5882353, b: 0, a: 1}
+    - m_key: Meteor
+      m_value:
+      - {r: 1, g: 0.2439985, b: 0, a: 1}
+      - {r: 0.9137255, g: 0.023529412, b: 0.2, a: 1}
+    - m_key: ThunderStorm
+      m_value:
+      - {r: 0.15686275, g: 0.17254902, b: 0.23921569, a: 1}
+      - {r: 0.3647059, g: 0.50980395, b: 0.09803922, a: 1}
 --- !u!1 &4232452087827898069
 GameObject:
   m_ObjectHideFlags: 0
@@ -9758,13 +9774,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4900407017146571041}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3591014789801070629}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!198 &7091127080047276223
 ParticleSystem:
   m_ObjectHideFlags: 0

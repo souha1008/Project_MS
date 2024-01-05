@@ -119,9 +119,10 @@ public class Buffalo : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.EarthquakeEvolution();
 
-        status_.hp = (int)(status_.hp * status_.allStatusUpMag * 0.01f) + status_.hp;
-        status_.attack = (int)(status_.attack * status_.allStatusUpMag * 0.01f) + status_.attack;
-        status_.speed = status_.speed * status_.allStatusUpMag * 0.01f + status_.speed;
+        status.maxHP = (int)(status_.maxHP * status_.allStatusUpMag * 0.01f);
+        status_.hp = (int)(status_.hp * status_.allStatusUpMag * 0.01f);
+        status_.attack = (int)(status_.attack * status_.allStatusUpMag * 0.01f);
+        status_.speed = status_.speed * status_.allStatusUpMag * 0.01f;
 
         coolTimer = status_.coolTimeEarthquake;
         activeTimer = status_.activeTimeEarthquake;
@@ -132,7 +133,8 @@ public class Buffalo : Animal
         activeTimer = 0;
         Debug.Log("バッファロー進化終了");
 
-        status_.hp = (int)(status_.hp / 3.0f); if (status_.hp == 0) status_.hp = 1;
+        status_.maxHP = (int)(status_.maxHP / (status_.allStatusUpMag * 0.01f));
+        status_.hp = (int)(status_.hp / (status_.allStatusUpMag * 0.01f)); if (status_.hp == 0) status_.hp = 1;
         status_.ResetAll();
     }
 

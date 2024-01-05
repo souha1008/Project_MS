@@ -69,11 +69,20 @@ public class Camel : Animal
 
         if (particleStop)
         {
-            particle.Stop();
-            if (particle.particleCount == 0)
+            int particleCount = 0;
+            foreach (ParticleSystem s in particles)
             {
-                particle.gameObject.SetActive(false);
-                particle.Play();
+                s.Stop();
+                if (s.particleCount != 0) particleCount = s.particleCount;
+            }
+
+            if (particleCount == 0)
+            {
+                particle.SetActive(false);
+                foreach (ParticleSystem s in particles)
+                {
+                    s.Play();
+                }
                 evolution = EVOLUTION.NONE;
                 particleStop = false;
             }
