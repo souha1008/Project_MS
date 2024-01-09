@@ -271,7 +271,7 @@ public class Animal : MonoBehaviour
 
     // ▲▲▲　　ステート処理　　▲▲▲
 
-    void HitRateAttack()
+    protected void HitRateAttack(float mag = 1.0f)
     {
         // 命中判定
         int r = Random.Range(1, 100);
@@ -297,7 +297,7 @@ public class Animal : MonoBehaviour
                 }
                 else
                 {
-                    attackEnemy.status.AddHp(-status.attack, this);
+                    attackEnemy.status.AddHp(Mathf.RoundToInt(-status.attack * mag), this);
                 }
 
                 // 倒したとき

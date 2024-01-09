@@ -12,6 +12,8 @@ public class Zebra : Animal
     float coolTimer = 0.0f;
     int desertHealCount = 0;
 
+    float doubleAttackCount = 0;
+
     override protected void Start()
     {
         base.Start();
@@ -23,6 +25,17 @@ public class Zebra : Animal
     protected override void Update()
     {
         base.Update();
+
+        if(evolution == EVOLUTION.METEO)
+        {
+            if (doubleAttackCount >= 2.0f)
+            {
+                HitRateAttack(status_.doubleAttackMag);
+                doubleAttackCount = 0;
+            }
+            else
+                doubleAttackCount += Time.deltaTime;
+        }
 
         if (evolution.Equals(EVOLUTION.ERUPTION))
         {
@@ -72,11 +85,10 @@ public class Zebra : Animal
 
     override public void MeteoEvolution()
     {
-        if (evolution.Equals(EVOLUTION.NONE))
-        {
-            base.MeteoEvolution();
-            status_.attack = (int)(status_.attack * status_.doubleAttackMag);
-        }
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.MeteoEvolution();
+        //status_.attack = (int)(status_.attack * status_.doubleAttackMag) + status_.attack;
+        
     }
 
     override public void EarthquakeEvolution()

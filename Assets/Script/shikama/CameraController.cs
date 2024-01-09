@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         MouseScrollZoom();
-        TouchPinchZoom();
+        //TouchPinchZoom();
         DragWidthScroll();
     }
 
