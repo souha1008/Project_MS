@@ -308,20 +308,32 @@ public class EffectManager : MonoBehaviour
         Reset_rawImage(state);
         VideoplayerStenby(0);
 
-        Videoplayers[0].renderMode = VideoRenderMode.APIOnly;
-        Videoplayers[0].clip = state.clip[0];
-        Videoplayers[0].aspectRatio = VideoAspectRatio.Stretch;
+        {
+            //Videoplayers[0].renderMode = VideoRenderMode.APIOnly;
+            //Videoplayers[0].clip = state.clip[0];
+            //Videoplayers[0].aspectRatio = VideoAspectRatio.Stretch;
 
-        Videoplayers[0].Prepare();
+            //Videoplayers[0].Prepare();
 
-        Videoplayers[1].clip = null;
-        Videoplayers[1].targetTexture = null;
+            //Videoplayers[1].clip = null;
+            //Videoplayers[1].targetTexture = null;
 
+            //effect_rawImage.gameObject.transform.position = new Vector3(8.22f, -0.53f, 6.0f);
+            //effect_rawImage.GetComponent<Animator>().SetTrigger("Eruption_Action");
+
+            //StartCoroutine(CheckEnd(Videoplayers[0], state));
+        }
+
+        // 山のアニメーション再生
         GameObject.Find("mounts").GetComponent<Animator>().SetTrigger("Action");
-        effect_rawImage.gameObject.transform.position = new Vector3(8.22f, -0.53f, 6.0f);
-        effect_rawImage.GetComponent<Animator>().SetTrigger("Eruption_Action");
         
-        StartCoroutine(CheckEnd(Videoplayers[0], state));
+        // エフェクト生成＆再生
+        GameObject effect = Instantiate(state.prefab);
+        effect.transform.SetPosition(
+            state.spawnPos.x,
+            state.spawnPos.y,
+            state.spawnPos.z);
+        effect.GetComponent<ParticleSystem>().Play();
 
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);

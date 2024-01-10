@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Effect State_Eruption
   m_EditorClassIdentifier: 
   name: 
-  clip:
-  - {fileID: 32900000, guid: f6d2bf3603c65a5449776b2b0f64ccb1, type: 3}
+  clip: []
   renderTextures: []
-  prefab: {fileID: 0}
+  prefab: {fileID: 5431728691950127848, guid: ca88d987a4ba1d244bb13390c07de91e, type: 3}
   Anim_Trigger_Name: Volcano
   isPlay: 0
+  spawnPos: {x: 12.21, y: 10.66, z: 46.88}
