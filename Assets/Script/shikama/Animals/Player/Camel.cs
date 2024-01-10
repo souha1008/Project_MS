@@ -33,8 +33,6 @@ public class Camel : Animal
     {
         base.Update();
 
-        Debug.Log(status.speed);
-
         if (evolution.Equals(EVOLUTION.HURRICANE) && barrierCount >= 5)
         {
             if(barrierTimer <= status_.barrierTime)

@@ -1,16 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnvironmentButton : MonoBehaviour
 {
     GameSetting gameSetting;
+    Button button;
 
     private void Start()
     {
         gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
+        button = GetComponent<Button>();
     }
 
+    private void Update()
+    {
+        if (PalletChange.palletNow == PALLET.SECOND)
+        {
+            if (gameSetting.cost < gameSetting.envCost)
+            {
+                button.interactable = false;
+            }
+            else
+            {
+                button.interactable = true;
+            }
+        }
+    }
     public void Meteo()
     {
         if (gameSetting.cost >= gameSetting.envCost)

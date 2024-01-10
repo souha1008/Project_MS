@@ -10,12 +10,26 @@ public class LevelUpButton : MonoBehaviour
     [SerializeField] Sprite[] images;
     int level = 1;
     private Image myImage;
+    Button button;
 
     private void Start()
     {
         gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
         cost = gameSetting.lvUpCost[0];
         myImage = GetComponent<Image>();
+        button = GetComponent<Button>();
+    }
+
+    private void Update()
+    {
+        if (gameSetting.cost < cost && level - 1 < gameSetting.maxLevel)
+        {
+            button.interactable = false;
+        }
+        else
+        {
+            button.interactable = true;
+        }
     }
 
     public void LevelUp()
@@ -26,7 +40,9 @@ public class LevelUpButton : MonoBehaviour
             gameSetting.costSpeed *= gameSetting.costSpeedMag;
             gameSetting.cost -= cost;
             gameSetting.envCost -= gameSetting.envCostDown;
-            cost = gameSetting.lvUpCost[level - 1];
+
+            if(level <= gameSetting.maxLevel - 1)
+                cost = gameSetting.lvUpCost[level];
 
             level++;
             myImage.sprite = images[level - 1];

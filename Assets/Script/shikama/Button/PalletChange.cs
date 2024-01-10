@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum PALLET
+public enum PALLET
 { 
     FIRST,
     SECOND,
@@ -19,7 +19,7 @@ public class PalletChange : MonoBehaviour
 {
     [SerializeField] GameObject pallet1st;
     [SerializeField] GameObject pallet2st;
-    PALLET palletNow = PALLET.FIRST;
+    static public PALLET palletNow = PALLET.FIRST;
 
     RectTransform pallet1stPos;
     RectTransform pallet2stPos;

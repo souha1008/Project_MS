@@ -9,6 +9,7 @@ public class AnimalButtons : MonoBehaviour
     private Animal animalScript;
     GameSetting gameSetting;
     private int lastCost;
+    Button button;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class AnimalButtons : MonoBehaviour
         animalScript = animalObject.GetComponent<Animal>();
 
         lastCost = animalScript.baseStatus.cost;
+        button = GetComponent<Button>();
         //CosttoText();
     }
 
@@ -24,6 +26,18 @@ public class AnimalButtons : MonoBehaviour
         //if (lastCost != animalScript.baseStatus.cost) CosttoText();
         
         lastCost = animalScript.baseStatus.cost;
+
+        if (PalletChange.palletNow == PALLET.FIRST)
+        {
+            if (gameSetting.cost < animalScript.baseStatus.cost)
+            {
+                button.interactable = false;
+            }
+            else
+            {
+                button.interactable = true;
+            }
+        }
     }
 
     public void PressAnimal()
