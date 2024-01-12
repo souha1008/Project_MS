@@ -1,9 +1,6 @@
 using Kogane;
 using System;
 using System.Collections;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
