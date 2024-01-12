@@ -365,11 +365,48 @@ MonoBehaviour:
       m_value: {fileID: 11400000, guid: 420f90cfb9828d0408f0c360efbe6991, type: 2}
     - m_key: Meteor
       m_value: {fileID: 11400000, guid: b9ef68675f6f47c4282c8d4edb65dc6e, type: 2}
+    - m_key: Eruption
+      m_value: {fileID: 11400000, guid: 731eeafe08456554b8cbf5614cfb168f, type: 2}
+    - m_key: Desert
+      m_value: {fileID: 11400000, guid: 9d95f8bbf000a814ca04a3f0eb788d66, type: 2}
+    - m_key: BigFire
+      m_value: {fileID: 11400000, guid: 84970c5b079365a4c8db72b5dc015009, type: 2}
+    - m_key: EarthQuake
+      m_value: {fileID: 11400000, guid: 4cc2a26f918b66a4196a5c00c60ab015, type: 2}
+    - m_key: Harricane
+      m_value: {fileID: 11400000, guid: 17698ec709d08b643850b617d6c56e13, type: 2}
+    - m_key: Plague
+      m_value: {fileID: 11400000, guid: e982bbe2823a08e41af9e249d1931e77, type: 2}
+    - m_key: Tsunami
+      m_value: {fileID: 11400000, guid: 1e404c30d03134043b59069b744da114, type: 2}
   mainCamera: {fileID: 0}
   Videoplayers:
   - {fileID: 6329578224882926846}
   - {fileID: 8177136705870835823}
   effect_rawImage: {fileID: 6873000448947072649}
+  Overlay_Image: {fileID: 0}
+  Overlay_Color:
+    m_list:
+    - m_key: IceAge
+      m_value: {r: 0.14901961, g: 0.31764707, b: 0.43529412, a: 0.43137255}
+    - m_key: ThunderStorm
+      m_value: {r: 0, g: 0, b: 0, a: 0.43137255}
+    - m_key: Meteor
+      m_value: {r: 0.3396226, g: 0.05882353, b: 0.05490196, a: 0.3882353}
+    - m_key: Volcano
+      m_value: {r: 0.9607843, g: 0.41960785, b: 0.2784314, a: 0.43137255}
+    - m_key: Hurricane
+      m_value: {r: 0.3529412, g: 0.3529412, b: 0.3529412, a: 0.56078434}
+    - m_key: BigFire
+      m_value: {r: 0.36862746, g: 0.09803922, b: 0.09803922, a: 0.42745098}
+    - m_key: Desert
+      m_value: {r: 0.3764706, g: 0.34117648, b: 0.18431373, a: 0.42745098}
+    - m_key: Tsunami
+      m_value: {r: 0.07058824, g: 0.28235295, b: 0.59607846, a: 0.3137255}
+    - m_key: EarthQuake
+      m_value: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 0.6117647}
+    - m_key: Plague
+      m_value: {r: 0.31764707, g: 0.18431373, b: 0.4, a: 0.49803922}
   DEBUG: 0
   buttons:
   - {fileID: 0}
