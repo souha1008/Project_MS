@@ -631,6 +631,10 @@ PrefabInstance:
       propertyPath: NextScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
+      propertyPath: postEffectMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 959315200140346187, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_Text
       value: "\u30B8\u30E3\u30F3\u30B0\u30EB - 1"
@@ -959,6 +963,10 @@ PrefabInstance:
       propertyPath: NextScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8021552354666751861, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
+      propertyPath: postEffectMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 8132646294359343110, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -232
@@ -995,6 +1003,10 @@ PrefabInstance:
       propertyPath: NextScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
+      propertyPath: postEffectMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 8811972932018584838, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_Transition
       value: 1
@@ -1344,7 +1356,7 @@ PrefabInstance:
     - target: {fileID: 8021552354666751861, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: ce02c74443d11e740a1ccea6af19b9f4, type: 2}
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: NextScene
       value: Scene_Deck
@@ -1352,7 +1364,7 @@ PrefabInstance:
     - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: ce02c74443d11e740a1ccea6af19b9f4, type: 2}
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 8703429766622180895, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_Name
       value: background
@@ -1945,6 +1957,10 @@ PrefabInstance:
       propertyPath: NextScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
+      propertyPath: postEffectMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 959315200140346187, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_Text
       value: "\u3055\u3070\u304F - 1"
@@ -2277,6 +2293,10 @@ PrefabInstance:
       propertyPath: NextScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8021552354666751861, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
+      propertyPath: postEffectMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 8132646294359343110, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 151
@@ -2313,6 +2333,10 @@ PrefabInstance:
       propertyPath: NextScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
+      propertyPath: postEffectMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 8811972932018584838, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_Transition
       value: 1
@@ -2865,7 +2889,7 @@ PrefabInstance:
     - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: ce02c74443d11e740a1ccea6af19b9f4, type: 2}
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 1498033697574603929, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -3189,7 +3213,7 @@ PrefabInstance:
     - target: {fileID: 8021552354666751861, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: ce02c74443d11e740a1ccea6af19b9f4, type: 2}
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 8132646294359343110, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -212
@@ -3229,7 +3253,7 @@ PrefabInstance:
     - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: ce02c74443d11e740a1ccea6af19b9f4, type: 2}
+      objectReference: {fileID: 2100000, guid: 256642a06471941448af0705014854f0, type: 2}
     - target: {fileID: 8811972932018584838, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: m_Transition
       value: 1

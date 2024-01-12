@@ -207,9 +207,9 @@ public class Fader : MonoBehaviour
 
                 postEffectMaterial.SetFloat(_progressId, progress);
 
-                if (postEffectMaterial.GetFloat(_progressId) <= 0f && !startedLoading)
+                if (postEffectMaterial.GetFloat(_progressId) <= 0.5f && !startedLoading)
                 {
-                    t = 0;
+                    t = 0.5f;
                     Debug.Log("Start LoadScene");
                     startedLoading = true;
                     SceneManager.LoadScene(fadeScene);
@@ -218,7 +218,7 @@ public class Fader : MonoBehaviour
             else
             {
                 // FadeOut
-                float progress = t / fadeDamp;
+                float progress = 0.5f + t / fadeDamp;
 
                 postEffectMaterial.SetFloat(_progressId, progress);
 
