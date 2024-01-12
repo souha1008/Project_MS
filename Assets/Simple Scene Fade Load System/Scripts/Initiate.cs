@@ -66,6 +66,35 @@ public static class Initiate
         scr.InitiateNoizeFader();
     }
 
+    public static void SpriteFade(string scene, Material mat, float multiplier)
+    {
+        if (areWeFading)
+        {
+            Debug.Log("Already Fading");
+            return;
+        }
+
+        int _transitionID = Shader.PropertyToID("_Transition");
+        GameObject init = new GameObject();
+        init.name = "SpriteFader";
+        Canvas myCanvas = init.GetComponent<Canvas>();
+        myCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        init.AddComponent<Fader>();
+        init.AddComponent<CanvasGroup>();
+        init.AddComponent<Image>();
+
+        Fader scr = init.GetComponent<Fader>();
+        scr.fadeDamp = multiplier;
+        scr.fadeScene = scene;
+        scr.fadeMode = Fader.FADEMODE.SPRITE;
+        scr._progressId = _transitionID;
+        scr.postEffectMaterial = mat;
+        scr.start = true;
+        areWeFading = true;
+        scr.InitiateSpriteFader();
+
+    }
+
     public static void DoneFading() {
         areWeFading = false;
     }

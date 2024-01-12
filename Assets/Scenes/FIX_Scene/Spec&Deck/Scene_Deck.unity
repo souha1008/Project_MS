@@ -191,7 +191,7 @@ Canvas:
   m_GameObject: {fileID: 129027415}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1161454074}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1602,8 +1602,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1459056229}
   m_HandleRect: {fileID: 1459056228}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.68250275
+  m_Value: -0.00000017356305
+  m_Size: 0.6825028
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

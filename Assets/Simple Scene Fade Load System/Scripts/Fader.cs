@@ -23,6 +23,7 @@ public class Fader : MonoBehaviour
     {
         NORMAL = 0,
         NOIZE,
+        SPRITE,
     };
 
     [HideInInspector]
@@ -78,6 +79,13 @@ public class Fader : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         StartCoroutine(NoizeFadeIt());
+    }
+
+    public void InitiateSpriteFader()
+    {
+        DontDestroyOnLoad(gameObject);
+
+        StartCoroutine(SpriteFadeIt());
     }
 
     IEnumerator FadeIt()
@@ -183,6 +191,57 @@ public class Fader : MonoBehaviour
         yield return null;
     }
 
+    IEnumerator SpriteFadeIt()
+    {
+        float t = 0f;
+        bool hasFadeIn = false;
+
+        //postEffectMaterial.SetFloat(_progressId, 0f);
+
+        while (!hasFadeIn)
+        {
+            if (!isFadeIn)
+            {
+                // FadeIn
+                float progress = 1.0f - t / fadeDamp;
+
+                postEffectMaterial.SetFloat(_progressId, progress);
+
+                if (postEffectMaterial.GetFloat(_progressId) <= 0f && !startedLoading)
+                {
+                    t = 0;
+                    Debug.Log("Start LoadScene");
+                    startedLoading = true;
+                    SceneManager.LoadScene(fadeScene);
+                }
+            }
+            else
+            {
+                // FadeOut
+                float progress = t / fadeDamp;
+
+                postEffectMaterial.SetFloat(_progressId, progress);
+
+                if (postEffectMaterial.GetFloat(_progressId) >= 1f)
+                {
+                    postEffectMaterial.SetFloat(_progressId, 1f);
+                    hasFadeIn = true;
+                }
+            }
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        Initiate.DoneFading();
+
+        Debug.Log("Your scene has been loaded , and fading in has just ended");
+
+        Destroy(gameObject);
+
+        yield return null;
+    }
+
     float newAlpha(float delta, int to, float currAlpha)
     {
 
@@ -215,6 +274,10 @@ public class Fader : MonoBehaviour
 
             case FADEMODE.NOIZE:
                 StartCoroutine(NoizeFadeIt());
+                break;
+
+            case FADEMODE.SPRITE:
+                StartCoroutine (SpriteFadeIt());
                 break;
         }
         //We can now fade in
