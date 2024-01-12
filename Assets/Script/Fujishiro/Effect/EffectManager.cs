@@ -123,6 +123,22 @@ public class EffectManager : MonoBehaviour
             case DISASTAR_TYPE.BigFire:
                 Effect_BigFire();
                 break;
+
+            case DISASTAR_TYPE.Hurricane:
+                Effect_Hurricane();
+                break;
+
+            case DISASTAR_TYPE.Plague:
+                Effect_Plugue();
+                break;
+
+            case DISASTAR_TYPE.EarthQuake:
+                Effect_EarthQuake();
+                break;
+
+            case DISASTAR_TYPE.Tsunami:
+                Effect_Tsunami();
+                break;
         }
     }
 
@@ -423,6 +439,28 @@ public class EffectManager : MonoBehaviour
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
     }
+
+    void Effect_Hurricane()
+    {
+
+    }
+
+    void Effect_Plugue()
+    {
+
+    }
+
+    void Effect_Tsunami()
+    {
+
+    }
+
+    void Effect_EarthQuake()
+    {
+
+    }
+
+
 
     void VideoPlay()
     {
