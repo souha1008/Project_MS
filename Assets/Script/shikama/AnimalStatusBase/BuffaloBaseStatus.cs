@@ -18,9 +18,17 @@ public class BuffaloBaseStatus : BaseStatus
     [Header("¥ƒnƒŠƒP[ƒ“")]
     public float coolTimeHurricane = 10.0f;
 
+    [Header("¥’Ã”g")]
+    public float coolTimeTsunami = 10.0f;
+    public int TsunamiMag = 30;
+    public int TsunamiSpeedUPMag = 70;
+
     [Header("¥—‹‰J")]
     public int thunderAtkUp = 5;
     public float thunderDist = 3.0f;
+
+    [Header("¥‰u•a")]
+    public int plagueAttackUp = 300;
 
     [Header("¥•X‰ÍŠú")]
     public int IceAgeCount = 5;

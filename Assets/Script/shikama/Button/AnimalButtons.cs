@@ -18,12 +18,12 @@ public class AnimalButtons : MonoBehaviour
 
         lastCost = animalScript.baseStatus.cost;
         button = GetComponent<Button>();
-        //CosttoText();
+        CosttoText();
     }
 
     private void Update()
     {
-        //if (lastCost != animalScript.baseStatus.cost) CosttoText();
+        if (lastCost != animalScript.baseStatus.cost) CosttoText();
         
         lastCost = animalScript.baseStatus.cost;
 
@@ -61,6 +61,8 @@ public class AnimalButtons : MonoBehaviour
     private void CosttoText()
     {
         GameObject child = transform.GetChild(0).gameObject;
+        if (child == null) return;
+        if (child.GetComponent<Text>() == null) return;
         child.GetComponent<Text>().text = animalScript.baseStatus.cost.ToString();
     }
 }

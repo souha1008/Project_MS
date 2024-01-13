@@ -6,8 +6,7 @@ public class Giraffe : Animal
 {
     GiraffeStatus status_;
 
-
-    float coolTimer = 0.0f;
+    public bool coolTimeZero { get; private set; }
 
     override protected void Start()
     {
@@ -25,23 +24,20 @@ public class Giraffe : Animal
             coolTimer -= Time.deltaTime;
         else
             coolTimer = 0;
+
+        if(evolution == EVOLUTION.PLAGUE)
+        {
+            if(coolTimer == 0)
+            {
+                coolTimeSlider.maxValue = coolTimer = status_.coolTimePlague;
+                gameSetting.cost += status_.plagueCostUp;
+                if (gameSetting.cost > gameSetting.maxCost) gameSetting.cost = gameSetting.maxCost;
+            }
+        }
     }
 
     protected override void Attack()
     {
-        if (giraffesDesertList.Count != 0)
-        {
-            foreach (Giraffe giraffe in giraffesDesertList)
-            {
-                float dist = Vector2.Distance(giraffe.transform.position, transform.position);
-                if (((GiraffeStatus)giraffe.status).desertDist >= dist - 0.25f)
-                {
-                    status.AddHp(Mathf.RoundToInt(status.maxHP *
-                        ((GiraffeStatus)giraffe.status).desertHealMag * 0.01f), null);
-                }
-            }
-        }
-
         base.Attack();
     }
 
@@ -78,7 +74,22 @@ public class Giraffe : Animal
             }
         }
 
-        coolTimer = status_.coolTimeEarthquake;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeEarthquake;
+    }
+
+    public void DesertCoolTimeStart()
+    {
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeDesert;
+    }
+
+    public override void PlagueEvolution()
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
+        base.PlagueEvolution();
+
+        gameSetting.cost += status_.plagueCostUp;
+        if (gameSetting.cost > gameSetting.maxCost) gameSetting.cost = gameSetting.maxCost;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimePlague;
     }
 
     public override void DesertificationEvolution()

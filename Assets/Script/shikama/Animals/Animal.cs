@@ -53,13 +53,19 @@ public class Animal : MonoBehaviour
     private delegate void STATE();           /// <summary> 移動、攻撃処理 </summary>
     private event STATE State;
 
-    GameSetting gameSetting;
+    protected GameSetting gameSetting;
 
     [SerializeField] protected GameObject particle;
     protected ParticleSystem[] particles;
     EvolutionEffect_ColorChange particleColorChanger;
 
     [SerializeField] Slider hpSlider;
+    [SerializeField] protected Slider coolTimeSlider;
+
+    Image coolTimeSliderFill;
+    Color coolTimeColor;
+    protected float coolTimer = 0.0f;
+
     [SerializeField] Animator animator;
 
     public static void AnimalListInit()
@@ -96,7 +102,13 @@ public class Animal : MonoBehaviour
         State = Move; // ステート初期化(移動処理)
         if (hpSlider)
         {
-            hpSlider.maxValue = status.maxHP;       
+            hpSlider.maxValue = status.maxHP;
+        }
+
+        if(coolTimeSlider)
+        {
+            coolTimeSliderFill = coolTimeSlider.fillRect.GetComponent<Image>();
+            coolTimeColor = coolTimeSliderFill.color;
         }
 
         if(particle)
@@ -115,11 +127,26 @@ public class Animal : MonoBehaviour
         Debug.DrawRay(transform.position, dirVec * status.attackDist, Color.red);
 
         attackCount += Time.deltaTime;
+        if(State != null)
         State(); // 攻撃、移動処理
 
         if (hpSlider)
         {
             hpSlider.value = status.hp;
+        }
+
+        if (coolTimeSlider) 
+        {
+            coolTimeSlider.value = coolTimeSlider.maxValue - coolTimer;
+
+            if (coolTimeSlider.value == coolTimeSlider.maxValue) 
+            {
+                coolTimeSliderFill.color = new Color(0.0f / 255.0f, 160.0f / 255.0f, 255.0f / 255.0f);
+            }
+            else
+            {
+                coolTimeSliderFill.color = coolTimeColor;
+            }
         }
 
         if (!evolution.Equals(EVOLUTION.NONE) && particle)
@@ -196,6 +223,7 @@ public class Animal : MonoBehaviour
         if (animator)
         {
             animator.ResetTrigger("Attack");
+
             animator.SetTrigger("Walk");
         }
     }
@@ -253,6 +281,14 @@ public class Animal : MonoBehaviour
 
     virtual protected void DeathMode()
     {
+        foreach (Animal animal in attackTarget[gameObject])
+        {
+            animal.MoveMode();
+        }
+        attackTarget.Remove(gameObject);
+
+        attackObject = null;
+        State = null;
         if (animator) { 
             animator.SetTrigger("Death");
             GetComponent<BoxCollider2D>().enabled = false;
@@ -312,10 +348,12 @@ public class Animal : MonoBehaviour
                     foreach (Animal animal in attackTarget[attackObject])
                     {
                         // 自分のモードを変更してしまうとバグる(上のattackObjectがnullになるため)
-                        if (animal != this) animal.MoveMode();
+                        if (animal != this)
+                        {
+                            animal.MoveMode();
+                        }
                     }
 
-                    attackTarget.Remove(attackObject);
                     attackEnemy.DeathMode();
 
                     MoveMode();
@@ -325,6 +363,31 @@ public class Animal : MonoBehaviour
             {
                 House house = attackObject.GetComponent<House>();
                 house.hp -= status.attack;
+            }
+
+            if (giraffesDesertList.Count != 0)
+            {
+                foreach (Giraffe giraffe in giraffesDesertList)
+                {
+                    if (!giraffe.coolTimeZero) continue;
+
+                    float dist = Vector2.Distance(giraffe.transform.position, transform.position);
+                    if (((GiraffeStatus)giraffe.status).desertDist >= dist - 0.25f)
+                    {
+                        if (this is Camel)
+                        {
+                            giraffe.status.AddHp(Mathf.RoundToInt(giraffe.status.maxHP *
+                                ((GiraffeStatus)giraffe.status).desertHealMag * 0.01f), null);
+
+                            giraffe.DesertCoolTimeStart();
+                        }
+                        else if(this is Elephant || this is Buffalo)
+                        {
+                            ((GiraffeStatus)giraffe.status).desertCut = true;
+                            giraffe.DesertCoolTimeStart();
+                        }
+                    }
+                }
             }
         }
         else Debug.Log("当たってないよ");

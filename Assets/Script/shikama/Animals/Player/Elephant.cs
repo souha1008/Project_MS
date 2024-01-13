@@ -8,7 +8,6 @@ public class Elephant : Animal
     [SerializeField] GameObject elephantField;
 
     float activeTimer = 0.0f;
-    float coolTimer = 0.0f;
 
     int tsunamiCount = 0;
 
@@ -43,19 +42,6 @@ public class Elephant : Animal
 
     protected override void Attack()
     {
-        if (giraffesDesertList.Count != 0)
-        {
-            foreach (Giraffe giraffe in giraffesDesertList)
-            {
-                float dist = Vector2.Distance(giraffe.transform.position, transform.position);
-                if (((GiraffeStatus)giraffe.status).desertDist >= dist - 0.25f)
-                {
-                    status.AddHp(Mathf.RoundToInt(status.maxHP *
-                        ((GiraffeStatus)giraffe.status).desertHealMag * 0.01f), null);
-                }
-            }
-        }
-
         if (evolution == EVOLUTION.TSUNAMI)
         {
             tsunamiCount = attackTarget[attackObject].Count;
@@ -69,7 +55,7 @@ public class Elephant : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.MeteoEvolution();
 
-        coolTimer = status_.coolTimeMeteo;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeMeteo;
         activeTimer = status_.activeTimeMeteo;
     }
 
@@ -97,7 +83,7 @@ public class Elephant : Animal
             }
         }
 
-        coolTimer = status_.coolTimeEarthquake;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeEarthquake;
     }
 
     // 途中(ノックバックの仕様を知らない)
@@ -119,7 +105,7 @@ public class Elephant : Animal
             if(animal.CompareTag("Player")) animal.elephantSheld = true;
         }
 
-        coolTimer = status_.coolTimeThunder;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeThunder;
     }
 
     public override void TsunamiEvolution()
@@ -139,7 +125,7 @@ public class Elephant : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.PlagueEvolution();
 
-        coolTimer = status_.coolTimePlague;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimePlague;
     }
 
     public override void DesertificationEvolution()
@@ -153,7 +139,7 @@ public class Elephant : Animal
         Instantiate(elephantField, vector3, Quaternion.identity);
 
         activeTimer = status_.activeTimeDesert;
-        coolTimer = status_.coolTimeDesert;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeDesert;
     }
 
     public override void IceAgeEvolution()

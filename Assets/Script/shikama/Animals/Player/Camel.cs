@@ -7,7 +7,6 @@ public class Camel : Animal
     CamelStatus status_;
 
     float activeTimer = 0.0f;
-    float coolTimer = 0.0f;
 
     private bool meteoEvolution = false;
     private bool earthquakeEvolution = false;
@@ -87,22 +86,13 @@ public class Camel : Animal
         }
     }
 
-    protected override void Attack()
+    protected override void Death()
     {
-        if (giraffesDesertList.Count != 0)
+        if (evolution == EVOLUTION.TSUNAMI)
         {
-            foreach (Giraffe giraffe in giraffesDesertList)
-            {
-                float dist = Vector2.Distance(giraffe.transform.position, transform.position);
-                if (((GiraffeStatus)giraffe.status).desertDist >= dist - 0.25f)
-                {
-                    status.AddHp(Mathf.RoundToInt(status.maxHP *
-                        ((GiraffeStatus)giraffe.status).desertHealMag * 0.01f), null);
-                }
-            }
+            baseStatus.cost = Mathf.RoundToInt(baseStatus.cost / (1.0f - status_.costDownMag));
         }
-
-        base.Attack();
+        base.Death();
     }
 
     override public void MeteoEvolution()
@@ -127,7 +117,7 @@ public class Camel : Animal
         particle.gameObject.SetActive(true);
 
         Invoke("ParticleStop",1.0f);
-        coolTimer = status_.coolTimeMeteo;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeMeteo;
     }
 
     private void ParticleStop()
@@ -158,7 +148,7 @@ public class Camel : Animal
         }
 
         activeTimer = status_.activeTimeThunder;
-        coolTimer = status_.coolTimeThunder;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeThunder;
     }
 
     public override void TsunamiEvolution()
@@ -167,8 +157,7 @@ public class Camel : Animal
 
         base.TsunamiEvolution();
 
-        if (!costDown) baseStatus.cost = (int)(baseStatus.cost * (1.0f - status_.costDownMag));
-        costDown = true;
+        baseStatus.cost = Mathf.RoundToInt(baseStatus.cost * (1.0f - status_.costDownMag));
     }
 
     public override void EruptionEvolution()
@@ -219,7 +208,7 @@ public class Camel : Animal
         }
 
         activeTimer = status_.activeTimeDesert;
-        coolTimer = status_.coolTimeDesert;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeDesert;
     }
 
     public override void IceAgeEvolution()

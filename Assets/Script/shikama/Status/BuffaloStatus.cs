@@ -17,8 +17,14 @@ public class BuffaloStatus : AnimalStatus
     
     public float coolTimeHurricane = 10.0f;
 
+    public float coolTimeTsunami = 10.0f;
+    public int TsunamiMag = 30;
+    public int TsunamiSpeedUPMag = 70;
+
     public int thunderAtkUp = 5;
     public float thunderDist = 3.0f;
+
+    public int plagueAttackUp = 300;
 
     public int IceAgeCount = 5;
     public int IceAgeHealMag = 20;
@@ -40,8 +46,14 @@ public class BuffaloStatus : AnimalStatus
 
         coolTimeHurricane = baseStatus.coolTimeHurricane;
 
+        coolTimeTsunami = baseStatus.coolTimeTsunami;
+        TsunamiMag = baseStatus.TsunamiMag;
+        TsunamiSpeedUPMag = baseStatus.TsunamiSpeedUPMag;
+
         thunderAtkUp = baseStatus.thunderAtkUp;
         thunderDist = baseStatus.thunderDist;
+
+        plagueAttackUp = baseStatus.plagueAttackUp;
 
         IceAgeCount = baseStatus.IceAgeCount;
         IceAgeHealMag = baseStatus.IceAgeHealMag;

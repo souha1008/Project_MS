@@ -114,8 +114,6 @@ public class AnimalStatus : MonoBehaviour
         ZebraAttack(ref _hp, animal_);
 
         AddHp(_hp);
-
-        BuffaloPlaDeath(animal_);
     }
 
     private void ElephantAttack(Animal animal_)
@@ -166,17 +164,6 @@ public class AnimalStatus : MonoBehaviour
                 int r = Random.Range(0, enemy.Count - 1);
                 enemy[r].status.hp -= (int)(buffalo.status.attack * 0.5f);
             }
-        }
-    }
-
-    private void BuffaloPlaDeath(Animal animal_)
-    {
-        if (animal_ is Buffalo == false) return;
-
-        Buffalo buffalo = (Buffalo)animal_;
-        if (buffalo.evolution == EVOLUTION.PLAGUE)
-        {
-            Destroy(buffalo.gameObject);
         }
     }
 

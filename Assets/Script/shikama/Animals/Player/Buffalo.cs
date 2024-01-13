@@ -9,8 +9,6 @@ public class Buffalo : Animal
     private bool earthquakeEvolution = false;
 
     float activeTimer = 0.0f;
-    float coolTimer = 0.0f;
-
 
     public int iceCount { get; set; } = 0;
 
@@ -69,20 +67,11 @@ public class Buffalo : Animal
 
     protected override void Attack()
     {
-        if (giraffesDesertList.Count != 0)
-        {
-            foreach (Giraffe giraffe in giraffesDesertList)
-            {
-                float dist = Vector2.Distance(giraffe.transform.position, transform.position);
-                if (((GiraffeStatus)giraffe.status).desertDist >= dist - 0.25f)
-                {
-                    status.AddHp(Mathf.RoundToInt(status.maxHP *
-                        ((GiraffeStatus)giraffe.status).desertHealMag * 0.01f), null);
-                }
-            }
-        }
-
         base.Attack();
+        if (evolution == EVOLUTION.PLAGUE)
+        {
+            DeathMode();
+        }
     }
 
     public override void MeteoEvolution()
@@ -111,7 +100,7 @@ public class Buffalo : Animal
         status_.speed *= (100 - status_.meteoSpeedDownMag) * 0.01f;
 
         activeTimer = status_.activeTimeMeteo;
-        coolTimer = status_.coolTimeMeteo;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeMeteo;
     }
 
     override public void EarthquakeEvolution()
@@ -124,7 +113,7 @@ public class Buffalo : Animal
         status_.attack = (int)(status_.attack * status_.allStatusUpMag * 0.01f);
         status_.speed = status_.speed * status_.allStatusUpMag * 0.01f;
 
-        coolTimer = status_.coolTimeEarthquake;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeEarthquake;
         activeTimer = status_.activeTimeEarthquake;
     }
 
@@ -143,7 +132,7 @@ public class Buffalo : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.HurricaneEvolution();
 
-        coolTimer = status_.coolTimeHurricane;
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeHurricane;
     }
 
     public override void ThunderstormEvolution()
@@ -156,11 +145,12 @@ public class Buffalo : Animal
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
 
-        if (Random.Range(1, 100) <= 30)
+        if (Random.Range(1, 100) <= status_.TsunamiMag)
         {
             base.TsunamiEvolution();
-            status.speed *= 1.7f;
+            status.speed *= 1.0f + status_.TsunamiSpeedUPMag * 0.01f;
         }
+        coolTimeSlider.maxValue = coolTimer = status_.coolTimeTsunami;
     }
 
     public override void EruptionEvolution()
@@ -175,7 +165,7 @@ public class Buffalo : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
 
         base.PlagueEvolution();
-        status.attack *= 3;
+        status.attack *= Mathf.RoundToInt(status_.plagueAttackUp * 0.01f);
     }
 
     public override void DesertificationEvolution()

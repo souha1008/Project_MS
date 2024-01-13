@@ -9,7 +9,6 @@ public class Zebra : Animal
     bool eruptionSpeedUp = false;
     bool desertHpHeal = false;
 
-    float coolTimer = 0.0f;
     int desertHealCount = 0;
 
     float doubleAttackCount = 0;
@@ -37,13 +36,13 @@ public class Zebra : Animal
                 doubleAttackCount += Time.deltaTime;
         }
 
-        if (evolution.Equals(EVOLUTION.ERUPTION))
+        if (evolution.Equals(EVOLUTION.PLAGUE))
         {
-            if(animalList.FindAll(animal => animal.baseStatus.name == "Zebra").Count >= 4)
+            if(animalList.FindAll(animal => animal.baseStatus.name == "Zebra").Count >= status_.plagueZebraCount)
             {
                 if (!eruptionSpeedUp)
                 {
-                    status.attackSpeed *= 1.1f;
+                    status.attackSpeed /= (100 + status_.plagueAttackSpeedUp) * 0.01f;
                     eruptionSpeedUp = true;
                 }
             }
@@ -65,24 +64,6 @@ public class Zebra : Animal
         }
     }
 
-    protected override void Attack()
-    {
-        if (giraffesDesertList.Count != 0)
-        {
-            foreach (Giraffe giraffe in giraffesDesertList)
-            {
-                float dist = Vector2.Distance(giraffe.transform.position, transform.position);
-                if (((GiraffeStatus)giraffe.status).desertDist >= dist - 0.25f)
-                {
-                    status.AddHp(Mathf.RoundToInt(status.maxHP *
-                        ((GiraffeStatus)giraffe.status).desertHealMag * 0.01f), null);
-                }
-            }
-        }
-
-        base.Attack();
-    }
-
     override public void MeteoEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
@@ -102,14 +83,16 @@ public class Zebra : Animal
 
     public override void TsunamiEvolution()
     {
-        base.TsunamiEvolution();
-        if(Random.Range(1,100) < 35)
-            Destroy(this);
+        //base.TsunamiEvolution();
+        if (Random.Range(1, 100) <= status_.tsunamiDeathMag)
+        {
+            DeathMode();
+        }
     }
 
-    public override void EruptionEvolution()
+    public override void PlagueEvolution()
     {
-        base.EruptionEvolution();
+        base.PlagueEvolution();
     }
 
     public override void DesertificationEvolution()
