@@ -441,7 +441,7 @@ public class EffectManager : MonoBehaviour
 
     void Effect_Hurricane()
     {
-        Debug.Log("隕石発動");
+        Debug.Log("ハリケーン発動");
         var state = (EffectState_Hurricane)dic_base.Table["Hurricane"];
 
         // プレイ中であれば実行しない
