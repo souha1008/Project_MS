@@ -75,9 +75,8 @@ public class EffectManager : MonoBehaviour
 
         if (DEBUG)
         {
-            buttons[0].onClick.AddListener(Effect_IceAge);
-            buttons[1].onClick.AddListener(Effect_ThunderStome);
-            buttons[2].onClick.AddListener(Effect_Eruption);
+            buttons[0].onClick.AddListener(Effect_Hurricane);
+
         }
     }
 
@@ -442,7 +441,72 @@ public class EffectManager : MonoBehaviour
 
     void Effect_Hurricane()
     {
+        Debug.Log("隕石発動");
+        var state = (EffectState_Hurricane)dic_base.Table["Hurricane"];
 
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // アニメーターをアウトさせる
+        rawImage_animator.SetTrigger("Eruption_Out");
+
+        effect_rawImage.transform.position = new Vector3(8.22f, 2.04f, 6.0f);
+
+        StartCoroutine(InstanceHurricane(state));
+
+        // オーバーレイ設定
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+
+    }
+
+    IEnumerator InstanceHurricane(EffectState_Hurricane state)
+    {
+        int lc = 0;
+        while (lc < state.num)
+        {
+            // ポジションレンジの決定
+            var MAX_range = new Vector3(state.randomCenterPostion.x + state.randomAreaSize.x / 2,
+                                        state.randomCenterPostion.y + state.randomAreaSize.y / 2,
+                                        state.randomCenterPostion.z + state.randomAreaSize.z / 2);
+            var MIN_range = new Vector3(state.randomCenterPostion.x - state.randomAreaSize.x / 2,
+                                        state.randomCenterPostion.y - state.randomAreaSize.y / 2,
+                                        state.randomCenterPostion.z - state.randomAreaSize.z / 2);
+
+            // 生成する位置をランダムに決定
+            var random_x = UnityEngine.Random.Range(MIN_range.x, MAX_range.x);
+            //var random_y = UnityEngine.Random.Range(MIN_range.y, MAX_range.y);
+            var random_z = UnityEngine.Random.Range(MIN_range.z, MAX_range.z);
+
+            // 生成
+            var hurricane = Instantiate(state.prefab);
+            hurricane.transform.position = new Vector3(random_x, state.randomCenterPostion.y, random_z);
+
+            // 大きさ
+            var size = 1.0f * hurricane.gameObject.transform.localScale.x * UnityEngine.Random.Range(0.7f, 1.0f);
+            var hurricanechild = hurricane.gameObject.transform.GetChild(0);
+            hurricanechild.gameObject.transform.SetLocalScale(size, size, size);
+
+            // アニメーションの速さ
+            var spd_range = UnityEngine.Random.Range(state.speed.x, state.speed.y);
+            hurricane.GetComponent<Animator>().SetFloat("speed", spd_range);
+
+            // カウント進める
+            lc++;
+
+            // クールタイム決定
+            var random_time = UnityEngine.Random.Range(state.cooltime.x, state.cooltime.y);
+            yield return new WaitForSeconds(random_time);
+        }
+
+        state.isPlay = false;
+        Overlay_Image_animator.SetTrigger(Anim_Out);
+        yield break;
     }
 
     void Effect_Plugue()
