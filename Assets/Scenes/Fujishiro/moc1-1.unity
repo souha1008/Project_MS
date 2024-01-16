@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 865358737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.98, y: 6, z: 53.57}
+  m_LocalPosition: {x: -16.61, y: 6, z: 53.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -741,11 +741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: enemyInstanceHouseHP.Array.data[0]
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: enemyInstanceHouseHP.Array.data[1]
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2256612130135204106, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: enemyInstanceHouseHP.Array.data[2]
@@ -754,6 +754,14 @@ PrefabInstance:
     - target: {fileID: 2682567496707210320, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: _cueName
       value: BGM_INGame01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715929072783165296, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: costSpeed
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715929072783165296, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: firstCost
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3318473321381313063, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_Sprite
@@ -1065,29 +1073,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 585699513950715224, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751167229509807624, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 2715684922762033724, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.78
-      objectReference: {fileID: 0}
     - target: {fileID: 4449226741448770197, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
       propertyPath: m_Name
       value: Root_Hurricane
       objectReference: {fileID: 0}
-    - target: {fileID: 4449226741448770197, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5203834944586717196, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.81
+      value: -17.66
       objectReference: {fileID: 0}
     - target: {fileID: 5203834944586717196, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1124,10 +1116,6 @@ PrefabInstance:
     - target: {fileID: 5203834944586717196, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5897607441270049156, guid: 85ca465be22bacb459bd352cf6823c18, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.94000006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
