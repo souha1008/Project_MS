@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: 32900000, guid: 91514c0e2602d6a4e900867b7d74508c, type: 3}
   renderTextures:
   - {fileID: 8400000, guid: 8ac95ac93012d26428153093a982b89f, type: 2}
-  prefab: {fileID: 0}
+  prefab: {fileID: 2919339555733932876, guid: a8a886f3bff244241825e05ca7d201d2, type: 3}
   Anim_Trigger_Name: IceAge
   isPlay: 0
+  spawnpos: {x: -13.87, y: 4.67, z: 90.18}

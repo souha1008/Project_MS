@@ -145,7 +145,7 @@ public class EffectManager : MonoBehaviour
     {
         Debug.Log("氷河期発動");
         // 新しいの
-        var state = dic_base.Table["IceAge"];
+        var state = (EffectState_IceAge)dic_base.Table["IceAge"];
         // 一個前の情報に入れる
         pre_state = state;
 
@@ -186,6 +186,10 @@ public class EffectManager : MonoBehaviour
         Videoplayers[1].Prepare();
 
         StartCoroutine(CheckEnd(Videoplayers[1], state));
+
+        // プレハブ生成
+        var icerock = Instantiate(state.prefab);
+        icerock.transform.position = state.spawnpos;
 
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
