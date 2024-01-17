@@ -10,6 +10,9 @@ public class EffectState_Hurricane : BaseEffectState
     [Header("スピード")]
     public Vector2 speed;
 
+    [Header("サイズ")]
+    public Vector2 size;
+
     [Header("いくつ生成するか")]
     public int num;
 

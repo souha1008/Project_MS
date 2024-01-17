@@ -480,15 +480,15 @@ public class EffectManager : MonoBehaviour
 
             // ¶¬‚·‚éˆÊ’u‚ğƒ‰ƒ“ƒ_ƒ€‚ÉŒˆ’è
             var random_x = UnityEngine.Random.Range(MIN_range.x, MAX_range.x);
-            //var random_y = UnityEngine.Random.Range(MIN_range.y, MAX_range.y);
+            var random_y = UnityEngine.Random.Range(MIN_range.y, MAX_range.y);
             var random_z = UnityEngine.Random.Range(MIN_range.z, MAX_range.z);
 
             // ¶¬
             var hurricane = Instantiate(state.prefab);
-            hurricane.transform.position = new Vector3(random_x, state.randomCenterPostion.y, random_z);
+            hurricane.transform.position = new Vector3(random_x, random_y, random_z);
 
             // ‘å‚«‚³
-            var size = 1.0f * hurricane.gameObject.transform.localScale.x * UnityEngine.Random.Range(0.7f, 1.0f);
+            var size = 1.0f * hurricane.gameObject.transform.localScale.x * UnityEngine.Random.Range(state.size.x, state.size.y);
             var hurricanechild = hurricane.gameObject.transform.GetChild(0);
             hurricanechild.gameObject.transform.SetLocalScale(size, size, size);
 
