@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4951024}
   - component: {fileID: 4951023}
+  - component: {fileID: 4951025}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -217,6 +218,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &4951025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &129977832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,7 +2099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b91f3c175e5094dbefd0a4370f0582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvText: {fileID: 1704837799}
+  images: []
 --- !u!1 &1142530042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2182,7 +2206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: {fileID: 232570214}
-  maxCameraSizeMag: 5
+  underFloor: {fileID: 0}
   minCameraSizeMag: 2
   dragSpeedMag: 0.5
   dragDeadZone: 0.1
@@ -3435,13 +3459,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstCost: 60
   costSpeed: 0.2
+  costSpeedMag: 0.9
   maxCost: 120
-  lvUpCost: 30
-  maxLevel: 7
-  textCost: {fileID: 1284800637}
+  envCost: 200
+  envCostDown: 10
+  enemyHouse: {fileID: 0}
+  playerHouse: {fileID: 0}
+  clearText: {fileID: 0}
+  lvUpCost: 
+  textMeshCost: {fileID: 0}
   createPos: {fileID: 204328183}
   statuses: []
   particleSprite: []
+  envPallet: {fileID: 0}
+  deck: {fileID: 0}
+  envImages: []
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  fadespeed: 1
 --- !u!4 &2012291895
 Transform:
   m_ObjectHideFlags: 0
