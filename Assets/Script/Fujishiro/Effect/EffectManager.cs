@@ -1,6 +1,7 @@
 using Kogane;
 using System;
 using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -94,7 +95,6 @@ public class EffectManager : MonoBehaviour
     public void EffectPlay(DISASTAR_TYPE type)
     {
         StopAllCoroutines();
-        //StopCoroutine(CheckEnd(Videoplayers[0], pre_state));
 
         // それぞれの関数を実行
         switch (type)
@@ -158,12 +158,10 @@ public class EffectManager : MonoBehaviour
         // プレイ中にする
         state.SetisPlay(true);
 
-        // 噴火アニメーターをアウトさせる
-        rawImage_animator.SetTrigger("Eruption_Out");
-
         // RenderTextureをリリース
         Reset_rawImage(state);
-        effect_rawImage.transform.position = new Vector3(0, 0, 6.0f);
+        var pos = new Vector3(0, 0, 6.0f);
+        effect_rawImage.rectTransform.SetLocalPosition(pos.x, pos.y, pos.z); 
 
         // イベントハンドラセット
         // 引数は使うvideoplayersの要素番号
@@ -213,12 +211,10 @@ public class EffectManager : MonoBehaviour
         // プレイ中にする
         state.SetisPlay(true);
 
-        // アニメーターをアウトさせる
-        rawImage_animator.SetTrigger("Eruption_Out");
-
         // RenderTextureをリリース
         Reset_rawImage(state);
-        effect_rawImage.transform.position = new Vector3(0, 0, 6.0f);
+        var pos = new Vector3(0, 0, 6.0f);
+        effect_rawImage.rectTransform.SetLocalPosition(pos.x, pos.y, pos.z); 
 
         // イベントハンドラセット
         // 引数は使うvideoplayersの要素番号
@@ -254,11 +250,6 @@ public class EffectManager : MonoBehaviour
 
         // プレイ中にする
         state.SetisPlay(true);
-
-        // アニメーターをアウトさせる
-        rawImage_animator.SetTrigger("Eruption_Out");
-
-        effect_rawImage.transform.position = new Vector3(8.22f, 2.04f, 6.0f);
 
         StartCoroutine(InstanceMeteor(state));
 
@@ -324,22 +315,6 @@ public class EffectManager : MonoBehaviour
         Reset_rawImage(state);
         VideoplayerStenby(0);
 
-        {
-            //Videoplayers[0].renderMode = VideoRenderMode.APIOnly;
-            //Videoplayers[0].clip = state.clip[0];
-            //Videoplayers[0].aspectRatio = VideoAspectRatio.Stretch;
-
-            //Videoplayers[0].Prepare();
-
-            //Videoplayers[1].clip = null;
-            //Videoplayers[1].targetTexture = null;
-
-            //effect_rawImage.gameObject.transform.position = new Vector3(8.22f, -0.53f, 6.0f);
-            //effect_rawImage.GetComponent<Animator>().SetTrigger("Eruption_Action");
-
-            //StartCoroutine(CheckEnd(Videoplayers[0], state));
-        }
-
         // 山のアニメーション再生
         GameObject.Find("mounts").GetComponent<Animator>().SetTrigger("Action");
         
@@ -353,6 +328,7 @@ public class EffectManager : MonoBehaviour
 
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+        
     }
 
     void Effect_Desert()
@@ -371,12 +347,10 @@ public class EffectManager : MonoBehaviour
         // プレイ中にする
         state.SetisPlay(true);
 
-        // アニメーターをアウトさせる
-        rawImage_animator.SetTrigger("Eruption_Out");
-
         // RenderTextureをリリース
         Reset_rawImage(state);
-        effect_rawImage.transform.position = new Vector3(0, 0, 6.0f);
+        var pos = new Vector3(0, 0, 6.0f);
+        effect_rawImage.rectTransform.SetLocalPosition(pos.x, pos.y, pos.z);
 
         // イベントハンドラセット
         // 引数は使うvideoplayersの要素番号
@@ -395,8 +369,61 @@ public class EffectManager : MonoBehaviour
 
         StartCoroutine(CheckEnd(Videoplayers[0], state));
 
+        StartCoroutine(Desert_SpriteTransfer((EffectState_Desert)state));
+
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+    }
+
+    IEnumerator Desert_SpriteTransfer(EffectState_Desert state)
+    {
+        var nowstats = 0;
+        var id = Shader.PropertyToID("_Transfer_Desert");
+
+        float time = 0.0f;
+        float transfer = 0.0f;
+
+        yield return new WaitForSeconds(0.5f);
+        while (true)
+        {
+            switch (nowstats)
+            {
+                case 0: // 焼く方
+                    // transfer計算
+                    time += Time.deltaTime;
+                    transfer = time / state.Transfer_Time;
+
+                    state.SG_SpriteTransfer.SetFloat(id, transfer);
+
+                    // 変えきったら一度待つ
+                    if (state.SG_SpriteTransfer.GetFloat(id) >= 1.0f)
+                    {
+                        yield return new WaitForSeconds(state.DelayTime);
+
+                        // DelayTime秒まったら初期化
+                        nowstats = 1;
+                        time = 0.0f;
+                        transfer = 0.0f;
+                        break;
+                    }
+                    break;
+
+                case 1:
+                    time += Time.deltaTime;
+                    transfer = 1.0f - time / state.Transfer_Time;
+
+                    state.SG_SpriteTransfer.SetFloat(id, transfer);
+
+                    // 戻ったらコルーチンキル
+                    if (state.SG_SpriteTransfer.GetFloat(id) <= 0.0f)
+                    {
+                        state.SetisPlay(false);
+                        yield break;
+                    }
+                    break;
+            }
+            yield return null;
+        }
     }
 
     void Effect_BigFire()
@@ -415,12 +442,10 @@ public class EffectManager : MonoBehaviour
         // プレイ中にする
         state.SetisPlay(true);
 
-        // アニメーターをアウトさせる
-        rawImage_animator.SetTrigger("Eruption_Out");
-
         // RenderTextureをリリース
         Reset_rawImage(state);
-        effect_rawImage.transform.position = new Vector3(0, 4, 6.0f);
+        var pos = new Vector3(0, 6.3f, 6.0f);
+        effect_rawImage.rectTransform.SetLocalPosition(pos.x, pos.y, pos.z);
 
         // イベントハンドラセット
         // 引数は使うvideoplayersの要素番号
@@ -439,8 +464,61 @@ public class EffectManager : MonoBehaviour
 
         StartCoroutine(CheckEnd(Videoplayers[0], state));
 
+        StartCoroutine(BigFire_SpriteTransfer((EffectState_BigFire)state));
+
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+    }
+
+    IEnumerator BigFire_SpriteTransfer(EffectState_BigFire state)
+    {
+        var nowstats = 0;
+        var id = Shader.PropertyToID("_Transfer_Bigfire");
+
+        float time = 0.0f;
+        float transfer = 0.0f;
+
+        yield return new WaitForSeconds(0.5f);
+        while (true)
+        {
+            switch(nowstats)
+            {
+                case 0: // 焼く方
+                    // transfer計算
+                    time += Time.deltaTime;
+                    transfer = time / state.Transfer_Time;
+
+                    state.SG_SpriteTransfer.SetFloat(id, transfer);
+
+                    // 変えきったら一度待つ
+                    if(state.SG_SpriteTransfer.GetFloat(id) >= 1.0f)
+                    {
+                        yield return new WaitForSeconds(state.DelayTime);
+
+                        // DelayTime秒まったら初期化
+                        nowstats = 1;
+                        time = 0.0f; 
+                        transfer = 0.0f;
+                        break;
+                    }
+                    break;
+
+                case 1:
+                    time += Time.deltaTime;
+                    transfer = 1.0f - time / state.Transfer_Time;
+
+                    state.SG_SpriteTransfer.SetFloat(id, transfer);
+
+                    // 戻ったらコルーチンキル
+                    if(state.SG_SpriteTransfer.GetFloat(id) <= 0.0f)
+                    {
+                        state.SetisPlay(false);
+                        yield break;
+                    }
+                    break;
+            }
+            yield return null;
+        }
     }
 
     void Effect_Hurricane()
@@ -456,11 +534,6 @@ public class EffectManager : MonoBehaviour
 
         // プレイ中にする
         state.SetisPlay(true);
-
-        // アニメーターをアウトさせる
-        rawImage_animator.SetTrigger("Eruption_Out");
-
-        effect_rawImage.transform.position = new Vector3(8.22f, 2.04f, 6.0f);
 
         StartCoroutine(InstanceHurricane(state));
 
@@ -508,7 +581,7 @@ public class EffectManager : MonoBehaviour
             yield return new WaitForSeconds(random_time);
         }
 
-        state.isPlay = false;
+        state.SetisPlay(false);
         Overlay_Image_animator.SetTrigger(Anim_Out);
         yield break;
     }
@@ -520,7 +593,39 @@ public class EffectManager : MonoBehaviour
 
     void Effect_Tsunami()
     {
+        var state = (EffectState_Tsunami)dic_base.Table["Tsunami"];
 
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // 津波アニメーション再生
+
+        // オーバーレイ設定
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+
+        // 飛沫エフェクトスポーン
+        StartCoroutine(TsunamiSpawn(state));
+    }
+
+    IEnumerator TsunamiSpawn(EffectState_Tsunami state)
+    {
+        yield return new WaitForSeconds(2f);
+
+        // 飛沫エフェクト生成
+        var Effect = Instantiate(state.prefab);
+        Effect.transform.SetPosition(state.Effect_SpawnPos.x, state.Effect_SpawnPos.y, state.Effect_SpawnPos.z);
+
+        yield return new WaitForSeconds(4f);
+        state.SetisPlay(false);
+        Overlay_Image_animator.SetTrigger(Anim_Out);
+
+        yield break;
     }
 
     void Effect_EarthQuake()

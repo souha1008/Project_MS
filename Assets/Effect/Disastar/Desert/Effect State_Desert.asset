@@ -19,3 +19,7 @@ MonoBehaviour:
   prefab: {fileID: 0}
   Anim_Trigger_Name: Desert
   isPlay: 0
+  SG_SpriteTransfer: {fileID: 2100000, guid: 33cb9b4899a921c46a2453e4ee304211, type: 2}
+  SG_FieldTransfer: {fileID: 0}
+  Transfer_Time: 2
+  DelayTime: 4

@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Tsunami
   clip: []
   renderTextures: []
-  prefab: {fileID: 0}
+  prefab: {fileID: 6085986141856695785, guid: 0ceed55b65f9d574fbf5138b15ddfc38, type: 3}
   Anim_Trigger_Name: Tsunami
   isPlay: 0
+  Effect_SpawnPos: {x: 4.26, y: 4.06, z: 8.76}
