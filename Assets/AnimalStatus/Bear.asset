@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c0e8787f1a595489e72bb59f36f957, type: 3}
   m_Name: Bear
   m_EditorClassIdentifier: 
-  name: 
+  name: "\u718A"
   cost: 80
   maxHP: 5000
   attack: 250
