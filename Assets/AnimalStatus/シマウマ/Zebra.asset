@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca10797922e8e44bb958ba76ba4ad30, type: 3}
   m_Name: Zebra
   m_EditorClassIdentifier: 
-  name: 
+  name: "\u30B7\u30DE\u30A6\u30DE"
   cost: 50
   maxHP: 2000
   attack: 360
@@ -23,7 +23,10 @@ MonoBehaviour:
   dir: 1
   earthquakeSpeedDown: 50
   earthquakeAttackUp: 20
+  tsunamiDeathMag: 35
   desertHPHeal: 15
   desertHealCount: 1
   desertHPHealTiming: 10
+  plagueZebraCount: 4
+  plagueAttackSpeedUp: 10
   doubleAttackMag: 0.4

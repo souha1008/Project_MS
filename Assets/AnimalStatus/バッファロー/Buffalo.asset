@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb0c13dabe8fc24b84b9dd7f89eb40b, type: 3}
   m_Name: Buffalo
   m_EditorClassIdentifier: 
-  name: 
+  name: "\u30D0\u30C3\u30D5\u30A1\u30ED\u30FC"
   cost: 100
   maxHP: 4800
   attack: 500
@@ -28,7 +28,11 @@ MonoBehaviour:
   coolTimeEarthquake: 30
   allStatusUpMag: 100
   coolTimeHurricane: 10
+  coolTimeTsunami: 10
+  TsunamiMag: 30
+  TsunamiSpeedUPMag: 70
   thunderAtkUp: 5
   thunderDist: 3
+  plagueAttackUp: 300
   IceAgeCount: 5
   IceAgeHealMag: 20

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d17e3fea1a86d54195aa2cbe788691e, type: 3}
   m_Name: Giraffe
   m_EditorClassIdentifier: 
-  name: 
+  name: "\u30AD\u30EA\u30F3"
   cost: 200
   maxHP: 250
   attack: 2000
@@ -21,5 +21,13 @@ MonoBehaviour:
   attackDist: 2
   hitRate: 100
   dir: 1
-  attackUpMag: 3
   coolTimeEarthquake: 20
+  TsunamiAtkUp: 5
+  TsunamiSpeedUp: 5
+  coolTimeDesert: 2
+  desertHealMag: 2
+  desertDist: 2
+  desertCutMag: 30
+  coolTimePlague: 15
+  plagueCostUp: 50
+  attackUpMag: 3

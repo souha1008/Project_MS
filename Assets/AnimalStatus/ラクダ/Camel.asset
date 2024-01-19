@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f517ee1d57fc3914094590504da48d07, type: 3}
   m_Name: Camel
   m_EditorClassIdentifier: 
-  name: 
+  name: "\u30E9\u30AF\u30C0"
   cost: 140
   maxHP: 1500
   attack: 100
@@ -26,9 +26,17 @@ MonoBehaviour:
   meteoHPHeal: 30
   meteoSpeedUp: 5
   meteoHealDist: 3
+  activeTimeEarthquake: 7
+  coolTimeEarthquake: 30
+  earthquakeHPHeal: 100
   activeTimeThunder: 6
   coolTimeThunder: 15
   thunderSpeedUP: 100
+  activeTimeDesert: 6
+  coolTimeDesert: 15
+  DesertHPDecMag: 10
+  DesertStatusUpDist: 4
+  DesertStatusUpMag: 3
   hpHealOne: 0.1
   barrierMag: 0.3
   barrierTime: 7

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ed426610dbed7429ca67ca51c23920, type: 3}
   m_Name: Monkey
   m_EditorClassIdentifier: 
-  name: 
+  name: "\u30B5\u30EB"
   cost: 20
   maxHP: 200
   attack: 30

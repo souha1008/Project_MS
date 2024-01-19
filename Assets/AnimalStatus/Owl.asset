@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b37f675f4876ed4daef287064319e49, type: 3}
   m_Name: Owl
   m_EditorClassIdentifier: 
-  name: 
+  name: "\u30D5\u30AF\u30ED\u30A6"
   cost: 20
   maxHP: 1000
   attack: 30
