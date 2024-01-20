@@ -60,8 +60,8 @@ public class AnimalButtons : MonoBehaviour
 
     private void CosttoText()
     {
+        if (transform.GetChild(0).gameObject == null) return;
         GameObject child = transform.GetChild(0).gameObject;
-        if (child == null) return;
         if (child.GetComponent<Text>() == null) return;
         child.GetComponent<Text>().text = animalScript.baseStatus.cost.ToString();
     }

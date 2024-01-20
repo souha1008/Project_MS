@@ -9,6 +9,12 @@ public class ZebraStatus : AnimalStatus
     public int earthquakeSpeedDown = 50;
     public int earthquakeAttackUp = 20;
 
+    public float CoolTimeHurricane = 4;
+    public int HurricaneAttackMag = 50;
+    public int HurricaneHitRateMag = 20;
+    public int HurricaneHitRateDecMag = 40;
+    public int HurricaneHitRateDecTime = 6;
+
     public int tsunamiDeathMag = 35;
 
     public int plagueZebraCount = 4;
@@ -24,6 +30,12 @@ public class ZebraStatus : AnimalStatus
 
         earthquakeSpeedDown = baseStatus.earthquakeSpeedDown;
         earthquakeAttackUp = baseStatus.earthquakeAttackUp;
+
+        CoolTimeHurricane = baseStatus.CoolTimeHurricane;
+        HurricaneAttackMag = baseStatus.HurricaneAttackMag;
+        HurricaneHitRateMag = baseStatus.HurricaneHitRateMag;
+        HurricaneHitRateDecMag = baseStatus.HurricaneHitRateDecMag;
+        HurricaneHitRateDecTime = baseStatus.HurricaneHitRateDecTime;
 
         tsunamiDeathMag = baseStatus.tsunamiDeathMag;
 

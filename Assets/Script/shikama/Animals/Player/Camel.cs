@@ -8,15 +8,14 @@ public class Camel : Animal
 
     float activeTimer = 0.0f;
 
-    private bool meteoEvolution = false;
-    private bool earthquakeEvolution = false;
-
     float hpHealOneDist = 10.0f;
 
     public int barrierCount { get; set; } = 0;
     float barrierTimer = 0;
 
     static private bool costDown  = false;
+    static public int hurricaneCutMag = 30;
+    static public float hurricaneBarrierTime = 7.0f;
 
     private bool particleStop = false;
     
@@ -26,22 +25,29 @@ public class Camel : Animal
 
         status = new CamelStatus(baseStatus as CamelBaseStatus, this);
         status_ = status as CamelStatus;
+
+        hurricaneCutMag = status_.HurricaneCutMag;
+        hurricaneBarrierTime = status_.HurricaneBarrierTime;
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (evolution.Equals(EVOLUTION.HURRICANE) && barrierCount >= 5)
+        if (evolution.Equals(EVOLUTION.HURRICANE))
         {
-            if(barrierTimer <= status_.barrierTime)
+            if (coolTimer == 0.0f)
             {
-                barrierTimer += Time.deltaTime;
-            }
-            else
-            {
-                barrierTimer = 0;
-                barrierCount = 0;
+                if (barrierCount >= 5)
+                {
+                    barrierCount = 0;
+                    foreach (Animal animal in animalList)
+                    {
+                        if (animal.tag == "Player" && !animal.elephantSheld)
+                            animal.camelSheld = true;
+                    }
+                    SetCoolTimer(status_.coolTimeHurricane);
+                }
             }
         }
 
@@ -84,6 +90,12 @@ public class Camel : Animal
                 particleStop = false;
             }
         }
+    }
+
+    protected override void HitRateAttack(float mag = 1)
+    {
+        if (evolution == EVOLUTION.HURRICANE) barrierCount++;
+        base.HitRateAttack(mag);
     }
 
     protected override void Death()
@@ -203,7 +215,7 @@ public class Camel : Animal
             if (status_.DesertStatusUpDist >= dist - 0.25f)
             {
                 animal.status.AllStatusUp(1.0f + status_.DesertStatusUpMag * 0.01f);
-                animal.status.Invoke("ResetAll", status_.activeTimeDesert);
+                animal.Invoke("ResetAll", status_.activeTimeDesert);
             }
         }
 
@@ -264,7 +276,6 @@ public class Camel : Animal
             healAnimal.status.hp += status_.earthquakeHPHeal;
             if (healAnimal.status.maxHP < healAnimal.status.hp) healAnimal.status.hp = healAnimal.status.maxHP;
         }
-        earthquakeEvolution = true;
     }
 
     private void SpeedUp()

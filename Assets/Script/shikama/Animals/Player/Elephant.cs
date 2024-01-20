@@ -102,7 +102,7 @@ public class Elephant : Animal
 
         foreach (Animal animal in animalList)
         {
-            if(animal.CompareTag("Player")) animal.elephantSheld = true;
+            if(animal.CompareTag("Player") && !animal.camelSheld) animal.elephantSheld = true;
         }
 
         coolTimeSlider.maxValue = coolTimer = status_.coolTimeThunder;

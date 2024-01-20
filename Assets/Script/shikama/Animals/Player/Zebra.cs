@@ -48,7 +48,7 @@ public class Zebra : Animal
             }
             else
             {
-                status.ResetAttackSpeed();
+                ResetAttackSpeed();
                 eruptionSpeedUp = false;
             }
         }
@@ -62,6 +62,26 @@ public class Zebra : Animal
                 Debug.Log(status.hp);
             }
         }
+    }
+
+    protected override void HitRateAttack(float mag = 1)
+    {
+        if (evolution == EVOLUTION.HURRICANE)
+        {
+            if (Random.Range(1, 100) <= status_.HurricaneHitRateMag)
+            {
+                attackObject.GetComponent<Animal>().status.hitRate -= status_.HurricaneHitRateDecMag;
+                Animal enemy = attackObject.GetComponent<Animal>();
+                Debug.Log(enemy.status);
+                enemy.Invoke("ResetHitRate", status_.HurricaneHitRateDecTime);
+            }
+
+            evolution = EVOLUTION.NONE;
+            coolTimer = status_.CoolTimeHurricane;
+            mag = status_.HurricaneAttackMag * 0.01f;
+        }
+        
+        base.HitRateAttack(mag);
     }
 
     override public void MeteoEvolution()
@@ -79,6 +99,12 @@ public class Zebra : Animal
 
         status_.attack = (int)(status_.attack * status_.earthquakeAttackUp * 0.01f) + status.attack;
         status_.speed = status.speed - status.speed * status_.earthquakeSpeedDown * 0.01f;
+    }
+
+
+    public override void HurricaneEvolution()
+    {
+        base.HurricaneEvolution();
     }
 
     public override void TsunamiEvolution()

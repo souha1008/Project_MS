@@ -22,6 +22,11 @@ MonoBehaviour:
   hitRate: 100
   dir: 1
   coolTimeEarthquake: 20
+  ActiveTimeHurricane: 4
+  CoolTimeHurricane: 10
+  HurricaneKBDist: 1
+  HurricaneSpeedUP: 5
+  HurricaneKBTime: 0.35
   TsunamiAtkUp: 5
   TsunamiSpeedUp: 5
   coolTimeDesert: 2

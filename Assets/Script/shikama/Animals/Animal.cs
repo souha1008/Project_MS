@@ -46,12 +46,17 @@ public class Animal : MonoBehaviour
 
     // ▼▼▼　　味方動物のスキルに必要な変数　　▼▼▼
     public bool elephantSheld { get; set; } = false;    // 象進化によるシールド付与判定
+    public bool camelSheld { get; set; } = false;
+    private float camelSheldCounter = 0.0f;
     public bool zebraSE { get; set; } = false;
     public bool buffaloAtkUp { get; set; } = false;
     // ▲▲▲　　味方動物のスキルに必要な変数　　▲▲▲
 
     private delegate void STATE();           /// <summary> 移動、攻撃処理 </summary>
     private event STATE State;
+
+    protected delegate void ATTACK_SKILL_ANIMAL(Animal animal);
+    protected event ATTACK_SKILL_ANIMAL AttackAnimalSkill = null;
 
     protected GameSetting gameSetting;
 
@@ -66,8 +71,17 @@ public class Animal : MonoBehaviour
     Color coolTimeColor;
     protected float coolTimer = 0.0f;
 
-    [SerializeField] Animator animator;
+    private float knockBackTime = 0.0f;
+    private float knockBackCounter = 0.0f;
+    private Vector3 knockBackStartPos;
+    private Vector3 knockBackEndPos;
 
+    float idleTime = 0.0f;
+
+    [SerializeField] protected Animator animator;
+
+    // 初期化
+    #region Init
     public static void AnimalListInit()
     {
         if (animalList == null) animalList = new List<Animal>();
@@ -117,6 +131,7 @@ public class Animal : MonoBehaviour
             particleColorChanger = particle.GetComponent<EvolutionEffect_ColorChange>();
         }
     }
+    #endregion
 
     /// <summary>
     /// 更新
@@ -127,8 +142,7 @@ public class Animal : MonoBehaviour
         Debug.DrawRay(transform.position, dirVec * status.attackDist, Color.red);
 
         attackCount += Time.deltaTime;
-        if(State != null)
-        State(); // 攻撃、移動処理
+        if(State != null) State(); // 攻撃、移動処理
 
         if (hpSlider)
         {
@@ -146,6 +160,16 @@ public class Animal : MonoBehaviour
             else
             {
                 coolTimeSliderFill.color = coolTimeColor;
+            }
+        }
+
+        if (camelSheld)
+        {
+            camelSheldCounter += Time.deltaTime;
+            if(camelSheldCounter >= Camel.hurricaneBarrierTime)
+            {
+                camelSheld = false;
+                camelSheldCounter = 0;
             }
         }
 
@@ -174,6 +198,8 @@ public class Animal : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log(status.hitRate);
     }
 
     /// <summary>
@@ -184,33 +210,8 @@ public class Animal : MonoBehaviour
         animalList.Remove(this);
     }
 
-    public void ResetSpeed()
-    {
-        status.speed = baseStatus.speed;
-    }
-
     // ▼▼▼　　ステート処理　　▼▼▼
-
-    /// <summary>
-    /// 攻撃ステート変更時初期化処理
-    /// </summary>
-    public void AttackMode(GameObject attackObj)
-    {
-        if (!attackObject)
-        {
-            rb.velocity = new Vector2(0, 0);
-            attackObject = attackObj;
-
-            if (!attackTarget.ContainsKey(attackObj))
-            {
-                attackTarget.Add(attackObj, new List<Animal>());
-            }
-            attackTarget[attackObj].Add(this);
-        }
-
-        if (animator) animator.SetTrigger("Walk");
-        State = Attack;
-    }
+    #region State
 
     /// <summary>
     /// 移動モード変更時初期化処理
@@ -261,6 +262,27 @@ public class Animal : MonoBehaviour
     }
 
     /// <summary>
+    /// 攻撃ステート変更時初期化処理
+    /// </summary>
+    public void AttackMode(GameObject attackObj)
+    {
+        if (!attackObject)
+        {
+            rb.velocity = new Vector2(0, 0);
+            attackObject = attackObj;
+
+            if (!attackTarget.ContainsKey(attackObj))
+            {
+                attackTarget.Add(attackObj, new List<Animal>());
+            }
+            attackTarget[attackObj].Add(this);
+        }
+
+        //if (animator) animator.SetTrigger("Walk");
+        State = Attack;
+    }
+
+    /// <summary>
     /// 攻撃ステート時処理
     /// </summary>
     virtual protected void Attack()
@@ -279,8 +301,11 @@ public class Animal : MonoBehaviour
         }
     }
 
-    virtual protected void DeathMode()
+
+    virtual public void DeathMode()
     {
+        rb.velocity = new Vector2(0, 0);
+
         foreach (Animal animal in attackTarget[gameObject])
         {
             animal.MoveMode();
@@ -305,9 +330,92 @@ public class Animal : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // ▲▲▲　　ステート処理　　▲▲▲
+    public void KnockBackMode(Vector2 dir, float knockBackTime)
+    {
+        if (knockBackStartPos == null || knockBackStartPos == new Vector3(0, 0, 0)) knockBackStartPos = transform.position;
+        knockBackEndPos = new Vector3(transform.localPosition.x + dir.x, transform.localPosition.y + dir.y, transform.localPosition.z);
 
-    protected void HitRateAttack(float mag = 1.0f)
+        this.knockBackTime = knockBackTime;
+        knockBackCounter = 0.0f;
+
+        if (animator) animator.SetTrigger("Idle");
+        rb.velocity = new Vector2(0, 0);
+        if (attackObject != null)
+        {
+            attackTarget[attackObject].Remove(this);
+            attackObject = null;
+        }
+        foreach(Animal animal in attackTarget[gameObject])
+        {
+            animal.MoveMode();
+        }
+        GetComponent<Collider2D>().enabled = false;
+
+
+        State = KnockBack;
+    }
+
+    private void KnockBack()
+    {
+        transform.localPosition = Vector3.Lerp(knockBackStartPos, knockBackEndPos, Mathf.Sin(knockBackCounter / knockBackTime));
+
+        if (knockBackCounter >= knockBackTime)
+        {
+            knockBackStartPos = new Vector3(0, 0, 0);
+            GetComponent<Collider2D>().enabled = true;
+            State = MoveMode;
+        }
+        knockBackCounter += Time.deltaTime;
+    }
+
+    public void IdleMode(float idleTime = 0.0f)
+    {
+        if (animator) animator.SetTrigger("Idle");
+        rb.velocity = new Vector2(0, 0);
+        if(attackObject != null)
+        {
+            attackTarget[attackObject].Remove(this);
+            attackObject = null;
+        }
+        this.idleTime = idleTime;
+        State = Idle;
+    }
+
+    void Idle()
+    {
+        if(idleTime != 0.0f)
+        {
+            idleTime -= Time.deltaTime;
+            if (idleTime < 0.0f) idleTime = 0.0f;
+            Debug.Log("afewavnowai");
+        }
+        else
+        {
+            State = Move;
+        }
+    }
+
+    #endregion
+
+    // 攻撃を受けた時
+    virtual protected void BeAttacked(int attackPower, Animal attackedEnemy, float mag = 1.0f)
+    {
+        if (elephantSheld)
+        {
+            status.AddHp(-(int)(status.attack * (100 - ElephantStatus.thunderCutMag) * 0.01f), this);
+            elephantSheld = false;
+        }
+        else if (camelSheld)
+        {
+            status.AddHp(-(int)(status.attack * (100 - Camel.hurricaneCutMag) * 0.01f), this);
+        }
+        else
+        {
+            status.AddHp(Mathf.RoundToInt(attackPower * mag), attackedEnemy);
+        }
+    }
+
+    virtual protected void HitRateAttack(float mag = 1.0f)
     {
         // 命中判定
         int r = Random.Range(1, 100);
@@ -325,16 +433,11 @@ public class Animal : MonoBehaviour
             if (attackObject.GetComponent<Animal>()) // 攻撃対象が動物の場合
             {
                 Animal attackEnemy = attackObject.GetComponent<Animal>();
+                if (AttackAnimalSkill != null) AttackAnimalSkill(attackEnemy);
 
-                if (attackEnemy.elephantSheld)
-                {
-                    attackEnemy.status.AddHp(-(int)(status.attack * (100 - ElephantStatus.thunderCutMag) * 0.01f), this);
-                    attackEnemy.elephantSheld = false;
-                }
-                else
-                {
-                    attackEnemy.status.AddHp(Mathf.RoundToInt(-status.attack * mag), this);
-                }
+                
+                attackEnemy.BeAttacked(Mathf.RoundToInt(-status.attack * mag), this);
+                
 
                 // 倒したとき
                 if (attackEnemy.status.hp <= 0)
@@ -351,6 +454,11 @@ public class Animal : MonoBehaviour
                         if (animal != this)
                         {
                             animal.MoveMode();
+                        }
+
+                        if (animal is Giraffe && animal.evolution == EVOLUTION.TSUNAMI && attackEnemy is Owl)
+                        {
+                            ((Giraffe)animal).TsunamiStatusUp();
                         }
                     }
 
@@ -393,6 +501,8 @@ public class Animal : MonoBehaviour
         else Debug.Log("当たってないよ");
     }
 
+
+
     public void PlayAttackSE()
     {
         if(tag=="Enemy")
@@ -401,11 +511,78 @@ public class Animal : MonoBehaviour
             InGameSEManager.instance.PlaySE05();
     }
 
+    protected void SetCoolTimer(float coolTimer)
+    {
+        this.coolTimer = coolTimer;
+        if (coolTimeSlider) coolTimeSlider.maxValue = coolTimer;
+    }
+
+    // ▼▼▼　　ステータスリセット(Invoke用)　　▼▼▼
+    #region StatusReset
+    /// <summary>
+    /// コストを初期値に戻す
+    /// </summary>
+    private void ResetCost()
+    {
+        baseStatus.cost = status.cost;
+    }
+
+    /// <summary>
+    /// スピードを初期値に戻す
+    /// </summary>
+    public void ResetSpeed()
+    {
+        status.speed = baseStatus.speed;
+    }
+
+    /// <summary>
+    /// 攻撃を初期値に戻す
+    /// </summary>
+    public void ResetAttack()
+    {
+        status.attack = baseStatus.attack;
+    }
+
+    /// <summary>
+    /// 攻撃スピードを初期値に戻す
+    /// </summary>
+    public void ResetAttackSpeed()
+    {
+        status.attackSpeed = baseStatus.attackSpeed;
+    }
+
+    /// <summary>
+    /// 攻撃範囲を初期値に戻す
+    /// </summary>
+    public void ResetAttackDist()
+    {
+        status.attackDist = baseStatus.attackDist;
+    }
+
+    public void ResetHitRate()
+    {
+        status.hitRate = baseStatus.hitRate;
+    }
+
+    /// <summary>
+    /// HPを除く全ステータスを初期値に戻す
+    /// </summary>
+    public void ResetAll()
+    {
+        status.attack = baseStatus.attack;
+        status.speed = baseStatus.speed;
+        status.attackSpeed = baseStatus.attackSpeed;
+        status.attackDist = baseStatus.attackDist;
+    }
+    #endregion
+
     // ▼▼▼　　進化時処理(継承用)　　▼▼▼
+    #region Evolution
     /// <summary>
     /// 隕石
     /// </summary>
-    virtual public void MeteoEvolution() { 
+    virtual public void MeteoEvolution() {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.METEO;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -424,6 +601,7 @@ public class Animal : MonoBehaviour
     /// </summary>
     virtual public void EarthquakeEvolution() 
     {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.EARTHQUAKE;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -440,7 +618,8 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// ハリケーン
     /// </summary>
-    virtual public void HurricaneEvolution() { 
+    virtual public void HurricaneEvolution() {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.HURRICANE;
 
         foreach(MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -458,7 +637,8 @@ public class Animal : MonoBehaviour
     /// 雷雨
     /// </summary>
     virtual public void ThunderstormEvolution()
-    { 
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.THUNDERSTORM;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -477,6 +657,7 @@ public class Animal : MonoBehaviour
     /// </summary>
     virtual public void TsunamiEvolution() 
     {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.TSUNAMI;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -495,6 +676,7 @@ public class Animal : MonoBehaviour
     /// </summary>
     virtual public void EruptionEvolution()
     {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.ERUPTION;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -512,7 +694,8 @@ public class Animal : MonoBehaviour
     /// 疫病
     /// </summary>
     virtual public void PlagueEvolution() 
-    { 
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.PLAGUE;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -530,7 +713,8 @@ public class Animal : MonoBehaviour
     /// 砂漠化
     /// </summary>
     virtual public void DesertificationEvolution() 
-    { 
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.DESERTIFICATION;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -549,6 +733,7 @@ public class Animal : MonoBehaviour
     /// </summary>
     virtual public void IceAgeEvolution() 
     {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.ICEAGE;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -566,7 +751,8 @@ public class Animal : MonoBehaviour
     /// 大火災
     /// </summary>
     virtual public void BigFireEvolution() 
-    { 
+    {
+        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.BIGFIRE;
 
         foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
@@ -579,6 +765,5 @@ public class Animal : MonoBehaviour
         if (!particle) return;
         particleColorChanger.BigFire();
     }
-
-    // ▲▲▲　　進化時処理(継承用)　　▲▲▲
+    #endregion
 }

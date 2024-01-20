@@ -43,7 +43,7 @@ public class Buffalo : Animal
             activeTimer -= Time.deltaTime;
             if(activeTimer < 0)
             {
-                status_.ResetSpeed();
+                ResetSpeed();
                 evolution = EVOLUTION.NONE;
             }
         }
@@ -117,6 +117,7 @@ public class Buffalo : Animal
         activeTimer = status_.activeTimeEarthquake;
     }
 
+
     private void EarthquakeEnd()
     {
         activeTimer = 0;
@@ -124,15 +125,23 @@ public class Buffalo : Animal
 
         status_.maxHP = (int)(status_.maxHP / (status_.allStatusUpMag * 0.01f));
         status_.hp = (int)(status_.hp / (status_.allStatusUpMag * 0.01f)); if (status_.hp == 0) status_.hp = 1;
-        status_.ResetAll();
+        ResetAll();
+    }
+
+    private void HurricaneSkill(Animal animal)
+    {
+        animal.IdleMode(status_.HurricaneStopTime);
+        evolution = EVOLUTION.NONE;
+        AttackAnimalSkill -= HurricaneSkill;
     }
 
     public override void HurricaneEvolution()
     {
-        if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.HurricaneEvolution();
 
         coolTimeSlider.maxValue = coolTimer = status_.coolTimeHurricane;
+        
+        AttackAnimalSkill += HurricaneSkill;
     }
 
     public override void ThunderstormEvolution()

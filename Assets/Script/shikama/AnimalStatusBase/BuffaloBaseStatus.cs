@@ -17,6 +17,7 @@ public class BuffaloBaseStatus : BaseStatus
 
     [Header("¥ƒnƒŠƒP[ƒ“")]
     public float coolTimeHurricane = 10.0f;
+    public float HurricaneStopTime = 4.0f;
 
     [Header("¥’Ã”g")]
     public float coolTimeTsunami = 10.0f;

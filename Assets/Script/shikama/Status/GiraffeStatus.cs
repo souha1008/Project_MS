@@ -8,6 +8,15 @@ public class GiraffeStatus : AnimalStatus
 
     public float coolTimeEarthquake = 20.0f;
 
+    public float ActiveTimeHurricane = 4.0f;
+    public float CoolTimeHurricane = 10.0f;
+    public float HurricaneKBDist = 1.0f;
+    public int HurricaneSpeedUP = 5;
+    public float HurricaneKBTime = 0.35f;
+
+    public int TsunamiAtkUp = 5;
+    public float TsunamiSpeedUp = 5;
+
     public float coolTimePlague = 15.0f;
     public int plagueCostUp = 50;
 
@@ -22,6 +31,15 @@ public class GiraffeStatus : AnimalStatus
         attackUpMag = baseStatus.attackUpMag;
 
         coolTimeEarthquake = baseStatus.coolTimeEarthquake;
+
+        ActiveTimeHurricane = baseStatus.ActiveTimeHurricane;
+        CoolTimeHurricane = baseStatus.CoolTimeHurricane;
+        HurricaneKBDist = baseStatus.HurricaneKBDist;
+        HurricaneSpeedUP = baseStatus.HurricaneSpeedUP;
+        HurricaneKBTime = baseStatus.HurricaneKBTime;
+
+        TsunamiAtkUp = baseStatus.TsunamiAtkUp;
+        TsunamiSpeedUp = baseStatus.TsunamiSpeedUp;
 
         coolTimePlague = baseStatus.coolTimePlague;
         plagueCostUp = baseStatus.plagueCostUp;

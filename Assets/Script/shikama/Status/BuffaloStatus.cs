@@ -16,6 +16,7 @@ public class BuffaloStatus : AnimalStatus
     public float coolTimeEarthquake = 0.0f;
     
     public float coolTimeHurricane = 10.0f;
+    public float HurricaneStopTime = 4.0f;
 
     public float coolTimeTsunami = 10.0f;
     public int TsunamiMag = 30;
@@ -45,6 +46,7 @@ public class BuffaloStatus : AnimalStatus
         coolTimeEarthquake = baseStatus.coolTimeEarthquake;
 
         coolTimeHurricane = baseStatus.coolTimeHurricane;
+        HurricaneStopTime = baseStatus.HurricaneStopTime;
 
         coolTimeTsunami = baseStatus.coolTimeTsunami;
         TsunamiMag = baseStatus.TsunamiMag;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimalStatus : MonoBehaviour
+public class AnimalStatus
 {
     [System.NonSerialized] public int cost = 20;
     [System.NonSerialized] public int maxHP = 100;
@@ -39,62 +39,7 @@ public class AnimalStatus : MonoBehaviour
         attackDist = Mathf.RoundToInt(attackDist * statusUpMag);
     }
 
-    /// <summary>
-    /// コストを初期値に戻す
-    /// </summary>
-    private void ResetCost()
-    {
-        baseStatus.cost = cost;
-    }
-
-    /// <summary>
-    /// スピードを初期値に戻す
-    /// </summary>
-    public void ResetSpeed()
-    {
-        speed = baseStatus.speed;
-    }
-
-    /// <summary>
-    /// 攻撃を初期値に戻す
-    /// </summary>
-    public void ResetAttack()
-    {
-        attack = baseStatus.attack;
-    }
-
-    /// <summary>
-    /// 攻撃スピードを初期値に戻す
-    /// </summary>
-    public void ResetAttackSpeed()
-    {
-        attackSpeed = baseStatus.attackSpeed;
-    }
-
-    /// <summary>
-    /// 攻撃範囲を初期値に戻す
-    /// </summary>
-    public void ResetAttackDist()
-    {
-        attackDist = baseStatus.attackDist;
-    }
-
-    public void ResetHitRate()
-    {
-        hitRate = baseStatus.hitRate;
-    }
-
-    /// <summary>
-    /// HPを除く全ステータスを初期値に戻す
-    /// </summary>
-    public void ResetAll()
-    {
-        attack = baseStatus.attack;
-        speed = baseStatus.speed;
-        attackSpeed = baseStatus.attackSpeed;
-        attackDist = baseStatus.attackDist;
-    }
-
+   
     protected void AddHp(int _hp)
     {
         hp += _hp;
@@ -172,9 +117,7 @@ public class AnimalStatus : MonoBehaviour
         if (animal_ is Camel == false) return;
 
         Camel camel = (Camel)animal_;
-        if (camel.evolution.Equals(EVOLUTION.HURRICANE))
-            camel.barrierCount++;
-        else if (animal.evolution == EVOLUTION.ICEAGE)
+        if (animal.evolution == EVOLUTION.ICEAGE)
         {
             foreach (Animal _animal in Animal.animalList)
             {
@@ -195,18 +138,7 @@ public class AnimalStatus : MonoBehaviour
         if (animal_ is Zebra == false) return;
 
         Zebra zebra = (Zebra)animal_;
-        if (zebra.evolution.Equals(EVOLUTION.HURRICANE))
-        {
-            hp_ = (int)(hp_ * 0.5f);
-            if (Random.Range(1,100) <= 20)
-            {
-                hitRate -= 40;
-                Invoke("ResetHitRate", 4.0f);
-            }
-
-            zebra.evolution = EVOLUTION.NONE;
-        }
-        else if (zebra.evolution.Equals(EVOLUTION.THUNDERSTORM))
+        if (zebra.evolution.Equals(EVOLUTION.THUNDERSTORM))
         {
             if (!animal.zebraSE)
             {
@@ -218,9 +150,9 @@ public class AnimalStatus : MonoBehaviour
         {
             hp_ = (int)(hp_ * 1.5f);
             animal_.status.speed = 0;
-            animal_.status.Invoke("ResetSpeed", 6.0f);
+            animal_.Invoke("ResetSpeed", 6.0f);
             zebra.evolution = EVOLUTION.NONE;
         }
-
     }
+
 }

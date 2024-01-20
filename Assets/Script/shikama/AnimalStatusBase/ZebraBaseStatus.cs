@@ -9,6 +9,13 @@ public class ZebraBaseStatus : BaseStatus
     public int earthquakeSpeedDown = 50;
     public int earthquakeAttackUp = 20;
 
+    [Header("¥ƒnƒŠƒP[ƒ“")]
+    public float CoolTimeHurricane = 4;
+    public int HurricaneAttackMag = 50;
+    public int HurricaneHitRateMag = 20;
+    public int HurricaneHitRateDecMag = 40;
+    public int HurricaneHitRateDecTime = 6;
+
     [Header("¥’Ã”g")]
     public int tsunamiDeathMag = 35;
 

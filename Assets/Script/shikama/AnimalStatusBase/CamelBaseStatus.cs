@@ -17,6 +17,12 @@ public class CamelBaseStatus : BaseStatus
     public float coolTimeEarthquake = 30.0f;
     public int earthquakeHPHeal = 100;
 
+    [Header("ƒnƒŠƒP[ƒ“")]
+    public float coolTimeHurricane = 30.0f;
+    public int HurricaneAttackCount = 5;
+    public int HurricaneCutMag = 30;
+    public float HurricaneBarrierTime = 7.0f;
+
     [Header("—‹‰J")]
     public float activeTimeThunder = 6.0f;
     public float coolTimeThunder = 15.0f;
@@ -30,10 +36,6 @@ public class CamelBaseStatus : BaseStatus
     public int DesertStatusUpMag = 3;
 
     public float hpHealOne = 0.1f;
-
-
-    public float barrierMag = 0.3f;
-    public float barrierTime = 7.0f;
 
     public float costDownMag = 0.1f;
 }

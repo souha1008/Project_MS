@@ -635,7 +635,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 23000000, y: 2}
+  m_Size: {x: 23000000, y: 4}
   m_EdgeRadius: 0
 --- !u!50 &4165187943335156918
 Rigidbody2D:
@@ -678,8 +678,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStatus: {fileID: 11400000, guid: 98a528f1a99b546458d51dd2326738f8, type: 2}
   particle: {fileID: 0}
-  particleSprite: []
   hpSlider: {fileID: 1412385991159573001}
+  coolTimeSlider: {fileID: 0}
   animator: {fileID: 6800668504854686334}
 --- !u!1 &4274024669517530556
 GameObject:

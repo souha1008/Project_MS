@@ -14,6 +14,11 @@ public class CamelStatus : AnimalStatus
     public float coolTimeEarthquake = 15.0f;
     public int earthquakeHPHeal = 100;
 
+    public float coolTimeHurricane = 30.0f;
+    public int HurricaneAttackCount = 5;
+    public int HurricaneCutMag = 30;
+    public float HurricaneBarrierTime = 7.0f;
+
     public int thunderSpeedUP = 20;
     public float activeTimeThunder = 6.0f;
     public float coolTimeThunder = 15.0f;
@@ -26,9 +31,6 @@ public class CamelStatus : AnimalStatus
 
     public float hpHealOne = 0.1f;
 
-    public float barrierMag = 0.3f;
-    public float barrierTime = 7.0f;
-
     public float costDownMag = 0.1f;
 
 
@@ -40,10 +42,14 @@ public class CamelStatus : AnimalStatus
         meteoHealDist = baseStatus.meteoHealDist;
         meteoSpeedUp = baseStatus.meteoSpeedUp;
 
-
         activeTimeEarthquake = baseStatus.activeTimeEarthquake;
         coolTimeEarthquake = baseStatus.coolTimeEarthquake;
         earthquakeHPHeal = baseStatus.earthquakeHPHeal;
+
+        coolTimeHurricane = baseStatus.coolTimeHurricane;
+        HurricaneAttackCount = baseStatus.HurricaneAttackCount;
+        HurricaneCutMag = baseStatus.HurricaneCutMag;
+        HurricaneBarrierTime = baseStatus.HurricaneBarrierTime;
 
         activeTimeThunder = baseStatus.activeTimeThunder;
         coolTimeThunder = baseStatus.coolTimeThunder;
@@ -57,21 +63,13 @@ public class CamelStatus : AnimalStatus
 
         hpHealOne = baseStatus.hpHealOne;
 
-        barrierMag = baseStatus.barrierMag;
-        barrierTime = baseStatus.barrierTime;
-
         costDownMag = baseStatus.costDownMag;
     }
 
     public override void AddHp(int _hp, Animal animal_)
     {
         Camel camel = (Camel)animal;
-        if (animal.evolution == EVOLUTION.HURRICANE && camel.barrierCount >= 5)
-        {
-            _hp = (int)(_hp * (1.0f - barrierMag));
-            base.AddHp(_hp, animal_);
-        }
-        else if(animal.evolution == EVOLUTION.ICEAGE)
+        if(animal.evolution == EVOLUTION.ICEAGE)
         {
             foreach (Animal _animal in Animal.animalList)
             {
