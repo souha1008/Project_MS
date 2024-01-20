@@ -630,7 +630,22 @@ public class EffectManager : MonoBehaviour
 
     void Effect_EarthQuake()
     {
+        var state = (EffectState_EarthQuake)dic_base.Table["EarthQuake"];
 
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // アニメーションを再生させる
+        GameObject.Find("BG").GetComponent<Animator>().SetTrigger(state.Anim_Trigger_Name);
+
+        // オーバーレイ設定
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
     }
 
 

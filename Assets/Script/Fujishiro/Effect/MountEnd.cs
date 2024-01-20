@@ -10,7 +10,7 @@ public class MountEnd : MonoBehaviour
     {
         if (ese != null)
         {
-            ese.isPlay = false;
+            ese.SetisPlay(false);
         }
     }
 }
