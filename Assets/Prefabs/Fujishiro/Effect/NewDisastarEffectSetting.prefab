@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 698557012788456710}
   - component: {fileID: 8851235634211765602}
   - component: {fileID: 6873000448947072649}
+  - component: {fileID: 4434971372608636854}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -94,8 +95,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792739638140408347}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 287}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalScale: {x: 1.04, y: 1.04, z: 1.04}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8602485033632842308}
@@ -133,13 +134,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 8ac95ac93012d26428153093a982b89f, type: 2}
+  m_Texture: {fileID: 8400000, guid: 8aa3243459fc1d7439ab9cfdee29ef34, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
+--- !u!114 &4434971372608636854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792739638140408347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c09f9b702cb0e43a17d7e4fa266a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  param_name: Out
 --- !u!1 &2598357470800017611
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,8 +190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4.6473, y: 3.6809}
-  m_SizeDelta: {x: 27.2845, y: 15.3475}
+  m_AnchoredPosition: {x: 4.6473, y: 5.12}
+  m_SizeDelta: {x: 32.52, y: 15.3475}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4241523468658773679
 Canvas:
@@ -402,12 +416,11 @@ MonoBehaviour:
     - m_key: Desert
       m_value: {r: 0.3764706, g: 0.34117648, b: 0.18431373, a: 0.42745098}
     - m_key: Tsunami
-      m_value: {r: 0.07058824, g: 0.28235295, b: 0.59607846, a: 0.3137255}
+      m_value: {r: 0.07058824, g: 0.28235295, b: 0.59607846, a: 0.12156863}
     - m_key: EarthQuake
       m_value: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 0.6117647}
     - m_key: Plague
-      m_value: {r: 0.31764707, g: 0.18431373, b: 0.4, a: 0.49803922}
+      m_value: {r: 0.18431373, g: 0.4, b: 0.21176471, a: 0.1764706}
   DEBUG: 0
   buttons:
-  - {fileID: 0}
   - {fileID: 0}
