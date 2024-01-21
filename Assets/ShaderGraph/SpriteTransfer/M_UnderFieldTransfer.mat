@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4548687580356062824
+--- !u!114 &-7371621656535300430
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_SpriteTransfer
-  m_Shader: {fileID: -6465566751694194690, guid: f852eca644d99ef4384f500ab846dff7, type: 3}
+  m_Name: M_UnderFieldTransfer
+  m_Shader: {fileID: -6465566751694194690, guid: 53c150d6c0b548247b04620f7759df04, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -36,16 +36,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BigFireTexture:
-        m_Texture: {fileID: 2800000, guid: 995474d8cb3ffcf42a69579842250d24, type: 3}
+    - _BigFire:
+        m_Texture: {fileID: 2800000, guid: d74afb1aff2ce5f428d638c087b0f70f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _DesertTexture:
-        m_Texture: {fileID: 2800000, guid: a84e581ddd7fedd4b8a53d13d65d64ba, type: 3}
+    - _Desert:
+        m_Texture: {fileID: 2800000, guid: eb82208599ae5f547b74158ec1b1851b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalTexture:
-        m_Texture: {fileID: 2800000, guid: 1bbe51761eb77b24a82b427eb0e1f429, type: 3}
+    - _IceAge:
+        m_Texture: {fileID: 2800000, guid: 1c8132855062e2147aed489cee23afe0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 6408b714274c9554c9a511151c8f3b3c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Plague:
+        m_Texture: {fileID: 2800000, guid: ecc5d5c12f8edd4409902baef6e4243f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -62,10 +70,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BigFire_Transfer: 0
+    - _Desert_Transfer: 0
+    - _IceAge_Transfer: 0
+    - _Plague_Transfer: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Transfer_Bigfire: -0.0021795034
-    - _Transfer_Desert: -0.052257814
-    m_Colors:
-    - _mori_Color: {r: 0.4862745, g: 0.6039216, b: 0.49411765, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []

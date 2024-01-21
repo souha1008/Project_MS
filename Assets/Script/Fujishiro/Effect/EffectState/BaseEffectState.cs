@@ -18,6 +18,12 @@ public class BaseEffectState : ScriptableObject
     [Header("Trigger名")]
     public string Anim_Trigger_Name;
 
+    [Header("GroundTransferマテリアル")]
+    public Material M_GroundTransfer;
+    public Material M_UnderGroundTransfer;
+    public float GroundTransfer_Time;
+    public float GroundTransfer_DelayTime;
+
     [Header("実行中かどうか")]
     public bool isPlay;
 

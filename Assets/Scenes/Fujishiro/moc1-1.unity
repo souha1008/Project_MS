@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.07058824, g: 0.28235295, b: 0.59607846, a: 0}
+  m_Color: {r: 0.18431373, g: 0.4, b: 0.29281473, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -765,6 +765,22 @@ PrefabInstance:
     - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: Overlay_Color.m_list.Array.data[7].m_value.a
       value: 0.12156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
+      propertyPath: Overlay_Color.m_list.Array.data[9].m_value.a
+      value: 0.1764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
+      propertyPath: Overlay_Color.m_list.Array.data[9].m_value.b
+      value: 0.21176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
+      propertyPath: Overlay_Color.m_list.Array.data[9].m_value.g
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
+      propertyPath: Overlay_Color.m_list.Array.data[9].m_value.r
+      value: 0.18431373
       objectReference: {fileID: 0}
     - target: {fileID: 8602485033632842308, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: m_SizeDelta.x

@@ -5,6 +5,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class EffectManager : MonoBehaviour
 {
@@ -40,6 +41,10 @@ public class EffectManager : MonoBehaviour
 
     // １つ前に発動した災害のステータス
     private BaseEffectState pre_state;
+
+    // Update用
+    private float g_Time;
+    private float g_Transfer;
 
     // 新しいの終わり
 
@@ -84,7 +89,38 @@ public class EffectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // もし通常スプライトに戻ってなかったら戻るようにする
+        if(dic_base.Table["Desert"].isPlay == false)
+        {
+            var state = (EffectState_Desert)dic_base.Table["Desert"];
+            if(state.SG_SpriteTransfer.GetFloat("_Transfer_Desert") > 0.0f)
+            {
+                g_Time += Time.deltaTime;
+                g_Transfer = state.SG_SpriteTransfer.GetFloat("_Transfer_Desert") -  g_Time / state.Transfer_Time;
+                state.SG_SpriteTransfer.SetFloat("_Transfer_Desert", g_Transfer);
+            }
+            else 
+            {
+                g_Time = 0.0f;
+                g_Transfer = 0.0f;
+            }
+        }
 
+        if (dic_base.Table["BigFire"].isPlay == false)
+        {
+            var state = (EffectState_Desert)dic_base.Table["BigFire"];
+            if (state.SG_SpriteTransfer.GetFloat("_Transfer_BigFire") > 0.0f)
+            {
+                g_Time += Time.deltaTime;
+                g_Transfer = state.SG_SpriteTransfer.GetFloat("_Transfer_BigFire") - g_Time / state.Transfer_Time;
+                state.SG_SpriteTransfer.SetFloat("_Transfer_BigFire", g_Transfer);
+            }
+            else
+            {
+                g_Time = 0.0f;
+                g_Transfer = 0.0f;
+            }
+        }
     }
 
     void SetrawImageColor(Color color)
@@ -128,7 +164,7 @@ public class EffectManager : MonoBehaviour
                 break;
 
             case DISASTAR_TYPE.Plague:
-                Effect_Plugue();
+                Effect_Plague();
                 break;
 
             case DISASTAR_TYPE.EarthQuake:
@@ -192,7 +228,135 @@ public class EffectManager : MonoBehaviour
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
 
+        // グラウンドタイル遷移
+        StartCoroutine(GroundTransfer(state, "_IceAge_Transfer"));
+
         Debug.Log("IceAgeメソッド終わり");
+    }
+
+    void Effect_Plague()
+    {
+        Debug.Log("疫病発動");
+        // 新しいの
+        var state = (EffectState_Plague)dic_base.Table["Plague"];
+        // 一個前の情報に入れる
+        pre_state = state;
+
+        // プレイ中であれば実行しない
+        if (state.isPlay) return;
+
+        // 他にプレイ中のフラグがあればリセットする
+        ResetisPlayFlag();
+
+        // プレイ中にする
+        state.SetisPlay(true);
+
+        // RenderTextureをリリース
+        Reset_rawImage(state);
+        var pos = new Vector3(0, 0, 6.0f);
+        effect_rawImage.rectTransform.SetLocalPosition(pos.x, pos.y, pos.z);
+
+        // イベントハンドラセット
+        // 引数は使うvideoplayersの要素番号
+        VideoplayerStenby(1);
+
+        // ビデオプレーヤー０番目をニアーにして
+        // 画面エフェクト付ける
+        Videoplayers[0].renderMode = VideoRenderMode.CameraNearPlane;
+        Videoplayers[0].targetCamera = mainCamera;
+        Videoplayers[0].clip = state.clip[0];
+        Videoplayers[0].Prepare();
+
+        // ビデオプレーヤー１番目はレンダーテクスチャ
+        Videoplayers[1].renderMode = VideoRenderMode.APIOnly;
+        Videoplayers[1].clip = state.clip[1];
+        //Videoplayers[1].targetTexture = state.renderTextures[0];
+        Videoplayers[1].aspectRatio = VideoAspectRatio.Stretch;
+
+        // 読み込み
+        Videoplayers[1].Prepare();
+
+        StartCoroutine(CheckEnd(Videoplayers[1], state));
+
+        // オーバーレイ設定
+        Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+
+        // グラウンドタイル遷移
+        StartCoroutine(GroundTransfer(state, "_Plague_Transfer"));
+
+        Debug.Log("Plagueメソッド終わり");
+    }
+
+    IEnumerator GroundTransfer(BaseEffectState state, string transferName)
+    {
+        if(!state.M_GroundTransfer || !state.M_UnderGroundTransfer)
+        {
+            yield break;
+        }
+
+        var nowstats = 0;
+        var id = Shader.PropertyToID(transferName);
+
+        float time = 0.0f;
+        float transfer = 0.0f;
+
+        yield return new WaitForSeconds(0.5f);
+        while (true)
+        {
+            switch (nowstats)
+            {
+                case 0: // 焼く方
+                    // transfer計算
+                    time += Time.deltaTime;
+                    transfer = time / state.GroundTransfer_Time;
+
+                    state.M_GroundTransfer.SetFloat(id, transfer);
+                    state.M_UnderGroundTransfer.SetFloat(id, transfer);
+
+                    // 変えきったら一度待つ
+                    if (state.M_GroundTransfer.GetFloat(id) >= 1.0f)
+                    {
+                        yield return new WaitForSeconds(state.GroundTransfer_DelayTime);
+
+                        // DelayTime秒まったら初期化
+                        nowstats = 1;
+                        time = 0.0f;
+                        transfer = 0.0f;
+                        break;
+                    }
+                    break;
+
+                case 1:
+                    time += Time.deltaTime;
+                    transfer = 1.0f - time / state.GroundTransfer_Time;
+
+                    state.M_GroundTransfer.SetFloat(id, transfer);
+
+                    state.M_UnderGroundTransfer.SetFloat(id, transfer);
+
+                    // 戻ったらコルーチンキル
+                    if (state.M_GroundTransfer.GetFloat(id) <= 0.0f)
+                    {
+                        // M_GroundTransfer全部0にする
+                        {
+                            state.M_GroundTransfer.SetFloat("_Plague_Transfer", 0);
+                            state.M_GroundTransfer.SetFloat("_Desert_Transfer", 0);
+                            state.M_GroundTransfer.SetFloat("_BigFire_Transfer", 0);
+                            state.M_GroundTransfer.SetFloat("_IceAge_Transfer", 0);
+                        }
+                        // M_UnderGroundTransfer全部0にする
+                        {
+                            state.M_UnderGroundTransfer.SetFloat("_Plague_Transfer", 0);
+                            state.M_UnderGroundTransfer.SetFloat("_Desert_Transfer", 0);
+                            state.M_UnderGroundTransfer.SetFloat("_BigFire_Transfer", 0);
+                            state.M_UnderGroundTransfer.SetFloat("_IceAge_Transfer", 0);
+                        }
+                        yield break;
+                    }
+                    break;
+            }
+            yield return null;
+        }
     }
 
     void Effect_ThunderStome()
@@ -373,6 +537,9 @@ public class EffectManager : MonoBehaviour
 
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+
+        // グラウンドタイル遷移
+        StartCoroutine(GroundTransfer(state, "_Desert_Transfer"));
     }
 
     IEnumerator Desert_SpriteTransfer(EffectState_Desert state)
@@ -468,6 +635,9 @@ public class EffectManager : MonoBehaviour
 
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+
+        // グラウンドタイル遷移
+        StartCoroutine(GroundTransfer(state, "_BigFire_Transfer"));
     }
 
     IEnumerator BigFire_SpriteTransfer(EffectState_BigFire state)
@@ -584,11 +754,6 @@ public class EffectManager : MonoBehaviour
         state.SetisPlay(false);
         Overlay_Image_animator.SetTrigger(Anim_Out);
         yield break;
-    }
-
-    void Effect_Plugue()
-    {
-
     }
 
     void Effect_Tsunami()

@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89eac6f083276cd44924eae0523d37dd, type: 3}
-  m_Name: Effect State_Plugue
+  m_Name: Effect State_Plague
   m_EditorClassIdentifier: 
   name: Plague
-  clip: []
+  clip:
+  - {fileID: 32900000, guid: 00f70029724c3a748831b5eb3679b125, type: 3}
+  - {fileID: 32900000, guid: 3caf56b003405384e8295e6b887f8267, type: 3}
   renderTextures: []
   prefab: {fileID: 0}
   Anim_Trigger_Name: Plague
+  M_GroundTransfer: {fileID: 2100000, guid: 86cfa4e317eaefe49b5af6782b285d86, type: 2}
+  M_UnderGroundTransfer: {fileID: 2100000, guid: 3e035a52419dd824690dd470afc8705e, type: 2}
+  GroundTransfer_Time: 1
+  GroundTransfer_DelayTime: 4
   isPlay: 0

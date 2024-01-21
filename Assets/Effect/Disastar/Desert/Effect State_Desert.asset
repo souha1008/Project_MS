@@ -18,8 +18,11 @@ MonoBehaviour:
   renderTextures: []
   prefab: {fileID: 0}
   Anim_Trigger_Name: Desert
+  M_GroundTransfer: {fileID: 2100000, guid: 86cfa4e317eaefe49b5af6782b285d86, type: 2}
+  M_UnderGroundTransfer: {fileID: 2100000, guid: 3e035a52419dd824690dd470afc8705e, type: 2}
+  GroundTransfer_Time: 1
+  GroundTransfer_DelayTime: 4
   isPlay: 0
   SG_SpriteTransfer: {fileID: 2100000, guid: 33cb9b4899a921c46a2453e4ee304211, type: 2}
-  SG_FieldTransfer: {fileID: 0}
   Transfer_Time: 2
   DelayTime: 4

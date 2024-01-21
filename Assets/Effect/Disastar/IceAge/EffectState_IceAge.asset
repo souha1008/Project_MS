@@ -20,5 +20,9 @@ MonoBehaviour:
   - {fileID: 8400000, guid: 8ac95ac93012d26428153093a982b89f, type: 2}
   prefab: {fileID: 2919339555733932876, guid: a8a886f3bff244241825e05ca7d201d2, type: 3}
   Anim_Trigger_Name: IceAge
+  M_GroundTransfer: {fileID: 2100000, guid: 86cfa4e317eaefe49b5af6782b285d86, type: 2}
+  M_UnderGroundTransfer: {fileID: 2100000, guid: 3e035a52419dd824690dd470afc8705e, type: 2}
+  GroundTransfer_Time: 1
+  GroundTransfer_DelayTime: 4
   isPlay: 0
   spawnpos: {x: -13.87, y: 4.67, z: 90.18}

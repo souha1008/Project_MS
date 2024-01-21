@@ -5,7 +5,6 @@ public class EffectState_Desert : BaseEffectState
 {
     [Header("ƒ}ƒeƒŠƒAƒ‹ŒQ")]
     public Material SG_SpriteTransfer;
-    public Material SG_FieldTransfer;
 
     [Header("‰½•b‚Å•Ï‚¦‚é‚©")]
     public float Transfer_Time;
