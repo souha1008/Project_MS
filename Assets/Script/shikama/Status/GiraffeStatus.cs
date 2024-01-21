@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GiraffeStatus : AnimalStatus
 {
-    public float attackUpMag = 3.0f;
+    public int MeteoAttackUp = 30;
+    public float MeteoKBDist = 0.3f;
+    public float MeteoKBTime = 0.35f;
 
     public float coolTimeEarthquake = 20.0f;
 
@@ -14,8 +16,12 @@ public class GiraffeStatus : AnimalStatus
     public int HurricaneSpeedUP = 5;
     public float HurricaneKBTime = 0.35f;
 
+    public int ThunderAtkDistUp = 100;
+
     public int TsunamiAtkUp = 5;
     public float TsunamiSpeedUp = 5;
+
+    public int EruptionAtkDistDown = 50;
 
     public float coolTimePlague = 15.0f;
     public int plagueCostUp = 50;
@@ -28,7 +34,9 @@ public class GiraffeStatus : AnimalStatus
 
     public GiraffeStatus(GiraffeBaseStatus baseStatus, Animal animal) : base(baseStatus, animal)
     {
-        attackUpMag = baseStatus.attackUpMag;
+        MeteoAttackUp = baseStatus.MeteoAttackUp;
+        MeteoKBDist = baseStatus.MeteoKBDist;
+        MeteoKBTime = baseStatus.MeteoKBTime;
 
         coolTimeEarthquake = baseStatus.coolTimeEarthquake;
 
@@ -38,8 +46,12 @@ public class GiraffeStatus : AnimalStatus
         HurricaneSpeedUP = baseStatus.HurricaneSpeedUP;
         HurricaneKBTime = baseStatus.HurricaneKBTime;
 
+        ThunderAtkDistUp = baseStatus.ThunderAtkDistUp;
+
         TsunamiAtkUp = baseStatus.TsunamiAtkUp;
         TsunamiSpeedUp = baseStatus.TsunamiSpeedUp;
+
+        EruptionAtkDistDown = baseStatus.EruptionAtkDistDown;
 
         coolTimePlague = baseStatus.coolTimePlague;
         plagueCostUp = baseStatus.plagueCostUp;

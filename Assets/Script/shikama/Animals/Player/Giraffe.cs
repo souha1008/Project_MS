@@ -72,8 +72,8 @@ public class Giraffe : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.MeteoEvolution();
     
-        status_.attack = (int)(status_.attack * status_.attackUpMag);
-        
+        status_.attack = (int)(status_.attack * (1.0f + status_.MeteoAttackUp * 0.01f));
+        AttackAnimalSkill += (Animal animal) => animal.KnockBackMode(new Vector2(-status_.MeteoKBDist, 0), status_.MeteoKBTime);
     }
 
     override public void EarthquakeEvolution()
@@ -126,10 +126,23 @@ public class Giraffe : Animal
         coolTimeSlider.maxValue = coolTimer = status_.coolTimeDesert;
     }
 
+    public override void ThunderstormEvolution()
+    {
+        base.ThunderstormEvolution();
+        status.attackDist *= 1.0f + status_.ThunderAtkDistUp * 0.01f;
+    }
+
     public void TsunamiStatusUp()
     {
         status.attack += status_.TsunamiAtkUp;
         status.speed += status_.TsunamiSpeedUp;
+    }
+
+    public override void EruptionEvolution()
+    {
+        base.EruptionEvolution();
+
+        status.attackDist *= status_.EruptionAtkDistDown * 0.01f;
     }
 
     public override void PlagueEvolution()

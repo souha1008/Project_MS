@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using CriWare;
 
-public enum DIRECTION {
+public enum DIRECTION
+{
     RIGHT = 0,
     LEFT,
 };
@@ -32,13 +33,13 @@ public class Animal : MonoBehaviour
     public EVOLUTION evolution { get; set; } = EVOLUTION.NONE;    // 進化状態
     protected float attackCount;                    // 攻撃時間カウント
     protected Vector2 dirVec;                       // 攻撃方向(ベクター型)
-    
+
     private Rigidbody2D rb;                         // 移動用RigidBody
 
     public GameObject attackObject { get; set; } = null; // 攻撃オブジェクト格納(単体攻撃用)
 
     /// <summary>フィールド内の動物を保存</summary>
-    static public List<Animal> animalList { get; private set; } 
+    static public List<Animal> animalList { get; private set; }
     static public List<Giraffe> giraffesDesertList { get; set; }
 
     /// <summary>ターゲットを攻撃しているキャラクター情報格納用</summary>
@@ -119,13 +120,13 @@ public class Animal : MonoBehaviour
             hpSlider.maxValue = status.maxHP;
         }
 
-        if(coolTimeSlider)
+        if (coolTimeSlider)
         {
             coolTimeSliderFill = coolTimeSlider.fillRect.GetComponent<Image>();
             coolTimeColor = coolTimeSliderFill.color;
         }
 
-        if(particle)
+        if (particle)
         {
             particles = particle.GetComponentsInChildren<ParticleSystem>();
             particleColorChanger = particle.GetComponent<EvolutionEffect_ColorChange>();
@@ -142,18 +143,18 @@ public class Animal : MonoBehaviour
         Debug.DrawRay(transform.position, dirVec * status.attackDist, Color.red);
 
         attackCount += Time.deltaTime;
-        if(State != null) State(); // 攻撃、移動処理
+        if (State != null) State(); // 攻撃、移動処理
 
         if (hpSlider)
         {
             hpSlider.value = status.hp;
         }
 
-        if (coolTimeSlider) 
+        if (coolTimeSlider)
         {
             coolTimeSlider.value = coolTimeSlider.maxValue - coolTimer;
 
-            if (coolTimeSlider.value == coolTimeSlider.maxValue) 
+            if (coolTimeSlider.value == coolTimeSlider.maxValue)
             {
                 coolTimeSliderFill.color = new Color(0.0f / 255.0f, 160.0f / 255.0f, 255.0f / 255.0f);
             }
@@ -166,7 +167,7 @@ public class Animal : MonoBehaviour
         if (camelSheld)
         {
             camelSheldCounter += Time.deltaTime;
-            if(camelSheldCounter >= Camel.hurricaneBarrierTime)
+            if (camelSheldCounter >= Camel.hurricaneBarrierTime)
             {
                 camelSheld = false;
                 camelSheldCounter = 0;
@@ -182,7 +183,7 @@ public class Animal : MonoBehaviour
             if (particle && particle.gameObject.activeInHierarchy)
             {
                 int particleCount = 0;
-                foreach(ParticleSystem s in particles)
+                foreach (ParticleSystem s in particles)
                 {
                     s.Stop();
                     if (s.particleCount != 0) particleCount = s.particleCount;
@@ -220,7 +221,7 @@ public class Animal : MonoBehaviour
     {
         attackObject = null;
 
-        State = Move;
+        
         if (animator)
         {
             animator.ResetTrigger("Attack");
@@ -228,6 +229,12 @@ public class Animal : MonoBehaviour
             animator.SetTrigger("Walk");
         }
     }
+
+    public void MoveStart()
+    {
+        State = Move;
+    }
+
 
     /// <summary>
     /// 移動ステート時処理
@@ -266,9 +273,10 @@ public class Animal : MonoBehaviour
     /// </summary>
     public void AttackMode(GameObject attackObj)
     {
+        rb.velocity = new Vector2(0, 0);
+        
         if (!attackObject)
         {
-            rb.velocity = new Vector2(0, 0);
             attackObject = attackObj;
 
             if (!attackTarget.ContainsKey(attackObj))
@@ -294,9 +302,9 @@ public class Animal : MonoBehaviour
         // 攻撃
         if (attackCount >= status.attackSpeed)
         {
-            HitRateAttack();    
+            if (animator) animator.SetTrigger("Attack");
 
-            
+
             attackCount = 0;
         }
     }
@@ -314,10 +322,11 @@ public class Animal : MonoBehaviour
 
         attackObject = null;
         State = null;
-        if (animator) { 
+        if (animator)
+        {
             animator.SetTrigger("Death");
             GetComponent<BoxCollider2D>().enabled = false;
-            if(hpSlider) hpSlider.fillRect.sizeDelta = new Vector2(0, 0);
+            if (hpSlider) hpSlider.fillRect.sizeDelta = new Vector2(0, 0);
         }
         else
         {
@@ -332,7 +341,7 @@ public class Animal : MonoBehaviour
 
     public void KnockBackMode(Vector2 dir, float knockBackTime)
     {
-        if (knockBackStartPos == null || knockBackStartPos == new Vector3(0, 0, 0)) knockBackStartPos = transform.position;
+        if (knockBackStartPos == null || knockBackStartPos == new Vector3(0, 0, 0)) knockBackStartPos = transform.localPosition;
         knockBackEndPos = new Vector3(transform.localPosition.x + dir.x, transform.localPosition.y + dir.y, transform.localPosition.z);
 
         this.knockBackTime = knockBackTime;
@@ -345,11 +354,11 @@ public class Animal : MonoBehaviour
             attackTarget[attackObject].Remove(this);
             attackObject = null;
         }
-        foreach(Animal animal in attackTarget[gameObject])
+        foreach (Animal animal in attackTarget[gameObject])
         {
             animal.MoveMode();
         }
-        GetComponent<Collider2D>().enabled = false;
+        // GetComponent<Collider2D>().enabled = false;
 
 
         State = KnockBack;
@@ -357,13 +366,17 @@ public class Animal : MonoBehaviour
 
     private void KnockBack()
     {
-        transform.localPosition = Vector3.Lerp(knockBackStartPos, knockBackEndPos, Mathf.Sin(knockBackCounter / knockBackTime));
+        rb.velocity = new Vector2(0, 0);
 
-        if (knockBackCounter >= knockBackTime)
+        transform.localPosition = Vector3.Lerp(knockBackStartPos, knockBackEndPos, Mathf.Sin(knockBackCounter / knockBackTime));
+        if (knockBackCounter / knockBackTime > 1.0f)
+            transform.localPosition = knockBackEndPos;
+
+        if (transform.localPosition == knockBackEndPos)
         {
             knockBackStartPos = new Vector3(0, 0, 0);
             GetComponent<Collider2D>().enabled = true;
-            State = MoveMode;
+            MoveMode();
         }
         knockBackCounter += Time.deltaTime;
     }
@@ -372,7 +385,7 @@ public class Animal : MonoBehaviour
     {
         if (animator) animator.SetTrigger("Idle");
         rb.velocity = new Vector2(0, 0);
-        if(attackObject != null)
+        if (attackObject != null)
         {
             attackTarget[attackObject].Remove(this);
             attackObject = null;
@@ -383,11 +396,10 @@ public class Animal : MonoBehaviour
 
     void Idle()
     {
-        if(idleTime != 0.0f)
+        if (idleTime != 0.0f)
         {
             idleTime -= Time.deltaTime;
             if (idleTime < 0.0f) idleTime = 0.0f;
-            Debug.Log("afewavnowai");
         }
         else
         {
@@ -417,10 +429,9 @@ public class Animal : MonoBehaviour
 
     virtual protected void HitRateAttack(float mag = 1.0f)
     {
+        if (State == KnockBack) return;
         // 命中判定
         int r = Random.Range(1, 100);
-
-        if(animator) animator.SetTrigger("Attack");
 
         if (!attackObject)
         {
@@ -433,11 +444,10 @@ public class Animal : MonoBehaviour
             if (attackObject.GetComponent<Animal>()) // 攻撃対象が動物の場合
             {
                 Animal attackEnemy = attackObject.GetComponent<Animal>();
-                if (AttackAnimalSkill != null) AttackAnimalSkill(attackEnemy);
 
-                
+
                 attackEnemy.BeAttacked(Mathf.RoundToInt(-status.attack * mag), this);
-                
+
 
                 // 倒したとき
                 if (attackEnemy.status.hp <= 0)
@@ -463,9 +473,12 @@ public class Animal : MonoBehaviour
                     }
 
                     attackEnemy.DeathMode();
+                    attackEnemy = null;
 
                     MoveMode();
                 }
+                
+                if (attackEnemy && AttackAnimalSkill != null) AttackAnimalSkill(attackEnemy);
             }
             else if (attackObject.GetComponent<House>()) // 攻撃対象が敵拠点の場合
             {
@@ -489,7 +502,7 @@ public class Animal : MonoBehaviour
 
                             giraffe.DesertCoolTimeStart();
                         }
-                        else if(this is Elephant || this is Buffalo)
+                        else if (this is Elephant || this is Buffalo)
                         {
                             ((GiraffeStatus)giraffe.status).desertCut = true;
                             giraffe.DesertCoolTimeStart();
@@ -505,9 +518,10 @@ public class Animal : MonoBehaviour
 
     public void PlayAttackSE()
     {
-        if(tag=="Enemy")
+        if (State == KnockBack) return;
+        if (tag == "Enemy")
             InGameSEManager.instance.PlaySE04();
-        else if(tag=="Player")
+        else if (tag == "Player")
             InGameSEManager.instance.PlaySE05();
     }
 
@@ -581,7 +595,8 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// 隕石
     /// </summary>
-    virtual public void MeteoEvolution() {
+    virtual public void MeteoEvolution()
+    {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.METEO;
 
@@ -599,7 +614,7 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// 地震
     /// </summary>
-    virtual public void EarthquakeEvolution() 
+    virtual public void EarthquakeEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.EARTHQUAKE;
@@ -618,11 +633,12 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// ハリケーン
     /// </summary>
-    virtual public void HurricaneEvolution() {
+    virtual public void HurricaneEvolution()
+    {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.HURRICANE;
 
-        foreach(MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+        foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
         {
             if (tag == "Enemy") break;
             if (!m) continue;
@@ -655,7 +671,7 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// 津波
     /// </summary>
-    virtual public void TsunamiEvolution() 
+    virtual public void TsunamiEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.TSUNAMI;
@@ -693,7 +709,7 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// 疫病
     /// </summary>
-    virtual public void PlagueEvolution() 
+    virtual public void PlagueEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.PLAGUE;
@@ -712,7 +728,7 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// 砂漠化
     /// </summary>
-    virtual public void DesertificationEvolution() 
+    virtual public void DesertificationEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.DESERTIFICATION;
@@ -731,7 +747,7 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// 氷河期
     /// </summary>
-    virtual public void IceAgeEvolution() 
+    virtual public void IceAgeEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.ICEAGE;
@@ -750,7 +766,7 @@ public class Animal : MonoBehaviour
     /// <summary>
     /// 大火災
     /// </summary>
-    virtual public void BigFireEvolution() 
+    virtual public void BigFireEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         evolution = EVOLUTION.BIGFIRE;
