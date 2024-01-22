@@ -23,15 +23,22 @@ public class CamelStatus : AnimalStatus
     public float activeTimeThunder = 6.0f;
     public float coolTimeThunder = 15.0f;
 
+    public float activeTimeEruption = 6.0f;
+    public float coolTimeEruption = 15.0f;
+    public int eruptionSpeedUP = 25;
+
     public float activeTimeDesert = 6.0f;
     public float coolTimeDesert = 15.0f;
     public int DesertHPDecMag = 10;
     public float DesertStatusUpDist = 4.0f;
     public int DesertStatusUpMag = 3;
 
+    public float coolTimeBigFire = 10.0f;
+    public int BigFireHealMag = 7;
+
     public float hpHealOne = 0.1f;
 
-    public float costDownMag = 0.1f;
+    public int tsunamiCostDown = 10;
 
 
     public CamelStatus(CamelBaseStatus baseStatus,Animal animal) : base(baseStatus, animal)
@@ -55,37 +62,23 @@ public class CamelStatus : AnimalStatus
         coolTimeThunder = baseStatus.coolTimeThunder;
         thunderSpeedUP = baseStatus.thunderSpeedUP;
 
+        activeTimeEruption = baseStatus.activeTimeEruption;
+        coolTimeEruption = baseStatus.coolTimeEruption;
+        eruptionSpeedUP = baseStatus.eruptionSpeedUP;
+
         activeTimeDesert = baseStatus.activeTimeDesert;
         coolTimeDesert = baseStatus.coolTimeDesert;
         DesertHPDecMag = baseStatus.DesertHPDecMag;
         DesertStatusUpDist = baseStatus.DesertStatusUpDist;
         DesertStatusUpMag = baseStatus.DesertStatusUpMag;
 
+        coolTimeBigFire = baseStatus.coolTimeBigFire;
+        BigFireHealMag = baseStatus.BigFireHealMag;
+
         hpHealOne = baseStatus.hpHealOne;
 
-        costDownMag = baseStatus.costDownMag;
+        tsunamiCostDown = baseStatus.tsunamiCostDown;
     }
 
-    public override void AddHp(int _hp, Animal animal_)
-    {
-        Camel camel = (Camel)animal;
-        if(animal.evolution == EVOLUTION.ICEAGE)
-        {
-            foreach (Animal _animal in Animal.animalList)
-            {
-                if (_animal.tag == "Enemy") continue;
 
-                float dist = Vector2.Distance(camel.transform.position, _animal.transform.position);
-                if (dist <= 3.0f)
-                {
-                    _animal.status.hp = Mathf.Clamp(Mathf.RoundToInt(_animal.status.hp + _animal.status.maxHP * 0.08f),
-                        0,_animal.status.maxHP);
-                }
-            }
-        }
-        else
-        {
-            base.AddHp(_hp, animal);
-        }
-    }
 }

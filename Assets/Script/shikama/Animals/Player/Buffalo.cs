@@ -5,9 +5,7 @@ using UnityEngine;
 public class Buffalo : Animal
 {
     BuffaloStatus status_;
-    private bool meteoEvolution = false;
-    private bool earthquakeEvolution = false;
-
+    
     float activeTimer = 0.0f;
 
     public int iceCount { get; set; } = 0;
@@ -65,12 +63,29 @@ public class Buffalo : Animal
         }
     }
 
-    protected override void Attack()
+    protected override void AttackAnimalSkill(Animal attackEnemy)
     {
-        base.Attack();
-        if (evolution == EVOLUTION.PLAGUE)
+        if(evolution == EVOLUTION.HURRICANE)
         {
-            DeathMode();
+            attackEnemy.IdleMode(status_.HurricaneStopTime);
+            evolution = EVOLUTION.NONE;
+        }
+    }
+
+    protected override void HitRateAttack(float mag = 1)
+    {
+        if(evolution == EVOLUTION.BIGFIRE)
+        {
+            for(int i = 0; i < status_.BigFireAtkNum; i++) BigFireAttack();
+        }
+        else
+        {
+            base.HitRateAttack(mag);
+
+            if (evolution == EVOLUTION.PLAGUE)
+            {
+                DeathMode();
+            }
         }
     }
 
@@ -128,20 +143,11 @@ public class Buffalo : Animal
         ResetAll();
     }
 
-    private void HurricaneSkill(Animal animal)
-    {
-        animal.IdleMode(status_.HurricaneStopTime);
-        evolution = EVOLUTION.NONE;
-        AttackAnimalSkill -= HurricaneSkill;
-    }
-
     public override void HurricaneEvolution()
     {
         base.HurricaneEvolution();
 
         coolTimeSlider.maxValue = coolTimer = status_.coolTimeHurricane;
-        
-        AttackAnimalSkill += HurricaneSkill;
     }
 
     public override void ThunderstormEvolution()
@@ -192,5 +198,44 @@ public class Buffalo : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
 
         base.BigFireEvolution();
+    }
+
+    private void BigFireAttack()
+    {
+        List<GameObject> attackObjects = new List<GameObject>();
+
+        foreach (Animal animal in animalList)
+        {
+            if (animal.tag == "Player") continue;
+
+            float dist = Vector2.Distance(transform.position, animal.transform.position);
+            foreach (RaycastHit2D hit in Physics2D.RaycastAll(transform.position, dirVec, status.attackDist))
+            {
+                if (hit.transform.tag == "Enemy" || hit.transform.tag == "EHouse")
+                {
+                    attackObjects.Add(hit.transform.gameObject);
+                }
+            }
+        }
+
+        if (attackObject != null && attackObject.tag == "Enemy")
+        {
+            attackTarget[attackObject].Remove(this);
+            attackObject = null;
+        }
+
+        int num = Random.Range(0, attackObjects.Count - 1);
+        if (attackObjects.Count != 0)
+        {
+            attackObject = attackObjects[num];
+        }
+
+        if (attackObject.tag == "Enemy" && !attackTarget.ContainsKey(attackObject))
+        {
+            attackTarget.Add(attackObject, new List<Animal>());
+        }
+        attackTarget[attackObject].Add(this);
+
+        base.HitRateAttack(status_.BigFireAtkMag * 0.01f);
     }
 }   

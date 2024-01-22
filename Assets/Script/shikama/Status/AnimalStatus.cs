@@ -56,7 +56,6 @@ public class AnimalStatus
         ElephantAttack(animal_);
         BuffaloAttack(animal_);
         CamelAttack(animal_);
-        ZebraAttack(ref _hp, animal_);
 
         AddHp(_hp);
     }
@@ -132,27 +131,4 @@ public class AnimalStatus
             }
         }
     }
-
-    private void ZebraAttack(ref int hp_, Animal animal_)
-    {
-        if (animal_ is Zebra == false) return;
-
-        Zebra zebra = (Zebra)animal_;
-        if (zebra.evolution.Equals(EVOLUTION.THUNDERSTORM))
-        {
-            if (!animal.zebraSE)
-            {
-                hp_ = (int)(hp_ * 1.02f);
-                animal.zebraSE = true;
-            }
-        }
-        else if(zebra.evolution.Equals(EVOLUTION.ERUPTION))
-        {
-            hp_ = (int)(hp_ * 1.5f);
-            animal_.status.speed = 0;
-            animal_.Invoke("ResetSpeed", 6.0f);
-            zebra.evolution = EVOLUTION.NONE;
-        }
-    }
-
 }

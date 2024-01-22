@@ -46,10 +46,30 @@ public class Giraffe : Animal
             }
         }
 
-        Debug.Log(status.attack);
+        Debug.Log(status.speed);
     }
 
-   
+    protected override void AttackAnimalSkill(Animal attackEnemy)
+    {
+        if (evolution == EVOLUTION.METEO)
+        {
+            attackEnemy.KnockBackMode(new Vector2(-status_.MeteoKBDist, 0), status_.MeteoKBTime);
+        }
+        else if(evolution == EVOLUTION.HURRICANE)
+        {
+            attackEnemy.KnockBackMode(new Vector2(-status_.HurricaneKBDist, 0), status_.HurricaneKBTime);
+            status.speed *= status_.HurricaneSpeedUP * 0.01f + 1.0f;
+            activeTimer = 0.0f;
+            evolution = EVOLUTION.NONE;
+        }
+    }
+
+    protected override void BeAttacked(int attackPower, Animal attackedEnemy, float mag = 1)
+    {
+        base.BeAttacked(attackPower, attackedEnemy, (1.0f - status_.desertCutMag * 0.01f));
+        status_.desertCut = false;
+    }
+
     protected override void HitRateAttack(float mag = 1)
     {
         if (evolution == EVOLUTION.TSUNAMI)
@@ -73,7 +93,6 @@ public class Giraffe : Animal
         base.MeteoEvolution();
     
         status_.attack = (int)(status_.attack * (1.0f + status_.MeteoAttackUp * 0.01f));
-        AttackAnimalSkill += (Animal animal) => animal.KnockBackMode(new Vector2(-status_.MeteoKBDist, 0), status_.MeteoKBTime);
     }
 
     override public void EarthquakeEvolution()
@@ -103,22 +122,11 @@ public class Giraffe : Animal
         coolTimeSlider.maxValue = coolTimer = status_.coolTimeEarthquake;
     }
 
-    private void HurricaneAttackSkill(Animal animal)
-    {
-        animal.KnockBackMode(new Vector2(-status_.HurricaneKBDist, 0), status_.HurricaneKBTime);
-        status.speed *= status_.HurricaneSpeedUP * 0.01f + 1.0f;
-        activeTimer = 0.0f;
-        evolution = EVOLUTION.NONE;
-
-        AttackAnimalSkill -= HurricaneAttackSkill;
-    }
-
     public override void HurricaneEvolution()
     {
         base.HurricaneEvolution();
         SetCoolTimer(status_.CoolTimeHurricane);
         activeTimer = status_.ActiveTimeHurricane;
-        AttackAnimalSkill += HurricaneAttackSkill;
     }
 
     public void DesertCoolTimeStart()
@@ -161,6 +169,24 @@ public class Giraffe : Animal
         base.DesertificationEvolution();
 
         giraffesDesertList.Add(this);
+    }
+
+    public override void IceAgeEvolution()
+    {
+        base.IceAgeEvolution();
+        IdleMode(status_.ActiveTimeBigFire);
+        activeTimer = status_.ActiveTimeBigFire;
+        SetCoolTimer(status_.CoolTimeIceAge);
+    }
+
+    public override void BigFireEvolution()
+    {
+        base.BigFireEvolution();
+
+        activeTimer = status_.ActiveTimeBigFire;
+        SetCoolTimer(status_.CoolTimeBigFire);
+        status.speed *= status_.BigFireSpeedUp * 0.01f + 1.0f;
+        Invoke("ResetSpeed", status_.ActiveTimeBigFire);
     }
 
     protected override void Death()

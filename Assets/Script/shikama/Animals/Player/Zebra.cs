@@ -7,11 +7,8 @@ public class Zebra : Animal
     ZebraStatus status_;
 
     bool eruptionSpeedUp = false;
-    bool desertHpHeal = false;
-
+    
     int desertHealCount = 0;
-
-    float doubleAttackCount = 0;
 
     override protected void Start()
     {
@@ -25,18 +22,20 @@ public class Zebra : Animal
     {
         base.Update();
 
-        if(evolution == EVOLUTION.METEO)
-        {
-            if (doubleAttackCount >= 2.0f)
-            {
-                HitRateAttack(status_.doubleAttackMag);
-                doubleAttackCount = 0;
-            }
-            else
-                doubleAttackCount += Time.deltaTime;
-        }
+        if (coolTimer > 0)
+            coolTimer -= Time.deltaTime;
+        else
+            coolTimer = 0.0f;
 
-        if (evolution.Equals(EVOLUTION.PLAGUE))
+        if (evolution == EVOLUTION.METEO)
+        {
+            if (coolTimer == 0 && attackObject)
+            {
+                HitRateAttack(status_.MeteoAddAtkMag * 0.01f);
+                SetCoolTimer(status_.CoolTimeMeteo);
+            }
+        }
+        else if (evolution.Equals(EVOLUTION.PLAGUE))
         {
             if(animalList.FindAll(animal => animal.baseStatus.name == "Zebra").Count >= status_.plagueZebraCount)
             {
@@ -62,6 +61,34 @@ public class Zebra : Animal
                 Debug.Log(status.hp);
             }
         }
+        else if(evolution ==EVOLUTION.THUNDERSTORM)
+        {
+            // 当たり判定チェック
+            foreach (RaycastHit2D hit in Physics2D.RaycastAll(transform.position, dirVec, status.attackDist))
+            {
+                if (hit.transform.tag == "Enemy" && !hit.transform.GetComponent<Animal>().zebraSE)
+                {
+                    if (!attackObject) return;
+                    HitRateAttack(status_.ThunderAtkMag * 0.01f);
+                    hit.transform.GetComponent<Animal>().zebraSE = true;
+                    
+                }
+            }
+        }
+    }
+
+    protected override void BeAttacked(int attackPower, Animal attackedEnemy, float mag = 1)
+    {
+        if(evolution == EVOLUTION.BIGFIRE)
+        {
+            if (coolTimer == 0 && Random.Range(1, 100) <= 100)
+            {
+                KnockBackMode(new Vector2(status_.BigFireKBDist,0),status_.BigFireKBTime);
+                SetCoolTimer(status_.CoolTimeBigFire);
+            }
+        }
+
+        base.BeAttacked(attackPower, attackedEnemy, mag);
     }
 
     protected override void HitRateAttack(float mag = 1)
@@ -77,10 +104,26 @@ public class Zebra : Animal
             }
 
             evolution = EVOLUTION.NONE;
-            coolTimer = status_.CoolTimeHurricane;
+            SetCoolTimer(status_.CoolTimeHurricane);
             mag = status_.HurricaneAttackMag * 0.01f;
         }
-        
+        else if (evolution.Equals(EVOLUTION.ERUPTION))
+        {
+            mag = status_.EruptionAtkMag * 0.01f;
+            IdleMode(status_.EruptionIdleTime);
+            SetCoolTimer(status_.CoolTimeEruption);
+            evolution = EVOLUTION.NONE;
+        }
+        else if(evolution == EVOLUTION.ICEAGE)
+        {
+            mag = status_.IceAgeAtkMag * 0.01f;
+            for(int i = 0; i < status_.IceAgeAtkCount; i++)
+            {
+                base.HitRateAttack(mag);
+            }
+            return;
+        }
+
         base.HitRateAttack(mag);
     }
 
@@ -88,8 +131,6 @@ public class Zebra : Animal
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.MeteoEvolution();
-        //status_.attack = (int)(status_.attack * status_.doubleAttackMag) + status_.attack;
-        
     }
 
     override public void EarthquakeEvolution()

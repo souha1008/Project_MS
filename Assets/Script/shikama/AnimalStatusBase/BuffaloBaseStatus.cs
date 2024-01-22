@@ -34,4 +34,8 @@ public class BuffaloBaseStatus : BaseStatus
     [Header("¥•X‰ÍŠú")]
     public int IceAgeCount = 5;
     public int IceAgeHealMag = 20;
+
+    [Header("¥‘å‰ÎĞ")]
+    public int BigFireAtkMag = 50;
+    public int BigFireAtkNum = 2;
 }

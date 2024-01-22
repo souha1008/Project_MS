@@ -39,4 +39,14 @@ public class GiraffeBaseStatus : BaseStatus
     [Header("¥‰u•a")]
     public float coolTimePlague = 15.0f;
     public int plagueCostUp = 50;
+
+    [Header("¥•X‰ÍŠú")]
+    public float ActiveTimeIceAge = 6.0f;
+    public float CoolTimeIceAge = 15.0f;
+
+    [Header("¥‘å‰ÎĞ")]
+    public float ActiveTimeBigFire = 5.0f;
+    public float CoolTimeBigFire = 12.0f;
+    public int BigFireSpeedUp = 20;
+
 }

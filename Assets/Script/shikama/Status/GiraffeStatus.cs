@@ -32,6 +32,13 @@ public class GiraffeStatus : AnimalStatus
     public int desertCutMag = 30;
     public bool desertCut = false;
 
+    public float ActiveTimeIceAge = 6.0f;
+    public float CoolTimeIceAge = 15.0f;
+
+    public float ActiveTimeBigFire = 5.0f;
+    public float CoolTimeBigFire = 12.0f;
+    public int BigFireSpeedUp = 20;
+
     public GiraffeStatus(GiraffeBaseStatus baseStatus, Animal animal) : base(baseStatus, animal)
     {
         MeteoAttackUp = baseStatus.MeteoAttackUp;
@@ -60,19 +67,12 @@ public class GiraffeStatus : AnimalStatus
         desertHealMag = baseStatus.desertHealMag;
         desertDist = baseStatus.desertDist;
         desertCutMag = baseStatus.desertCutMag;
-    }
 
-    public override void AddHp(int _hp, Animal animal_)
-    {
-        if (desertCut)
-        {
-            base.AddHp(Mathf.RoundToInt(_hp * (1.0f - desertCutMag * 0.01f)), animal_);
+        ActiveTimeIceAge = baseStatus.ActiveTimeIceAge;
+        CoolTimeIceAge = baseStatus.CoolTimeIceAge;
 
-            desertCut = false;
-        }
-        else
-        {
-            base.AddHp(_hp, animal_);
-        }
+        ActiveTimeBigFire = baseStatus.ActiveTimeBigFire;
+        CoolTimeBigFire = baseStatus.CoolTimeBigFire;
+        BigFireSpeedUp = baseStatus.BigFireSpeedUp;
     }
 }

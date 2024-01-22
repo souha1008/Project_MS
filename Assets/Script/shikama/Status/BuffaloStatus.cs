@@ -30,6 +30,8 @@ public class BuffaloStatus : AnimalStatus
     public int IceAgeCount = 5;
     public int IceAgeHealMag = 20;
 
+    public int BigFireAtkMag = 50;
+    public int BigFireAtkNum = 2;
     int erupCount = 0;
 
     public BuffaloStatus(BuffaloBaseStatus baseStatus, Animal animal) : base(baseStatus, animal)
@@ -59,6 +61,9 @@ public class BuffaloStatus : AnimalStatus
 
         IceAgeCount = baseStatus.IceAgeCount;
         IceAgeHealMag = baseStatus.IceAgeHealMag;
+
+        BigFireAtkMag = baseStatus.BigFireAtkMag;
+        BigFireAtkNum = baseStatus.BigFireAtkNum;
     }
 
     public override void AddHp(int _hp, Animal animal_)

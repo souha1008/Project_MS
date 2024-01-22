@@ -56,9 +56,6 @@ public class Animal : MonoBehaviour
     private delegate void STATE();           /// <summary> à⁄ìÆÅAçUåÇèàóù </summary>
     private event STATE State;
 
-    protected delegate void ATTACK_SKILL_ANIMAL(Animal animal);
-    protected event ATTACK_SKILL_ANIMAL AttackAnimalSkill = null;
-
     protected GameSetting gameSetting;
 
     [SerializeField] protected GameObject particle;
@@ -191,6 +188,13 @@ public class Animal : MonoBehaviour
 
                 if (particleCount == 0)
                 {
+                    foreach (MeshRenderer m in transform.GetComponentsInChildren<MeshRenderer>())
+                    {
+                        if (tag == "Enemy") break;
+                        if (!m) continue;
+                        m.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    }
+
                     particle.SetActive(false);
                     foreach (ParticleSystem s in particles)
                     {
@@ -199,8 +203,6 @@ public class Animal : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log(status.hitRate);
     }
 
     /// <summary>
@@ -225,6 +227,7 @@ public class Animal : MonoBehaviour
         if (animator)
         {
             animator.ResetTrigger("Attack");
+            animator.ResetTrigger("Idle");
 
             animator.SetTrigger("Walk");
         }
@@ -403,7 +406,7 @@ public class Animal : MonoBehaviour
         }
         else
         {
-            State = Move;
+            MoveMode();
         }
     }
 
@@ -414,17 +417,28 @@ public class Animal : MonoBehaviour
     {
         if (elephantSheld)
         {
-            status.AddHp(-(int)(status.attack * (100 - ElephantStatus.thunderCutMag) * 0.01f), this);
+            status.AddHp(-(int)(attackPower * (100 - ElephantStatus.thunderCutMag) * 0.01f), this);
             elephantSheld = false;
         }
         else if (camelSheld)
         {
-            status.AddHp(-(int)(status.attack * (100 - Camel.hurricaneCutMag) * 0.01f), this);
+            status.AddHp(-(int)(attackPower * (100 - Camel.hurricaneCutMag) * 0.01f), this);
         }
         else
         {
             status.AddHp(Mathf.RoundToInt(attackPower * mag), attackedEnemy);
         }
+    }
+
+    virtual protected void AttackAnimalSkill(Animal attackEnemy) {}
+
+    public void PlayAttackSE()
+    {
+        if (State == KnockBack) return;
+        if (tag == "Enemy")
+            InGameSEManager.instance.PlaySE04();
+        else if (tag == "Player")
+            InGameSEManager.instance.PlaySE05();
     }
 
     virtual protected void HitRateAttack(float mag = 1.0f)
@@ -477,8 +491,8 @@ public class Animal : MonoBehaviour
 
                     MoveMode();
                 }
-                
-                if (attackEnemy && AttackAnimalSkill != null) AttackAnimalSkill(attackEnemy);
+
+                if (attackEnemy) AttackAnimalSkill(attackEnemy);
             }
             else if (attackObject.GetComponent<House>()) // çUåÇëŒè€Ç™ìGãíì_ÇÃèÍçá
             {
@@ -514,16 +528,6 @@ public class Animal : MonoBehaviour
         else Debug.Log("ìñÇΩÇ¡ÇƒÇ»Ç¢ÇÊ");
     }
 
-
-
-    public void PlayAttackSE()
-    {
-        if (State == KnockBack) return;
-        if (tag == "Enemy")
-            InGameSEManager.instance.PlaySE04();
-        else if (tag == "Player")
-            InGameSEManager.instance.PlaySE05();
-    }
 
     protected void SetCoolTimer(float coolTimer)
     {

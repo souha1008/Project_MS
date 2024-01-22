@@ -94,15 +94,33 @@ public class Camel : Animal
 
     protected override void HitRateAttack(float mag = 1)
     {
-        if (evolution == EVOLUTION.HURRICANE) barrierCount++;
         base.HitRateAttack(mag);
+     
+     
+        if (evolution == EVOLUTION.HURRICANE) barrierCount++;
+        else if (evolution == EVOLUTION.BIGFIRE)
+        {
+            foreach (Animal animal in animalList)
+            {
+                if (animal.tag == "Enemy") continue;
+
+                float dist = Vector2.Distance(transform.position, animal.transform.position);
+                if (animal.status.attackDist >= dist - 0.25f)
+                {
+                    animal.status.AddHp(Mathf.RoundToInt(animal.status.maxHP * status_.BigFireHealMag * 0.01f), null);
+                }
+            }
+
+            evolution = EVOLUTION.NONE;
+            SetCoolTimer(status_.coolTimeBigFire);
+        }
     }
 
     protected override void Death()
     {
         if (evolution == EVOLUTION.TSUNAMI)
         {
-            baseStatus.cost = Mathf.RoundToInt(baseStatus.cost / (1.0f - status_.costDownMag));
+            baseStatus.cost = Mathf.RoundToInt(baseStatus.cost / (1.0f - status_.tsunamiCostDown * 0.01f));
         }
         base.Death();
     }
@@ -169,13 +187,11 @@ public class Camel : Animal
 
         base.TsunamiEvolution();
 
-        baseStatus.cost = Mathf.RoundToInt(baseStatus.cost * (1.0f - status_.costDownMag));
+        baseStatus.cost = Mathf.RoundToInt(baseStatus.cost * (1.0f - status_.tsunamiCostDown * 0.01f));
     }
 
     public override void EruptionEvolution()
     {
-        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
-
         base.EruptionEvolution();
 
         List<Animal> playerAnimal = new List<Animal>();
@@ -188,7 +204,10 @@ public class Camel : Animal
 
         int r = Random.Range(0, playerAnimal.Count - 1);
 
-        playerAnimal[r].status.speed *= 1.2f;
+        playerAnimal[r].status.speed *= status_.eruptionSpeedUP * 0.01f + 1.0f;
+        playerAnimal[r].Invoke("ResetSpeed", status_.activeTimeEruption);
+        activeTimer = status_.activeTimeEruption;
+        SetCoolTimer(status_.coolTimeEruption);
     }
 
     public override void PlagueEvolution()
