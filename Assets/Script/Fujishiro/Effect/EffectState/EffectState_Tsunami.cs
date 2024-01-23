@@ -4,4 +4,7 @@ public class EffectState_Tsunami : BaseEffectState
 {
     [Header("エフェクトをどこに出すか")]
     public Vector3 Effect_SpawnPos;
+
+    [Header("波オブジェクト")]
+    public GameObject Wave_Prefab;
 }

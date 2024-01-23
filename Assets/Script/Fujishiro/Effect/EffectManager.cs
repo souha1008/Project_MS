@@ -84,6 +84,12 @@ public class EffectManager : MonoBehaviour
             buttons[0].onClick.AddListener(Effect_Hurricane);
 
         }
+
+        foreach (var state in dic_base.Table.Values)
+        {
+            state.SetisPlay(false);
+        }
+
     }
 
     // Update is called once per frame
@@ -769,10 +775,11 @@ public class EffectManager : MonoBehaviour
         // プレイ中にする
         state.SetisPlay(true);
 
-        // 津波アニメーション再生
-
         // オーバーレイ設定
         Overlay_Image_animator.SetTrigger(state.Anim_Trigger_Name);
+
+        // 津波アニメーション再生
+        var wave = Instantiate(state.Wave_Prefab);
 
         // 飛沫エフェクトスポーン
         StartCoroutine(TsunamiSpawn(state));
@@ -780,7 +787,7 @@ public class EffectManager : MonoBehaviour
 
     IEnumerator TsunamiSpawn(EffectState_Tsunami state)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
 
         // 飛沫エフェクト生成
         var Effect = Instantiate(state.prefab);

@@ -17,5 +17,10 @@ MonoBehaviour:
   renderTextures: []
   prefab: {fileID: 6085986141856695785, guid: 0ceed55b65f9d574fbf5138b15ddfc38, type: 3}
   Anim_Trigger_Name: Tsunami
+  M_GroundTransfer: {fileID: 0}
+  M_UnderGroundTransfer: {fileID: 0}
+  GroundTransfer_Time: 0
+  GroundTransfer_DelayTime: 0
   isPlay: 0
   Effect_SpawnPos: {x: 4.26, y: 4.06, z: 8.76}
+  Wave_Prefab: {fileID: 2832424970280122659, guid: affb6aee204b0e34f9e5265f85e7ff26, type: 3}
