@@ -23,11 +23,6 @@ public class Elephant : Animal
     {
         base.Update();
 
-        if (coolTimer > 0)
-            coolTimer -= Time.deltaTime;
-        else
-            coolTimer = 0.0f;
-
         if (activeTimer != 0.0f) 
         {
             activeTimer -= Time.deltaTime;
@@ -55,7 +50,7 @@ public class Elephant : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.MeteoEvolution();
 
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeMeteo;
+        SetCoolTimer(status_.coolTimeMeteo);
         activeTimer = status_.activeTimeMeteo;
     }
 
@@ -83,10 +78,9 @@ public class Elephant : Animal
             }
         }
 
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeEarthquake;
+        SetCoolTimer(status_.coolTimeEarthquake);
     }
 
-    // 途中(ノックバックの仕様を知らない)
     public override void HurricaneEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
@@ -105,7 +99,7 @@ public class Elephant : Animal
             if(animal.CompareTag("Player") && !animal.camelSheld) animal.elephantSheld = true;
         }
 
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeThunder;
+        SetCoolTimer(status_.coolTimeThunder);
     }
 
     public override void TsunamiEvolution()
@@ -125,7 +119,7 @@ public class Elephant : Animal
         if (evolution != EVOLUTION.NONE || coolTimer != 0.0f) return;
         base.PlagueEvolution();
 
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimePlague;
+        SetCoolTimer(status_.coolTimePlague);
     }
 
     public override void DesertificationEvolution()
@@ -139,7 +133,7 @@ public class Elephant : Animal
         Instantiate(elephantField, vector3, Quaternion.identity);
 
         activeTimer = status_.activeTimeDesert;
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeDesert;
+        SetCoolTimer(status_.coolTimeDesert);
     }
 
     public override void IceAgeEvolution()

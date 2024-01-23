@@ -12,7 +12,7 @@ public class CamelStatus : AnimalStatus
 
     public float activeTimeEarthquake = 6.0f;
     public float coolTimeEarthquake = 15.0f;
-    public int earthquakeHPHeal = 100;
+    public int earthquakeHPHeal = 50;
 
     public float coolTimeHurricane = 30.0f;
     public int HurricaneAttackCount = 5;
@@ -33,10 +33,13 @@ public class CamelStatus : AnimalStatus
     public float DesertStatusUpDist = 4.0f;
     public int DesertStatusUpMag = 3;
 
+    public float activeTimeIceAge = 7.0f;
+    public float coolTimeIceAge = 15.0f;
+    public int IceAgeHealMag = 5;
+    public float IceAgeHealDist = 3.0f;
+
     public float coolTimeBigFire = 10.0f;
     public int BigFireHealMag = 7;
-
-    public float hpHealOne = 0.1f;
 
     public int tsunamiCostDown = 10;
 
@@ -72,10 +75,13 @@ public class CamelStatus : AnimalStatus
         DesertStatusUpDist = baseStatus.DesertStatusUpDist;
         DesertStatusUpMag = baseStatus.DesertStatusUpMag;
 
+        activeTimeIceAge = baseStatus.activeTimeIceAge;
+        coolTimeIceAge = baseStatus.coolTimeIceAge;
+        IceAgeHealMag = baseStatus.IceAgeHealMag;
+        IceAgeHealDist = baseStatus.IceAgeHealDist;
+
         coolTimeBigFire = baseStatus.coolTimeBigFire;
         BigFireHealMag = baseStatus.BigFireHealMag;
-
-        hpHealOne = baseStatus.hpHealOne;
 
         tsunamiCostDown = baseStatus.tsunamiCostDown;
     }

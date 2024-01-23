@@ -11,12 +11,11 @@ public class Camel : Animal
     float hpHealOneDist = 10.0f;
 
     public int barrierCount { get; set; } = 0;
-    float barrierTimer = 0;
-
-    static private bool costDown  = false;
+    
     static public int hurricaneCutMag = 30;
     static public float hurricaneBarrierTime = 7.0f;
 
+    private bool iceAgeHeal = true;
     private bool particleStop = false;
     
     override protected void Start()
@@ -58,17 +57,11 @@ public class Camel : Animal
             {
                 evolution = EVOLUTION.NONE;
                 activeTimer = 0.0f;
+                iceAgeHeal = true;
             }
         }
 
-        if (coolTimer > 0)
-        {
-            coolTimer -= Time.deltaTime;
-        }
-        else
-        {
-            coolTimer = 0.0f;
-        }
+
 
         if (particleStop)
         {
@@ -89,6 +82,20 @@ public class Camel : Animal
                 evolution = EVOLUTION.NONE;
                 particleStop = false;
             }
+        }
+    }
+
+    protected override void BeAttacked(int attackPower, Animal attackedEnemy, float mag = 1)
+    {
+        base.BeAttacked(attackPower, attackedEnemy, mag);
+
+        if(evolution == EVOLUTION.ICEAGE && iceAgeHeal)
+        {
+            InvokeRepeating("IceAgeHeal", 0, 1);
+            activeTimer = status_.activeTimeIceAge;
+            SetCoolTimer(status_.coolTimeIceAge);
+            Invoke("CancelInvoke", status_.activeTimeIceAge);
+            iceAgeHeal = false;
         }
     }
 
@@ -137,7 +144,7 @@ public class Camel : Animal
                 AttackUp();
                 break;
             case 1: // 範囲回復
-                HealRange();
+                HealRange(status_.meteoHealDist, status_.meteoHPHeal);
                 break;
             case 2: // スピードアップ
                 SpeedUp();
@@ -147,7 +154,7 @@ public class Camel : Animal
         particle.gameObject.SetActive(true);
 
         Invoke("ParticleStop",1.0f);
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeMeteo;
+        SetCoolTimer(status_.coolTimeMeteo);
     }
 
     private void ParticleStop()
@@ -158,8 +165,11 @@ public class Camel : Animal
     override public void EarthquakeEvolution()
     {
         if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
-        
-        HealOne();
+
+        InvokeRepeating("HealOne", 0, 1);
+        Invoke("CancelInvoke", status_.activeTimeEarthquake);
+        activeTimer = status_.activeTimeEarthquake;
+        SetCoolTimer(status_.coolTimeEarthquake);
     }
 
     public override void ThunderstormEvolution()
@@ -178,7 +188,7 @@ public class Camel : Animal
         }
 
         activeTimer = status_.activeTimeThunder;
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeThunder;
+        SetCoolTimer(status_.coolTimeThunder);
     }
 
     public override void TsunamiEvolution()
@@ -239,16 +249,13 @@ public class Camel : Animal
         }
 
         activeTimer = status_.activeTimeDesert;
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeDesert;
+        SetCoolTimer(status_.coolTimeDesert);
     }
 
-    public override void IceAgeEvolution()
+    private void IceAgeHeal()
     {
-        if (evolution != EVOLUTION.NONE || coolTimer != 0) return;
-        base.IceAgeEvolution();
+        HealRange(status_.IceAgeHealDist, status_.IceAgeHealMag);
     }
-
-
 
 
 
@@ -257,17 +264,16 @@ public class Camel : Animal
         status_.attack = (int)(status_.attack * (1.0f + status_.meteoAttackUp * 0.01f));
     }
 
-    private void HealRange()
+    private void HealRange(float dist_, int healMag)
     {
         foreach (Animal animal in animalList)
         {
             if (animal.tag == "Enemy") continue;
 
             float dist = Vector2.Distance(transform.position, animal.transform.position);
-            if (dist <= status_.meteoHealDist)
+            if (dist <= dist_)
             {
-                animal.status.hp += Mathf.RoundToInt(animal.status.maxHP * status_.meteoHPHeal * 0.01f);
-                if (animal.status.maxHP < animal.status.hp) animal.status.hp = animal.status.maxHP;
+                animal.status.AddHp(Mathf.RoundToInt(animal.status.maxHP * healMag * 0.01f), null);
             }
         }
     }
@@ -292,8 +298,7 @@ public class Camel : Animal
 
         if (healAnimal)
         {
-            healAnimal.status.hp += status_.earthquakeHPHeal;
-            if (healAnimal.status.maxHP < healAnimal.status.hp) healAnimal.status.hp = healAnimal.status.maxHP;
+            healAnimal.status.AddHp(status_.earthquakeHPHeal, null);
         }
     }
 

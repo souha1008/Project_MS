@@ -67,7 +67,7 @@ public class Animal : MonoBehaviour
 
     Image coolTimeSliderFill;
     Color coolTimeColor;
-    protected float coolTimer = 0.0f;
+    protected float coolTimer { get; private set; } = 0.0f;
 
     private float knockBackTime = 0.0f;
     private float knockBackCounter = 0.0f;
@@ -145,6 +145,15 @@ public class Animal : MonoBehaviour
         if (hpSlider)
         {
             hpSlider.value = status.hp;
+        }
+        
+        if (coolTimer > 0)
+        {
+            coolTimer -= Time.deltaTime;
+        }
+        else
+        {
+            coolTimer = 0.0f;
         }
 
         if (coolTimeSlider)

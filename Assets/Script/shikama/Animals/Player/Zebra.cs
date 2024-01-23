@@ -22,11 +22,6 @@ public class Zebra : Animal
     {
         base.Update();
 
-        if (coolTimer > 0)
-            coolTimer -= Time.deltaTime;
-        else
-            coolTimer = 0.0f;
-
         if (evolution == EVOLUTION.METEO)
         {
             if (coolTimer == 0 && attackObject)

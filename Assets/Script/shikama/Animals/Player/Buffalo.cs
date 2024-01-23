@@ -22,11 +22,6 @@ public class Buffalo : Animal
     {
         base.Update();
 
-        if (coolTimer > 0)
-            coolTimer -= Time.deltaTime;
-        else
-            coolTimer = 0;
-
         if (evolution == EVOLUTION.EARTHQUAKE)
         {
             activeTimer -= Time.deltaTime;
@@ -115,7 +110,7 @@ public class Buffalo : Animal
         status_.speed *= (100 - status_.meteoSpeedDownMag) * 0.01f;
 
         activeTimer = status_.activeTimeMeteo;
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeMeteo;
+        SetCoolTimer(status_.coolTimeMeteo);
     }
 
     override public void EarthquakeEvolution()
@@ -128,7 +123,7 @@ public class Buffalo : Animal
         status_.attack = (int)(status_.attack * status_.allStatusUpMag * 0.01f);
         status_.speed = status_.speed * status_.allStatusUpMag * 0.01f;
 
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeEarthquake;
+        SetCoolTimer(status_.coolTimeEarthquake);
         activeTimer = status_.activeTimeEarthquake;
     }
 
@@ -147,7 +142,7 @@ public class Buffalo : Animal
     {
         base.HurricaneEvolution();
 
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeHurricane;
+        SetCoolTimer(status_.coolTimeHurricane);
     }
 
     public override void ThunderstormEvolution()
@@ -165,7 +160,7 @@ public class Buffalo : Animal
             base.TsunamiEvolution();
             status.speed *= 1.0f + status_.TsunamiSpeedUPMag * 0.01f;
         }
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeTsunami;
+        SetCoolTimer(status_.coolTimeTsunami);
     }
 
     public override void EruptionEvolution()

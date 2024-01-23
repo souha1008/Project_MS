@@ -21,11 +21,6 @@ public class Giraffe : Animal
     {
         base.Update();
 
-        if (coolTimer > 0)
-            coolTimer -= Time.deltaTime;
-        else
-            coolTimer = 0;
-
         if (activeTimer != 0.0f)
         {
             activeTimer -= Time.deltaTime;
@@ -40,7 +35,7 @@ public class Giraffe : Animal
         {
             if(coolTimer == 0)
             {
-                coolTimeSlider.maxValue = coolTimer = status_.coolTimePlague;
+                SetCoolTimer(status_.coolTimePlague);
                 gameSetting.cost += status_.plagueCostUp;
                 if (gameSetting.cost > gameSetting.maxCost) gameSetting.cost = gameSetting.maxCost;
             }
@@ -119,7 +114,7 @@ public class Giraffe : Animal
             }
         }
 
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeEarthquake;
+        SetCoolTimer(status_.coolTimeEarthquake);
     }
 
     public override void HurricaneEvolution()
@@ -131,7 +126,7 @@ public class Giraffe : Animal
 
     public void DesertCoolTimeStart()
     {
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimeDesert;
+        SetCoolTimer(status_.coolTimeDesert);
     }
 
     public override void ThunderstormEvolution()
@@ -160,7 +155,7 @@ public class Giraffe : Animal
 
         gameSetting.cost += status_.plagueCostUp;
         if (gameSetting.cost > gameSetting.maxCost) gameSetting.cost = gameSetting.maxCost;
-        coolTimeSlider.maxValue = coolTimer = status_.coolTimePlague;
+        SetCoolTimer(status_.coolTimePlague);
     }
 
     public override void DesertificationEvolution()

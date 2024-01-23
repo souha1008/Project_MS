@@ -15,7 +15,7 @@ public class CamelBaseStatus : BaseStatus
     [Header("地震")]
     public float activeTimeEarthquake = 7.0f;
     public float coolTimeEarthquake = 30.0f;
-    public int earthquakeHPHeal = 100;
+    public int earthquakeHPHeal = 50;
 
     [Header("ハリケーン")]
     public float coolTimeHurricane = 30.0f;
@@ -43,10 +43,13 @@ public class CamelBaseStatus : BaseStatus
     public float DesertStatusUpDist = 4.0f;
     public int DesertStatusUpMag = 3;
 
+    [Header("氷河期")]
+    public float activeTimeIceAge = 7.0f;
+    public float coolTimeIceAge = 15.0f;
+    public int IceAgeHealMag = 5;
+    public float IceAgeHealDist = 3.0f;
+
     [Header("大火災")]
     public float coolTimeBigFire = 10.0f;
     public int BigFireHealMag = 7;
-
-    public float hpHealOne = 0.1f;
-
 }
