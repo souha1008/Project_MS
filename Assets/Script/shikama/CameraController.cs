@@ -21,6 +21,9 @@ public class CameraController : MonoBehaviour
     float minCameraSize;
 
     Vector3 oldMousePosition;
+    bool mouseFirstTouch = true;
+    bool left = false;
+    bool right = false;
 
     private void Start()
     {
@@ -74,7 +77,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         MouseScrollZoom();
-        //TouchPinchZoom();
+        if (!TouchPinchZoom()) 
         DragWidthScroll();
     }
 
@@ -117,10 +120,12 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    void TouchPinchZoom()
+    bool TouchPinchZoom()
     {
-        if(Touchscreen.current == null) return;
-        if (Touchscreen.current.touches[0] == null || Touchscreen.current.touches[1] == null) return;
+        if(Touchscreen.current == null) return false;
+        if (Touchscreen.current.touches[0] == null || Touchscreen.current.touches[1] == null) return false;
+        if (!Touchscreen.current.touches[0].isInProgress || !Touchscreen.current.touches[1].isInProgress) return false;
+
 
         // タッチ位置（スクリーン座標）
         var pos0 = Touchscreen.current.touches[0].ReadValue().position;
@@ -138,10 +143,10 @@ public class CameraController : MonoBehaviour
         var pinchDelta = Vector3.Distance(pos0, pos1) - Vector3.Distance(prevPos0, prevPos1);
         Debug.Log(pinchDelta);
 
-        if (pinchDelta < 0)
+        if (pinchDelta != 0)
         {
             // カメラサイズを指定範囲内で設定
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize += 0.1f, minCameraSize, maxCameraSize);
+            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize -= pinchDelta * 0.005f, minCameraSize, maxCameraSize);
 
             // カメラ四隅ワールド座標
             Vector3 rightTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
@@ -160,18 +165,9 @@ public class CameraController : MonoBehaviour
                 Camera.main.transform.SetPositionX(floorRightTop.x - Mathf.Abs(rightTop.x - leftBottom.x) / 2);
             }
         }
-        else if (pinchDelta > 0)
-        {
-            // カメラサイズを指定範囲内で設定
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize -= 0.1f, minCameraSize, maxCameraSize);
 
-            // カメラ四隅ワールド座標
-            Vector3 rightTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-            Vector3 leftBottom = Camera.main.ScreenToWorldPoint(Vector3.zero);
-
-            // カメラが地面の下を移さないよう設定
-            Camera.main.transform.SetPositionY(floorLeftBottom.y + Mathf.Abs(rightTop.y - leftBottom.y) / 2);
-        }
+        mouseFirstTouch = true;
+        return true;
     }
 
     // マウスドラッグによる横スクロールの関数
@@ -180,14 +176,15 @@ public class CameraController : MonoBehaviour
         if (Camera.main.orthographicSize == maxCameraSize) return;
 
         //マウスの座標を取得してスクリーン座標を更新
-            Vector3 mousePositionScreen = Input.mousePosition;
+        Vector3 mousePositionScreen = Input.mousePosition;
         //スクリーン座標→ワールド座標
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(mousePositionScreen);
 
-        if (Input.GetMouseButton(0))
+            
+        if(!mouseFirstTouch)
         {
             // 左スクロール
-            if (oldMousePosition.x < mousePosition.x)
+            if (oldMousePosition.x < mousePosition.x && !right)
             {
                 // カメラ四隅ワールド座標
                 Vector3 rightTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
@@ -204,10 +201,12 @@ public class CameraController : MonoBehaviour
                     else
                         Camera.main.transform.SetPositionX(floorLeftBottom.x + Mathf.Abs(rightTop.x - leftBottom.x) / 2);
                 }
+
+                left = true;
             }
 
             // 右スクロール
-            if (oldMousePosition.x > mousePosition.x)
+            if (oldMousePosition.x > mousePosition.x && !left)
             {
                 // カメラ四隅ワールド座標
                 Vector3 rightTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
@@ -223,9 +222,27 @@ public class CameraController : MonoBehaviour
                     else
                         Camera.main.transform.SetPositionX(floorRightTop.x - Mathf.Abs(rightTop.x - leftBottom.x) / 2);
                 }
+
+                right = true;
             }
+
+            if(oldMousePosition.x == mousePosition.x) left = right = false;
         }
 
+
+
+        if (Touchscreen.current != null && Touchscreen.current.touches[0] != null)
+        {
+            if(Touchscreen.current.touches[0].isInProgress) mouseFirstTouch = false;
+            else mouseFirstTouch = true;
+        }
+        else
+        {
+            if (Input.GetMouseButton(0)) mouseFirstTouch = false;
+            else {
+                mouseFirstTouch = true;
+            }
+        }
         // 1フレーム前のマウス座標保存
         oldMousePosition = mousePosition;
     }

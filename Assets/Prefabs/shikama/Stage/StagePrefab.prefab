@@ -967,7 +967,6 @@ RectTransform:
   - {fileID: 3633722831475674228}
   - {fileID: 8997720181887431603}
   - {fileID: 3590063658891431562}
-  - {fileID: 9076080334053761824}
   - {fileID: 1591889105762744381}
   - {fileID: 1198214889924964190}
   - {fileID: 4957799376782483592}
@@ -1778,6 +1777,7 @@ GameObject:
   - component: {fileID: 6624625422017318237}
   - component: {fileID: 7601986378936099536}
   - component: {fileID: 5407381645725201646}
+  - component: {fileID: 5844246148470138854}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1874,7 +1874,7 @@ MonoBehaviour:
   floor: {fileID: 6495459715427561887}
   underFloor: {fileID: 586009934288595795}
   minCameraSizeMag: 2
-  dragSpeedMag: 0.5
+  dragSpeedMag: 1
   dragDeadZone: 0.1
 --- !u!45 &5407381645725201646
 Skybox:
@@ -1885,6 +1885,50 @@ Skybox:
   m_GameObject: {fileID: 4548055252823011312}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: d04fa9ef91692c6429efccdf42970c46, type: 2}
+--- !u!114 &5844246148470138854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548055252823011312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &4796490311347996537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,7 +3025,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9076080334053761824}
   m_Father: {fileID: 3882570793699588790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4247,7 +4292,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3882570793699588790}
+    m_TransformParent: {fileID: 3590063658891431562}
     m_Modifications:
     - target: {fileID: 569460566073665326, guid: c95ee204f4e074c429f2439ce260458e, type: 3}
       propertyPath: m_Name
@@ -4327,11 +4372,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1044487166989088354, guid: c95ee204f4e074c429f2439ce260458e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -175
+      value: -158
       objectReference: {fileID: 0}
     - target: {fileID: 1044487166989088354, guid: c95ee204f4e074c429f2439ce260458e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -74
+      value: -75.5
       objectReference: {fileID: 0}
     - target: {fileID: 1044487166989088354, guid: c95ee204f4e074c429f2439ce260458e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
