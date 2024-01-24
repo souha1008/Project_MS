@@ -23,6 +23,8 @@ public class DragOBJ : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     // ドロップする場所
     [SerializeField] Dic_DropArea dropArea;
 
+    
+
     GameObject copyOBJ;
 
     void Start()
@@ -46,7 +48,21 @@ public class DragOBJ : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     public void OnDrag(PointerEventData eventData)
     {
         // 追従
-        copyOBJ.transform.position = eventData.position;
+        var localpos = GetLocalPosition(eventData.position);
+        copyOBJ.GetComponent<RectTransform>().SetLocalPosition(localpos.x, localpos.y, 0.0f);
+    }
+
+    // ScreenPositionからlocalPositionへの変換関数
+    private Vector2 GetLocalPosition(Vector2 screenPosition)
+    {
+        Vector2 result = Vector2.zero;
+
+        // screenPositionを親の座標系(parentRectTransform)に対応するよう変換する.
+        var canvas = copyOBJ.transform.parent as RectTransform;
+        //var parentRectTransform = canvas.GetComponent<RectTransform>();
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, screenPosition, Camera.main, out result);
+
+        return result;
     }
 
     // ドラッグ終了
