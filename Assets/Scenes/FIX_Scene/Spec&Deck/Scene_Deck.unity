@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -338,6 +338,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6009154853434189244, guid: 925f7db0172adf946a0c65bfa208ded6, type: 3}
   m_PrefabInstance: {fileID: 280307820}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &481022642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4673448009025615709, guid: b892bae6531605b46b3217bf6bdf9b11, type: 3}
+  m_PrefabInstance: {fileID: 5571314210048651967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &489369098
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,9 +542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: EarthQuake
+  Name: "\u5730\u9707"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -641,9 +646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Meteor
+  Name: "\u9695\u77F3"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -1318,28 +1323,34 @@ MonoBehaviour:
       m_value: Tsunami
   disastar_baner:
     m_list:
-    - m_key: Meteor
+    - m_key: "\u9695\u77F3"
       m_value: {fileID: 21300000, guid: 33244a6c54c72fd46908ed760ade4e2b, type: 3}
-    - m_key: EarthQuake
+    - m_key: "\u5730\u9707"
       m_value: {fileID: 21300000, guid: d52285433d3646246a1da59ef9940de5, type: 3}
-    - m_key: Hurricane
+    - m_key: "\u30CF\u30EA\u30B1\u30FC\u30F3"
       m_value: {fileID: 21300000, guid: 77a4a3160042787488f362bd0c0c0554, type: 3}
-    - m_key: ThunderStome
+    - m_key: "\u96F7\u96E8"
       m_value: {fileID: 21300000, guid: bcf98e419139e16439886dcda44a3d95, type: 3}
-    - m_key: Tsunami
+    - m_key: "\u6D25\u6CE2"
       m_value: {fileID: 21300000, guid: c78b09eed7f09e44f901c037eb1a0612, type: 3}
-    - m_key: Eruption
+    - m_key: "\u5674\u706B"
       m_value: {fileID: 21300000, guid: 08585158dcfe11c42bff601613ed8884, type: 3}
-    - m_key: Plague
+    - m_key: "\u75AB\u75C5"
       m_value: {fileID: 21300000, guid: 973273979d16e094b8a2dd75fd8f1c9f, type: 3}
-    - m_key: Desert
+    - m_key: "\u7802\u6F20\u5316"
       m_value: {fileID: 21300000, guid: 68c2c3e0b127bc849aed6514077c4624, type: 3}
-    - m_key: IceAge
+    - m_key: "\u6C37\u6CB3\u671F"
       m_value: {fileID: 21300000, guid: dcbb7b1686527cf49a67c50fcb26d02e, type: 3}
-    - m_key: BigFire
+    - m_key: "\u5927\u706B\u707D"
       m_value: {fileID: 21300000, guid: 6f1f14fbaf1cef04d8359acfe3eef099, type: 3}
     - m_key: NULL
       m_value: {fileID: 21300000, guid: ba02b2d093b6d914a870503c57f83ff1, type: 3}
+  deckImage:
+  - {fileID: 1124064375}
+  - {fileID: 651215250}
+  - {fileID: 489369098}
+  - {fileID: 1997179808}
+  - {fileID: 1110342623}
 --- !u!4 &1240524926
 Transform:
   m_ObjectHideFlags: 0
@@ -1504,9 +1515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Hurricane
+  Name: "\u30CF\u30EA\u30B1\u30FC\u30F3"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -1809,9 +1820,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Desert
+  Name: "\u7802\u6F20\u5316"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -2003,9 +2014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Tsunami
+  Name: "\u6D25\u6CE2"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -2293,9 +2304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: IceAge
+  Name: "\u6C37\u6CB3\u671F"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -2647,9 +2658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: BigFire
+  Name: "\u5927\u706B\u707D"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -2869,9 +2880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: ThunderStome
+  Name: "\u96F7\u96E8"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -2973,9 +2984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Plague
+  Name: "\u75AB\u75C5"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -3152,9 +3163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb1b91aec3cdb4da5a98edf3ecf3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Eruption
+  Name: "\u5674\u706B"
   Canvas: {fileID: 129027415}
-  copyScale: 0.3
+  copyScale: 0.4
   alphaMag: 0.5
   dropArea:
     m_list:
@@ -3192,6 +3203,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c1da6c3e06423764eb476571592487e3, type: 3}
+    - target: {fileID: 3581238756743251565, guid: b892bae6531605b46b3217bf6bdf9b11, type: 3}
+      propertyPath: makeprefab
+      value: 
+      objectReference: {fileID: 481022642}
     - target: {fileID: 3754242183348809641, guid: b892bae6531605b46b3217bf6bdf9b11, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
