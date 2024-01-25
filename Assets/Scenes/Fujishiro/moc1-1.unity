@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -673,9 +673,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 4.805069
       objectReference: {fileID: 0}
+    - target: {fileID: 5272280625468771638, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6177679012792636036, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_FillAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201832881623305461, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6475742098413655563, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -741,6 +749,10 @@ PrefabInstance:
       propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8744071340730425346, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8983935152193602681, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 829.5
@@ -763,7 +775,65 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4183530854352658117, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1493494144}
+    - targetCorrespondingSourceObject: {fileID: 6201832881623305461, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1431527464}
+    - targetCorrespondingSourceObject: {fileID: 8744071340730425346, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1431527463}
   m_SourcePrefab: {fileID: 100100000, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+--- !u!1 &1431527461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8744071340730425346, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+  m_PrefabInstance: {fileID: 1431527460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1431527462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6201832881623305461, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
+  m_PrefabInstance: {fileID: 1431527460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1431527463
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431527461}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd80ac0428336f34fa8b9cab13ad893b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!95 &1431527464
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431527462}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e69b9e6f946e5240945f9e74d31873c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1493494142 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4183530854352658117, guid: 85f6da83f40b19044b6bf2eb9878680a, type: 3}
