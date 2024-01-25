@@ -10,7 +10,7 @@ public class House : MonoBehaviour
 
     GameSetting gameSetting;
 
-    private void Start()
+    private void Awake()
     {
         gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
     }
