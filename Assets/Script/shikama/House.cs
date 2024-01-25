@@ -4,5 +4,14 @@ using UnityEngine;
 
 public class House : MonoBehaviour
 {
-    public int hp = 100;
+    private int hp_ = 50000;
+
+    public int hp { get { return hp_; } set { if(!gameSetting.houseDead) this.hp_ = value; } }
+
+    GameSetting gameSetting;
+
+    private void Start()
+    {
+        gameSetting = GameObject.Find("GameSetting").GetComponent<GameSetting>();
+    }
 }

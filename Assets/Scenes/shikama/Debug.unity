@@ -5336,7 +5336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: dic_base.m_list.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: Overlay_Color.m_list.Array.size
@@ -5359,6 +5359,10 @@ PrefabInstance:
       value: Hurricane
       objectReference: {fileID: 0}
     - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
+      propertyPath: dic_base.m_list.Array.data[7].m_key
+      value: EarthQuake
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: dic_base.m_list.Array.data[3].m_value
       value: 
       objectReference: {fileID: 11400000, guid: 731eeafe08456554b8cbf5614cfb168f, type: 2}
@@ -5374,6 +5378,10 @@ PrefabInstance:
       propertyPath: dic_base.m_list.Array.data[6].m_value
       value: 
       objectReference: {fileID: 11400000, guid: 17698ec709d08b643850b617d6c56e13, type: 2}
+    - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
+      propertyPath: dic_base.m_list.Array.data[7].m_value
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cc2a26f918b66a4196a5c00c60ab015, type: 2}
     - target: {fileID: 7806640306982014113, guid: 4bfee948bfc12504187e1a31bf839eed, type: 3}
       propertyPath: Overlay_Color.m_list.Array.data[0].m_key
       value: IceAge

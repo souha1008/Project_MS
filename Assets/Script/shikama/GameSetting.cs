@@ -14,11 +14,16 @@ public class GameSetting : MonoBehaviour
     public int maxCost = 120;
     public int envCost = 200;
     public int envCostDown = 10;
+
     [SerializeField] House enemyHouse;
     [SerializeField] House playerHouse;
 
-    [SerializeField] Text clearText;
-    private bool houseDead = false;
+    [SerializeField] int playerHouseHP = 50000;
+    [SerializeField] int enemyHouseHP = 50000;
+
+    [SerializeField] Image clearImage;
+    [SerializeField] Image failedImage;
+    public bool houseDead { get; private set; } = false;
 
     public List<int> lvUpCost;
 
@@ -50,7 +55,11 @@ public class GameSetting : MonoBehaviour
     {
         cost = firstCost;
         textMeshCost.text = firstCost + " : " + maxCost;
-        clearText.gameObject.SetActive(false);
+        clearImage.gameObject.SetActive(false);
+        failedImage.gameObject.SetActive(false);
+
+        playerHouse.hp = playerHouseHP;
+        enemyHouse.hp = enemyHouseHP;
 
         SetEnvPallet();
     }
@@ -66,16 +75,15 @@ public class GameSetting : MonoBehaviour
         {
             if (playerHouse.hp <= 0)
             {
-                clearText.gameObject.SetActive(true);
-                clearText.text = "Game Over";
+                failedImage.gameObject.SetActive(true);
+
                 Invoke("ChangeSelectScene", 2.0f);
                 houseDead = true;
             }
 
             if (enemyHouse.hp <= 0)
             {
-                clearText.gameObject.SetActive(true);
-                clearText.text = "Clear!";
+                clearImage.gameObject.SetActive(true);
                 Invoke("ChangeSelectScene", 2.0f);
                 houseDead = true;
             }
@@ -84,7 +92,7 @@ public class GameSetting : MonoBehaviour
 
     private void ChangeSelectScene()
     {
-        Initiate.Fade("StageSelect", fadeColor, fadespeed);
+        Initiate.Fade("Scene_StageSelect", fadeColor, fadespeed);
     }
 
     private void OnApplicationQuit()
