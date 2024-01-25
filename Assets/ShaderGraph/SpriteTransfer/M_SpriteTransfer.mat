@@ -64,8 +64,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Transfer_Bigfire: -0.0021795034
-    - _Transfer_Desert: -0.052257814
+    - _Transfer_Bigfire: -0.0036802292
+    - _Transfer_Desert: -0.002196312
     m_Colors:
     - _mori_Color: {r: 0.4862745, g: 0.6039216, b: 0.49411765, a: 1}
   m_BuildTextureStacks: []
