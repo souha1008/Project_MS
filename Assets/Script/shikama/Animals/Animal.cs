@@ -180,6 +180,9 @@ public class Animal : MonoBehaviour
             }
         }
 
+        if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            rb.velocity = new Vector2(0, 0);
+
         if (!evolution.Equals(EVOLUTION.NONE) && particle)
         {
             particle.SetActive(true);

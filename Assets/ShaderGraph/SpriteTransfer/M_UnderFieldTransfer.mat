@@ -70,7 +70,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BigFire_Transfer: 1.0039829
+    - _BigFire_Transfer: 0
     - _Desert_Transfer: 0
     - _IceAge_Transfer: 0
     - _Plague_Transfer: 0

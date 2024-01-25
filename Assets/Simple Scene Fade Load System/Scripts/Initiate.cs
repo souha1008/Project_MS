@@ -77,8 +77,10 @@ public static class Initiate
         int _transitionID = Shader.PropertyToID("_Transition");
         GameObject init = new GameObject();
         init.name = "SpriteFader";
+        init.layer = 5;
         Canvas myCanvas = init.AddComponent<Canvas>();
         myCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        myCanvas.sortingOrder = 9999;
         init.AddComponent<Fader>();
         init.AddComponent<CanvasGroup>();
         init.AddComponent<Image>().material = mat;
