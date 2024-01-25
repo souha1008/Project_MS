@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u30C8\u30E9"
   cost: 20
-  maxHP: 1000
-  attack: 30
+  maxHP: 3000
+  attack: 900
   speed: 1.5
   attackSpeed: 1.5
-  attackDist: 1
+  attackDist: 1.5
   hitRate: 100
   dir: 0
