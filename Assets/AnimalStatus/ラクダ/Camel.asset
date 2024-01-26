@@ -17,7 +17,7 @@ MonoBehaviour:
   maxHP: 1500
   attack: 100
   speed: 1.5
-  attackSpeed: 1.5
+  attackSpeed: 0.033
   attackDist: 2
   hitRate: 100
   dir: 1
@@ -29,15 +29,25 @@ MonoBehaviour:
   activeTimeEarthquake: 7
   coolTimeEarthquake: 30
   earthquakeHPHeal: 100
+  coolTimeHurricane: 30
+  HurricaneAttackCount: 5
+  HurricaneCutMag: 30
+  HurricaneBarrierTime: 7
   activeTimeThunder: 6
   coolTimeThunder: 15
   thunderSpeedUP: 100
+  tsunamiCostDown: 10
+  activeTimeEruption: 6
+  coolTimeEruption: 15
+  eruptionSpeedUP: 25
   activeTimeDesert: 6
   coolTimeDesert: 15
   DesertHPDecMag: 10
   DesertStatusUpDist: 4
   DesertStatusUpMag: 3
-  hpHealOne: 0.1
-  barrierMag: 0.3
-  barrierTime: 7
-  costDownMag: 0.1
+  activeTimeIceAge: 7
+  coolTimeIceAge: 15
+  IceAgeHealMag: 5
+  IceAgeHealDist: 3
+  coolTimeBigFire: 10
+  BigFireHealMag: 7

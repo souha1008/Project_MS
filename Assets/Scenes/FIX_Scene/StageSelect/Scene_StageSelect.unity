@@ -629,7 +629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: NextScene
-      value: 
+      value: Scene_3-3m 2
       objectReference: {fileID: 0}
     - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
@@ -961,7 +961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8021552354666751861, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: NextScene
-      value: 
+      value: Scene_3-2m 1
       objectReference: {fileID: 0}
     - target: {fileID: 8021552354666751861, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
@@ -1001,7 +1001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: NextScene
-      value: 
+      value: Scene_3-1m
       objectReference: {fileID: 0}
     - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
@@ -1458,7 +1458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1075648534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1473,10 +1473,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 639880830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 197}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 274.5, y: -555.06}
+  m_SizeDelta: {x: 549, y: 197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075648535
 MonoBehaviour:
@@ -1955,7 +1955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: NextScene
-      value: 
+      value: Scene_2-3
       objectReference: {fileID: 0}
     - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
@@ -2291,7 +2291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8021552354666751861, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: NextScene
-      value: 
+      value: Scene_2-2
       objectReference: {fileID: 0}
     - target: {fileID: 8021552354666751861, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
@@ -2331,7 +2331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: NextScene
-      value: 
+      value: Scene_2-1
       objectReference: {fileID: 0}
     - target: {fileID: 8581908156239536062, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial
@@ -2884,7 +2884,7 @@ PrefabInstance:
       objectReference: {fileID: 1175125590}
     - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: NextScene
-      value: 
+      value: Scene_1-3
       objectReference: {fileID: 0}
     - target: {fileID: 958717596304015284, guid: cac1ccab5ca603c4c95d6fdac2245c88, type: 3}
       propertyPath: postEffectMaterial

@@ -17,22 +17,31 @@ MonoBehaviour:
   maxHP: 250
   attack: 2000
   speed: 1.5
-  attackSpeed: 1.5
+  attackSpeed: 0.01
   attackDist: 2
   hitRate: 100
   dir: 1
+  MeteoAttackUp: 30
+  MeteoKBDist: 0.3
+  MeteoKBTime: 0.35
   coolTimeEarthquake: 20
   ActiveTimeHurricane: 4
   CoolTimeHurricane: 10
   HurricaneKBDist: 1
   HurricaneSpeedUP: 5
   HurricaneKBTime: 0.35
+  ThunderAtkDistUp: 100
   TsunamiAtkUp: 5
   TsunamiSpeedUp: 5
+  EruptionAtkDistDown: 50
   coolTimeDesert: 2
   desertHealMag: 2
   desertDist: 2
   desertCutMag: 30
   coolTimePlague: 15
   plagueCostUp: 50
-  attackUpMag: 3
+  ActiveTimeIceAge: 6
+  CoolTimeIceAge: 15
+  ActiveTimeBigFire: 5
+  CoolTimeBigFire: 12
+  BigFireSpeedUp: 20

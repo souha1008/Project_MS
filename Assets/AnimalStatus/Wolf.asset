@@ -17,7 +17,7 @@ MonoBehaviour:
   maxHP: 1800
   attack: 400
   speed: 1.4
-  attackSpeed: 1.4
+  attackSpeed: 0.01
   attackDist: 1
   hitRate: 100
   dir: 0

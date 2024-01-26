@@ -139,7 +139,18 @@ public class Animal : MonoBehaviour
         // UŒ‚”ÍˆÍ•\Ž¦
         Debug.DrawRay(transform.position, dirVec * status.attackDist, Color.red);
 
-        attackCount += Time.deltaTime;
+        if (animator) 
+        { 
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                attackCount += Time.deltaTime;
+            }
+        }
+        else
+        {
+            attackCount += Time.deltaTime;
+        }
+
         if (State != null) State(); // UŒ‚AˆÚ“®ˆ—
 
         if (hpSlider)
@@ -317,8 +328,13 @@ public class Animal : MonoBehaviour
         // UŒ‚
         if (attackCount >= status.attackSpeed)
         {
-            if (animator) animator.SetTrigger("Attack");
+            if (animator)
+            {
+                animator.ResetTrigger("Walk");
+                animator.ResetTrigger("Idle");
 
+                animator.SetTrigger("Attack");
+            }
 
             attackCount = 0;
         }
